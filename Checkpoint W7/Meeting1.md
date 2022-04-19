@@ -1,5 +1,4 @@
-# [Team Name]
-This following is a team meeting template. You may change this template as you like.
+# I can't remember
 
 ## Team Meeting 1 - Holiday - 11/4/2022
 **Absent:** None
@@ -7,16 +6,17 @@ This following is a team meeting template. You may change this template as you l
 **Lead/scribe:** Boyu (Daniel)
 
 ## Agreed Procedure
-Introduction to the structure of the project
-Assign tasks
+Briefing about android<br>
+Introduction to the structure of the project<br>
+Assign tasks<br>
 
 ## Agenda Items
 | Number | Item |
 | :--- | ---: |
-| [number] | [item name] |
-| [number] | [item name] |
-| [number] | [item name] |
-| [number] | [item name] |
+| 1 | Briefing about android |
+| 2 | Plaining of some basic activity that need to build |
+| 3 | Assigning tasks |
+| 4 | [item name] |
 
 ## Meeting Minutes
 - 1 hour
