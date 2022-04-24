@@ -6,4 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".SettingPage">
 
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <Switch
+            android:id="@+id/switch_SettingPage_filterSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Filter(replacing bad words with *)" />
+
+        <Switch
+            android:id="@+id/switch_SettingPage_NightMode"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="NightMode" />
+
+        <Switch
+            android:id="@+id/switch_SettingPage_unusedSwitch"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="switch5" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@
             android:name=".ViewPost"
             android:exported="false" />
         <activity
+            android:label="Settings"
             android:name=".SettingPage"
             android:exported="false" />
         <activity
