@@ -20,6 +20,7 @@
             android:exported="false" />
         <activity
             android:name=".CreatePost"
+            android:label="Creat Your Post"
             android:exported="false" />
         <activity
             android:name=".Profile"
