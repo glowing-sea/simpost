@@ -31,6 +31,7 @@ public class CreatePost extends AppCompatActivity {
                 String postContent = userInput.getText().toString();
                 intent.putExtra("contentOfPost",postContent);
                 startActivity(intent);
+
             }
         });
     }
