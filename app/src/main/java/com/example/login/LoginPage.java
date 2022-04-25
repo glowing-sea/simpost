@@ -43,7 +43,7 @@ public class LoginPage extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(LoginPage.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-                    Intent i = new Intent(LoginPage.this, Profile.class);
+                    Intent i = new Intent(LoginPage.this, MainPage.class);
                     startActivity(i);
                 }
 
