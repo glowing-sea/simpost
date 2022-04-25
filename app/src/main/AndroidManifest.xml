@@ -13,6 +13,7 @@
             android:name=".ViewPost"
             android:exported="false" />
         <activity
+            android:label="Settings"
             android:name=".SettingPage"
             android:exported="false" />
         <activity
@@ -20,6 +21,7 @@
             android:exported="false" />
         <activity
             android:name=".CreatePost"
+            android:label="Creat Your Post"
             android:exported="false" />
         <activity
             android:name=".Profile"
