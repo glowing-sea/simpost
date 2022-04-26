@@ -52,13 +52,8 @@ public class LoginPage extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signup.setEnabled(false);
-                String n = name.getText().toString();
-                String p = password.getText().toString();
-                SharedPreferences.Editor save = userInfo.edit();
-                save.putString(n, p);
-                save.commit();
-                Toast.makeText(LoginPage.this,"You have successfully signed up", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(LoginPage.this, SignupPage.class);
+                startActivity(i);
             }
         });
         }
