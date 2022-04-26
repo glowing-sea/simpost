@@ -10,19 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".SignupPage"
+            android:exported="false" />
+        <activity
             android:name=".ViewPost"
             android:exported="false" />
         <activity
-            android:label="Settings"
             android:name=".SettingPage"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Settings" />
         <activity
             android:name=".MainPage"
             android:exported="false" />
         <activity
             android:name=".CreatePost"
-            android:label="Creat Your Post"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Creat Your Post" />
         <activity
             android:name=".Profile"
             android:exported="false" />
