@@ -19,6 +19,12 @@ public class SearchResultPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result_page);
         searchKey = findViewById(R.id.reSearch);
+        Bundle fromCreate = getIntent().getExtras();
+        String t = "";
+        if (fromCreate != null){
+            t = fromCreate.getString("keyword");
+        }
+        searchKey.setText(t);
         confirm = findViewById(R.id.confirmResearch);
         result1 = findViewById(R.id.result1);
         result2 = findViewById(R.id.result2);
