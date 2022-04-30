@@ -32,6 +32,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="test" />
+
+        <Button
+            android:id="@+id/returnKey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Return to Main Page" />
     </LinearLayout>
 
     <LinearLayout

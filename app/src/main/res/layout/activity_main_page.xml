@@ -61,6 +61,20 @@
             android:textColor="#FF5722"
             android:textSize="20sp" />
 
+        <EditText
+            android:id="@+id/searchText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Search..." />
+
+        <Button
+            android:id="@+id/confirmSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go" />
+
     </LinearLayout>
 
     <Button
