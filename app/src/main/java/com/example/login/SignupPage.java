@@ -2,6 +2,7 @@ package com.example.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ public class SignupPage extends AppCompatActivity {
         name = findViewById(R.id.signupname);
         password = findViewById(R.id.password);
         confirm = findViewById(R.id.confirmSignup);
+        userInfo = getSharedPreferences("info", Context.MODE_PRIVATE);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
