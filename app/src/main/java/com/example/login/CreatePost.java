@@ -8,10 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-
 public class CreatePost extends AppCompatActivity {
     Button posting;
     EditText userInput, title;
@@ -38,7 +34,7 @@ public class CreatePost extends AppCompatActivity {
                 intent.putExtra("titleOfPost", head);
                 intent.putExtra("contentOfPost",postContent);
                 //create simple post id
-                Post current = new Post(head, postContent, 123);
+                Post current = new Post(head, postContent);
                 // and then we can store the post in sqlite here
                 // erase content in create post
                 title.setText("");

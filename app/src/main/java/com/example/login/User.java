@@ -2,9 +2,23 @@ package com.example.login;
 
 public class User {
     String username;
-    int userID;
-    public User(String name, int id){
+    String password;
+    final int userID;
+    public User(String name, String password){
         this.username = name;
-        this.userID = id;
+        this.password = password;
+        this.userID = 123;//这里加上userid的算法
+    }
+    public String getUsername(){
+        return this.username;
+    }
+    public String getPassword(){
+        return this.password;
+    }
+    public int getUserId(){
+        return this.userID;
+    }
+    public void setPassword(String password){
+        this.password = password;
     }
 }
