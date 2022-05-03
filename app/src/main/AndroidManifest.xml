@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Login">
         <activity
             android:name=".SearchResultPage"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Search result"/>
         <activity
             android:name=".SignupPage"
             android:exported="false" />
@@ -24,11 +25,12 @@
             android:label="Settings" />
         <activity
             android:name=".MainPage"
-            android:exported="false" />
+            android:exported="false"
+            android:label="view posts"/>
         <activity
             android:name=".CreatePost"
             android:exported="false"
-            android:label="Creat Your Post" />
+            android:label="Create Your Post" />
         <activity
             android:name=".Profile"
             android:exported="false" />
