@@ -1,5 +1,9 @@
 package com.example.login;
 
+import com.google.gson.Gson;
+
+import java.io.File;
+
 public class Post {
     String title;
     String content;
@@ -23,5 +27,10 @@ public class Post {
     }
     public void setContent(String content){
         this.content = content;
+    }
+    public String toJson(){
+        Gson gson = new Gson();
+        String rtn = gson.toJson(this);
+        return rtn;
     }
 }
