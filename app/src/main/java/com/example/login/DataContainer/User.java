@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.login.DataContainer;
 
 public class User {
     String username;

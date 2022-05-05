@@ -32,7 +32,7 @@
             android:exported="false"
             android:label="Create Your Post" />
         <activity
-            android:name=".Profile"
+            android:name=".Activity.Profile"
             android:exported="false" />
         <activity
             android:name=".Activity.LoginPage"

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.login.Post;
+import com.example.login.DataContainer.Post;
 import com.example.login.R;
 
 public class ViewPost extends AppCompatActivity {

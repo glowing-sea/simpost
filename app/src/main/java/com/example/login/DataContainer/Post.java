@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.login.DataContainer;
 
 import com.google.gson.Gson;
 
@@ -30,7 +30,6 @@ public class Post {
     }
     public String toJson(){
         Gson gson = new Gson();
-        String rtn = gson.toJson(this);
-        return rtn;
+        return gson.toJson(this);
     }
 }

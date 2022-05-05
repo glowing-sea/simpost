@@ -8,26 +8,27 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
-import com.example.login.Post;
+import com.example.login.FileIO.FileRW;
+import com.example.login.DataContainer.Post;
 import com.example.login.R;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 public class CreatePost extends AppCompatActivity {
     private static final String TAG = "Activity_CreatPost";
+    private String PRIVATE_DIR;
     Button posting;
     EditText userInput, title;
     Intent commingIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //basic set up
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
-
+        PRIVATE_DIR = getApplicationContext().getFilesDir().getPath();
         //getIntent
         commingIn = this.getIntent();
 
@@ -50,33 +51,21 @@ public class CreatePost extends AppCompatActivity {
                 Post current = new Post(head, postContent);
                 String postFileName = current.getPostID() + ".json";
                 String jsonString = current.toJson();
+                FileRW fileRW = new FileRW(getApplicationContext());
+
+                boolean folderExist = new File(PRIVATE_DIR,"posts").exists();
+                boolean savedFile = false;
+                if (!folderExist){
+                    fileRW.makDir(PRIVATE_DIR,"posts");
+                }
+                savedFile =  fileRW.savingString("posts",postFileName,jsonString);
+                if(!savedFile){
+                    Toast.makeText(getApplicationContext(), "unable to save", Toast.LENGTH_SHORT).show();
+                    Log.e(TAG,"file not saved");
+                }
                 //create file that can write in
-                File postFile = new File(getApplicationContext().getFilesDir(),postFileName);
-                if(!postFile.exists()){
-                    try {
-                        postFile.createNewFile();
-                    } catch (IOException e) {
-                        Log.e(TAG,"uncable to create file");
-                        e.printStackTrace();
-                    }
-                }else {
-                    postFile.delete();
-                    try {
-                        postFile.createNewFile();
-                    } catch (IOException e) {
-                        Log.e(TAG,"uncable to create file");
-                        e.printStackTrace();
-                    }
-                }
-                //write json stirng to file in the priveate file dir
-                String fileContents = current.toJson();
-                try {
-                    FileOutputStream fos =  getApplicationContext().openFileOutput(postFileName,MODE_PRIVATE);
-                    fos.write(jsonString.getBytes(StandardCharsets.UTF_8));
-                } catch (IOException e) {
-                    Log.e(TAG,"uncable to write file");
-                    e.printStackTrace();
-                }
+                Log.i(TAG,"file created");
+
 
                 // and then we can store the post in sqlite here
                 // erase content in create post
