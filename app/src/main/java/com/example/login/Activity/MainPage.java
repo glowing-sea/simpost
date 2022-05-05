@@ -1,16 +1,15 @@
-package com.example.login;
+package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.LabeledIntent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.login.R;
 
 public class MainPage extends AppCompatActivity {
 

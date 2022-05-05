@@ -10,32 +10,32 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".SearchResultPage"
+            android:name=".Activity.SearchResultPage"
             android:exported="false"
             android:label="Search result"/>
         <activity
-            android:name=".SignupPage"
+            android:name=".Activity.SignupPage"
             android:exported="false" />
         <activity
-            android:name=".ViewPost"
+            android:name=".Activity.ViewPost"
             android:exported="false" />
         <activity
-            android:name=".SettingPage"
+            android:name=".Activity.SettingPage"
             android:exported="false"
             android:label="Settings" />
         <activity
-            android:name=".MainPage"
+            android:name=".Activity.MainPage"
             android:exported="false"
             android:label="view posts"/>
         <activity
-            android:name=".CreatePost"
+            android:name=".Activity.CreatePost"
             android:exported="false"
             android:label="Create Your Post" />
         <activity
             android:name=".Profile"
             android:exported="false" />
         <activity
-            android:name=".LoginPage"
+            android:name=".Activity.LoginPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

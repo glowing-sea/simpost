@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.login.Post;
+import com.example.login.R;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -46,7 +48,7 @@ public class CreatePost extends AppCompatActivity {
                 //store the post as json file in directory
                 //creating file
                 Post current = new Post(head, postContent);
-                String postFileName = current.postID + ".json";
+                String postFileName = current.getPostID() + ".json";
                 String jsonString = current.toJson();
                 //create file that can write in
                 File postFile = new File(getApplicationContext().getFilesDir(),postFileName);
