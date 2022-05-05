@@ -66,6 +66,7 @@ public class FileRW {
         File targetFile = new File(path,fileName);
         if(targetFile.exists()){
             Log.e(TAG,"the file attemp to write to already exist"+ path+fileName);
+            return false;
         }else {
             try{
                 targetFile.createNewFile();
