@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".DataContainer.MyDBOpenHelper"
+            android:exported="false" />
+        <activity
             android:name=".Activity.SearchResultPage"
             android:exported="false"
-            android:label="Search result"/>
+            android:label="Search result" />
         <activity
             android:name=".Activity.SignupPage"
             android:exported="false" />
@@ -26,7 +29,7 @@
         <activity
             android:name=".Activity.MainPage"
             android:exported="false"
-            android:label="view posts"/>
+            android:label="view posts" />
         <activity
             android:name=".Activity.CreatePost"
             android:exported="false"
