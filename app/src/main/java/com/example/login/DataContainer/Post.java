@@ -38,17 +38,22 @@ public class Post {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
+
+    /**
+     * this function svae the post as [postID].json file under the [privateDirectory]/post
+     * @param context getApplicationContext()
+     */
     public void savePost(Context context){
         String postFileName = this.getPostID() + ".json";
         String jsonString = this.toJson();
         FileRW fileRW = new FileRW(context);
         String PRIVATE_DIR = context.getFilesDir().getPath();
-        boolean folderExist = new File(PRIVATE_DIR,"posts").exists();
+        boolean folderExist = new File(PRIVATE_DIR,"post").exists();
         boolean savedFile = false;
         if (!folderExist){
-            fileRW.makDir(PRIVATE_DIR,"posts");
+            fileRW.makDir(PRIVATE_DIR,"post");
         }
-        savedFile =  fileRW.savingString("posts",postFileName,jsonString);
+        savedFile =  fileRW.savingString("post",postFileName,jsonString);
         if(!savedFile){
             Toast.makeText(context, "unable to save", Toast.LENGTH_SHORT).show();
             Log.e(TAG,"file not saved");

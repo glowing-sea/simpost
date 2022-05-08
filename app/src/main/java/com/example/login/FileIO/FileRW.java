@@ -49,27 +49,27 @@ public class FileRW {
     /**
      * This function save files to private file space
      * it do not overwrite eixsting file
-     * @param path the folder the file want to be stored
-     * @param fileName the name of the folder the file want to be stored
+     * @param folder the folder the file want to be stored
+     * @param fileName "[filename].json"
      * @param string content of the json
      * @return a boolean indicating it is success
      */
-    public boolean savingString(String path, String fileName, String string){
-        path = context.getFilesDir().toString() + "/" +path;
+    public boolean savingString(String folder, String fileName, String string){
+        folder = context.getFilesDir().toString() + "/" +folder;
 
-        Log.i(TAG,"attemp to save file to" + path);
+        Log.i(TAG,"attemp to save file to" + folder);
 
         //test whether the folder exists
-        File testFolder = new File(path);
+        File testFolder = new File(folder);
         if(!testFolder.exists()){
-            Log.e(TAG,"the folder:"+path+"\ndo not exist");
+            Log.e(TAG,"the folder:"+folder+"\ndo not exist");
             testFolder.mkdir();
         }
 
         //creating file
-        File targetFile = new File(path,fileName);
+        File targetFile = new File(folder,fileName);
         if(targetFile.exists()){
-            Log.e(TAG,"the file attemp to write to already exist"+ path+fileName);
+            Log.e(TAG,"the file attemp to write to already exist"+ folder+fileName);
             return false;
         }else {
             try{
@@ -83,7 +83,7 @@ public class FileRW {
 
         //writting content to file
         try {
-            FileOutputStream fos = context.openFileOutput(fileName,context.MODE_PRIVATE);
+            FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
             fos.write(string.getBytes(StandardCharsets.UTF_8));
         } catch (IOException e) {
             Log.e(TAG,"uncable to write file");
@@ -94,17 +94,17 @@ public class FileRW {
     }
 
     /**
-     * this function reads a json file and return a string, if a exception take happens it reaturns null
-     * @param fileName "[folder]/[filename].json"
-     * @param context getApplication context
+     * this function reads a json file and return a string of the content,
+     * throws exceptions whne file not found etc
+     * @param fileName "[filename].json"
      * @return content of the file as a string
      */
-    public String readJSON(String fileName,Context context) throws Exception{
+    public String readJSON(String fileName) throws Exception{
         String rtn = "";
-        String absolutePath = context.getFilesDir().getPath() +"/" +fileName;
+        String absolutePath = this.context.getFilesDir().getPath() +"/" +fileName;
         Log.i(TAG,"trying to read:"+absolutePath);
 
-        FileInputStream fis = context.openFileInput(fileName);
+        FileInputStream fis = this.context.openFileInput(fileName);
         InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
         StringBuilder stringBuilder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(inputStreamReader)) {

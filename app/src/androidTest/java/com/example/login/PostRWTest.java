@@ -34,7 +34,7 @@ public class PostRWTest {
         fileRW.savingString("post",fileName,postString);
         String readed = "";
         try{
-            readed = fileRW.readJSON("test.json",appContext);
+            readed = fileRW.readJSON("test.json");
         }catch (Exception e){
             e.printStackTrace();
         }
