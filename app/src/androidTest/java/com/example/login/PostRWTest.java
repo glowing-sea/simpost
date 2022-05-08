@@ -21,11 +21,24 @@ import java.io.File;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+public class PostRWTest {
     @Test
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.login", appContext.getPackageName());
+        Post testPost = new Post("test","HelloWorld");
+        FileRW fileRW = new FileRW(appContext);
+        String postString = testPost.toJson();
+        String fileName = "test.json";
+        fileRW.savingString("post",fileName,postString);
+        String readed = "";
+        try{
+            readed = fileRW.readJSON("test.json",appContext);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        assertEquals(postString,readed);
     }
 }

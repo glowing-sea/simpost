@@ -28,7 +28,6 @@ public class CreatePost extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
-        PRIVATE_DIR = getApplicationContext().getFilesDir().getPath();
         //getIntent
         commingIn = this.getIntent();
 
@@ -49,24 +48,7 @@ public class CreatePost extends AppCompatActivity {
                 //store the post as json file in directory
                 //creating file
                 Post current = new Post(head, postContent);
-                String postFileName = current.getPostID() + ".json";
-                String jsonString = current.toJson();
-                FileRW fileRW = new FileRW(getApplicationContext());
-
-                boolean folderExist = new File(PRIVATE_DIR,"posts").exists();
-                boolean savedFile = false;
-                if (!folderExist){
-                    fileRW.makDir(PRIVATE_DIR,"posts");
-                }
-                savedFile =  fileRW.savingString("posts",postFileName,jsonString);
-                if(!savedFile){
-                    Toast.makeText(getApplicationContext(), "unable to save", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG,"file not saved");
-                }
-                //create file that can write in
-                Log.i(TAG,"file created");
-
-
+                current.savePost(getApplicationContext());
                 // and then we can store the post in sqlite here
                 // erase content in create post
                 title.setText("");

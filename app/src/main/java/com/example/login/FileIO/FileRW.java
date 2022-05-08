@@ -3,9 +3,13 @@ package com.example.login.FileIO;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 import java.lang.reflect.Field;
@@ -59,7 +63,7 @@ public class FileRW {
         File testFolder = new File(path);
         if(!testFolder.exists()){
             Log.e(TAG,"the folder:"+path+"\ndo not exist");
-            return false;
+            testFolder.mkdir();
         }
 
         //creating file
@@ -88,4 +92,33 @@ public class FileRW {
         }
         return true;
     }
+
+    /**
+     * this function reads a json file and return a string, if a exception take happens it reaturns null
+     * @param fileName "[folder]/[filename].json"
+     * @param context getApplication context
+     * @return content of the file as a string
+     */
+    public String readJSON(String fileName,Context context) throws Exception{
+        String rtn = "";
+        String absolutePath = context.getFilesDir().getPath() +"/" +fileName;
+        Log.i(TAG,"trying to read:"+absolutePath);
+
+        FileInputStream fis = context.openFileInput(fileName);
+        InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
+        StringBuilder stringBuilder = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+            String line = reader.readLine();
+            while (line != null) {
+                stringBuilder.append(line);
+                line = reader.readLine();
+            }
+        } catch (IOException e) {
+            // Error ccurred when opening raw file for reading.o
+        } finally {
+            rtn = stringBuilder.toString();
+        }
+        return rtn;
+    }
+
 }

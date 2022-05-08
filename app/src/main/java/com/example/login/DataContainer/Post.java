@@ -1,10 +1,16 @@
 package com.example.login.DataContainer;
 
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.example.login.FileIO.FileRW;
 import com.google.gson.Gson;
 
 import java.io.File;
 
 public class Post {
+    private static final String TAG = "Post";
     String title;
     String content;
     int postID;
@@ -31,5 +37,23 @@ public class Post {
     public String toJson(){
         Gson gson = new Gson();
         return gson.toJson(this);
+    }
+    public void savePost(Context context){
+        String postFileName = this.getPostID() + ".json";
+        String jsonString = this.toJson();
+        FileRW fileRW = new FileRW(context);
+        String PRIVATE_DIR = context.getFilesDir().getPath();
+        boolean folderExist = new File(PRIVATE_DIR,"posts").exists();
+        boolean savedFile = false;
+        if (!folderExist){
+            fileRW.makDir(PRIVATE_DIR,"posts");
+        }
+        savedFile =  fileRW.savingString("posts",postFileName,jsonString);
+        if(!savedFile){
+            Toast.makeText(context, "unable to save", Toast.LENGTH_SHORT).show();
+            Log.e(TAG,"file not saved");
+        }
+        //create file that can write in
+        Log.i(TAG,"file created");
     }
 }
