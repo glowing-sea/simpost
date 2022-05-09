@@ -23,8 +23,5 @@ public class ExampleUnitTest {
     public void addition_isCorrect() {
         assertEquals(4, 2 + 2);
     }
-    UserIdAssigner  test = new UserIdAssigner(0);
-    Gson gson = new Gson();
-    String json = gson.toJson(test);
-    String hi = "";
+
 }

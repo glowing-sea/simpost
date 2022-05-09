@@ -16,7 +16,7 @@ import java.lang.reflect.Field;
 import java.nio.charset.StandardCharsets;
 
 public class FileRW {
-    private static final String TAG = "FileIO";
+    private static final String TAG = "FileRW";
     private Context context;
     public FileRW(Context context){
         this.context = context;
@@ -90,6 +90,7 @@ public class FileRW {
             e.printStackTrace();
             return false;
         }
+        Log.i(TAG,"File saved to "+ folder +"/"+fileName);
         return true;
     }
 

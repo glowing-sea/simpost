@@ -73,7 +73,6 @@ public class PostIdAssigner {
         return rtn;
     }
 
-
     public String toJson(){
         Gson gson = new Gson();
         return gson.toJson(this);
