@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.MyDBMethod;
+import com.example.login.DataContainer.SqlMethod;
 import com.example.login.DataContainer.User;
 import com.example.login.R;
 
@@ -25,8 +26,7 @@ public class LoginPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //database
-        MyDBMethod dbMethod = new MyDBMethod(LoginPage.this, "my.db",null,1);
-        SQLiteDatabase db = dbMethod.getWritableDatabase();
+        SqlMethod sqlMethod = new SqlMethod(LoginPage.this);
 
 
         super.onCreate(savedInstanceState);

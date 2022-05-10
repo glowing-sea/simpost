@@ -3,7 +3,7 @@ package com.example.login.DataContainer;
 public class User {
     String username;
     String password;
-    final int userID;
+    private int userID;
     public User(String name, String password){
         this.username = name;
         this.password = password;

@@ -1,13 +1,22 @@
 package com.example.login.DataContainer;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.login.Activity.LoginPage;
 
 public class SqlMethod {
-    MyDBMethod dbMethod = new MyDBMethod(LoginPage.this, "my.db",null,1);
+    MyDBMethod dbMethod;
     SQLiteDatabase db = dbMethod.getWritableDatabase();
+
+    public SqlMethod(Context context){
+        MyDBMethod dbMethod = new MyDBMethod(context,"my.db",null,1);
+        SQLiteDatabase db = dbMethod.getWritableDatabase();
+    }
+
+
     public void save (User us){
         db.execSQL("INSERT INTO user(userID,username,password) values(?,?,?)",
                 new String[]{String.valueOf(us.getUserId()),us.getUsername(),us.getPassword()});
@@ -42,16 +51,22 @@ public class SqlMethod {
                 new String[]{po.getTitle(),po.getContent(),String.valueOf(po.getPostID())});
     }
 
+
+    /**
+     * @param userid
+     * @return User
+     * @Hint If the same username can return different userid due to algorithm, then userid != User.getUserId().
+     */
     public User find(Integer userid)
     {
-        Cursor cursor =  db.rawQuery("SELECT * FROM user WHERE userid = ?",
+        Cursor cursor =  db.rawQuery("SELECT * FROM user WHERE userId = ?",
                 new String[]{userid.toString()});
         if(cursor.moveToFirst())
         {
-            int UserId = cursor.getInt(cursor.getColumnIndex("UserId"));
-            String username = cursor.getString(cursor.getColumnIndex("username"));
-            String password = cursor.getString(cursor.getColumnIndex("password"));
-            return new User(UserId,username,password);
+            @SuppressLint("Range") int UId = cursor.getInt(cursor.getColumnIndex("UserId"));
+            @SuppressLint("Range") String uname = cursor.getString(cursor.getColumnIndex("username"));
+            @SuppressLint("Range") String pword = cursor.getString(cursor.getColumnIndex("password"));
+            return new User(uname,pword);
         }
         cursor.close();
         return null;
