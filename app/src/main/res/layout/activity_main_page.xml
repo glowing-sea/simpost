@@ -1,92 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activity.MainPage">
 
-    <TextView
-        android:id="@+id/mainPageTitle"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:id="@id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigationView" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="153dp"
-        android:text="Welcome"
-        android:textColor="#9C27B0"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        app:itemBackground="@color/design_default_color_primary_dark"
+        app:itemIconTint="#fff"
+        app:itemTextColor="#fff"
+        app:menu="@menu/nav_menu" />
 
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="630dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="30dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/refreshButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="refresh" />
-
-        <TextView
-            android:id="@+id/firstPost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="viewStart"
-            android:textColor="#3F51B5"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/secondPost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#009688"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/thirdPost"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#FF5722"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/searchText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Search..." />
-
-        <Button
-            android:id="@+id/confirmSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Go" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/newPostButton"
-        android:layout_width="49dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="4dp"
-        android:onClick="newPostButton"
-        android:text="+"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

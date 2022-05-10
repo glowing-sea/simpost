@@ -6,4 +6,14 @@
     <string name="signup_button">Signup</string>
     <string name="welcome_text">Welcome</string>
 
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="posts">Posts</string>
+
+
+
+    <string name="find_posts">Find Posts</string>
+    <string name="confirm">Confirm</string>
+
+
 </resources>
