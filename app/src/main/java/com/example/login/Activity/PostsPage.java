@@ -24,14 +24,14 @@ public class PostsPage extends AppCompatActivity {
                 case R.id.nav_ico_posts:
                     break;
                 case R.id.nav_ico_search:
-                    finish();
                     startActivity(new Intent(getApplicationContext(), SearchPage.class));
                     this.overridePendingTransition(0, 0);
+                    finish();
                     break;
                 case R.id.nav_ico_home:
-                    finish();
                     startActivity(new Intent(getApplicationContext(), HomePage.class));
                     this.overridePendingTransition(0, 0);
+                    finish();
                     break; }
             return false;
         });

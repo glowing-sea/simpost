@@ -24,23 +24,23 @@ public class HomePage extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.nav_ico_posts:
-                    finish();
                     startActivity(new Intent(getApplicationContext(), PostsPage.class));
                     this.overridePendingTransition(0, 0);
+                    finish();
                     break;
                 case R.id.nav_ico_search:
-                    finish();
                     startActivity(new Intent(getApplicationContext(), SearchPage.class));
                     this.overridePendingTransition(0, 0);
+                    finish();
                     break;
                 case R.id.nav_ico_home:
                     break; }
             return false;
         });
 
-        ImageView settingButton;
 
-        // Set up search button
+        // Setting Button
+        ImageView settingButton;
         settingButton = findViewById(R.id.settingButton);
         settingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,5 +49,18 @@ public class HomePage extends AppCompatActivity {
                 startActivity(toResult);
             }
         });
+
+        // Log out button
+        ImageView logoutButton;
+        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                Intent toResult = new Intent(getApplicationContext(), LoginPage.class);
+                startActivity(toResult);
+            }
+        });
+
     }
 }

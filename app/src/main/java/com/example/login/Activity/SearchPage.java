@@ -23,16 +23,16 @@ public class SearchPage extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.nav_ico_posts:
-                    finish();
                     startActivity(new Intent(getApplicationContext(), PostsPage.class));
                     this.overridePendingTransition(0, 0);
+                    finish();
                     break;
                 case R.id.nav_ico_search:
                     break;
                 case R.id.nav_ico_home:
-                    finish();
                     startActivity(new Intent(getApplicationContext(), HomePage.class));
                     this.overridePendingTransition(0, 0);
+                    finish();
                     break; }
             return false;
         });

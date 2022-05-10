@@ -41,6 +41,8 @@ public class LoginPage extends AppCompatActivity {
         //为了测试方便我先把这个部分改成了点击login就会跳到mainpage
         Intent in = new Intent(LoginPage.this, PostsPage.class);
         startActivity(in);
+        finish();
+
         userInfo = getApplicationContext().getSharedPreferences("info", Context.MODE_PRIVATE);
         String n = name.getText().toString();
         String p = password.getText().toString();
