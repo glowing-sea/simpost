@@ -11,8 +11,9 @@
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_signup_page.xml" value="0.25" />
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_view_post.xml" value="0.24947916666666667" />
         <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_setting_page.xml" value="0.34010416666666665" />
       </map>
     </option>
