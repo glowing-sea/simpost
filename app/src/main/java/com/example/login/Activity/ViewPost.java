@@ -37,7 +37,7 @@ public class ViewPost extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewPost.this, MainPage.class);
+                Intent intent = new Intent(ViewPost.this, PostsPage.class);
                 startActivity(intent);
             }
         });

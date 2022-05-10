@@ -39,7 +39,7 @@ public class LoginPage extends AppCompatActivity {
 
     public void onClickLogin(View view) {
         //为了测试方便我先把这个部分改成了点击login就会跳到mainpage
-        Intent in = new Intent(LoginPage.this, MainPage.class);
+        Intent in = new Intent(LoginPage.this, PostsPage.class);
         startActivity(in);
         userInfo = getApplicationContext().getSharedPreferences("info", Context.MODE_PRIVATE);
         String n = name.getText().toString();
@@ -50,7 +50,7 @@ public class LoginPage extends AppCompatActivity {
             Toast.makeText(LoginPage.this, "Username and password doesn`t match", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(LoginPage.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(LoginPage.this, MainPage.class);
+            Intent i = new Intent(LoginPage.this, PostsPage.class);
             startActivity(i);
         }
     }
