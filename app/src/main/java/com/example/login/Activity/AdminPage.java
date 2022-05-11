@@ -47,7 +47,7 @@ public class AdminPage extends AppCompatActivity {
         // Extra all information from the database and store it into the users list.
         databaseToArrays();
 
-        userAdapter = new UserAdapter(getApplicationContext(),users);
+        userAdapter = new UserAdapter(AdminPage.this,users);
         recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         // rvPosts.setLayoutManager(new GridLayoutManager(this, 2));

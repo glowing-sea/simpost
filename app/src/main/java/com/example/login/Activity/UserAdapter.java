@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +31,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @NonNull
     @Override
     public UserAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.user_adapter_layout, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.adapter_user, parent, false);
         return new UserAdapter.UserViewHolder(view);
     }
 
@@ -42,14 +42,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         User user = users.get(position);
         holder.username.setText(user.getUsername());
         holder.password.setText(user.getPassword());
-//        holder.adminUserRow.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, AdminUpdateUserPage.class);
-//                // intent.putExtra("username", String.valueOf(users.get(position)));
-//                context.startActivity(intent);
-//            }
-//        });
+        holder.adminUserRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show();
+                 Intent intent = new Intent(context, AdminUpdateUserPage.class);
+                 // intent.putExtra("username", String.valueOf(users.get(position)));
+                 context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -66,7 +67,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             super(itemView);
             username = (TextView) itemView.findViewById(R.id.admin_username);
             password = (TextView) itemView.findViewById(R.id.admin_password);
-            // adminUserRow = itemView.findViewById(R.id.admin_user_row);
+            adminUserRow = itemView.findViewById(R.id.admin_user_row);
         }
     }
 }

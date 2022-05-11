@@ -20,6 +20,7 @@ public class ViewPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_post);
+        this.setTitle("Here is the detail of the post");
         // create post by intent
         Bundle fromCreate = getIntent().getExtras();
         String t = "";

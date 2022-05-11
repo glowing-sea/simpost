@@ -47,7 +47,7 @@ public class PostsPage extends AppCompatActivity {
         newPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), CreatePost.class);
+                Intent i = new Intent(PostsPage.this, CreatePost.class);
                 startActivity(i);
             }
         });
@@ -68,7 +68,7 @@ public class PostsPage extends AppCompatActivity {
         allPosts.add(p4);
         allPosts.add(p5);
 
-        PostAdapter timelineAdapter = new PostAdapter(getApplicationContext(),allPosts);
+        PostAdapter timelineAdapter = new PostAdapter(PostsPage.this,allPosts);
         rvPosts.setAdapter(timelineAdapter);
         // rvPosts.setLayoutManager(new LinearLayoutManager((this)));
         rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
