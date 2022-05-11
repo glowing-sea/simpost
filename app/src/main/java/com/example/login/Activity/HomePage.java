@@ -1,17 +1,22 @@
 package com.example.login.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 public class HomePage extends AppCompatActivity {
+    private final int GALLERY_REQ_CODE = 1000;
+    ImageView homeBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,5 +67,29 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+
+        FloatingActionButton changeBackground;
+        homeBackground = findViewById(R.id.homeBackground);
+        changeBackground = findViewById(R.id.changeBackground);
+
+        changeBackground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent iGallery = new Intent(Intent.ACTION_PICK);
+                iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(iGallery,GALLERY_REQ_CODE);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            if(requestCode == GALLERY_REQ_CODE){
+                homeBackground.setImageURI(data.getData());
+            }
+        }
     }
 }
