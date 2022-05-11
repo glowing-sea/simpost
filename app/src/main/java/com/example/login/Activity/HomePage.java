@@ -13,10 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     ImageView homeBackground;
+    TextView address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        address = findViewById(R.id.image_address);
 
         FloatingActionButton changeBackground;
         homeBackground = findViewById(R.id.homeBackground);
@@ -89,6 +92,7 @@ public class HomePage extends AppCompatActivity {
         if (resultCode == RESULT_OK){
             if(requestCode == GALLERY_REQ_CODE){
                 homeBackground.setImageURI(data.getData());
+
             }
         }
     }

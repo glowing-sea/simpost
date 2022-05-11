@@ -2,7 +2,6 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Post;
@@ -55,6 +54,7 @@ public class PostsPage extends AppCompatActivity {
 
         RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
 
+        //仅测试，最后将allPosts改成数据库中需要显示的post即可
         Post p1 = new Post("Post A", "This is content A.");
         Post p2 = new Post("Post B", "This is content B.");
         Post p3 = new Post("Post C", "This is content C.");
@@ -68,7 +68,7 @@ public class PostsPage extends AppCompatActivity {
         allPosts.add(p4);
         allPosts.add(p5);
 
-        TimelineAdapter timelineAdapter = new TimelineAdapter(getApplicationContext(),allPosts);
+        PostAdapter timelineAdapter = new PostAdapter(getApplicationContext(),allPosts);
         rvPosts.setAdapter(timelineAdapter);
         // rvPosts.setLayoutManager(new LinearLayoutManager((this)));
         rvPosts.setLayoutManager(new GridLayoutManager(this, 2));

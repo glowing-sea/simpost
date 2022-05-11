@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">login</string>
-    <string name="username_text">Username</string>
-    <string name="password_text">Password</string>
-    <string name="login_button">Login</string>
-    <string name="signup_button">Signup</string>
-    <string name="welcome_text">Welcome</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="welcome">Welcome</string>
 
     <string name="home">Home</string>
     <string name="search">Search</string>
@@ -13,6 +13,21 @@
 
     <string name="find_posts">Find Posts</string>
     <string name="confirm">Confirm</string>
+    <string name="admin">Admin</string>
+    <string name="user_edit">User Edit</string>
 
+
+    <string name="add_user">Add User</string>
+    <string name="update_password">Update Password</string>
+    <string name="delete_user">Delete User</string>
+
+    <string name="add">Add</string>
+    <string name="update">Update</string>
+
+
+    <string name="added_successfully">Added Successfully</string>
+    <string name="user_existed">The username already exist</string>
+
+    <string name="no_data">No Data</string>
 
 </resources>

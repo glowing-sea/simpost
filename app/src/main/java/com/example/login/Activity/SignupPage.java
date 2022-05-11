@@ -44,3 +44,18 @@ public class SignupPage extends AppCompatActivity {
         });
     }
 }
+
+
+//    String n = name.getText().toString();
+//    String p = password.getText().toString();
+//这个就是signup的 等sqlmethod完全弄好了应该就可以，到时候在这里改
+//                if (SqlMethod.existUser(n))
+//                    Toast.makeText(SignupPage.this, "Username already exists", Toast.LENGTH_LONG).show();
+//                else {
+//                    User signup = new User(n, p);
+//                    SqlMethod.save(signup);
+//                    Toast.makeText(SignupPage.this,"You have successfully signed up", Toast.LENGTH_LONG).show();
+//                    Intent i = new Intent(SignupPage.this, LoginPage.class);
+//                    startActivity(i);
+
+

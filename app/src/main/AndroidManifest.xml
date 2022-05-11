@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.login">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,6 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
+        <activity
+            android:name=".Activity.AdminUpdateUserPage"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AdminAddUserPage"
+            android:exported="false"
+            android:label="@string/user_edit"
+            android:parentActivityName=".Activity.AdminPage" />
+        <activity
+            android:name=".Activity.AdminPage"
+            android:exported="false"
+            android:label="@string/admin"
+            android:parentActivityName=".Activity.LoginPage" />
         <activity
             android:name=".Activity.SearchPage"
             android:exported="false" />

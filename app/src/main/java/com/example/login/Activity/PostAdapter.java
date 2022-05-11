@@ -16,27 +16,26 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Post;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.TimelineViewHolder> {
+public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
     private final Context ctx;
     private final List<Post> dataset;
-    public TimelineAdapter(Context ctx, List<Post> dataset){
+    public PostAdapter(Context ctx, List<Post> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
 
     @NonNull
     @Override
-    public TimelineAdapter.TimelineViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(ctx).inflate(R.layout.activity_timeline_post, parent, false);
-        return new TimelineViewHolder(view);
+    public PostAdapter.PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(ctx).inflate(R.layout.activity_post_preview, parent, false);
+        return new PostViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TimelineAdapter.TimelineViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PostAdapter.PostViewHolder holder, int position) {
         int max =100;
         int min =0;
         int id = (int) (Math.random()*((max-min) + 1) + min);
@@ -56,16 +55,16 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.Timeli
         return dataset.size();
     }
 
-    public class TimelineViewHolder extends RecyclerView.ViewHolder{
+    public class PostViewHolder extends RecyclerView.ViewHolder{
         private final ImageView postImage;
         private final TextView postUser;
         private final TextView postContent;
 
-        public TimelineViewHolder(@NonNull View itemView){
+        public PostViewHolder(@NonNull View itemView){
             super(itemView);
-            postImage = (ImageView) itemView.findViewById(R.id.timeline_image);
-            postUser = (TextView) itemView.findViewById(R.id.timeline_user);
-            postContent = (TextView) itemView.findViewById(R.id.timeline_content);
+            postImage = (ImageView) itemView.findViewById(R.id.post_image);
+            postUser = (TextView) itemView.findViewById(R.id.post_user);
+            postContent = (TextView) itemView.findViewById(R.id.post_content);
 
         }
 

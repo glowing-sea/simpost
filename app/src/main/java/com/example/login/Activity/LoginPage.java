@@ -21,7 +21,7 @@ public class LoginPage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.setTitle(this.getText(R.string.welcome_text));
+        this.setTitle(this.getText(R.string.welcome));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -31,6 +31,8 @@ public class LoginPage extends AppCompatActivity {
         name = findViewById(R.id.username);
         password = findViewById(R.id.password);
     }
+
+
 
     public void onClickSignup(View view) {
         Intent i = new Intent(LoginPage.this, SignupPage.class);
@@ -55,5 +57,10 @@ public class LoginPage extends AppCompatActivity {
             Intent i = new Intent(LoginPage.this, PostsPage.class);
             startActivity(i);
         }
+    }
+
+    public void onClickAdmin(View view) {
+        Intent i = new Intent(getApplicationContext(), AdminPage.class);
+        startActivity(i);
     }
 }
