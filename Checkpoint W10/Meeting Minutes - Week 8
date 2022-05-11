@@ -1,0 +1,68 @@
+[Team Name] 
+
+
+Team Meeting [3] - Week [8] - [2022-5-1] (10:00 - 16:30)
+Absent:None
+
+Lead/scribe: Jack Fan
+
+Agreed Procedure
+Stand up Procedure: ...
+
+Agenda Items
+Discuss who will be in charge of which rows in general, and talk about what will be our plans for the next few weeks.
+Talk about how to use a required data structure in the project.
+Talk about how to store data, which database to use.
+
+
+Meeting Minutes
+In this meeting, we have decided what general form our app is going to look like, and we agreed that we are going to need a loginpage as first page, a main page to go after logged in, a separate page to create and view the post and creating, and navigation bars to go between these pages. We have all agreed that we are going to split doing these pages, and we will create a general layout and structure for the project by our next meeting. We also talked briefly about what data structure we are going to use and how we will store our information, including user info and post info, and we decided that we will use a Sqlite database with Json file to store the two data types separately. 
+
+TODO Items
+
+
+
+Task
+Assignee
+
+
+
+
+[Complete layout design for signup and login page]
+[Henry Chen]
+
+
+[Complete layout design for search and result page]
+[Jack Fan]
+
+
+[Complete layout design for main and profile page]
+[Zhilin Zhang]
+
+
+[Complete layout design for Create and View post page]
+[Daniel Dai]
+
+
+
+
+Scribe Rotation
+Daniel Dai
+
+
+
+Name
+Jack Fan
+
+
+
+[Member name] Henry Chen
+
+
+[Member name] Jack Fan
+
+
+[Member name] Zhilin Zhang
+
+
+[Member name] Daniel Dai

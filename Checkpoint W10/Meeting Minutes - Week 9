@@ -1,0 +1,68 @@
+[Team Name]
+
+Team Meeting [4] - Week [9] - [2022 - 5 - 08] (10:00 - 12:00)
+Absent: None
+
+Lead/scribe: Daniel Dai
+
+
+Agenda Items
+
+Finish construction of database.
+Finish UI design for most of the files, create a minimum running app.
+Working on Parser & Tokenizer.
+
+
+
+
+Meeting Minutes
+In this meeting, we decided that we would finish the a app with the function we want before the next week. That is, have a valid posting function, allow others to view and search post, and be able to store user and post information. Our major roles were divided into 3 large parts: finishing the construction of the database, first of all, since that is what`s required for login and search function. Also, finish most of the UI design for the app and make it look like an actual app, and allow the user to add images. And for the search function, implement a tokenizer and parser that would be able to recongize the keywords in the search argument, and be able to sort the search results by time. So we divided these tasks into parts for everyone. 
+
+TODO Items
+
+
+
+Task
+Assignee
+
+
+
+
+[Finish construction of database]
+[Zhiling Zhang]
+
+
+[Create a parser & tokenizer for the app]
+[Daniel Dai]
+
+
+[Complete UI design and finish login and main/profile page]
+[Henry Chen/Jack Fan]
+
+
+
+
+
+
+
+Scribe Rotation
+The following dictates who will be scribe in this and the next meeting.
+
+
+
+Name
+Zhiling Zhang
+
+
+
+
+[Member name] Henry Chen
+
+
+[Member name] Zhiling Zhang
+
+
+[Member name] Daniel Dai
+
+
+[Member name] Jack Fan
