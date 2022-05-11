@@ -12,6 +12,7 @@ import java.io.File;
 public class Post {
     private static final String TAG = "Post";
     String title;
+    final String poster = "No Name";
     String content;
     int postID;
     public Post(String title, String content){
@@ -19,6 +20,8 @@ public class Post {
         this.content = content;
         this.postID = 123;//加入id的算法
     }
+
+    public String getPoster() {return poster; }
     public String getTitle(){
         return this.title;
     }

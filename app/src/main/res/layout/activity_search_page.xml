@@ -5,7 +5,7 @@
     android:id="@+id/frame_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.MainPage">
+    tools:context=".Activity.SearchPage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@id/frame_layout"
@@ -43,7 +43,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="10dp"
-            android:onClick="searchButton"
             android:text="@string/confirm"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
