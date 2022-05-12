@@ -2,33 +2,32 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.login.Database.DBHelper;
-import com.example.login.R;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AdminAddUserPage extends AppCompatActivity {
+import com.example.login.Database.DBHelper;
+import com.example.login.R;
 
-    EditText username, password;
-    Button addButton;
+public class AdminDeleteUserPage extends AppCompatActivity {
 
+    EditText username;
+    Button deleteButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_add_user_page);
+        setContentView(R.layout.activity_admin_delete_user_page);
 
         username = findViewById(R.id.admin_username_input2);
-        password = findViewById(R.id.admin_password_input2);
-        addButton = findViewById(R.id.admin_add_button);
+        deleteButton = findViewById(R.id.admin_delete_button);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 DBHelper db = new DBHelper(getApplicationContext());
-                db.addUser(username.getText().toString().trim(), password.getText().toString().trim());
+                db.deleteUser(username.getText().toString().trim());
             }
         });
     }

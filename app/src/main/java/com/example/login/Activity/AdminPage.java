@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class AdminPage extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    FloatingActionButton addButton;
+    FloatingActionButton addButton,updateButton,deleteButton;
 
     DBHelper db;
     ArrayList<User> users;
@@ -32,11 +32,29 @@ public class AdminPage extends AppCompatActivity {
         setContentView(R.layout.activity_admin_page);
 
         recyclerView = findViewById(R.id.admin_user_list);
-        addButton = findViewById(R.id.admin_update_button);
+        addButton = findViewById(R.id.admin_add_button);
+        updateButton = findViewById(R.id.admin_refresh_button);
+        deleteButton = findViewById(R.id.delete_button);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AdminAddUserPage.class);
+                startActivity(intent);
+            }
+        });
+
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AdminUpdateUserPage.class);
+                startActivity(intent);
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AdminDeleteUserPage.class);
                 startActivity(intent);
             }
         });

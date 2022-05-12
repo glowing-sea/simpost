@@ -17,9 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".Activity.AdminDeleteUserPage"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AdminUpdateUserPage"
-            android:label="@string/update_user"
             android:exported="false"
+            android:label="@string/update_user"
             android:parentActivityName=".Activity.AdminPage" />
         <activity
             android:name=".Activity.AdminAddUserPage"
@@ -50,8 +53,8 @@
             android:parentActivityName=".Activity.LoginPage" />
         <activity
             android:name=".Activity.ViewPost"
-            android:parentActivityName=".Activity.HomePage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activity.HomePage" />
         <activity
             android:name=".Activity.SettingPage"
             android:exported="false"

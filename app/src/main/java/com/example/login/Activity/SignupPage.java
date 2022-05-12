@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.login.DataContainer.User;
+import com.example.login.Database.DBHelper;
 import com.example.login.R;
 
 public class SignupPage extends AppCompatActivity {
@@ -31,6 +33,10 @@ public class SignupPage extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*DBHelper db = new DBHelper(SignupPage.this);
+                String n = name.getText().toString();
+                String p = password.getText().toString();
+                db.addUser(n,p);*/
                 confirm.setEnabled(false);
                 String n = name.getText().toString();
                 String p = password.getText().toString();
@@ -44,6 +50,7 @@ public class SignupPage extends AppCompatActivity {
         });
     }
 }
+
 
 
 //    String n = name.getText().toString();
