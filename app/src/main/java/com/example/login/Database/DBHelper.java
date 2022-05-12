@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.login.DataContainer.User;
 import com.example.login.R;
 
 
@@ -74,6 +75,33 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    public Boolean loginAuthentication(String loginUsername, String loginPassword){
+        Cursor cursor = readAllData();
+        if(cursor.getCount() == 0){
+            Toast.makeText(context, context.getText(R.string.no_data), Toast.LENGTH_SHORT).show();
+        } else {
+            while (cursor.moveToNext()){
+                String username = cursor.getString(0);
+                String password = cursor.getString(1);
+                if (loginUsername.equals(username)){
+                    if (loginPassword.equals(password)){
+                        Toast.makeText(context, context.getText(R.string.login_successfully), Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        Toast.makeText(context, context.getText(R.string.password_incorrect), Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                }
+            }
+            Toast.makeText(context, context.getText(R.string.username_not_found), Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+        return true;
+    }
+
 
 
     // Insert a user into the database

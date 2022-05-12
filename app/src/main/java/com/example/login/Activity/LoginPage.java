@@ -12,12 +12,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.SqlMethod;
+import com.example.login.Database.DBHelper;
 import com.example.login.R;
 
 public class LoginPage extends AppCompatActivity {
 
-    EditText name, password;
-    SharedPreferences userInfo;
+
+    DBHelper db;
+    EditText usernameInput, passwordInput;
+    String username, password;
+//    SharedPreferences userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +30,10 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Database
-        // SqlMethod sqlMethod = new SqlMethod(LoginPage.this);
+        db = new DBHelper(getApplicationContext());
 
-        name = findViewById(R.id.username);
-        password = findViewById(R.id.password);
+        usernameInput = findViewById(R.id.username);
+        passwordInput = findViewById(R.id.password);
     }
 
 
@@ -40,23 +44,27 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void onClickLogin(View view) {
-        //为了测试方便我先把这个部分改成了点击login就会跳到mainpage
-        Intent in = new Intent(LoginPage.this, PostsPage.class);
-        startActivity(in);
-        finish();
-
-        userInfo = getApplicationContext().getSharedPreferences("info", Context.MODE_PRIVATE);
-        String n = name.getText().toString();
-        String p = password.getText().toString();
-        if (!userInfo.contains(n)) {
-            Toast.makeText(LoginPage.this, "Username doesn`t exist", Toast.LENGTH_LONG).show();
-        } else if (!userInfo.getString(n, "").equals(p)) {
-            Toast.makeText(LoginPage.this, "Username and password doesn`t match", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(LoginPage.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(LoginPage.this, PostsPage.class);
-            startActivity(i);
+        username = usernameInput.getText().toString();
+        password = passwordInput.getText().toString();
+        boolean result = db.loginAuthentication(username, password);
+        if (result){
+            Intent in = new Intent(LoginPage.this, PostsPage.class);
+            startActivity(in);
+            finish();
         }
+
+//        userInfo = getApplicationContext().getSharedPreferences("info", Context.MODE_PRIVATE);
+//        String n = name.getText().toString();
+//        String p = password.getText().toString();
+//        if (!userInfo.contains(n)) {
+//            Toast.makeText(LoginPage.this, "Username doesn`t exist", Toast.LENGTH_LONG).show();
+//        } else if (!userInfo.getString(n, "").equals(p)) {
+//            Toast.makeText(LoginPage.this, "Username and password doesn`t match", Toast.LENGTH_SHORT).show();
+//        } else {
+//            Toast.makeText(LoginPage.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+//            Intent i = new Intent(LoginPage.this, PostsPage.class);
+//            startActivity(i);
+//        }
     }
 
     public void onClickAdmin(View view) {
