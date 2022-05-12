@@ -106,7 +106,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // Get database
         SQLiteDatabase db = this.getWritableDatabase();
         // Query
-        String sQuery = "DELETE FROM user WHERE postID = ?";
+        String sQuery = "DELETE FROM user WHERE username = ?";
         String[] replace = {username};
         db.execSQL(sQuery, replace);
         db.close();
@@ -118,7 +118,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         // Query
         String sQuery1 = "DELETE FROM user";
-        String sQuery2 = "DELETE FROM sqlite_sequence where name = user";
+        String sQuery2 = "DELETE FROM sqlite_sequence where username = user";
         db.execSQL(sQuery1);
         db.execSQL(sQuery2);
         db.close();

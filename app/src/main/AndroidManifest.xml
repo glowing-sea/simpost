@@ -18,6 +18,7 @@
         android:theme="@style/Theme.Login">
         <activity
             android:name=".Activity.AdminDeleteUserPage"
+            android:parentActivityName=".Activity.AdminPage"
             android:exported="false" />
         <activity
             android:name=".Activity.AdminUpdateUserPage"
