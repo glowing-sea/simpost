@@ -22,12 +22,14 @@ public class LoginPage extends AppCompatActivity {
     DBHelper db;
     EditText usernameInput, passwordInput;
     String username, password;
+    SharedPreferences keepLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.setTitle(this.getText(R.string.welcome));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        keepLogin = getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
 
         // Database
         db = new DBHelper(getApplicationContext());
@@ -48,6 +50,9 @@ public class LoginPage extends AppCompatActivity {
         password = passwordInput.getText().toString();
         boolean result = db.loginAuthentication(username, password);
         if (result){
+            SharedPreferences.Editor saveName = keepLogin.edit();
+            saveName.putString("name", username);
+            saveName.commit();
             Intent in = new Intent(LoginPage.this, PostsPage.class);
             User current = new User(username, password);
             in.putExtra("USER", current);

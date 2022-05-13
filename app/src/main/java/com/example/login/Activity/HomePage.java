@@ -8,7 +8,9 @@ import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -25,19 +27,13 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//          Bundle fromCreate = getIntent().getExtras();
-//        if (fromCreate != null){
-//            current = (User) getIntent().getExtras().getSerializable("USER");
-//        }
-//        String name = current.getUsername();
-
-//        userName.setText(name);
-//
-//        getIntent().removeExtra("USER");
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+        String name = sp.getString("name", "");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         this.setTitle(this.getText(R.string.home));
         userName = findViewById(R.id.username_home);
+        userName.setText(name);
         intro = findViewById(R.id.userIntro);
         age = findViewById(R.id.age_input);
         gender = findViewById(R.id.gender_input);
