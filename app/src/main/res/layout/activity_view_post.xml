@@ -90,4 +90,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="665dp" />
+
+    <TextView
+        android:id="@+id/post_publish_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="30dp"
+        android:text="Published time"
+        app:layout_constraintBottom_toTopOf="@+id/like"
+        app:layout_constraintStart_toStartOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

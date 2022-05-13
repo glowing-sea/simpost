@@ -1,14 +1,19 @@
 package com.example.login.DataContainer;
 
 import android.content.Context;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.example.login.FileIO.FileRW;
 import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Post implements Serializable {
@@ -25,27 +30,17 @@ public class Post implements Serializable {
     private ArrayList<String> comment;
     private String preserved;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private static final String TAG = "Post";
 
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public Post(String title, String content){
         this.title = title;
         this.content = content;
         this.like = 0;
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        date = sdf.format(c.getTime());
     }
 
     public String getPoster() {return poster; }
@@ -59,6 +54,19 @@ public class Post implements Serializable {
         return this.postID;
     }
     public int getLike() {return this.like;}
+    public String getDate(){return this.date;}
+    public Byte[] getImage1() {
+        return image1;
+    }
+
+    public Byte[] getImage2() {
+        return image2;
+    }
+
+    public Byte[] getImage3() {
+        return image3;
+    }
+
     public void changeLike(int change){
         this.like = this.like + change;
     }
