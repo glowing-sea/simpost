@@ -8,14 +8,39 @@ import com.example.login.FileIO.FileRW;
 import com.google.gson.Gson;
 
 import java.io.File;
-import java.io.Serializable;
+import java.util.ArrayList;
 
-public class Post implements Serializable {
+public class Post {
+    private int postID;
+    private String poster;
+    private String title;
+    private String content;
+    private String date;
+    private Byte[] image1;
+    private Byte[] image2;
+    private Byte[] image3;
+    private String gameName;
+    private int like;
+    private ArrayList<String> comment;
+    private String preserved;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private static final String TAG = "Post";
-    String title;
-    final String poster = "No Name";
-    String content;
-    int postID;
+
+
     public Post(String title, String content){
         this.title = title;
         this.content = content;
