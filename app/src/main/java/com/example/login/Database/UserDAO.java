@@ -1,25 +1,78 @@
 package com.example.login.Database;
 
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
+import com.example.login.R;
 
 import java.util.ArrayList;
 
 public interface UserDAO {
-    // Admin
-    boolean addUser(String username, String password);
-    Cursor readAllData();
-    Boolean loginAuthentication(String loginUsername, String loginPassword);
-    void deleteUser(String username);
-    void truncateUsers();
 
+    // ================================= ROWS MANAGEMENT ======================================== //
+
+    // The following methods access, insert, or delete, a whole row in the database.
+
+    // Add a user
+    boolean addUser(String username, String password);
+
+    // Delete a user
+    void deleteUser (String username);
+    // Authenticate a user
+    int loginAuthentication(String loginUsername, String loginPassword);
+    // Delete all users
+    void truncateUsers ();
+    // A cursor that read all data.
+    Cursor readAllData();
+
+
+    // ================================= CELLS MANAGEMENT ======================================= //
+
+    // The following methods access and update a single cell in the database.
 
     // Password
-    String getPassword(String username);
     boolean setPassword(String username, String newPassword);
+    String getPassword(String username);
 
     // Following
-    ArrayList<String> getFollowing(String username);
     boolean setFollowing(String username, ArrayList<String> following);
+    ArrayList<String> getFollowing(String username);
 
+    // Signature
+    boolean setSignature(String username, String newSignature);
+    String getSignature(String username);
 
+    // Age
+    boolean setAge(String username, int age);
+    int getAge(String username);
+
+    // Gender
+    boolean setGender(String username, int gender);
+    int getGender(String username);
+
+    // Total View
+    boolean setViews(String username, int views);
+    int getViews(String username);
+
+    // Total Like
+    boolean setLikes(String username, int likes);
+    int getLikes(String username);
+
+    // Privacy Setting
+    boolean setPrivacySettings(String username, ArrayList<Boolean> settings);
+    ArrayList<Boolean> getPrivacySettings(String username);
+
+    // Blacklist
+    boolean setBlacklist(String username, ArrayList<String> blacklist);
+    ArrayList<String> getBlacklist(String username);
+
+    // View History
+    boolean setViewHistory(String username, ArrayList<Integer> historyInt);
+    ArrayList<Integer> getViewHistory(String username);
+
+    // Preserved
+    boolean setPreserved(String username, String newPreserved);
+    String getPreserved(String username);
 }

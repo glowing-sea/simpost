@@ -3,14 +3,13 @@ package com.example.login.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.User;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -21,26 +20,36 @@ import android.widget.TextView;
 public class HomePage extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     ImageView homeBackground;
-    TextView userName, intro, age, gender;
+    TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     User current;
-    Button follower, subscribe, follow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sp = getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
-        String name = sp.getString("name", "");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        this.setTitle(this.getText(R.string.home));
+        Me me = Me.getInstance();
+        setTitle(me.username + "'s " + "Profile");
+
+
+//        SharedPreferences sp = getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+//        String name = sp.getString("name", "");
+
+
+        setContentView(R.layout.activity_home_page);
         userName = findViewById(R.id.username_home);
-        userName.setText(name);
-        intro = findViewById(R.id.userIntro);
+        userName.setText(me.username);
+        signature = findViewById(R.id.signature_me);
         age = findViewById(R.id.age_input);
         gender = findViewById(R.id.gender_input);
-        follower = findViewById(R.id.home_to_follower);
-        subscribe = findViewById(R.id.home_to_subscribe);
-        follow = findViewById(R.id.follow_this);
-        follower.setOnClickListener(new View.OnClickListener() {
+
+
+        followersNum = findViewById(R.id.followers_me_num);
+        followingNum = findViewById(R.id.following_me_num);
+        followers = findViewById(R.id.followers_me);
+        following = findViewById(R.id.following_me);
+
+
+        followersNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomePage.this, FollowerPage.class);
@@ -48,7 +57,7 @@ public class HomePage extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        subscribe.setOnClickListener(new View.OnClickListener() {
+        followingNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomePage.this, SubscriptionsPage.class);

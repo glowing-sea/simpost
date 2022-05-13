@@ -11,15 +11,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.SqlMethod;
 import com.example.login.DataContainer.User;
-import com.example.login.Database.DBHelper;
+import com.example.login.Database.UserDAO;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 public class LoginPage extends AppCompatActivity {
 
 
-    DBHelper db;
+    UserDAO db;
     EditText usernameInput, passwordInput;
     String username, password;
     SharedPreferences keepLogin;
@@ -32,7 +34,7 @@ public class LoginPage extends AppCompatActivity {
         keepLogin = getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
 
         // Database
-        db = new DBHelper(getApplicationContext());
+        db = new UserDAOImpl(getApplicationContext());
 
         usernameInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);
@@ -48,18 +50,26 @@ public class LoginPage extends AppCompatActivity {
     public void onClickLogin(View view) {
         username = usernameInput.getText().toString();
         password = passwordInput.getText().toString();
-        boolean result = db.loginAuthentication(username, password);
-        if (result){
-            SharedPreferences.Editor saveName = keepLogin.edit();
-            saveName.putString("name", username);
-            saveName.commit();
-            Intent in = new Intent(LoginPage.this, PostsPage.class);
-            User current = new User(username, password);
-            in.putExtra("USER", current);
-            startActivity(in);
-            finish();
+        int result = db.loginAuthentication(username, password);
+        switch (result) {
+            case 0: {
+                Me me = Me.getInstance();
+                me.username = username;
+                me.context = this;
+                Intent in = new Intent(LoginPage.this, PostsPage.class);
+                startActivity(in);
+                finish();
+            }
+            break;
+            case -1:
+                Toast.makeText(this, "Password Incorrect", Toast.LENGTH_SHORT).show();
+                break;
+            case -2:
+                Toast.makeText(this, "Username Not Found", Toast.LENGTH_SHORT).show();
+                break;
+            case -3:
+                Toast.makeText(this, "Database Access Failed", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void onClickAdmin(View view) {
