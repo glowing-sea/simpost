@@ -2,6 +2,7 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +29,8 @@ public class AdminDeleteUserPage extends AppCompatActivity {
             public void onClick(View view) {
                 DBHelper db = new DBHelper(getApplicationContext());
                 db.deleteUser(username.getText().toString().trim());
+                Intent i = new Intent(AdminDeleteUserPage.this, AdminPage.class);
+                startActivity(i);
             }
         });
     }

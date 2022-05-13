@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.Database.DBHelper;
 import com.example.login.R;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +30,8 @@ public class AdminUpdateUserPage extends AppCompatActivity {
             public void onClick(View view) {
                 DBHelper db = new DBHelper(getApplicationContext());
                 db.updatePassword(username.getText().toString().trim(), password.getText().toString().trim());
+                Intent i = new Intent(AdminUpdateUserPage.this, AdminPage.class);
+                startActivity(i);
             }
         });
     }
