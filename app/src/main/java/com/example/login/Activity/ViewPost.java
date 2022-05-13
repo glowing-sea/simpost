@@ -26,14 +26,16 @@ public class ViewPost extends AppCompatActivity {
         String t = "";
         String c = "";
         if (fromCreate != null){
-            t = fromCreate.getString("titleOfPost");
-            c = fromCreate.getString("contentOfPost");
+            current = (Post) getIntent().getExtras().getSerializable("POST");
         }
+        t = current.getTitle();
+        c = current.getContent();
         title = findViewById(R.id.postTitleText);
         content = findViewById(R.id.postContentText);
         back = findViewById(R.id.returnKey);
         title.setText(t);
         content.setText(c);
+        getIntent().removeExtra("POST");
         // button going back to main page
         back.setOnClickListener(new View.OnClickListener() {
             @Override

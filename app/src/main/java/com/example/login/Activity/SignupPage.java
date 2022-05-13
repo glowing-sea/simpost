@@ -18,34 +18,27 @@ import com.example.login.R;
 public class SignupPage extends AppCompatActivity {
     EditText name, password;
     Button confirm;
-    SharedPreferences userInfo;
+    DBHelper db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_page);
+        db = new DBHelper(getApplicationContext());
 
         name = findViewById(R.id.signupname);
-        password = findViewById(R.id.password);
+        password = findViewById(R.id.signuppassword);
         confirm = findViewById(R.id.confirmSignup);
-        userInfo = getSharedPreferences("info", Context.MODE_PRIVATE);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*DBHelper db = new DBHelper(SignupPage.this);
-                String n = name.getText().toString();
-                String p = password.getText().toString();
-                db.addUser(n,p);*/
-                confirm.setEnabled(false);
-                String n = name.getText().toString();
-                String p = password.getText().toString();
-                SharedPreferences.Editor save = userInfo.edit();
-                save.putString(n, p);
-                save.commit();
+                String n = name.getText().toString().trim();
+                String p = password.getText().toString().trim();
+                db.addUser(n,p);
                 Toast.makeText(SignupPage.this,"You have successfully signed up", Toast.LENGTH_LONG).show();
-                Intent i = new Intent(SignupPage.this, LoginPage.class);
-                startActivity(i);
+                finish();
             }
         });
     }
@@ -53,16 +46,5 @@ public class SignupPage extends AppCompatActivity {
 
 
 
-//    String n = name.getText().toString();
-//    String p = password.getText().toString();
-//这个就是signup的 等sqlmethod完全弄好了应该就可以，到时候在这里改
-//                if (SqlMethod.existUser(n))
-//                    Toast.makeText(SignupPage.this, "Username already exists", Toast.LENGTH_LONG).show();
-//                else {
-//                    User signup = new User(n, p);
-//                    SqlMethod.save(signup);
-//                    Toast.makeText(SignupPage.this,"You have successfully signed up", Toast.LENGTH_LONG).show();
-//                    Intent i = new Intent(SignupPage.this, LoginPage.class);
-//                    startActivity(i);
 
 

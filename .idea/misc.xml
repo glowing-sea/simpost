@@ -4,12 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_create_post.xml" value="0.2" />
+        <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_home_page.xml" value="0.16" />
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_main.xml" value="0.22604166666666667" />
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_main_page.xml" value="0.2" />
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_search_result_page.xml" value="0.24947916666666667" />
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_setting_page.xml" value="0.17708333333333334" />
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_signup_page.xml" value="0.25" />
         <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/activity_view_post.xml" value="0.24947916666666667" />
+        <entry key="..\:/Users/Sijie/Desktop/comp 2100/comp2100groupassignment/app/src/main/res/layout/adapter_post.xml" value="0.103125" />
         <entry key="..\:/idea/comp2100groupassignment/app/src/main/res/layout/activity_admin_add_user_page.xml" value="0.3333333333333333" />
         <entry key="..\:/idea/comp2100groupassignment/app/src/main/res/layout/activity_admin_delete_user_page.xml" value="0.286231884057971" />
         <entry key="..\:/idea/comp2100groupassignment/app/src/main/res/layout/activity_admin_page.xml" value="0.286231884057971" />

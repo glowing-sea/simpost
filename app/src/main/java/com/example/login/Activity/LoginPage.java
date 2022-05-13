@@ -21,7 +21,6 @@ public class LoginPage extends AppCompatActivity {
     DBHelper db;
     EditText usernameInput, passwordInput;
     String username, password;
-//    SharedPreferences userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,18 +52,6 @@ public class LoginPage extends AppCompatActivity {
             finish();
         }
 
-//        userInfo = getApplicationContext().getSharedPreferences("info", Context.MODE_PRIVATE);
-//        String n = name.getText().toString();
-//        String p = password.getText().toString();
-//        if (!userInfo.contains(n)) {
-//            Toast.makeText(LoginPage.this, "Username doesn`t exist", Toast.LENGTH_LONG).show();
-//        } else if (!userInfo.getString(n, "").equals(p)) {
-//            Toast.makeText(LoginPage.this, "Username and password doesn`t match", Toast.LENGTH_SHORT).show();
-//        } else {
-//            Toast.makeText(LoginPage.this, "Login Successfully", Toast.LENGTH_SHORT).show();
-//            Intent i = new Intent(LoginPage.this, PostsPage.class);
-//            startActivity(i);
-//        }
     }
 
     public void onClickAdmin(View view) {

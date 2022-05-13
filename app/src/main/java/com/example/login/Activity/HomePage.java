@@ -2,6 +2,9 @@ package com.example.login.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.User;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -18,13 +21,23 @@ import android.widget.TextView;
 public class HomePage extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     ImageView homeBackground;
-    TextView address;
+    TextView address, userName;
+    User current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         this.setTitle(this.getText(R.string.home));
+        userName = findViewById(R.id.username_home);
+//        Bundle fromCreate = getIntent().getExtras();
+//        if (fromCreate != null){
+//            current = (User) getIntent().getExtras().getSerializable("USER");
+//        }
+//        String name = current.getUsername();
+//        userName.setText(name);
+//
+//        getIntent().removeExtra("USER");
 
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);

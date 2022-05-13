@@ -37,8 +37,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-
-
         User user = users.get(position);
         holder.username.setText(user.getUsername());
         holder.password.setText(user.getPassword());
@@ -47,6 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             public void onClick(View view) {
                 Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show();
                  Intent intent = new Intent(context, AdminUpdateUserPage.class);
+                 intent.putExtra("USER", user);
                  // intent.putExtra("username", String.valueOf(users.get(position)));
                  context.startActivity(intent);
             }
