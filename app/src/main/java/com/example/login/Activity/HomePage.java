@@ -21,7 +21,7 @@ public class HomePage extends AppCompatActivity {
     ImageView homeBackground;
     TextView userName, intro, age, gender;
     User current;
-    Button follow, subscribe;
+    Button follower, subscribe, follow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,10 @@ public class HomePage extends AppCompatActivity {
         intro = findViewById(R.id.userIntro);
         age = findViewById(R.id.age_input);
         gender = findViewById(R.id.gender_input);
-        follow = findViewById(R.id.home_to_follower);
+        follower = findViewById(R.id.home_to_follower);
         subscribe = findViewById(R.id.home_to_subscribe);
-        follow.setOnClickListener(new View.OnClickListener() {
+        follow = findViewById(R.id.follow_this);
+        follower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomePage.this, FollowerPage.class);
