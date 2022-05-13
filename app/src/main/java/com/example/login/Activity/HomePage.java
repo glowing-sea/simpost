@@ -13,7 +13,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,26 +26,42 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
         Me me = Me.getInstance();
         setTitle(me.username + "'s " + "Profile");
 
 
-//        SharedPreferences sp = getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
-//        String name = sp.getString("name", "");
-
-
-        setContentView(R.layout.activity_home_page);
-        userName = findViewById(R.id.username_home);
+        userName = findViewById(R.id.username_me);
         userName.setText(me.username);
+
+
         signature = findViewById(R.id.signature_me);
-        age = findViewById(R.id.age_input);
-        gender = findViewById(R.id.gender_input);
+        signature.setText(me.getSignature());
+
+
+
+        age = findViewById(R.id.age_me);
+        if (me.getAge() == -1){
+            age.setText("NA");}
+        else{
+            age.setText(me.getAge() + "");}
+        gender = findViewById(R.id.gender_me);
+
+        int genderInt = me.getGender();
+        switch (genderInt){
+            case 0: gender.setText("M"); break;
+            case 1: gender.setText("F");break;
+            case 2: gender.setText("O"); break;
+            default: gender.setText("NA");
+        }
 
 
         followersNum = findViewById(R.id.followers_me_num);
         followingNum = findViewById(R.id.following_me_num);
         followers = findViewById(R.id.followers_me);
         following = findViewById(R.id.following_me);
+
+        followingNum.setText(me.getFollowing().size() + "");
 
 
         followersNum.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +103,7 @@ public class HomePage extends AppCompatActivity {
 
         // Setting Button
         ImageView settingButton;
-        settingButton = findViewById(R.id.settingButton);
+        settingButton = findViewById(R.id.setting_me);
         settingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,7 +115,7 @@ public class HomePage extends AppCompatActivity {
 
         // Log out button
         ImageView logoutButton;
-        logoutButton = findViewById(R.id.logoutButton);
+        logoutButton = findViewById(R.id.logout_me);
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,7 +127,7 @@ public class HomePage extends AppCompatActivity {
 
 
         FloatingActionButton changeBackground;
-        homeBackground = findViewById(R.id.homeBackground);
+        homeBackground = findViewById(R.id.background_me);
         changeBackground = findViewById(R.id.changeBackground);
 
         changeBackground.setOnClickListener(new View.OnClickListener() {

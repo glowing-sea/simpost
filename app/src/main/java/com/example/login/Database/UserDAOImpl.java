@@ -327,8 +327,9 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
     private static ArrayList<String> listDecode (String string){
         ArrayList<String> list = new ArrayList<>();
+        if (string.isEmpty())
+            return list;
         Collections.addAll(list, string.split(","));
-        System.out.println(list);
         return list;
     }
 }
