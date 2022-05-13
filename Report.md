@@ -65,7 +65,7 @@ The following is a report template to help your team successfully provide all th
 
 ## Application Description
 
-*[What is your application, what does it do? Include photos or diagrams if necessary]*
+In our app, we try to build an app that allows users to post and share information. As an analogy, it should be similar to Reddit.
 
 *Here is a pet specific application example*
 
@@ -73,22 +73,13 @@ The following is a report template to help your team successfully provide all th
 
 **Application Use Cases and or Examples**
 
-*[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
+We expect our app to be used for communication and sharing information, when users want to ask a question, share their thoughts on something or simply post something interesting that they see.
+For example, if one of our users wants to ask a question about a comp lab, then he/she can post that question on our app. Then, other users
+would be able to see that post in their app and be able to make a response.
 
-*Here is a pet training application example*
+*Targets Users: Students
 
-*Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
-1. *Molly notices that McPurr has been hostile since...*
-2. *She makes a post about... with the tag...*
-3. *Lachlan, a vet, writes a reply to Molly's post...*
-4. ...
-5. *Molly gives Lachlan's reply a 'tick' response*
-
-*Here is a map navigation application example*
-
-*Targets Users: Drivers*
-
-* *Users can use it to navigate in order to reach the destinations.*
+*
 * *Users can learn the traffic conditions*
 * ...
 
