@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
         android:layout_marginTop="22dp"
-        android:text="TextView"
+        android:text="posted by xxx"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/result_title" />
 
