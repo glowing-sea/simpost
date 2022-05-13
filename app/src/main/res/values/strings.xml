@@ -30,4 +30,10 @@
 
     <string name="no_data">No Data</string>
 
+
+    <string name="login_successfully">Login Successfully</string>
+    <string name="username_not_found">Username Not Found</string>
+    <string name="password_incorrect">Username Not Found</string>
+    <string name="database_access_fail">Database Access Fail</string>
+
 </resources>
