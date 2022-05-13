@@ -5,46 +5,41 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.User;
 import com.example.login.R;
 
 import java.util.List;
 
-public class FollowerAdapter extends RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder> {
+public class SubscribeAdapter extends RecyclerView.Adapter<SubscribeAdapter.SubscribeViewHolder> {
 
     private final Context ctx;
     private final List<User> dataset;
-    public FollowerAdapter(Context ctx, List<User> dataset){
+    public SubscribeAdapter(Context ctx, List<User> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
 
     @NonNull
     @Override
-    public FollowerAdapter.FollowerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SubscribeAdapter.SubscribeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(ctx).inflate(R.layout.follower_view, parent, false);
-        return new FollowerAdapter.FollowerViewHolder(view);
+        return new SubscribeAdapter.SubscribeViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FollowerAdapter.FollowerViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull SubscribeAdapter.SubscribeViewHolder holder, int position) {
         User current = dataset.get(position);
 
-        holder.getFollower().setText(current.getUsername());
+        holder.getSubscribeName().setText(current.getUsername());
 
 
-        holder.getSingleFollower().setOnClickListener(new View.OnClickListener() {
+        holder.getSingleSubscribe().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Toast.makeText(ctx, "Clicked", Toast.LENGTH_LONG).show();
@@ -61,23 +56,24 @@ public class FollowerAdapter extends RecyclerView.Adapter<FollowerAdapter.Follow
         return dataset.size();
     }
 
-    public class FollowerViewHolder extends RecyclerView.ViewHolder {
-        private final ConstraintLayout singleFollower;
-        private final TextView follower;
+    public class SubscribeViewHolder extends RecyclerView.ViewHolder {
+        private final ConstraintLayout singleSubscribe;
+        private final TextView subscribeName;
 
 
-        public FollowerViewHolder(@NonNull View itemView) {
+        public SubscribeViewHolder(@NonNull View itemView) {
             super(itemView);
-            follower = itemView.findViewById(R.id.follower_name);
-            singleFollower = itemView.findViewById(R.id.single_Follower);
+            subscribeName = itemView.findViewById(R.id.follower_name);
+            singleSubscribe = itemView.findViewById(R.id.single_Follower);
         }
 
-        public TextView getFollower() {
-            return follower;
+        public TextView getSubscribeName() {
+            return subscribeName;
         }
-        public ConstraintLayout getSingleFollower(){
-            return this.singleFollower;
+        public ConstraintLayout getSingleSubscribe(){
+            return this.singleSubscribe;
         }
     }
 
 }
+

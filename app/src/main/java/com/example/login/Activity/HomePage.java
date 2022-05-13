@@ -19,7 +19,7 @@ import android.widget.TextView;
 public class HomePage extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     ImageView homeBackground;
-    TextView address, userName, intro, age, gender;
+    TextView userName, intro, age, gender;
     User current;
     Button follow, subscribe;
 
@@ -38,6 +38,14 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomePage.this, FollowerPage.class);
+                i.putExtra("USER", current);
+                startActivity(i);
+            }
+        });
+        subscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(HomePage.this, SubscriptionsPage.class);
                 i.putExtra("USER", current);
                 startActivity(i);
             }
