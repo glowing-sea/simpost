@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.login.Database.DBHelper;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 public class AdminDeleteUserPage extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class AdminDeleteUserPage extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper db = new DBHelper(getApplicationContext());
+                UserDAOImpl db = new UserDAOImpl(getApplicationContext());
                 db.deleteUser(username.getText().toString().trim());
                 Intent i = new Intent(AdminDeleteUserPage.this, AdminPage.class);
                 startActivity(i);

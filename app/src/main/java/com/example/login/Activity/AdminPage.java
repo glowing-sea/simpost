@@ -1,11 +1,13 @@
 package com.example.login.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.User;
-import com.example.login.Database.DBHelper;
+import com.example.login.Database.UserDAO;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -20,9 +22,9 @@ import java.util.ArrayList;
 public class AdminPage extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    FloatingActionButton addButton,updateButton,deleteButton;
+    FloatingActionButton addButton,updateButton,deleteButton, getterMethodTest;
 
-    DBHelper db;
+    UserDAO db;
     ArrayList<User> users;
     UserAdapter userAdapter;
 
@@ -35,6 +37,7 @@ public class AdminPage extends AppCompatActivity {
         addButton = findViewById(R.id.admin_add_button);
         updateButton = findViewById(R.id.admin_refresh_button);
         deleteButton = findViewById(R.id.delete_button);
+        getterMethodTest = findViewById(R.id.getterMethodTest);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,17 +62,32 @@ public class AdminPage extends AppCompatActivity {
             }
         });
 
-        db = new DBHelper(getApplicationContext());
+        getterMethodTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AdminGetterTestPage.class);
+                startActivity(intent);
+            }
+        });
+
+        db = new UserDAOImpl(getApplicationContext());
         users = new ArrayList<>();
 
         // Extra all information from the database and store it into the users list.
         databaseToArrays();
 
-        userAdapter = new UserAdapter(AdminPage.this,users);
+        userAdapter = new UserAdapter(AdminPage.this, this,users);
         recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         // rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 0){
+            recreate();
+        }
     }
 
     void databaseToArrays(){

@@ -1,5 +1,6 @@
 package com.example.login.Activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -20,9 +21,11 @@ import java.util.ArrayList;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private Context context;
+    Activity activity;
     private ArrayList<User> users;
 
-    UserAdapter(Context context, ArrayList users){
+    UserAdapter(Activity activity, Context context, ArrayList users){
+        this.activity = activity;
         this.context = context;
         this.users = users;
     }
@@ -47,7 +50,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                  Intent intent = new Intent(context, AdminUpdateUserPage.class);
                  intent.putExtra("USER", user);
                  // intent.putExtra("username", String.valueOf(users.get(position)));
-                 context.startActivity(intent);
+                 activity.startActivityForResult(intent, 1);
             }
         });
     }

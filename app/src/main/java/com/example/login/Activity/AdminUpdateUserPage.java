@@ -3,7 +3,7 @@ package com.example.login.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.DataContainer.User;
-import com.example.login.Database.DBHelper;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import android.content.Intent;
@@ -37,8 +37,8 @@ public class AdminUpdateUserPage extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper db = new DBHelper(getApplicationContext());
-                db.updatePassword(username.getText().toString().trim(), password.getText().toString().trim());
+                UserDAOImpl db = new UserDAOImpl(getApplicationContext());
+                db.setPassword(username.getText().toString().trim(), password.getText().toString().trim());
                 Intent i = new Intent(AdminUpdateUserPage.this, AdminPage.class);
                 startActivity(i);
             }

@@ -2,23 +2,18 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.example.login.DataContainer.SqlMethod;
-import com.example.login.Database.DBHelper;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 public class LoginPage extends AppCompatActivity {
 
 
-    DBHelper db;
+    UserDAOImpl db;
     EditText usernameInput, passwordInput;
     String username, password;
 
@@ -29,7 +24,7 @@ public class LoginPage extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         // Database
-        db = new DBHelper(getApplicationContext());
+        db = new UserDAOImpl(getApplicationContext());
 
         usernameInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);

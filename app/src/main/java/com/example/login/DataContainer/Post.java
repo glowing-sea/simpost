@@ -8,9 +8,10 @@ import com.example.login.FileIO.FileRW;
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Post {
+public class Post implements Serializable {
     private int postID;
     private String poster;
     private String title;
@@ -24,8 +25,7 @@ public class Post {
     private ArrayList<String> comment;
     private String preserved;
 
-
-
+    private int gratitude, altitude;
 
 
 

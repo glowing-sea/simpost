@@ -2,7 +2,7 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.login.Database.DBHelper;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import android.content.Intent;
@@ -29,7 +29,7 @@ public class AdminAddUserPage extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBHelper db = new DBHelper(getApplicationContext());
+                UserDAOImpl db = new UserDAOImpl(getApplicationContext());
                 db.addUser(username.getText().toString().trim(), password.getText().toString().trim());
                 Intent i = new Intent(AdminAddUserPage.this, AdminPage.class);
                 startActivity(i);
