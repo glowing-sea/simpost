@@ -30,14 +30,14 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         this.setTitle(this.getText(R.string.home));
         userName = findViewById(R.id.username_home);
-        Bundle fromCreate = getIntent().getExtras();
-        if (fromCreate != null){
-            current = (User) getIntent().getExtras().getSerializable("USER");
-        }
-        String name = current.getUsername();
-        userName.setText(name);
-
-        getIntent().removeExtra("USER");
+//        Bundle fromCreate = getIntent().getExtras();
+//        if (fromCreate != null){
+//            current = (User) getIntent().getExtras().getSerializable("USER");
+//        }
+//        String name = current.getUsername();
+//        userName.setText(name);
+//
+//        getIntent().removeExtra("USER");
 
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
