@@ -2,6 +2,7 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.login.DataContainer.User;
 import com.example.login.Database.DBHelper;
 import com.example.login.R;
 
@@ -15,6 +16,7 @@ public class AdminUpdateUserPage extends AppCompatActivity {
 
     EditText username, password;
     Button updateButton;
+    User current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,13 @@ public class AdminUpdateUserPage extends AppCompatActivity {
         username = findViewById(R.id.admin_username_input2);
         password = findViewById(R.id.admin_password_input2);
         updateButton = findViewById(R.id.admin_update_button);
+        Bundle fromCreate = getIntent().getExtras();
+        if (fromCreate != null){
+            current = (User) getIntent().getExtras().getSerializable("USER");
+            String name = current.getUsername();
+            username.setText(name);
+            getIntent().removeExtra("USER");
+        }
 
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override

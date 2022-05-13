@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.login.DataContainer.User;
 import com.example.login.R;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -59,7 +60,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
                  intent.putExtra("POST", current);
                  // intent.putExtra("username", String.valueOf(users.get(position)));
                  ctx.startActivity(intent);
-
             }
         });
     }

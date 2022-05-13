@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.User;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostsPage extends AppCompatActivity {
+    User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,9 @@ public class PostsPage extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.nav_ico_home:
-                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                    Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                    intent.putExtra("USER", currentUser);
+                    startActivity(intent);
                     this.overridePendingTransition(0, 0);
                     finish();
                     break; }

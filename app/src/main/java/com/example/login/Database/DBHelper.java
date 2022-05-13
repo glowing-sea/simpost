@@ -76,6 +76,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+
     public Boolean loginAuthentication(String loginUsername, String loginPassword){
         Cursor cursor = readAllData();
         if(cursor.getCount() == 0){
