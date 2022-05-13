@@ -72,8 +72,8 @@ public class PostsPage extends AppCompatActivity {
         allPosts.add(p4);
         allPosts.add(p5);
 
-        PostAdapter timelineAdapter = new PostAdapter(PostsPage.this,allPosts);
-        rvPosts.setAdapter(timelineAdapter);
+        PostAdapter postAdapter = new PostAdapter(PostsPage.this,allPosts);
+        rvPosts.setAdapter(postAdapter);
         // rvPosts.setLayoutManager(new LinearLayoutManager((this)));
         rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
 
