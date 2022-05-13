@@ -41,13 +41,10 @@ public class CreatePost extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),ViewPost.class);
                 String head = title.getText().toString();
                 String postContent = userInput.getText().toString();
-                intent.putExtra("titleOfPost", head);
-                intent.putExtra("contentOfPost",postContent);
-                //create simple post id
-
                 //store the post as json file in directory
                 //creating file
                 Post current = new Post(head, postContent);
+                intent.putExtra("POST", current);
                 current.savePost(getApplicationContext());
                 // and then we can store the post in sqlite here
                 // erase content in create post

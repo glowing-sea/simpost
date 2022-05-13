@@ -8,8 +8,9 @@ import com.example.login.FileIO.FileRW;
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class Post {
+public class Post implements Serializable {
     private static final String TAG = "Post";
     String title;
     final String poster = "No Name";
