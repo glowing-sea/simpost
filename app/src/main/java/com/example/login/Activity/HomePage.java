@@ -41,10 +41,9 @@ public class HomePage extends AppCompatActivity {
 
 
         age = findViewById(R.id.age_me);
-        if (me.getAge() == -1){
-            age.setText("NA");}
-        else{
-            age.setText(me.getAge() + "");}
+        if (me.getAge() != -1)
+            age.setText(me.getAge() + "");
+
         gender = findViewById(R.id.gender_me);
 
         int genderInt = me.getGender();
@@ -52,7 +51,6 @@ public class HomePage extends AppCompatActivity {
             case 0: gender.setText("M"); break;
             case 1: gender.setText("F");break;
             case 2: gender.setText("O"); break;
-            default: gender.setText("NA");
         }
 
 

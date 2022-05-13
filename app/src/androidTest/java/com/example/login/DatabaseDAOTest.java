@@ -67,7 +67,7 @@ public class DatabaseDAOTest {
     public void signatureDOATest(){
         db.setSignature("TestUser", "I Love Genshin\n*********\n");
         String actual = db.getSignature("TestUser");
-        String expected = "I Love Genshin";
+        String expected = "I Love Genshin\n*********\n";
         assertEquals(expected, actual);
     }
 
