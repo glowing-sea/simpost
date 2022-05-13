@@ -3,7 +3,6 @@ package com.example.login.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.User;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -14,7 +13,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +32,16 @@ public class HomePage extends AppCompatActivity {
         intro = findViewById(R.id.userIntro);
         age = findViewById(R.id.age_input);
         gender = findViewById(R.id.gender_input);
+        follow = findViewById(R.id.home_to_follower);
+        subscribe = findViewById(R.id.home_to_subscribe);
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(HomePage.this, FollowerPage.class);
+                i.putExtra("USER", current);
+                startActivity(i);
+            }
+        });
 
 //        Bundle fromCreate = getIntent().getExtras();
 //        if (fromCreate != null){

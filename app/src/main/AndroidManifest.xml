@@ -17,9 +17,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".Activity.AdminDeleteUserPage"
-            android:parentActivityName=".Activity.AdminPage"
+            android:name=".Activity.FollowerPage"
             android:exported="false" />
+        <activity
+            android:name=".Activity.AdminDeleteUserPage"
+            android:exported="false"
+            android:parentActivityName=".Activity.AdminPage" />
         <activity
             android:name=".Activity.AdminUpdateUserPage"
             android:exported="false"
