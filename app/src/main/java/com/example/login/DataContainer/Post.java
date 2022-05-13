@@ -8,9 +8,10 @@ import com.example.login.FileIO.FileRW;
 import com.google.gson.Gson;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Post {
+public class Post implements Serializable {
     private int postID;
     private String poster;
     private String title;
@@ -44,7 +45,7 @@ public class Post {
     public Post(String title, String content){
         this.title = title;
         this.content = content;
-        this.postID = 123;//加入id的算法
+        this.like = 0;
     }
 
     public String getPoster() {return poster; }
@@ -56,6 +57,10 @@ public class Post {
     }
     public int getPostID(){
         return this.postID;
+    }
+    public int getLike() {return this.like;}
+    public void changeLike(int change){
+        this.like = this.like + change;
     }
     public void setTitle(String title){
         this.title = title;

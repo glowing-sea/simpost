@@ -23,6 +23,7 @@ public class HomePage extends AppCompatActivity {
     ImageView homeBackground;
     TextView address, userName, intro, age, gender;
     User current;
+    Button follow, subscribe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class HomePage extends AppCompatActivity {
 //            current = (User) getIntent().getExtras().getSerializable("USER");
 //        }
 //        String name = current.getUsername();
+
 //        userName.setText(name);
 //
 //        getIntent().removeExtra("USER");
