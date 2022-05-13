@@ -21,7 +21,7 @@ import android.widget.TextView;
 public class HomePage extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     ImageView homeBackground;
-    TextView address, userName;
+    TextView address, userName, intro, age, gender;
     User current;
 
     @Override
@@ -30,6 +30,10 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         this.setTitle(this.getText(R.string.home));
         userName = findViewById(R.id.username_home);
+        intro = findViewById(R.id.userIntro);
+        age = findViewById(R.id.age_input);
+        gender = findViewById(R.id.gender_input);
+
 //        Bundle fromCreate = getIntent().getExtras();
 //        if (fromCreate != null){
 //            current = (User) getIntent().getExtras().getSerializable("USER");
@@ -82,7 +86,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        address = findViewById(R.id.image_address);
 
         FloatingActionButton changeBackground;
         homeBackground = findViewById(R.id.homeBackground);
