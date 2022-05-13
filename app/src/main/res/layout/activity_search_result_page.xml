@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".Activity.SearchResultPage">
 
     <LinearLayout
@@ -15,62 +15,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/reSearch"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/result_posts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="keyword"
-            android:textAlignment="viewStart"
-            tools:visibility="visible" />
+            android:layout_height="match_parent"
+            />
 
-        <Button
-            android:id="@+id/confirmResearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Confirm" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="Results" />
-
-        <TextView
-            android:id="@+id/result1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="Result 1" />
-
-        <TextView
-            android:id="@+id/result2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="Result 2" />
-
-        <TextView
-            android:id="@+id/result3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="Result 3" />
-
-        <TextView
-            android:id="@+id/result4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="Result 4" />
-
-        <TextView
-            android:id="@+id/result5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="viewStart"
-            android:text="Result 5" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

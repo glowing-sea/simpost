@@ -3,41 +3,59 @@ package com.example.login.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.User;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class HomePage extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     ImageView homeBackground;
-    TextView address, userName;
+    TextView userName, intro, age, gender;
     User current;
+    Button follower, subscribe, follow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+        String name = sp.getString("name", "");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         this.setTitle(this.getText(R.string.home));
         userName = findViewById(R.id.username_home);
-//        Bundle fromCreate = getIntent().getExtras();
-//        if (fromCreate != null){
-//            current = (User) getIntent().getExtras().getSerializable("USER");
-//        }
-//        String name = current.getUsername();
-//        userName.setText(name);
-//
-//        getIntent().removeExtra("USER");
+        userName.setText(name);
+        intro = findViewById(R.id.userIntro);
+        age = findViewById(R.id.age_input);
+        gender = findViewById(R.id.gender_input);
+        follower = findViewById(R.id.home_to_follower);
+        subscribe = findViewById(R.id.home_to_subscribe);
+        follow = findViewById(R.id.follow_this);
+        follower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(HomePage.this, FollowerPage.class);
+                i.putExtra("USER", current);
+                startActivity(i);
+            }
+        });
+        subscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(HomePage.this, SubscriptionsPage.class);
+                i.putExtra("USER", current);
+                startActivity(i);
+            }
+        });
 
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
@@ -66,6 +84,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent toResult = new Intent(getApplicationContext(), SettingPage.class);
+                toResult.putExtra("USER", current);
                 startActivity(toResult);
             }
         });
@@ -82,7 +101,6 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        address = findViewById(R.id.image_address);
 
         FloatingActionButton changeBackground;
         homeBackground = findViewById(R.id.homeBackground);
