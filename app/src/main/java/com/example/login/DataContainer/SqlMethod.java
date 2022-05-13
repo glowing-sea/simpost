@@ -17,39 +17,39 @@ public class SqlMethod {
     }
 
 
-    public void save (User us){
-        db.execSQL("INSERT INTO user(userID,username,password) values(?,?,?)",
-                new String[]{String.valueOf(us.getUserId()),us.getUsername(),us.getPassword()});
-    }
-
-    public void save (Post po){
-        db.execSQL("INSERT INTO post(postID,title,content) values(?,?,?)",
-                new String[]{String.valueOf(po.getPostID()),po.getTitle(),po.getContent()});
-    }
-
-    public void deleteFromUser(Integer userid)
-    {
-        db.execSQL("DELETE FROM user WHERE userID = ?",
-                new String[]{String.valueOf(userid)});
-    }
-
-    public void deleteFromPost(Integer posted)
-    {
-        db.execSQL("DELETE FROM user WHERE postID = ?",
-                new String[]{String.valueOf(posted)});
-    }
-
-    public void updateUser(User us)
-    {
-        db.execSQL("UPDATE user SET username = ?,password = ? WHERE userID = ?",
-                new String[]{us.getUsername(),us.getPassword(),String.valueOf(us.getUserId())});
-    }
-
-    public void updatePost(Post po)
-    {
-        db.execSQL("UPDATE post SET title = ?,content = ? WHERE postID = ?",
-                new String[]{po.getTitle(),po.getContent(),String.valueOf(po.getPostID())});
-    }
+//    public void save (User us){
+//        db.execSQL("INSERT INTO user(userID,username,password) values(?,?,?)",
+//                new String[]{String.valueOf(us.getUserId()),us.getUsername(),us.getPassword()});
+//    }
+//
+//    public void save (Post po){
+//        db.execSQL("INSERT INTO post(postID,title,content) values(?,?,?)",
+//                new String[]{String.valueOf(po.getPostID()),po.getTitle(),po.getContent()});
+//    }
+//
+//    public void deleteFromUser(Integer userid)
+//    {
+//        db.execSQL("DELETE FROM user WHERE userID = ?",
+//                new String[]{String.valueOf(userid)});
+//    }
+//
+//    public void deleteFromPost(Integer posted)
+//    {
+//        db.execSQL("DELETE FROM user WHERE postID = ?",
+//                new String[]{String.valueOf(posted)});
+//    }
+//
+//    public void updateUser(User us)
+//    {
+//        db.execSQL("UPDATE user SET username = ?,password = ? WHERE userID = ?",
+//                new String[]{us.getUsername(),us.getPassword(),String.valueOf(us.getUserId())});
+//    }
+//
+//    public void updatePost(Post po)
+//    {
+//        db.execSQL("UPDATE post SET title = ?,content = ? WHERE postID = ?",
+//                new String[]{po.getTitle(),po.getContent(),String.valueOf(po.getPostID())});
+//    }
 
 
     /**
