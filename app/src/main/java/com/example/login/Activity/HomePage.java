@@ -25,6 +25,15 @@ public class HomePage extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+//          Bundle fromCreate = getIntent().getExtras();
+//        if (fromCreate != null){
+//            current = (User) getIntent().getExtras().getSerializable("USER");
+//        }
+//        String name = current.getUsername();
+
+//        userName.setText(name);
+//
+//        getIntent().removeExtra("USER");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         this.setTitle(this.getText(R.string.home));
@@ -51,16 +60,6 @@ public class HomePage extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
-//        Bundle fromCreate = getIntent().getExtras();
-//        if (fromCreate != null){
-//            current = (User) getIntent().getExtras().getSerializable("USER");
-//        }
-//        String name = current.getUsername();
-
-//        userName.setText(name);
-//
-//        getIntent().removeExtra("USER");
 
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
@@ -89,6 +88,7 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent toResult = new Intent(getApplicationContext(), SettingPage.class);
+                toResult.putExtra("USER", current);
                 startActivity(toResult);
             }
         });

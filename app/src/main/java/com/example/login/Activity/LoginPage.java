@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.SqlMethod;
+import com.example.login.DataContainer.User;
 import com.example.login.Database.DBHelper;
 import com.example.login.R;
 
@@ -48,6 +49,8 @@ public class LoginPage extends AppCompatActivity {
         boolean result = db.loginAuthentication(username, password);
         if (result){
             Intent in = new Intent(LoginPage.this, PostsPage.class);
+            User current = new User(username, password);
+            in.putExtra("USER", current);
             startActivity(in);
             finish();
         }

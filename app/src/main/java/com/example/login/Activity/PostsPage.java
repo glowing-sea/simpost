@@ -25,7 +25,11 @@ public class PostsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posts_page);
         this.setTitle(this.getText(R.string.posts));
-
+        // initiate the current User
+        Bundle fromCreate = getIntent().getExtras();
+        if (fromCreate != null){
+            currentUser = (User) getIntent().getExtras().getSerializable("USER");
+        }
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
         nav.setOnItemSelectedListener(item -> {
