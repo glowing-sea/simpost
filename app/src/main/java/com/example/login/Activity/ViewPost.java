@@ -13,7 +13,7 @@ import com.example.login.R;
 
 public class ViewPost extends AppCompatActivity {
     Post current;
-    TextView title, content, likeCount;
+    TextView title, content, likeCount, viewCount;
     Button back, like, dislike;
 
     @Override
@@ -37,6 +37,7 @@ public class ViewPost extends AppCompatActivity {
         like = findViewById(R.id.like);
         dislike = findViewById(R.id.dislike);
         likeCount = findViewById(R.id.like_count);
+        viewCount = findViewById(R.id.view_count);
         title.setText(t);
         content.setText(c);
         l = "Current likes:" + " " + l;
