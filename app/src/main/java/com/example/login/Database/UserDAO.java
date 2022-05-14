@@ -12,7 +12,7 @@ public interface UserDAO {
     // The following methods access, insert, or delete, a whole row in the database.
 
     // Add a user
-    boolean addUser(String username, String password);
+    int addUser(String username, String password);
 
     // Delete a user
     void deleteUser (String username);
@@ -65,4 +65,8 @@ public interface UserDAO {
     // Background
     boolean setBackground(String username, Bitmap background);
     Bitmap getBackground(String username);
+
+    // Avatar
+    boolean setAvatar(String username, Bitmap avatar);
+    Bitmap getAvatar(String username);
 }

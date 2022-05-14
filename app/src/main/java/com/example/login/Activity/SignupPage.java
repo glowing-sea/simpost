@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.login.Database.UserDAOImpl;
@@ -30,11 +31,24 @@ public class SignupPage extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int re;
                 String n = name.getText().toString().trim();
                 String p = password.getText().toString().trim();
-                db.addUser(n,p);
-                Toast.makeText(SignupPage.this,"You have successfully signed up", Toast.LENGTH_LONG).show();
-                finish();
+                re = db.addUser(n,p);
+                switch (re) {
+                    case 0: {
+                        Toast.makeText(SignupPage.this, "You have successfully signed up", Toast.LENGTH_LONG).show();
+                        finish();
+                        break;
+                    }
+                    case -2: {
+                        Toast.makeText(SignupPage.this, "Username can only contains numbers, letter, '_', or '-'.", Toast.LENGTH_LONG).show();
+                        break;
+                    }
+                    case -1: {
+                        Toast.makeText(SignupPage.this, "Username already existed", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         });
     }

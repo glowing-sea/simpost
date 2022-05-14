@@ -30,7 +30,7 @@ public class SearchPage extends AppCompatActivity {
                 case R.id.nav_ico_search:
                     break;
                 case R.id.nav_ico_home:
-                    startActivity(new Intent(getApplicationContext(), HomePage.class));
+                    startActivity(new Intent(getApplicationContext(), Home.class));
                     this.overridePendingTransition(0, 0);
                     finish();
                     break; }

@@ -130,12 +130,4 @@ public class DatabaseDAOTest {
         actual = db.getViewHistory("TestUser");
         assertEquals(expected, actual);
     }
-
-    @Test
-    public void backgroundDOATest(){
-        // No background
-        Bitmap actual = db.getBackground("TestUser");
-        int expected = 16;
-        assertTrue(actual == null);
-    }
 }

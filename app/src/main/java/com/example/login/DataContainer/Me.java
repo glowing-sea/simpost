@@ -143,6 +143,16 @@ public class Me{
         return db.getBackground(username);
     }
 
+    // Avatar
+    public boolean setAvatar(Bitmap avatar){
+        UserDAO db = new UserDAOImpl(context);
+        return db.setAvatar(username, avatar);
+    }
+    public Bitmap getAvatar(){
+        UserDAO db = new UserDAOImpl(context);
+        return db.getAvatar(username);
+    }
+
     // ================================= USER REPORT METHODS ==================================== //
 
     public ArrayList<String> getFollowers(){

@@ -52,7 +52,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
                 "signature TEXT DEFAULT 'No Signature', " +
                 "age INTEGER DEFAULT -1, " +
                 "gender INTEGER DEFAULT -1, " +
-                "location TEXT DEFAULT 0, " +
+                "location TEXT DEFAULT '', " +
                 "viewHistory TEXT DEFAULT '', " +
                 "privacySettings INTEGER DEFAULT 1000001, " +
                 "blacklist TEXT DEFAULT '', " +
@@ -74,17 +74,15 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     // The following methods access, insert, or delete, a whole row in the database.
 
     // Add a user
-    public boolean addUser(String username, String password){
+    public int addUser(String username, String password){
+        if (!HelperMethods.isValidUsername(username))
+            return -2;
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_USERNAME, username);
         cv.put(COLUMN_PASSWORD, password);
         long result = db.insert(TABLE_NAME, null, cv);
-        if (result == -1){
-            return false;
-        } else {
-            return true;
-        }
+        return result == -1 ? -1 : 0;
     }
     // Delete a user
     public void deleteUser (String username){
@@ -159,6 +157,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
 
     // Signature
     public boolean setSignature(String username, String newSignature){
+        if (newSignature.length() > 100) return false;
         return setString(username, "username", newSignature, "signature", "user");
     }
     public String getSignature(String username) {
@@ -183,6 +182,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
 
     // Location
     public boolean setLocation(String username, String location){
+        if (location.length() > 20) return false;
         return setString(username, "username", location, "location", "user");
     }
     public String getLocation(String username) {
@@ -239,6 +239,14 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
     public Bitmap getBackground(String username) {
         return getImage(username, "username", "background", "user");
+    }
+
+    // Avatar
+    public boolean setAvatar(String username, Bitmap avatar){
+        return setImage(username, "username", avatar, "avatar", "user");
+    }
+    public Bitmap getAvatar(String username) {
+        return getImage(username, "username", "avatar", "user");
     }
 
     // ================================ PRIVATE  HELPER METHODS ================================= //
@@ -348,7 +356,10 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         // Convert the image into byte array
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
         // Check size
-        if (imageBytes.length > 100000) return false;
+        if (imageBytes.length > 200000){
+            // Further compress
+            return false;
+        }
         // Store the byte array into the database
         return setByteArray(id, idColumn, imageBytes, valueColumn, tableName);
     }

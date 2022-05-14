@@ -41,4 +41,18 @@ public class HelperMethods {
             return null;
         }
     }
+
+    public static boolean isValidUsername (String username){
+        if (username == null)
+            return false;
+        for (int i = 0; i < username.length(); i++){
+            char c = username.charAt(i);
+            if (!(
+                    (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c == '-') || (c == '_') ||
+                            (c >= '0' && c <= '9')
+                    ))
+                return false;
+        }
+        return true;
+    }
 }

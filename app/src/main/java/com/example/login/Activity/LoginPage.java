@@ -1,5 +1,6 @@
 package com.example.login.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -41,9 +42,26 @@ public class LoginPage extends AppCompatActivity {
 
 
     public void onClickSignup(View view) {
-        Intent i = new Intent(LoginPage.this, SignupPage.class);
-        startActivity(i);
+        int re;
+        username = usernameInput.getText().toString();
+        password = passwordInput.getText().toString();
+        re = db.addUser(username,password);
+        switch (re) {
+            case 0: {
+                Toast.makeText(getApplicationContext(), "You have successfully signed up", Toast.LENGTH_LONG).show();
+                break;
+            }
+            case -2: {
+                Toast.makeText(getApplicationContext(), "Username can only contains numbers, letter, '_', or '-'.", Toast.LENGTH_LONG).show();
+                break;
+            }
+            case -1: {
+                Toast.makeText(getApplicationContext(), "Username already existed", Toast.LENGTH_LONG).show();
+            }
+        }
     }
+
+
 
     public void onClickLogin(View view) {
         username = usernameInput.getText().toString();
@@ -70,6 +88,9 @@ public class LoginPage extends AppCompatActivity {
                 Toast.makeText(this, "Database Access Failed", Toast.LENGTH_SHORT).show();
         }
     }
+
+
+
 
     public void onClickAdmin(View view) {
         Intent i = new Intent(getApplicationContext(), AdminPage.class);

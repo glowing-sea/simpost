@@ -43,7 +43,7 @@ public class SubscribeAdapter extends RecyclerView.Adapter<SubscribeAdapter.Subs
             @Override
             public void onClick(View view) {
                 // Toast.makeText(ctx, "Clicked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(ctx, HomePage.class);
+                Intent intent = new Intent(ctx, Home.class);
                 intent.putExtra("USER", current);
                 // intent.putExtra("username", String.valueOf(users.get(position)));
                 ctx.startActivity(intent);

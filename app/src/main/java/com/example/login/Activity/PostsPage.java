@@ -42,7 +42,7 @@ public class PostsPage extends AppCompatActivity {
                     finish();
                     break;
                 case R.id.nav_ico_home:
-                    Intent intent = new Intent(getApplicationContext(), HomePage.class);
+                    Intent intent = new Intent(getApplicationContext(), Home.class);
                     intent.putExtra("USER", currentUser);
                     startActivity(intent);
                     this.overridePendingTransition(0, 0);
