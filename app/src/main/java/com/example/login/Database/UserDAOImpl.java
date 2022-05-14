@@ -49,7 +49,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
                 "avatar BLOB DEFAULT NULL, " +
                 "background BLOB DEFAULT NULL, " +
                 "following TEXT DEFAULT '', " +
-                "signature TEXT DEFAULT 'No Signature', " +
+                "signature TEXT DEFAULT 'This is a default signature for everyone!', " +
                 "age INTEGER DEFAULT -1, " +
                 "gender INTEGER DEFAULT -1, " +
                 "location TEXT DEFAULT '', " +
