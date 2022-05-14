@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
+import com.example.login.Database.SearchFacade;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -47,7 +48,8 @@ public class LoginPage extends AppCompatActivity {
     public void onClickLogin(View view) {
         username = usernameInput.getText().toString();
         password = passwordInput.getText().toString();
-        int result = db.loginAuthentication(username, password);
+        SearchFacade searchFacade = new SearchFacade(getApplicationContext());
+        int result = searchFacade.loginAuthentication(username, password);
         switch (result) {
             case 0: {
                 Me me = Me.getInstance();

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.UserAdmin;
+import com.example.login.Database.UserDAO;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -60,6 +62,7 @@ public class HomePage extends AppCompatActivity {
         following = findViewById(R.id.following_me);
 
         followingNum.setText(me.getFollowing().size() + "");
+        followersNum.setText(me.getFollowers().size() + "");
 
 
         followersNum.setOnClickListener(new View.OnClickListener() {

@@ -11,6 +11,13 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/*
+
+This class contains the important method of initialise the database, get a cursor, and read and set
+a specific cell in the database.
+
+ */
+
 
 // ============================ DATABASE CREATION METHODS ========================================//
 
@@ -86,26 +93,6 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         db.execSQL(sQuery, replace);
         db.close();
     }
-    // Authenticate a user
-    public int loginAuthentication(String loginUsername, String loginPassword){
-        Cursor cursor = readAllData();
-        if(cursor.getCount() == 0){
-            return -3;
-        } else {
-            while (cursor.moveToNext()){
-                String username = cursor.getString(0);
-                String password = cursor.getString(1);
-                if (loginUsername.equals(username)){
-                    if (loginPassword.equals(password)){
-                        return 0;
-                    } else {
-                        return -1;
-                    }
-                }
-            }
-            return -2;
-        }
-    }
 
     // Delete all users
     public void truncateUsers (){
@@ -118,9 +105,24 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         db.execSQL(sQuery2);
         db.close();
     }
-    // A cursor that read all data.
-    public Cursor readAllData(){
-        String query = "SELECT * FROM " + TABLE_NAME;
+
+    // A cursor that read can some specific columns
+    // If columns == [], return a cursor that can read all columns
+    public Cursor getCursor(String[] columns, String tableName){
+        String query;
+        if (columns.length == 0){
+            query = "SELECT * FROM " + tableName;
+        } else{
+            StringBuilder q = new StringBuilder("SELECT ");
+            for (String column : columns){
+                q.append(column).append(", ");
+            }
+            q.delete(q.length() - 2, q.length() - 1); // Delete the last ","
+            q.append("FROM ");
+            q.append(tableName);
+            q.append(";");
+            query = q.toString();
+        }
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if(db != null){
@@ -128,6 +130,8 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         }
         return cursor;
     }
+
+
 
 
     // ================================= CELLS MANAGEMENT ======================================= //
@@ -293,7 +297,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
 
     // Encode and decode an array list
-    private static String listEncode (ArrayList<String> list){
+    protected static String listEncode (ArrayList<String> list){
         StringBuilder stringBuilder= new StringBuilder();
         for (String elem : list){
             stringBuilder.append(elem);
@@ -301,7 +305,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         }
         return stringBuilder.toString();
     }
-    private static ArrayList<String> listDecode (String string){
+    protected static ArrayList<String> listDecode (String string){
         ArrayList<String> list = new ArrayList<>();
         if (string.isEmpty())
             return list;

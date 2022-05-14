@@ -127,4 +127,6 @@ public class DatabaseDAOTest {
         actual = db.getViewHistory("TestUser");
         assertEquals(expected, actual);
     }
+
+
 }

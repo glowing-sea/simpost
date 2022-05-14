@@ -91,7 +91,7 @@ public class AdminPage extends AppCompatActivity {
     }
 
     void databaseToArrays(){
-        Cursor cursor = db.readAllData();
+        Cursor cursor = db.getCursor(new String[]{"username, password"}, "user");
         if(cursor.getCount() == 0){
             Toast.makeText(this, this.getText(R.string.no_data), Toast.LENGTH_SHORT).show();
         } else {

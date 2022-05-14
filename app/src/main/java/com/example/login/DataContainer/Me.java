@@ -1,6 +1,8 @@
 package com.example.login.DataContainer;
 
 import android.content.Context;
+
+import com.example.login.Database.SearchFacade;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import java.util.ArrayList;
@@ -38,7 +40,7 @@ public class Me{
     }
 
 
-    // ========================== USER DATABASE ACCESS METHODS ================================== //
+    // ============================== USER DATA ACCESS METHODS ================================== //
 
     // Password
     public boolean setPassword(String newPassword) {
@@ -128,6 +130,13 @@ public class Me{
     public ArrayList<Integer> getViewHistory(){
         UserDAO db = new UserDAOImpl(context);
         return db.getViewHistory(username);
+    }
+
+    // ================================= USER REPORT METHODS ==================================== //
+
+    public ArrayList<String> getFollowers(){
+        SearchFacade searchFacade = new SearchFacade(context);
+        return searchFacade.getFollowers(username);
     }
 }
 

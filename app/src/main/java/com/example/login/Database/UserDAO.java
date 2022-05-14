@@ -1,12 +1,6 @@
 package com.example.login.Database;
 
-import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
-
-import com.example.login.R;
-
 import java.util.ArrayList;
 
 public interface UserDAO {
@@ -20,13 +14,11 @@ public interface UserDAO {
 
     // Delete a user
     void deleteUser (String username);
-    // Authenticate a user
-    int loginAuthentication(String loginUsername, String loginPassword);
+
     // Delete all users
     void truncateUsers ();
-    // A cursor that read all data.
-    Cursor readAllData();
 
+    Cursor getCursor(String[] columns, String tableName);
 
     // ================================= CELLS MANAGEMENT ======================================= //
 
