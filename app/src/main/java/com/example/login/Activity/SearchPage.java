@@ -2,6 +2,8 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.login.R;
+import com.example.login.parserAndTokenizer.Token;
+import com.example.login.parserAndTokenizer.Tokenizier;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
@@ -9,6 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class SearchPage extends AppCompatActivity {
 
@@ -42,13 +48,18 @@ public class SearchPage extends AppCompatActivity {
         EditText searchText;
 
         // Set up search text
-        searchText = findViewById(R.id.searchText);
+        searchText = findViewById(R.id.editText_search_page_searcheContent);
 
         // Set up search button
         searchButton = findViewById(R.id.searchButton);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                TextView input = findViewById(R.id.editText_search_page_searcheContent);
+                String searchedText = input.getText().toString();
+                Toast debug = Toast.makeText(getApplicationContext(),"serchitng:" + searchedText,Toast.LENGTH_LONG);
+                debug.show();
+
                 //这个部分我想的我们可以把关键词pass到result page，然后在result page再根据关键词从数据库里找结果
                 Intent toResult = new Intent(getApplicationContext(), SearchResultPage.class);
                 toResult.putExtra("keyword", searchText.getText().toString());

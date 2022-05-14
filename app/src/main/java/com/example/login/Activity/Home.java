@@ -30,7 +30,7 @@ public class Home extends AppCompatActivity {
     Activity activity;
     boolean changeBackground;
 
-    ImageView background, avatar, setting, privacy;
+    ImageView background, avatar, setting, privacy,report;
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     UserAdmin current;
@@ -65,6 +65,7 @@ public class Home extends AppCompatActivity {
 
 
         // Link IDs
+        report = findViewById(R.id.report_me);
         background = findViewById(R.id.background_me);
         avatar = findViewById(R.id.avatar_me);
         changeBackgroundButton = findViewById(R.id.gallery_background);
@@ -152,6 +153,14 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HomeSetting.class);
                 startActivityForResult(intent, 1);
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), reportPage.class);
+                startActivity(intent);
             }
         });
 

@@ -17,8 +17,14 @@ public class UserNameToken extends Token{
             return (this.name.equals(token.name)&&this.type == ((UserNameToken) o).type);        }
     }
 
+
     @Override
     public String show() {
         return this.name;
+    }
+
+    @Override
+    public int returnType() {
+        return 0;
     }
 }
