@@ -1,14 +1,13 @@
 package com.example.login.DataContainer;
 
 import android.content.Context;
-
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
-
 import java.util.ArrayList;
 
+// A singleton user
 
-public class Me {
+public class Me{
 
     // ========================== FIELD SETTING AND GETTING METHODS ============================= //
 
@@ -91,28 +90,14 @@ public class Me {
         return db.getGender(username);
     }
 
-    // Total View
-    public boolean incrementViews(){
+    // Location
+    public boolean setLocation(String location) {
         UserDAO db = new UserDAOImpl(context);
-        int currentViews = db.getViews(username);
-        currentViews++;
-        return db.setViews(username, currentViews);
+        return db.setLocation(username, location);
     }
-    public int getViews() {
+    public String getLocation() {
         UserDAO db = new UserDAOImpl(context);
-        return db.getViews(username);
-    }
-
-    // Total Like
-    public boolean incrementLikes(){
-        UserDAO db = new UserDAOImpl(context);
-        int currentLikes = db.getLikes(username);
-        currentLikes++;
-        return db.setLikes(username, currentLikes);
-    }
-    public int getLike() {
-        UserDAO db = new UserDAOImpl(context);
-        return db.getLikes(username);
+        return db.getLocation(username);
     }
 
     // Privacy Setting
@@ -143,16 +128,6 @@ public class Me {
     public ArrayList<Integer> getViewHistory(){
         UserDAO db = new UserDAOImpl(context);
         return db.getViewHistory(username);
-    }
-
-    // Preserved
-    public boolean setPreserved(String newPreserved){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setPreserved(username, newPreserved);
-    }
-    public String getPreserved() {
-        UserDAO db = new UserDAOImpl(context);
-        return db.getPreserved(username);
     }
 }
 

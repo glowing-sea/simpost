@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.login.DataContainer.User;
+import com.example.login.DataContainer.UserAdmin;
 import com.example.login.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SubscriptionsPage extends AppCompatActivity {
-    User current;
+    UserAdmin current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +22,13 @@ public class SubscriptionsPage extends AppCompatActivity {
         RecyclerView rvPosts = (RecyclerView) findViewById(R.id.subscriptions);
 
         //仅测试，最后将allPosts改成数据库中需要显示的post即可
-        User p1 = new User("xyz", "1234");
-        User p2 = new User("Post B", "This is content B.");
-        User p3 = new User("Post C", "This is content C.");
-        User p4 = new User("Post D", "This is content D.");
-        User p5 = new User("Post E", "This is content E.");
+        UserAdmin p1 = new UserAdmin("xyz", "1234");
+        UserAdmin p2 = new UserAdmin("Post B", "This is content B.");
+        UserAdmin p3 = new UserAdmin("Post C", "This is content C.");
+        UserAdmin p4 = new UserAdmin("Post D", "This is content D.");
+        UserAdmin p5 = new UserAdmin("Post E", "This is content E.");
 
-        List<User> allPosts = new ArrayList<>();
+        List<UserAdmin> allPosts = new ArrayList<>();
         allPosts.add(p1);
         allPosts.add(p2);
         allPosts.add(p3);

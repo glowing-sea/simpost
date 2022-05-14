@@ -1,11 +1,12 @@
-package com.example.login.DataContainer;
+package com.example.login.OldDatabase;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.login.Activity.LoginPage;
+import com.example.login.DataContainer.UserAdmin;
+import com.example.login.OldDatabase.MyDBMethod;
 
 public class SqlMethod {
     MyDBMethod dbMethod;
@@ -57,7 +58,7 @@ public class SqlMethod {
      * @return User
      * @Hint If the same username can return different userid due to algorithm, then userid != User.getUserId().
      */
-    public User find(Integer userid)
+    public UserAdmin find(Integer userid)
     {
         Cursor cursor =  db.rawQuery("SELECT * FROM user WHERE userId = ?",
                 new String[]{userid.toString()});
@@ -66,7 +67,7 @@ public class SqlMethod {
             @SuppressLint("Range") int UId = cursor.getInt(cursor.getColumnIndex("UserId"));
             @SuppressLint("Range") String uname = cursor.getString(cursor.getColumnIndex("username"));
             @SuppressLint("Range") String pword = cursor.getString(cursor.getColumnIndex("password"));
-            return new User(uname,pword);
+            return new UserAdmin(uname,pword);
         }
         cursor.close();
         return null;

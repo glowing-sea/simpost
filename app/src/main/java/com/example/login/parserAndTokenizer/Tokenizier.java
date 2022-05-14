@@ -1,9 +1,5 @@
 package com.example.login.parserAndTokenizer;
 
-import android.util.Log;
-
-import com.example.login.DataContainer.User;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

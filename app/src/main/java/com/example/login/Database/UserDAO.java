@@ -52,13 +52,9 @@ public interface UserDAO {
     boolean setGender(String username, int gender);
     int getGender(String username);
 
-    // Total View
-    boolean setViews(String username, int views);
-    int getViews(String username);
-
-    // Total Like
-    boolean setLikes(String username, int likes);
-    int getLikes(String username);
+    // Location
+    boolean setLocation(String username, String location);
+    String getLocation(String username);
 
     // Privacy Setting
     boolean setPrivacySettings(String username, ArrayList<Boolean> settings);
@@ -71,8 +67,4 @@ public interface UserDAO {
     // View History
     boolean setViewHistory(String username, ArrayList<Integer> historyInt);
     ArrayList<Integer> getViewHistory(String username);
-
-    // Preserved
-    boolean setPreserved(String username, String newPreserved);
-    String getPreserved(String username);
 }

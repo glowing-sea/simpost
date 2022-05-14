@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Post;
-import com.example.login.DataContainer.User;
+import com.example.login.DataContainer.UserAdmin;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostsPage extends AppCompatActivity {
-    User currentUser;
+    UserAdmin currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class PostsPage extends AppCompatActivity {
         // initiate the current User
         Bundle fromCreate = getIntent().getExtras();
         if (fromCreate != null){
-            currentUser = (User) getIntent().getExtras().getSerializable("USER");
+            currentUser = (UserAdmin) getIntent().getExtras().getSerializable("USER");
         }
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);

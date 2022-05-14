@@ -88,18 +88,10 @@ public class DatabaseDAOTest {
     }
 
     @Test
-    public void viewsDOATest(){
-        db.setViews("TestUser", 200);
-        int actual = db.getViews("TestUser");
-        int expected = 200;
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void likesDOATest(){
-        db.setLikes("TestUser", 300);
-        int actual = db.getLikes("TestUser");
-        int expected = 300;
+    public void locationDOATest(){
+        db.setLocation("TestUser", "Canberra");
+        String actual = db.getLocation("TestUser");
+        String expected = "Canberra";
         assertEquals(expected, actual);
     }
 
@@ -133,14 +125,6 @@ public class DatabaseDAOTest {
         expected.add(23213213);
         db.setViewHistory("TestUser", expected);
         actual = db.getViewHistory("TestUser");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    public void preservedDOATest(){
-        db.setPreserved("TestUser", "This is a preserved column");
-        String actual = db.getPreserved("TestUser");
-        String expected = "This is a preserved column";
         assertEquals(expected, actual);
     }
 }

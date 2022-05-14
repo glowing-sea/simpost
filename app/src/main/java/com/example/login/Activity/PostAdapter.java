@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.login.DataContainer.User;
 import com.example.login.R;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;

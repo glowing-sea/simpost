@@ -5,17 +5,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.login.DataContainer.User;
-import com.example.login.R;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 
 // ============================ DATABASE CREATION METHODS ========================================//
@@ -48,13 +42,11 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
                 "signature TEXT DEFAULT 'No Signature', " +
                 "age INTEGER DEFAULT -1, " +
                 "gender INTEGER DEFAULT -1, " +
-                "totalViews INTEGER DEFAULT 0, " +
-                "totalLikes INTEGER DEFAULT 0, " +
+                "location TEXT DEFAULT 0, " +
                 "viewHistory TEXT DEFAULT '', " +
                 "privacySettings INTEGER DEFAULT 1000001, " +
                 "blacklist TEXT DEFAULT '', " +
-                "messages BLOB DEFAULT NULL, " +
-                "preserved TEXT DEFAULT '');";
+                "messages BLOB DEFAULT NULL);";
 
         db.execSQL(query);
     }
@@ -182,20 +174,13 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         return getInt(username, "username", "gender", "user");
     }
 
-    // Total View
-    public boolean setViews(String username, int views){
-        return setInt(username, "username", views, "totalViews", "user");
-    }
-    public int getViews(String username) {
-        return getInt(username, "username", "totalViews", "user");
-    }
 
-    // Total Like
-    public boolean setLikes(String username, int likes){
-        return setInt(username, "username", likes, "totalLikes", "user");
+    // Location
+    public boolean setLocation(String username, String location){
+        return setString(username, "username", location, "location", "user");
     }
-    public int getLikes(String username) {
-        return getInt(username, "username", "totalLikes", "user");
+    public String getLocation(String username) {
+        return getString(username, "username", "location", "user");
     }
 
     // Privacy Setting
@@ -241,15 +226,6 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         }
         return historyInt;
     }
-
-    // Preserved
-    public boolean setPreserved(String username, String newPreserved){
-        return setString(username, "username", newPreserved, "preserved", "user");
-    }
-    public String getPreserved(String username) {
-        return getString(username, "username", "preserved", "user");
-    }
-
 
     // ================================ PRIVATE HELPER METHOD =================================== //
 

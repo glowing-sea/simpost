@@ -13,7 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.User;
+import com.example.login.DataContainer.UserAdmin;
 import com.example.login.R;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     private Context context;
     Activity activity;
-    private ArrayList<User> users;
+    private ArrayList<UserAdmin> users;
 
     UserAdapter(Activity activity, Context context, ArrayList users){
         this.activity = activity;
@@ -40,7 +40,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        User user = users.get(position);
+        UserAdmin user = users.get(position);
         holder.username.setText(user.getUsername());
         holder.password.setText(user.getPassword());
         holder.adminUserRow.setOnClickListener(new View.OnClickListener() {

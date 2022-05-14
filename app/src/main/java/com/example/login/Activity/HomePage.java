@@ -4,7 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.DataContainer.Me;
-import com.example.login.DataContainer.User;
+import com.example.login.DataContainer.UserAdmin;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,7 +20,7 @@ public class HomePage extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
     ImageView homeBackground;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
-    User current;
+    UserAdmin current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

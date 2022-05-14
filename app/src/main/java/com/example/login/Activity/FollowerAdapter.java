@@ -5,18 +5,13 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.login.DataContainer.Post;
-import com.example.login.DataContainer.User;
+import com.example.login.DataContainer.UserAdmin;
 import com.example.login.R;
 
 import java.util.List;
@@ -24,8 +19,8 @@ import java.util.List;
 public class FollowerAdapter extends RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder> {
 
     private final Context ctx;
-    private final List<User> dataset;
-    public FollowerAdapter(Context ctx, List<User> dataset){
+    private final List<UserAdmin> dataset;
+    public FollowerAdapter(Context ctx, List<UserAdmin> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -39,7 +34,7 @@ public class FollowerAdapter extends RecyclerView.Adapter<FollowerAdapter.Follow
 
     @Override
     public void onBindViewHolder(@NonNull FollowerAdapter.FollowerViewHolder holder, int position) {
-        User current = dataset.get(position);
+        UserAdmin current = dataset.get(position);
 
         holder.getFollower().setText(current.getUsername());
 
