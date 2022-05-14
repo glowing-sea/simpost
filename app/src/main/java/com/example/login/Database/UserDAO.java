@@ -1,6 +1,8 @@
 package com.example.login.Database;
 
 import android.database.Cursor;
+import android.graphics.Bitmap;
+
 import java.util.ArrayList;
 
 public interface UserDAO {
@@ -59,4 +61,8 @@ public interface UserDAO {
     // View History
     boolean setViewHistory(String username, ArrayList<Integer> historyInt);
     ArrayList<Integer> getViewHistory(String username);
+
+    // Background
+    boolean setBackground(String username, Bitmap background);
+    Bitmap getBackground(String username);
 }

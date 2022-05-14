@@ -1,8 +1,11 @@
 package com.example.login;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -128,5 +131,11 @@ public class DatabaseDAOTest {
         assertEquals(expected, actual);
     }
 
-
+    @Test
+    public void backgroundDOATest(){
+        // No background
+        Bitmap actual = db.getBackground("TestUser");
+        int expected = 16;
+        assertTrue(actual == null);
+    }
 }

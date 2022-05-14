@@ -1,6 +1,7 @@
 package com.example.login.DataContainer;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.example.login.Database.SearchFacade;
 import com.example.login.Database.UserDAO;
@@ -130,6 +131,16 @@ public class Me{
     public ArrayList<Integer> getViewHistory(){
         UserDAO db = new UserDAOImpl(context);
         return db.getViewHistory(username);
+    }
+
+    // Background (Be Careful of Null return!)
+    public boolean setBackground(Bitmap background){
+        UserDAO db = new UserDAOImpl(context);
+        return db.setBackground(username, background);
+    }
+    public Bitmap getBackground(){
+        UserDAO db = new UserDAOImpl(context);
+        return db.getBackground(username);
     }
 
     // ================================= USER REPORT METHODS ==================================== //

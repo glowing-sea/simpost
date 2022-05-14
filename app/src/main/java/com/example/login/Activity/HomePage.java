@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.UserAdmin;
+import com.example.login.Database.HelperMethods;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -12,24 +13,41 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class HomePage extends AppCompatActivity {
     private final int GALLERY_REQ_CODE = 1000;
+    private final int CAMERA_REQ_CODE = 2000;
     ImageView homeBackground;
+    Bitmap background;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     UserAdmin current;
+    FloatingActionButton cameraBackground, galleryBackground;
+    Me me = Me.getInstance();
+    UserDAOImpl db = new UserDAOImpl(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
 
-        Me me = Me.getInstance();
+        homeBackground = findViewById(R.id.background_me);
+        cameraBackground = findViewById(R.id.camera_background);
+        galleryBackground = findViewById(R.id.gallery_background);
+
+
+
         setTitle(me.username + "'s " + "Profile");
 
 
@@ -61,6 +79,7 @@ public class HomePage extends AppCompatActivity {
         followers = findViewById(R.id.followers_me);
         following = findViewById(R.id.following_me);
 
+
         followingNum.setText(me.getFollowing().size() + "");
         followersNum.setText(me.getFollowers().size() + "");
 
@@ -69,7 +88,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomePage.this, FollowerPage.class);
-                i.putExtra("USER", current);
                 startActivity(i);
             }
         });
@@ -77,7 +95,6 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(HomePage.this, SubscriptionsPage.class);
-                i.putExtra("USER", current);
                 startActivity(i);
             }
         });
@@ -127,18 +144,30 @@ public class HomePage extends AppCompatActivity {
         });
 
 
-        FloatingActionButton changeBackground;
-        homeBackground = findViewById(R.id.background_me);
-        changeBackground = findViewById(R.id.changeBackground);
 
-        changeBackground.setOnClickListener(new View.OnClickListener() {
+
+        galleryBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent iGallery = new Intent(Intent.ACTION_PICK);
-                iGallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(iGallery,GALLERY_REQ_CODE);
+                Intent gallery = new Intent(Intent.ACTION_PICK);
+                gallery.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(gallery,GALLERY_REQ_CODE);
             }
         });
+
+
+
+        background = me.getBackground();
+        if (background != null)
+            homeBackground.setImageBitmap(background);
+
+
+        cameraBackground.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
     }
 
     @Override
@@ -147,9 +176,25 @@ public class HomePage extends AppCompatActivity {
 
         if (resultCode == RESULT_OK){
             if(requestCode == GALLERY_REQ_CODE){
-                homeBackground.setImageURI(data.getData());
-
+                Uri imageUri = data.getData();
+                Bitmap image = HelperMethods.uri2bitmap(imageUri, this);
+                // Store the image into the database
+                me.setBackground(image);
+                // Refresh the background image
+                homeBackground.setImageBitmap(image);
             }
         }
     }
+
+
+    // ================================DELETED METHODS=========================================== //
+    //        cameraBackground.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent camera = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//                if(camera.resolveActivity(getPackageManager()) != null){
+//                    startActivityForResult(camera, CAMERA_REQ_CODE);
+//                }
+//            }
+//        });
 }

@@ -49,7 +49,7 @@ public class SearchFacade {
             return null;
         while (cursor.moveToNext()){
             String stringList = cursor.getString(1);
-            ArrayList<String> someoneFollowingList = UserDAOImpl.listDecode(stringList);
+            ArrayList<String> someoneFollowingList = HelperMethods.listDecode(stringList);
             if (someoneFollowingList.contains(username)){
                 followers.add(cursor.getString(0));
             }

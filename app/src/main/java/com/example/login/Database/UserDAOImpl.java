@@ -5,9 +5,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -178,7 +181,6 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         return getInt(username, "username", "gender", "user");
     }
 
-
     // Location
     public boolean setLocation(String username, String location){
         return setString(username, "username", location, "location", "user");
@@ -231,13 +233,21 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         return historyInt;
     }
 
-    // ================================ PRIVATE HELPER METHOD =================================== //
+    // Background
+    public boolean setBackground(String username, Bitmap background){
+        return setImage(username, "username", background, "background", "user");
+    }
+    public Bitmap getBackground(String username) {
+        return getImage(username, "username", "background", "user");
+    }
+
+    // ================================ PRIVATE  HELPER METHODS ================================= //
 
     // These are the helper methods.
 
     // Store a List value into a database.
     private boolean setList(String id, String idColumn, ArrayList<String> listValue, String valueColumn, String tableName){
-        String stringValue = listEncode(listValue);
+        String stringValue = HelperMethods.listEncode(listValue);
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put (valueColumn, stringValue);
@@ -246,6 +256,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
     // Get a List value from a database.
     private ArrayList<String> getList(String id, String idColumn, String valueColumn, String tableName) {
+        ArrayList<String> output;
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT " + valueColumn + " FROM " + tableName +" WHERE " + idColumn + " = ?;";
         String[] replace = {id};
@@ -253,7 +264,9 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor = db.rawQuery(query, replace);
         if (cursor.getCount() != 1) return null;
         cursor.moveToNext();
-        return listDecode(cursor.getString(0));
+        output = HelperMethods.listDecode(cursor.getString(0));
+        cursor.close();
+        return output;
     }
 
     // Store a String value into a database.
@@ -266,6 +279,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
     // Get a String value from a database.
     private String getString(String id, String idColumn, String valueColumn, String tableName) {
+        String output;
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT " + valueColumn + " FROM " + tableName +" WHERE " + idColumn + " = ?;";
         String[] replace = {id};
@@ -273,7 +287,9 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor = db.rawQuery(query, replace);
         if (cursor.getCount() != 1) return null;
         cursor.moveToNext();
-        return cursor.getString(0);
+        output = cursor.getString(0);
+        cursor.close();
+        return output;
     }
 
     // Store a Integer value into a database.
@@ -286,6 +302,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
     // Get a Integer value from a database.
     private int getInt(String id, String idColumn, String valueColumn, String tableName) {
+        int output;
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT " + valueColumn + " FROM " + tableName +" WHERE " + idColumn + " = ?;";
         String[] replace = {id};
@@ -293,23 +310,52 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor = db.rawQuery(query, replace);
         if (cursor.getCount() != 1) return -1;
         cursor.moveToNext();
-        return cursor.getInt(0);
+        output = cursor.getInt(0);
+        cursor.close();
+        return output;
     }
 
-    // Encode and decode an array list
-    protected static String listEncode (ArrayList<String> list){
-        StringBuilder stringBuilder= new StringBuilder();
-        for (String elem : list){
-            stringBuilder.append(elem);
-            stringBuilder.append(',');
-        }
-        return stringBuilder.toString();
+    // Store a Byte Array value into a database.
+    public boolean setByteArray(String id, String idColumn, byte[] value, String valueColumn, String tableName){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put (valueColumn, value);
+        long result = db.update(tableName, cv, idColumn + " = ?", new String[]{id});
+        return result != -1;
     }
-    protected static ArrayList<String> listDecode (String string){
-        ArrayList<String> list = new ArrayList<>();
-        if (string.isEmpty())
-            return list;
-        Collections.addAll(list, string.split(","));
-        return list;
+
+    // Get a Byte Array value from a database (May return null).
+    public byte[] getByteArray(String id, String idColumn, String valueColumn, String tableName) {
+        byte[] output;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT " + valueColumn + " FROM " + tableName +" WHERE " + idColumn + " = ?;";
+        String[] replace = {id};
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, replace);
+        if (cursor.getCount() != 1) return null;
+        cursor.moveToNext();
+        output = cursor.getBlob(0);
+        cursor.close();
+        return output;
+    }
+
+    // Store a Image value into a database.
+    private boolean setImage(String id, String idColumn, Bitmap image, String valueColumn, String tableName){
+        // Create a byte output stream
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        // Compress the image
+        image.compress(Bitmap.CompressFormat.JPEG, 50  , byteArrayOutputStream);
+        // Convert the image into byte array
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        // Check size
+        if (imageBytes.length > 100000) return false;
+        // Store the byte array into the database
+        return setByteArray(id, idColumn, imageBytes, valueColumn, tableName);
+    }
+    // Get a Byte Array value from a database (May return null).
+    private Bitmap getImage(String id, String idColumn, String valueColumn, String tableName) {
+        byte[] imageBytes = getByteArray(id, idColumn, valueColumn, tableName);
+        if (imageBytes == null) return null;
+        return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
 }
