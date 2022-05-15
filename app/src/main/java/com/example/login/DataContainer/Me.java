@@ -29,6 +29,8 @@ public class Me{
     ArrayList<Boolean> privacy;
     ArrayList<String> blacklist;
     ArrayList<Integer> history;
+    Bitmap avatar;
+    Bitmap background;
 
     */
 

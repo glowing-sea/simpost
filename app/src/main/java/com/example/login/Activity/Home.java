@@ -27,13 +27,10 @@ import android.widget.Toast;
 
 
 public class Home extends AppCompatActivity {
-    Activity activity;
-    boolean changeBackground;
 
     ImageView background, avatar, setting, privacy, message;
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
-    UserAdmin current;
     FloatingActionButton changeBackgroundButton;
     Me me = Me.getInstance();
 
@@ -101,22 +98,24 @@ public class Home extends AppCompatActivity {
         signature.setText(me.getSignature());
 
         // Set age
-        if (me.getAge() != -1)
+        if (me.getAge() != -1 && !me.getPrivacySettings().get(0)) {
             age.setText(me.getAge() + "");
+        }
 
         // Set gender
-        int genderInt = me.getGender();
-        switch (genderInt) {
-            case 0:
-                gender.setText("M");
-                break;
-            case 1:
-                gender.setText("F");
-                break;
-            case 2:
-                gender.setText("O");
-                break;
-        }
+        if ( !me.getPrivacySettings().get(1)){
+            int genderInt = me.getGender();
+            switch (genderInt) {
+                case 0:
+                    gender.setText("M");
+                    break;
+                case 1:
+                    gender.setText("F");
+                    break;
+                case 2:
+                    gender.setText("O");
+                    break;
+        }}
 
         // Setting following and followers
 
@@ -213,14 +212,14 @@ public class Home extends AppCompatActivity {
                 if (requestCode == 3) {
                     re = me.setBackground(image);
                     if (!re) {
-                        Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "The maximum image size is 200kb", Toast.LENGTH_SHORT).show();
                     } else {
                         background.setImageBitmap(image);
                     }
                 } else {
                     re = me.setAvatar(image);
                     if (!re) {
-                        Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "The maximum image size is 200kb", Toast.LENGTH_SHORT).show();
                     } else {
                         avatar.setImageBitmap(image);
                     }

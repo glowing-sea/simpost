@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class ViewPost extends AppCompatActivity {
         }
         t = current.getTitle();
         c = current.getContent();
-        String l = String.valueOf(current.getLike());
+        String l = String.valueOf(current.getLikes());
         title = findViewById(R.id.postTitleText);
         content = findViewById(R.id.postContentText);
         back = findViewById(R.id.returnKey);
@@ -59,9 +60,9 @@ public class ViewPost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //这里最后改成改变数据库
-                current.changeLike(1);
+                // current.changeLike(1);
                 like.setEnabled(false);
-                String LA = "Current likes:" + " " + String.valueOf(current.getLike());
+                String LA = "Current likes:" + " " + current.getLikes().length();
                 likeCount.setText(LA);
             }
         });
@@ -69,9 +70,9 @@ public class ViewPost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //这里最后改成改变数据库
-                current.changeLike(-1);
+                // current.changeLike(-1); 这里改成添加当前用户名进like
                 dislike.setEnabled(false);
-                String LA = "Current likes:" + " " + String.valueOf(current.getLike());
+                String LA = "Current likes:" + " " + current.getLikes().length();
                 likeCount.setText(LA);
             }
         });

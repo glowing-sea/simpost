@@ -1,18 +1,14 @@
 package com.example.login.Database;
 
 import android.content.Context;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.widget.Toast;
-
-import com.example.login.DataContainer.UserAdmin;
-import com.example.login.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OptionalDataException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -62,6 +58,16 @@ public class HelperMethods {
         }
         return true;
     }
+    static String[] censorWords = {"fuck ", "shit ", "cock ", "titties ", "boner ", "muff ", "pussy ", "asshole ", "cunt ",
+            "ass ", "cockfoam ", "nigger ", "damn ", "Fuck ", "Shit ", "Cock ", "Titties ", "Boner ", "Muff ", "Pussy ", "Asshole ", "Cunt ",
+            "Ass ", "Cockfoam ", "Nigger ", "Damn "};
 
+    public static String getCensored(String message){
+        for (int i = 0; i <= censorWords.length - 1; i++){
+            String p = censorWords[i];
+            String replace = new String(new char[p.length() - 1]).replace("\0", "*") + " ";
+            message = message.replaceAll(p, replace);
+        }
+        return message;}
 
 }
