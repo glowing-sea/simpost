@@ -56,15 +56,14 @@
 
         <TextView
             android:id="@+id/view_count"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="5dp"
             android:text="viewcount"
             app:layout_constraintBottom_toTopOf="@+id/returnKey"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="665dp" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/post_publish_time"
@@ -72,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:text="Published time"
-            app:layout_constraintTop_toBottomOf="@id/postContentText"
+            app:layout_constraintTop_toBottomOf="@id/view_image_3"
             app:layout_constraintBottom_toTopOf="@+id/like"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -103,6 +102,40 @@
             android:layout_marginStart="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/view_image_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F6F0F0"
+            android:scaleType="centerCrop"
+            tools:layout_editor_absoluteY="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/postContentText"
+            app:layout_constraintBottom_toTopOf="@id/view_image_2"
+            tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/view_image_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F6F0F0"
+            android:scaleType="centerCrop"
+            tools:layout_editor_absoluteY="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_image_1"
+            app:layout_constraintBottom_toTopOf="@id/view_image_3"
+            tools:srcCompat="@tools:sample/avatars" />
+        <ImageView
+            android:id="@+id/view_image_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F6F0F0"
+            android:scaleType="centerCrop"
+            tools:layout_editor_absoluteY="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_image_2"
+            app:layout_constraintBottom_toTopOf="@id/post_publish_time"
+            tools:srcCompat="@tools:sample/avatars" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
