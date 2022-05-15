@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
 import com.example.login.R;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class HomePrivacy extends AppCompatActivity {
     Me current = Me.getInstance();
     Switch age, gender, location, censor;
-    ArrayList<Boolean> privacySettings;
+    ArrayList<Boolean> privacySettings = current.getPrivacySettings();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,10 @@ public class HomePrivacy extends AppCompatActivity {
         gender = findViewById(R.id.switch_hide_gender);
         location = findViewById(R.id.switch_hide_location);
         censor = findViewById(R.id.hide_message);
+        age.setChecked(privacySettings.get(0));
+        gender.setChecked(privacySettings.get(1));
+        location.setChecked(privacySettings.get(2));
+        censor.setChecked(privacySettings.get(3));
         age.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

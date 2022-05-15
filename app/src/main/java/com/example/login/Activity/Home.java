@@ -97,22 +97,24 @@ public class Home extends AppCompatActivity {
         signature.setText(me.getSignature());
 
         // Set age
-        if (me.getAge() != -1)
+        if (me.getAge() != -1 && !me.getPrivacySettings().get(0)) {
             age.setText(me.getAge() + "");
+        }
 
         // Set gender
-        int genderInt = me.getGender();
-        switch (genderInt) {
-            case 0:
-                gender.setText("M");
-                break;
-            case 1:
-                gender.setText("F");
-                break;
-            case 2:
-                gender.setText("O");
-                break;
-        }
+        if ( !me.getPrivacySettings().get(1)){
+            int genderInt = me.getGender();
+            switch (genderInt) {
+                case 0:
+                    gender.setText("M");
+                    break;
+                case 1:
+                    gender.setText("F");
+                    break;
+                case 2:
+                    gender.setText("O");
+                    break;
+        }}
 
         // Setting following and followers
 
