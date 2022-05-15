@@ -40,7 +40,7 @@
         <entry key="app/src/main/res/layout/activity_admin_page.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_admin_update_user_page.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.4601851851851852" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_home_privacy.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_home_setting.xml" value="0.5177083333333333" />
@@ -57,6 +57,7 @@
         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_timeline_post.xml" value="0.3302083333333333" />
         <entry key="app/src/main/res/layout/activity_view_post.xml" value="0.5177083333333333" />
+        <entry key="app/src/main/res/layout/adapter_post.xml" value="0.39444444444444443" />
         <entry key="app/src/main/res/layout/custom_styles.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.4601851851851852" />
         <entry key="app/src/main/res/layout/fragment_posts.xml" value="0.4601851851851852" />

@@ -45,6 +45,8 @@ public class HelperMethods {
     public static boolean isValidUsername (String username){
         if (username == null)
             return false;
+        if (username.length() > 20)
+            return false;
         for (int i = 0; i < username.length(); i++){
             char c = username.charAt(i);
             if (!(

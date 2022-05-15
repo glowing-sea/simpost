@@ -42,7 +42,8 @@ public class SignupPage extends AppCompatActivity {
                         break;
                     }
                     case -2: {
-                        Toast.makeText(SignupPage.this, "Username can only contains numbers, letter, '_', or '-'.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignupPage.this,
+                                "Username can only contains numbers, letter, '_', or '-', and at most 20 character", Toast.LENGTH_LONG).show();
                         break;
                     }
                     case -1: {
