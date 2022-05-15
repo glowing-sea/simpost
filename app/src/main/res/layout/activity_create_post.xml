@@ -31,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_CreatePost_display1" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/post_constraint"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -57,16 +58,78 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_CreatePost_posting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Post"
-            app:layout_constraintEnd_toEndOf="parent"
+        <ImageView
+            android:id="@+id/post_image_1"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="#F8F1F1"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/post_image_2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/multxt_CreatePost_userInput" />
+            app:layout_constraintTop_toTopOf="@+id/post_image_2"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/post_image_2"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="#F6F0F0"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/post_image_3"
+            app:layout_constraintStart_toEndOf="@+id/post_image_1"
+            app:layout_constraintTop_toBottomOf="@+id/multxt_CreatePost_userInput"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/post_image_3"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="#F4EBEB"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/post_image_2"
+            app:layout_constraintTop_toBottomOf="@+id/multxt_CreatePost_userInput"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_post_image_1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/post_image_1"
+            app:layout_constraintEnd_toEndOf="@+id/post_image_1"
+            tools:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_post_image_2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/post_image_2"
+            app:layout_constraintEnd_toEndOf="@+id/post_image_2"
+            tools:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_post_image_3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@id/post_image_3"
+            app:layout_constraintEnd_toEndOf="@id/post_image_3"
+            tools:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_CreatePost_posting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:gravity="center_horizontal"
+        android:text="Post"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_constraint" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
