@@ -97,7 +97,7 @@ public class Messages extends AppCompatActivity {
                                         for (int k = j + 1; k < length; k++) {
                                             if (messages.charAt(k) == '|') {
                                                 if(me.username.equals(messages.substring(j + 1, k))) {
-                                                    users.add(messages.substring(j + 1, k));
+                                                    users.add(messages.substring(i + 1, j));
                                                 }
                                                 break;
                                             }
