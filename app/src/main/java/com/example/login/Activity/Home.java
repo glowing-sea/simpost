@@ -27,13 +27,10 @@ import android.widget.Toast;
 
 
 public class Home extends AppCompatActivity {
-    Activity activity;
-    boolean changeBackground;
 
     ImageView background, avatar, setting, privacy;
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
-    UserAdmin current;
     FloatingActionButton changeBackgroundButton;
     Me me = Me.getInstance();
 
@@ -204,14 +201,14 @@ public class Home extends AppCompatActivity {
                 if (requestCode == 3) {
                     re = me.setBackground(image);
                     if (!re) {
-                        Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "The maximum image size is 200kb", Toast.LENGTH_SHORT).show();
                     } else {
                         background.setImageBitmap(image);
                     }
                 } else {
                     re = me.setAvatar(image);
                     if (!re) {
-                        Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "The maximum image size is 200kb", Toast.LENGTH_SHORT).show();
                     } else {
                         avatar.setImageBitmap(image);
                     }
