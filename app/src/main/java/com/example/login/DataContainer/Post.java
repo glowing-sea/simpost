@@ -59,6 +59,10 @@ public class Post implements Serializable {
         return image1;
     }
 
+    public String getLikes() {
+        return likes;
+    }
+
     public Byte[] getImage2() {
         return image2;
     }
