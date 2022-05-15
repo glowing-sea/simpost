@@ -25,10 +25,11 @@ public class Post implements Serializable {
     private Byte[] image1;
     private Byte[] image2;
     private Byte[] image3;
-    private String gameName;
-    private int like;
+    private String tag;
+    private String likes;
+    private String views;
     private ArrayList<String> comment;
-    private String preserved;
+
 
     private static final String TAG = "Post";
 
@@ -37,7 +38,7 @@ public class Post implements Serializable {
     public Post(String title, String content){
         this.title = title;
         this.content = content;
-        this.like = 0;
+
         Calendar c = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         date = sdf.format(c.getTime());
@@ -53,10 +54,13 @@ public class Post implements Serializable {
     public int getPostID(){
         return this.postID;
     }
-    public int getLike() {return this.like;}
     public String getDate(){return this.date;}
     public Byte[] getImage1() {
         return image1;
+    }
+
+    public String getLikes() {
+        return likes;
     }
 
     public Byte[] getImage2() {
@@ -67,9 +71,7 @@ public class Post implements Serializable {
         return image3;
     }
 
-    public void changeLike(int change){
-        this.like = this.like + change;
-    }
+
     public void setTitle(String title){
         this.title = title;
     }
