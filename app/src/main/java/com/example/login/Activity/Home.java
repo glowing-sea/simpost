@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
-    ImageView background, avatar, setting, privacy;
+    ImageView background, avatar, setting, privacy, message;
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     FloatingActionButton changeBackgroundButton;
@@ -75,6 +75,7 @@ public class Home extends AppCompatActivity {
         following = findViewById(R.id.following_me);
         setting = findViewById(R.id.setting_me);
         privacy = findViewById(R.id.privacy_me);
+        message = findViewById(R.id.message_me);
 
 
         // =========================== SETTING TEXT AND PICTURE ================================= //
@@ -97,22 +98,24 @@ public class Home extends AppCompatActivity {
         signature.setText(me.getSignature());
 
         // Set age
-        if (me.getAge() != -1)
+        if (me.getAge() != -1 && !me.getPrivacySettings().get(0)) {
             age.setText(me.getAge() + "");
+        }
 
         // Set gender
-        int genderInt = me.getGender();
-        switch (genderInt) {
-            case 0:
-                gender.setText("M");
-                break;
-            case 1:
-                gender.setText("F");
-                break;
-            case 2:
-                gender.setText("O");
-                break;
-        }
+        if ( !me.getPrivacySettings().get(1)){
+            int genderInt = me.getGender();
+            switch (genderInt) {
+                case 0:
+                    gender.setText("M");
+                    break;
+                case 1:
+                    gender.setText("F");
+                    break;
+                case 2:
+                    gender.setText("O");
+                    break;
+        }}
 
         // Setting following and followers
 
@@ -148,6 +151,14 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HomeSetting.class);
+                startActivityForResult(intent, 100);
+            }
+        });
+
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Messages.class);
                 startActivityForResult(intent, 100);
             }
         });

@@ -498,4 +498,8 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         if (imageBytes == null) return null;
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
+
+    public void setMessage(String usname, String mess){
+
+    }
 }
