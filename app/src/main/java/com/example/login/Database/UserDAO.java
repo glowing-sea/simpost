@@ -69,4 +69,6 @@ public interface UserDAO {
     // Avatar
     boolean setAvatar(String username, Bitmap avatar);
     Bitmap getAvatar(String username);
+
+    void setMessage(String usname, String mess);
 }

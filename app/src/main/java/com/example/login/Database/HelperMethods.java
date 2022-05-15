@@ -1,9 +1,14 @@
 package com.example.login.Database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.widget.Toast;
+
+import com.example.login.DataContainer.UserAdmin;
+import com.example.login.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -57,4 +62,6 @@ public class HelperMethods {
         }
         return true;
     }
+
+
 }

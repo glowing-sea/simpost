@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -33,6 +34,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     private static final String TABLE_NAME = "user";
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
+    private static final String COLUMN_MESSAGES = "messages";
 
 
     // Database Constructor
@@ -56,9 +58,11 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
                 "viewHistory TEXT DEFAULT '', " +
                 "privacySettings INTEGER DEFAULT 1000001, " +
                 "blacklist TEXT DEFAULT '', " +
-                "messages BLOB DEFAULT NULL);";
+                "messages TEXT DEFAULT '0');";
 
         db.execSQL(query);
+
+
     }
 
 
@@ -369,4 +373,12 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         if (imageBytes == null) return null;
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
     }
+
+    public void setMessage(String usname, String mess) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE user SET messages = ? WHERE username = ?",
+                new String[]{mess,usname});
+        db.close();
+    }
+
 }

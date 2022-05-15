@@ -9,13 +9,13 @@ import com.example.login.DataContainer.UserAdmin;
 import com.example.login.OldDatabase.MyDBMethod;
 
 public class SqlMethod {
-    MyDBMethod dbMethod;
+    /*MyDBMethod dbMethod;
     SQLiteDatabase db = dbMethod.getWritableDatabase();
 
     public SqlMethod(Context context){
         MyDBMethod dbMethod = new MyDBMethod(context,"my.db",null,1);
         SQLiteDatabase db = dbMethod.getWritableDatabase();
-    }
+    }*/
 
 
 //    public void save (User us){
@@ -58,7 +58,7 @@ public class SqlMethod {
      * @return User
      * @Hint If the same username can return different userid due to algorithm, then userid != User.getUserId().
      */
-    public UserAdmin find(Integer userid)
+    /*public UserAdmin find(Integer userid)
     {
         Cursor cursor =  db.rawQuery("SELECT * FROM user WHERE userId = ?",
                 new String[]{userid.toString()});
@@ -71,5 +71,5 @@ public class SqlMethod {
         }
         cursor.close();
         return null;
-    }
+    }*/
 }

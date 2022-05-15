@@ -30,7 +30,7 @@ public class Home extends AppCompatActivity {
     Activity activity;
     boolean changeBackground;
 
-    ImageView background, avatar, setting, privacy;
+    ImageView background, avatar, setting, privacy, message;
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     UserAdmin current;
@@ -78,6 +78,7 @@ public class Home extends AppCompatActivity {
         following = findViewById(R.id.following_me);
         setting = findViewById(R.id.setting_me);
         privacy = findViewById(R.id.privacy_me);
+        message = findViewById(R.id.message_me);
 
 
         // =========================== SETTING TEXT AND PICTURE ================================= //
@@ -151,6 +152,14 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HomeSetting.class);
+                startActivityForResult(intent, 100);
+            }
+        });
+
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Messages.class);
                 startActivityForResult(intent, 100);
             }
         });
