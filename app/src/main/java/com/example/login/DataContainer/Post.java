@@ -39,7 +39,7 @@ public class Post implements Serializable {
         this.content = content;
         this.like = 0;
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm");
         date = sdf.format(c.getTime());
     }
 
