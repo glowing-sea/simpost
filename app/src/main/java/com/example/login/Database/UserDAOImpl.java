@@ -468,10 +468,10 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         String[] replace = {id};
         Cursor cursor = null;
         cursor = db.rawQuery(query, replace);
-        if (cursor.getCount() != 1) return null;
+        if (cursor.getCount() != 1)
+            return null;
         cursor.moveToNext();
         output = cursor.getBlob(0);
-        if (output.length == 0) return null;
         cursor.close();
         return output;
     }

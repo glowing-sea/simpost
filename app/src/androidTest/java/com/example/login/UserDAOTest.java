@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.login.DataContainer.Me;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 
@@ -45,6 +46,7 @@ public class UserDAOTest {
 //        db.deleteUser("TestUser");
 //        db.close();
 //    }
+
 
     @Test
     public void passwordDOATest(){

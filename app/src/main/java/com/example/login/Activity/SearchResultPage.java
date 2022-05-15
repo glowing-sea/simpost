@@ -1,9 +1,11 @@
 package com.example.login.Activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.login.DataContainer.PostOld;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchResultPage extends AppCompatActivity {
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

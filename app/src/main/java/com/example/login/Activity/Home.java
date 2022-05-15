@@ -198,7 +198,7 @@ public class Home extends AppCompatActivity {
             if (requestCode == 200 || requestCode == 300) {
                 Uri imageUri = data.getData();
                 Bitmap image = HelperMethods.uri2bitmap(imageUri, getApplicationContext());
-                if (requestCode == 3) {
+                if (requestCode == 300) {
                     re = me.setBackground(image);
                     if (!re) {
                         Toast.makeText(getApplicationContext(), "The maximum image size is 200kb", Toast.LENGTH_SHORT).show();
@@ -218,7 +218,7 @@ public class Home extends AppCompatActivity {
     }
 }
 
-    // ================================DELETED METHODS=========================================== //
+// ================================DELETED METHODS=========================================== //
 
 
 //        cameraBackground.setOnClickListener(new View.OnClickListener() {
