@@ -15,11 +15,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.login.DataContainer.UserAdmin;
-import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostOld;
 import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.net.URI;
 
 public class CreatePost extends AppCompatActivity {
     private static final String TAG = "Activity_CreatPost";
@@ -58,7 +56,7 @@ public class CreatePost extends AppCompatActivity {
                 String postContent = userInput.getText().toString();
                 //store the post as json file in directory
                 //creating file
-                Post current = new Post(head, postContent);
+                PostOld current = new PostOld(head, postContent);
                 intent.putExtra("POST", current);
                 current.savePost(getApplicationContext());
                 // and then we can store the post in sqlite here

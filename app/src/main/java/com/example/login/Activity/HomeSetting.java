@@ -57,41 +57,41 @@ public class HomeSetting extends AppCompatActivity {
         confirm = findViewById(R.id.confirm_setting);
 
 
-        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        LocationListener locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location loc) {
-                longitude = loc.getLongitude();
-                latitude = loc.getLatitude();
-            }
+//        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        LocationListener locationListener = new LocationListener() {
+//            @Override
+//            public void onLocationChanged(Location loc) {
+//                longitude = loc.getLongitude();
+//                latitude = loc.getLatitude();
+//            }
+//
+//            @Override
+//            public void onProviderDisabled(String provider) {
+//                Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
+//                startActivity(intent);
+//            }
+//        };
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        lm.requestLocationUpdates("gps", 1000, 0, locationListener);
 
-            @Override
-            public void onProviderDisabled(String provider) {
-                Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-                startActivity(intent);
-            }
-        };
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        lm.requestLocationUpdates("gps", 1000, 0, locationListener);
 
-
-        findLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(HomeSetting.this, "ajabbjk", Toast.LENGTH_LONG).show();
-                Geocoder geocoder = new Geocoder(HomeSetting.this, Locale.getDefault());
-                try {
-                    List<Address> listAddress = geocoder.getFromLocation(longitude, latitude, 1);
-                    if (listAddress.size() > 0){
-                        location.setText(listAddress.get(0).getCountryName());
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        findLocation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(HomeSetting.this, "ajabbjk", Toast.LENGTH_LONG).show();
+//                Geocoder geocoder = new Geocoder(HomeSetting.this, Locale.getDefault());
+//                try {
+//                    List<Address> listAddress = geocoder.getFromLocation(longitude, latitude, 1);
+//                    if (listAddress.size() > 0){
+//                        location.setText(listAddress.get(0).getCountryName());
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
 
 
 

@@ -16,8 +16,6 @@ public class SignupPage extends AppCompatActivity {
     EditText name, password;
     Button confirm;
     UserDAOImpl db;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

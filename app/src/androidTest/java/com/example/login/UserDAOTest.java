@@ -29,7 +29,7 @@ import java.util.Collections;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class DatabaseDAOTest {
+public class UserDAOTest {
 
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     UserDAOImpl db = new UserDAOImpl(appContext);

@@ -5,15 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostOld;
 import com.example.login.R;
 
 public class ViewPost extends AppCompatActivity {
-    Post current;
+    PostOld current;
     TextView title, content, likeCount, viewCount, postTime;
     Button back, like, dislike;
 
@@ -27,7 +26,7 @@ public class ViewPost extends AppCompatActivity {
         String t = "";
         String c = "";
         if (fromCreate != null){
-            current = (Post) getIntent().getExtras().getSerializable("POST");
+            current = (PostOld) getIntent().getExtras().getSerializable("POST");
         }
         t = current.getTitle();
         c = current.getContent();

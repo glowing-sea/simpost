@@ -10,11 +10,6 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-import com.example.login.DataContainer.Post;
-import com.example.login.FileIO.FileRW;
-
-import java.io.File;
-
 /**
  * Instrumented test, which will execute on an Android device.
  *

@@ -10,9 +10,13 @@ import android.graphics.BitmapFactory;
 
 import androidx.annotation.Nullable;
 
+import com.example.login.DataContainer.Comment;
+import com.example.login.DataContainer.Post;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 
 /*
 
@@ -43,7 +47,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE user (" +
+        String query1 = "CREATE TABLE user (" +
                 "username TEXT PRIMARY KEY, " +
                 "password TEXT NOT NULL, " +
                 "avatar BLOB DEFAULT NULL, " +
@@ -56,9 +60,25 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
                 "viewHistory TEXT DEFAULT '', " +
                 "privacySettings INTEGER DEFAULT 1000001, " +
                 "blacklist TEXT DEFAULT '', " +
-                "messages BLOB DEFAULT NULL);";
+                "messages TEXT DEFAULT '');";
 
-        db.execSQL(query);
+        db.execSQL(query1);
+
+        String query2 = "CREATE TABLE post (" +
+                "postID INTEGER PRIMARY KEY, " +
+                "creator TEXT DEFAULT '', " +
+                "title TEXT DEFAULT '', " +
+                "content TEXT DEFAULT '', " +
+                "date TEXT DEFAULT '', " +
+                "image1 BLOB DEFAULT NULL, " +
+                "image2 BLOB DEFAULT NULL, " +
+                "image3 BLOB DEFAULT NULL, " +
+                "tag INTEGER DEFAULT '', " +
+                "likes TEXT DEFAULT '', " +
+                "views TEXT DEFAULT '', " +
+                "comments TEXT DEFAULT '', " +
+                "FOREIGN KEY (creator) REFERENCES user(username));";
+        db.execSQL(query2);
     }
 
 
@@ -69,7 +89,115 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         onCreate(db);
     }
 
-    // ================================= ROWS MANAGEMENT ======================================== //
+    // ================================ POSTS MANAGEMENT ======================================== //
+
+    public boolean addPost (Post post){
+        return addPostSpecifyID (post, -1);
+    }
+
+    public boolean addPostSpecifyID (Post post, int id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        if (id != -1)
+            cv.put("postID", id);
+        cv.put("creator", post.creator);
+        cv.put("title", post.title);
+        cv.put("content", post.content);
+        cv.put("date", post.date);
+        cv.put("tag", post.tag);
+
+        if (post.image1 != null)
+            cv.put("image1", HelperMethods.bitmapToByteArray(post.image1));
+        if (post.image2 != null)
+            cv.put("image2", HelperMethods.bitmapToByteArray(post.image2));
+        if (post.image3 != null)
+            cv.put("image3", HelperMethods.bitmapToByteArray(post.image3));
+
+        long result = db.insert("post", null, cv);
+        db.close();
+        return result != -1;
+    }
+
+
+    public void deletePost (int postID){
+        // Get database
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Query
+        String sQuery = "DELETE FROM post WHERE postID = ?";
+        String[] replace = {String.valueOf(postID)};
+        db.execSQL(sQuery, replace);
+        db.close();
+    }
+
+    // Be careful of null return of image1-3
+    public Post getPost (int postID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM post WHERE postID = ?;";
+        String[] replace = {String.valueOf(postID)};
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, replace);
+        if (cursor.getCount() != 1) return null;
+        cursor.moveToNext();
+        String creator = cursor.getString(1);
+        String title = cursor.getString(2);
+        String content = cursor.getString(3);
+        String date = cursor.getString(4);
+        Bitmap image1 = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
+        Bitmap image2 = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
+        Bitmap image3 = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
+        String tag = cursor.getString(8);
+        HashSet<String> likes = HelperMethods.setDecode(cursor.getString(9));
+        HashSet<String> views = HelperMethods.setDecode(cursor.getString(10));
+        ArrayList<Comment> comments = Comment.commentsDecode(cursor.getString(11));
+        cursor.close();
+        db.close();
+        return new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
+    }
+
+    // Don't use the following setting and adding method, use those in Post class.
+
+    public boolean setLikes (int postID, HashSet<String> likes){
+        String encode = HelperMethods.setEncode(likes);
+        return setString(String.valueOf(postID), "postID", encode, "likes", "post");
+    }
+
+    public boolean setViews (int postID, HashSet<String> views){
+        String encode = HelperMethods.setEncode(views);
+        return setString(String.valueOf(postID), "postID", encode, "views", "post");
+    }
+
+    public boolean setComments (int postID, ArrayList<Comment> comments){
+        String commentsString = Comment.commentsEncode(comments);
+        return setString(String.valueOf(postID), "postID", commentsString, "comments", "post");
+    }
+
+    public boolean addLikes (int postID, String username){
+        String encode = getString(String.valueOf(postID), "postID", "likes", "post");
+        if (encode == null) return false;
+        HashSet<String> likes = HelperMethods.setDecode(encode);
+        likes.add(username);
+        encode = HelperMethods.setEncode(likes);
+        return setString(String.valueOf(postID), "postID", encode, "likes", "post");
+    }
+
+    public boolean addViews (int postID, String username){
+        String encode = getString(String.valueOf(postID), "postID", "views", "post");
+        if (encode == null) return false;
+        HashSet<String> views = HelperMethods.setDecode(encode);
+        views.add(username);
+        encode = HelperMethods.setEncode(views);
+        return setString(String.valueOf(postID), "postID", encode, "views", "post");
+    }
+
+    public boolean addComments (int postID, Comment comment){
+        String comments = getString(String.valueOf(postID), "postID", "comments", "post");
+        comments = comments + comment + '~';
+        return setString(String.valueOf(postID), "postID", comments, "comments", "post");
+    }
+
+
+    // ============================ ADDING AND DELETING USERS =================================== //
+
 
     // The following methods access, insert, or delete, a whole row in the database.
 
@@ -133,11 +261,11 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
 
 
-
-
-    // ================================= CELLS MANAGEMENT ======================================= //
+    // ======================== SETTING AND GETTING A USER'S ATTRIBUTES ========================= //
 
     // The following methods access and update a single cell in the database.
+
+    // Don't use the following setting and getting method, use those in Me or Other class.
 
     // Password
     public boolean setPassword(String username, String newPassword){
@@ -343,6 +471,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         if (cursor.getCount() != 1) return null;
         cursor.moveToNext();
         output = cursor.getBlob(0);
+        if (output.length == 0) return null;
         cursor.close();
         return output;
     }
