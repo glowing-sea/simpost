@@ -55,6 +55,8 @@ public class HomeSetting extends AppCompatActivity {
         signature = findViewById(R.id.setting_signature);
         findLocation = findViewById(R.id.find_location);
         confirm = findViewById(R.id.confirm_setting);
+
+
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         LocationListener locationListener = new LocationListener() {
             @Override
@@ -73,6 +75,7 @@ public class HomeSetting extends AppCompatActivity {
             return;
         }
         lm.requestLocationUpdates("gps", 1000, 0, locationListener);
+
 
         findLocation.setOnClickListener(new View.OnClickListener() {
             @Override
