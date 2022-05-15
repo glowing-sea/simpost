@@ -18,6 +18,20 @@ public class Me{
     public String username;
     public Context context;
 
+    /* The following fields are saved directly in the database instead of the object.
+
+    String password;
+    ArrayList<String> following;
+    String signature;
+    int age;
+    int gender;
+    String location;
+    ArrayList<Boolean> privacy;
+    ArrayList<String> blacklist;
+    ArrayList<Integer> history;
+
+    */
+
     private Me() {
     }
 

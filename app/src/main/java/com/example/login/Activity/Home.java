@@ -151,7 +151,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HomeSetting.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, 100);
             }
         });
 
@@ -173,7 +173,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, 200);
             }
         });
 
@@ -183,7 +183,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 3);
+                startActivityForResult(intent, 300);
             }
         });
     }
@@ -192,26 +192,29 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        boolean re;
-        if (requestCode == 1) {
-            recreate();
-        }
-        if (requestCode == 2 || requestCode == 3) {
-            Uri imageUri = data.getData();
-            Bitmap image = HelperMethods.uri2bitmap(imageUri, getApplicationContext());
-            if (requestCode == 3) {
-                re = me.setBackground(image);
-                if (!re) {
-                    Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
+
+        if (resultCode == RESULT_OK){
+            boolean re;
+            if (requestCode == 100) {
+                recreate();
+            }
+            if (requestCode == 200 || requestCode == 300) {
+                Uri imageUri = data.getData();
+                Bitmap image = HelperMethods.uri2bitmap(imageUri, getApplicationContext());
+                if (requestCode == 3) {
+                    re = me.setBackground(image);
+                    if (!re) {
+                        Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
+                    } else {
+                        background.setImageBitmap(image);
+                    }
                 } else {
-                    background.setImageBitmap(image);
-                }
-            } else {
-                re = me.setAvatar(image);
-                if (!re) {
-                    Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
-                } else {
-                    avatar.setImageBitmap(image);
+                    re = me.setAvatar(image);
+                    if (!re) {
+                        Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
+                    } else {
+                        avatar.setImageBitmap(image);
+                    }
                 }
             }
         }
