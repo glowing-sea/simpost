@@ -45,12 +45,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         Post current = dataset.get(position);
 
         holder.getPostUser().setText(dataset.get(position).getPoster());
-        holder.getPostContent().setText(dataset.get(position).getContent());
+        holder.getPostContent().setText(dataset.get(position).getTitle());
+        if (current.image1 == null && current.image2 == null && current.image3 == null){
+            Glide.with(ctx).load("https://picsum.photos/id/" + id + "/300/200").apply(new RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true))
+                    .into(holder.getPostImage());
+        }
+        else if (current.image1 != null){
+            holder.getPostImage().setImageBitmap(current.image1);
+        }
+        else if (current.image2 != null){
+            holder.getPostImage().setImageBitmap(current.image2);
+        }
+        else if (current.image3 != null){
+            holder.getPostImage().setImageBitmap(current.image3);
+        }
 
-        Glide.with(ctx).load("https://picsum.photos/id/" + id + "/300/200").apply(new RequestOptions()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .skipMemoryCache(true))
-                .into(holder.getPostImage());
 
         holder.getSinglePost().setOnClickListener(new View.OnClickListener() {
             @Override
