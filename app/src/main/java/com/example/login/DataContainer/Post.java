@@ -64,13 +64,13 @@ public class Post{
     /**
      * this creat a post
      * @param creator the name of creator
-     * @param title titile of post
-     * @param content contant of post
+     * @param title title of post
+     * @param content content of post
      * @param image1 image1
      * @param image2 image2
-     * @param image3 image 3
+     * @param image3 image3
      * @param tag tag of post
-     * @param context unknown
+     * @param context context (used for accessing database)
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Post(String creator, String title, String content, Bitmap image1,

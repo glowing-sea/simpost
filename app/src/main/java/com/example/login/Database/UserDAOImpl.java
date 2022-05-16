@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.Nullable;
 
 import com.example.login.DataContainer.Comment;
+import com.example.login.DataContainer.Gender;
+import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
 
@@ -295,6 +297,41 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
 
     // ======================== SETTING AND GETTING A USER'S ATTRIBUTES ========================= //
 
+
+    // Be careful of null return of image1-3
+    public boolean getMyData (String username, String password){
+//        me.setUsername(username);
+//        me.setUsername(password);
+
+
+
+
+
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        String query = "SELECT * FROM post WHERE postID = ?;";
+//        String[] replace = {String.valueOf(postID)};
+//        Cursor cursor = null;
+//        cursor = db.rawQuery(query, replace);
+//        if (cursor.getCount() != 1) return null;
+//        cursor.moveToNext();
+//        String creator = cursor.getString(1);
+//        String title = cursor.getString(2);
+//        String content = cursor.getString(3);
+//        String date = cursor.getString(4);
+//        Bitmap image1 = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
+//        Bitmap image2 = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
+//        Bitmap image3 = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
+//        String tag = cursor.getString(8);
+//        HashSet<String> likes = HelperMethods.setDecode(cursor.getString(9));
+//        HashSet<String> views = HelperMethods.setDecode(cursor.getString(10));
+//        ArrayList<Comment> comments = Comment.commentsDecode(cursor.getString(11));
+//        cursor.close();
+//        db.close();
+//        return new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
+        return false;
+    }
+
+
     // The following methods access and update a single cell in the database.
 
     // Don't use the following setting and getting method, use those in Me or Other class.
@@ -333,11 +370,11 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
 
     // Gender
-    public boolean setGender(String username, int gender){
-        return setInt(username, "username", gender, "gender", "user");
+    public boolean setGender(String username, Gender gender){
+        return setInt(username, "username", HelperMethods.genderEncode(gender), "gender", "user");
     }
-    public int getGender(String username) {
-        return getInt(username, "username", "gender", "user");
+    public Gender getGender(String username) {
+        return HelperMethods.genderDecode(getInt(username, "username", "gender", "user"));
     }
 
     // Location

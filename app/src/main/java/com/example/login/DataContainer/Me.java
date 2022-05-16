@@ -20,23 +20,21 @@ public class Me{
 
     // All attributes of the current user
     public String username;
-    private String password;
-    private int age;
-    private int gender;
-    private String location;
-    private String signature;
-    private Bitmap avatar;
-    private Bitmap background;
-    private HashSet<String> following;
-    private HashSet<String> blacklist;
-    private HashSet<Integer> history;
-    private ArrayList<Boolean> privacy;
-    private ArrayList<Message> messages;
+//    private String password;
+//    private int age;
+//    private Gender gender;
+//    private String location;
+//    private String signature;
+//    private Bitmap avatar;
+//    private Bitmap background;
+//    private HashSet<String> following;
+//    private HashSet<String> blacklist;
+//    private HashSet<Integer> history;
+//    private ArrayList<Boolean> privacy;
+//    private ArrayList<Message> messages;
 
+    private Me (){}
 
-
-    private Me(){
-    }
 
     public static Me getInstance() {
         if (instance == null) {
@@ -45,8 +43,12 @@ public class Me{
         return instance;
     }
 
-
-
+    /*
+    This method retrieve all the current user's data from the database and make a temporary copy in Me class.
+     */
+    public boolean getAllMyData(String username, String password){
+        return false;
+    }
 
 
     public void setUsername(String username) {
@@ -105,11 +107,11 @@ public class Me{
     }
 
     // Gender
-    public boolean setGender(int gender){
+    public boolean setGender(Gender gender){
         UserDAO db = new UserDAOImpl(context);
         return db.setGender(username, gender);
     }
-    public int getGender() {
+    public Gender getGender() {
         UserDAO db = new UserDAOImpl(context);
         return db.getGender(username);
     }

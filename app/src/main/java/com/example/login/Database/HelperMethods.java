@@ -9,6 +9,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.login.DataContainer.Gender;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -53,6 +55,25 @@ public class HelperMethods {
         for (int i = 1; i < 6; i++){
             s.add(encode.charAt(i) == '1');}
         return s;
+    }
+
+    // Encode and decode gender
+    public static int genderEncode (Gender gender){
+        switch(gender){
+            case MALE: return 0;
+            case FEMALE: return 1;
+            case OTHER: return 2;
+            default: return -1;
+        }
+    }
+
+    public static Gender genderDecode (int gender){
+        switch(gender){
+            case 0: return Gender.MALE;
+            case 1: return Gender.FEMALE;
+            case 2: return Gender.OTHER;
+            default: return Gender.NA;
+        }
     }
 
 

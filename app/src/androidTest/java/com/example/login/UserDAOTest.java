@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
@@ -100,10 +101,10 @@ public class UserDAOTest {
 
     @Test
     public void genderDOATest(){
-        assertEquals(-1, db.getGender("TestUser"));
-        db.setGender("TestUser", 0);
-        int actual = db.getGender("TestUser");
-        int expected = 0;
+        assertEquals(Gender.NA, db.getGender("TestUser"));
+        db.setGender("TestUser", Gender.MALE);
+        Gender actual = db.getGender("TestUser");
+        Gender expected = Gender.MALE;
         assertEquals(expected, actual);
     }
 

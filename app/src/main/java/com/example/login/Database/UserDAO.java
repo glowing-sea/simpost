@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 
 import com.example.login.DataContainer.Comment;
+import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
 
@@ -70,8 +71,8 @@ public interface UserDAO {
     int getAge(String username);
 
     // Gender
-    boolean setGender(String username, int gender);
-    int getGender(String username);
+    boolean setGender(String username, Gender gender);
+    Gender getGender(String username);
 
     // Location
     boolean setLocation(String username, String location);

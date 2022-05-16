@@ -3,6 +3,7 @@ package com.example.login.Activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Me;
 import com.example.login.Database.HelperMethods;
 import com.example.login.R;
@@ -102,27 +103,26 @@ public class Home extends AppCompatActivity {
         signature.setText(me.getSignature());
 
         // Set age
-        if (me.getAge() != -1 && !me.getPrivacySettings().get(0)) {
-            age.setText(me.getAge() + "");
+        if (me.getAge() != -1) {
+            age.setText(String.valueOf(me.getAge()));
         }
 
         // Set gender
-        if ( !me.getPrivacySettings().get(1)){
-            int genderInt = me.getGender();
-            switch (genderInt) {
-                case 0:
-                    gender.setText("M");
-                    break;
-                case 1:
-                    gender.setText("F");
-                    break;
-                case 2:
-                    gender.setText("O");
-                    break;
-        }}
+        Gender genderEnum = me.getGender();
+        switch (genderEnum) {
+            case MALE:
+                gender.setText("M");
+                break;
+            case FEMALE:
+                gender.setText("F");
+                break;
+            case OTHER:
+                gender.setText("O");
+                break;
+        }
+
 
         // Setting following and followers
-
         followingNum.setText(me.getFollowing().size() + "");
         followersNum.setText(me.getFollowers().size() + "");
 
