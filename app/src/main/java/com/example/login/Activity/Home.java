@@ -22,7 +22,7 @@ import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
-    ImageView background, avatar, setting, privacy, message;
+    ImageView background, avatar, setting, privacy, message,report;
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     FloatingActionButton changeBackgroundButton;
@@ -56,6 +56,7 @@ public class Home extends AppCompatActivity {
 
 
         // Link IDs
+        report = findViewById(R.id.report_me);
         background = findViewById(R.id.background_me);
         avatar = findViewById(R.id.avatar_me);
         changeBackgroundButton = findViewById(R.id.gallery_background);
@@ -154,6 +155,14 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Messages.class);
                 startActivityForResult(intent, 100);
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), reportPage.class);
+                startActivity(intent);
             }
         });
 

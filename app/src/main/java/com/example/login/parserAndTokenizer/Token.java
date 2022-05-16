@@ -6,4 +6,5 @@ public abstract class Token {
     }
     public abstract String show();
 
+    public abstract int returnType();
 }

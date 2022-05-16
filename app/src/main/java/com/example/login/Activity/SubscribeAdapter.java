@@ -11,16 +11,16 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.UserOld;
+import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.UserAdmin;
 import com.example.login.R;
 
 import java.util.List;
 
 public class SubscribeAdapter extends RecyclerView.Adapter<SubscribeAdapter.SubscribeViewHolder> {
-
     private final Context ctx;
-    private final List<UserOld> dataset;
-    public SubscribeAdapter(Context ctx, List<UserOld> dataset){
+    private final List<String> dataset;
+    public SubscribeAdapter(Context ctx, List<String> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -34,9 +34,9 @@ public class SubscribeAdapter extends RecyclerView.Adapter<SubscribeAdapter.Subs
 
     @Override
     public void onBindViewHolder(@NonNull SubscribeAdapter.SubscribeViewHolder holder, int position) {
-        UserOld current = dataset.get(position);
+        String current = dataset.get(position);
 
-        holder.getSubscribeName().setText(current.getUsername());
+        holder.getSubscribeName().setText(current);
 
 
         holder.getSingleSubscribe().setOnClickListener(new View.OnClickListener() {

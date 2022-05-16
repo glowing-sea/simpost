@@ -11,6 +11,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.Post;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 
@@ -23,6 +24,8 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -131,5 +134,19 @@ public class UserDAOTest {
         db.setViewHistory("TestUser", expected);
         actual = db.getViewHistory("TestUser");
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void titleMatchTest(){
+        Post test = new Post("Dai","Hello world","this is a testing post"
+        ,null,null,null,null, appContext.getApplicationContext());
+        int id = test.postID;
+        System.out.println(db.addPost(test));
+        System.out.println("Founded");
+        Set<Post> result= db.postTitleMatch("hello");
+        Iterator<Post> iterator = result.iterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.next().postID);
+        }
     }
 }

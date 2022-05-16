@@ -13,6 +13,11 @@ public class TimeToken extends Token{
     }
 
     @Override
+    public int returnType() {
+        return 1;
+    }
+
+    @Override
     public boolean equals(Object o){
         if (o ==null||o.getClass() != this.getClass()){
             return false;
@@ -20,4 +25,6 @@ public class TimeToken extends Token{
             TimeToken token = (TimeToken) o;
             return (this.time.equals(token.time)&&this.type == ((TimeToken) o).type);        }
     }
+
+
 }

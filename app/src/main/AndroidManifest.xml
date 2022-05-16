@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".Activity.MessagesChat"
+            android:exported="false" />
+        <activity
             android:name=".Activity.MessagesAddPage"
             android:exported="false"
             android:label="Send a message"
@@ -37,6 +40,9 @@
             android:exported="false" />
         <activity
             android:name=".Activity.SubscriptionsPage"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.reportPage"
             android:exported="false" />
         <activity
             android:name=".Activity.FollowerPage"

@@ -13,6 +13,11 @@ public class TitleToken extends Token{
     }
 
     @Override
+    public int returnType() {
+        return 2;
+    }
+
+    @Override
     public boolean equals(Object o){
         if (o ==null||o.getClass() != this.getClass()){
             return false;
