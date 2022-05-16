@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.login.DataContainer.Post;
 import com.example.login.R;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -23,8 +24,8 @@ import java.util.List;
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
     private final Context ctx;
-    private final List<PostOld> dataset;
-    public PostAdapter(Context ctx, List<PostOld> dataset){
+    private final List<Post> dataset;
+    public PostAdapter(Context ctx, List<Post> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -41,7 +42,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         int max =100;
         int min =0;
         int id = (int) (Math.random()*((max-min) + 1) + min);
-        PostOld current = dataset.get(position);
+        Post current = dataset.get(position);
 
         holder.getPostUser().setText(dataset.get(position).getPoster());
         holder.getPostContent().setText(dataset.get(position).getContent());
@@ -56,7 +57,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             public void onClick(View view) {
                 // Toast.makeText(ctx, "Clicked", Toast.LENGTH_LONG).show();
                  Intent intent = new Intent(ctx, ViewPost.class);
-                 intent.putExtra("POST", current);
+                 intent.putExtra("POST", current.postID);
                  // intent.putExtra("username", String.valueOf(users.get(position)));
                  ctx.startActivity(intent);
             }

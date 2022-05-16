@@ -28,7 +28,7 @@ import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
 
-    ImageView background, avatar, setting, privacy, message,report;
+    ImageView background, avatar, setting, privacy, message,report, blacklist;
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     FloatingActionButton changeBackgroundButton;
@@ -39,6 +39,16 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        blacklist = findViewById(R.id.blacklist_me);
+        blacklist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, other_home.class);
+                i.putExtra("OTHER", me.username);
+                startActivity(i);
+            }
+        });
 
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
@@ -203,6 +213,7 @@ public class Home extends AppCompatActivity {
                 startActivityForResult(intent, 300);
             }
         });
+
     }
 
 
