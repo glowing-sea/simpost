@@ -149,15 +149,19 @@ public class PostDAOTest {
 
     @Test
     public void titleMatchTest(){
+        // 这个Post Constructor不会生成ID的，是当Post被放进去Database才会生成ID，如果想知道你放进去的Post的ID是啥（为了在测试结束删掉），用addPostSpecifyID
         Post test = new Post("Dai","Hello world","this is a testing post"
                 ,null,null,null,null, appContext.getApplicationContext());
-        int id = test.postID;
-        System.out.println(db.addPost(test));
+        int id = 100004;
+        db.addPostSpecifyID(test, 100004);
         System.out.println("Founded");
         Set<Post> result= db.postTitleMatch("hello");
         Iterator<Post> iterator = result.iterator();
         while (iterator.hasNext()){
             System.out.println(iterator.next().postID);
         }
+
+        // 测试完最好把Post删掉
+        db.deletePost(100004);
     }
 }
