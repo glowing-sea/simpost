@@ -195,13 +195,11 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     // Don't use the following setting and adding method, use those in Post class.
 
     public boolean setLikes (int postID, HashSet<String> likes){
-        String encode = HelperMethods.setEncode(likes);
-        return setString(String.valueOf(postID), "postID", encode, "likes", "post");
+        return setSet(String.valueOf(postID), "postID", likes, "likes", "post");
     }
 
     public boolean setViews (int postID, HashSet<String> views){
-        String encode = HelperMethods.setEncode(views);
-        return setString(String.valueOf(postID), "postID", encode, "views", "post");
+        return setSet(String.valueOf(postID), "postID", views, "views", "post");
     }
 
     public boolean setComments (int postID, ArrayList<Comment> comments){
@@ -210,21 +208,17 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
 
     public boolean addLikes (int postID, String username){
-        String encode = getString(String.valueOf(postID), "postID", "likes", "post");
-        if (encode == null) return false;
-        HashSet<String> likes = HelperMethods.setDecode(encode);
+        HashSet<String> likes = getSet(String.valueOf(postID), "postID", "likes", "post");
+        if (likes == null) return false;
         likes.add(username);
-        encode = HelperMethods.setEncode(likes);
-        return setString(String.valueOf(postID), "postID", encode, "likes", "post");
+        return setSet(String.valueOf(postID), "postID", likes, "likes", "post");
     }
 
     public boolean addViews (int postID, String username){
-        String encode = getString(String.valueOf(postID), "postID", "views", "post");
-        if (encode == null) return false;
-        HashSet<String> views = HelperMethods.setDecode(encode);
+        HashSet<String> views = getSet(String.valueOf(postID), "postID", "views", "post");
+        if (views == null) return false;
         views.add(username);
-        encode = HelperMethods.setEncode(views);
-        return setString(String.valueOf(postID), "postID", encode, "views", "post");
+        return setSet(String.valueOf(postID), "postID", views, "views", "post");
     }
 
     public boolean addComments (int postID, Comment comment){
@@ -435,6 +429,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     public int sendMessages(Message sent) {
         String sender = sent.getSender();
         String receiver = sent.getReceiver();
+        sent.setRead(true);
         String senderCopy = sent.toString();
         sent.setRead(false);
         String receiverCopy = sent.toString();
@@ -449,8 +444,8 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         if (receiverMessagesBox == null) return -2;
         receiverMessagesBox = receiverMessagesBox + receiverCopy + '~';
 
-        boolean result1 = setString(sender, "username", senderMessagesBox, "message", "user");
-        boolean result2 = setString(receiver, "username", receiverMessagesBox, "message", "user");
+        boolean result1 = setString(sender, "username", senderMessagesBox, "messages", "user");
+        boolean result2 = setString(receiver, "username", receiverMessagesBox, "messages", "user");
 
         return result1 && result2 ? 0 : -3;
     }
@@ -460,36 +455,13 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
 
     // These are the helper methods.
 
-    // Store a List value into a database.
-    private boolean setList(String id, String idColumn, ArrayList<String> listValue, String valueColumn, String tableName){
-        String stringValue = HelperMethods.listEncode(listValue);
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put (valueColumn, stringValue);
-        long result = db.update(tableName, cv, idColumn + " = ?", new String[]{id});
-        return result != -1;
-    }
-    // Get a List value from a database.
-    private ArrayList<String> getList(String id, String idColumn, String valueColumn, String tableName) {
-        ArrayList<String> output;
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT " + valueColumn + " FROM " + tableName +" WHERE " + idColumn + " = ?;";
-        String[] replace = {id};
-        Cursor cursor = null;
-        cursor = db.rawQuery(query, replace);
-        if (cursor.getCount() != 1) return null;
-        cursor.moveToNext();
-        output = HelperMethods.listDecode(cursor.getString(0));
-        cursor.close();
-        return output;
-    }
-
     // Store a String value into a database.
     private boolean setString(String id, String idColumn, String value, String valueColumn, String tableName){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put (valueColumn, value);
         long result = db.update(tableName, cv, idColumn + " = ?", new String[]{id});
+        db.close();
         return result != -1;
     }
     // Get a String value from a database.
@@ -504,6 +476,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor.moveToNext();
         output = cursor.getString(0);
         cursor.close();
+        db.close();
         return output;
     }
 
@@ -513,6 +486,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         ContentValues cv = new ContentValues();
         cv.put (valueColumn, value);
         long result = db.update(tableName, cv, idColumn + " = ?", new String[]{id});
+        db.close();
         return result != -1;
     }
     // Get a Integer value from a database.
@@ -527,6 +501,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor.moveToNext();
         output = cursor.getInt(0);
         cursor.close();
+        db.close();
         return output;
     }
 
@@ -536,6 +511,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         ContentValues cv = new ContentValues();
         cv.put (valueColumn, value);
         long result = db.update(tableName, cv, idColumn + " = ?", new String[]{id});
+        db.close();
         return result != -1;
     }
 
@@ -552,8 +528,36 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor.moveToNext();
         output = cursor.getBlob(0);
         cursor.close();
+        db.close();
         return output;
     }
+
+    // Store a List value into a database.
+    private boolean setList(String id, String idColumn, ArrayList<String> listValue, String valueColumn, String tableName){
+        String encode = HelperMethods.listEncode(listValue);
+        return setString(id, idColumn, encode, valueColumn, tableName);
+    }
+
+    // Get a List value from a database.
+    private ArrayList<String> getList(String id, String idColumn, String valueColumn, String tableName) {
+        String encode = getString(id, idColumn, valueColumn, tableName);
+        if (encode == null) return null;
+        return HelperMethods.listDecode(encode);
+    }
+
+    // Store a List value into a database.
+    private boolean setSet(String id, String idColumn, HashSet<String> listValue, String valueColumn, String tableName){
+        String encode = HelperMethods.setEncode(listValue);
+        return setString(id, idColumn, encode, valueColumn, tableName);
+    }
+
+    // Get a List value from a database.
+    private HashSet<String> getSet(String id, String idColumn, String valueColumn, String tableName) {
+        String encode = getString(id, idColumn, valueColumn, tableName);
+        if (encode == null) return null;
+        return HelperMethods.setDecode(encode);
+    }
+
 
     // Store a Image value into a database.
     private boolean setImage(String id, String idColumn, Bitmap image, String valueColumn, String tableName){
