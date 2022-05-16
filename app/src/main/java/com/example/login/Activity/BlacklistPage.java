@@ -11,6 +11,7 @@ import com.example.login.DataContainer.Me;
 import com.example.login.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class BlacklistPage extends AppCompatActivity {
     Me me = Me.getInstance();
@@ -23,7 +24,7 @@ public class BlacklistPage extends AppCompatActivity {
 
         //仅测试，最后将allPosts改成数据库中需要显示的post即可
 
-        ArrayList<String> allUsers = me.getBlacklist();
+        ArrayList<String> allUsers = new ArrayList<>(me.getBlacklist());
         if (allUsers.size() == 0){
             Toast.makeText(BlacklistPage.this, "You have no one in blacklist yet", Toast.LENGTH_SHORT).show();
         }

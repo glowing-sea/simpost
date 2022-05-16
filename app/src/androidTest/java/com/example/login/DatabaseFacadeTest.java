@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -68,9 +69,9 @@ public class DatabaseFacadeTest {
 
         assertTrue(sf.getFollowers("Test1").isEmpty());
 
-        db.setFollowing("Test2", new ArrayList<>(Arrays.asList("Test1", "Test2")));
-        db.setFollowing("Test3", new ArrayList<>(Arrays.asList("Test4", "Test3")));
-        db.setFollowing("Test4", new ArrayList<>(Arrays.asList("Test1", "Test5")));
+        db.setFollowing("Test2", new HashSet<>(Arrays.asList("Test1", "Test2")));
+        db.setFollowing("Test3", new HashSet<>(Arrays.asList("Test4", "Test3")));
+        db.setFollowing("Test4", new HashSet<>(Arrays.asList("Test1", "Test5")));
 
         ArrayList<String> expectedFollowers = new ArrayList<>();
         expectedFollowers.add("Test2");

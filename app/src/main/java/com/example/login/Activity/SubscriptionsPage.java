@@ -15,6 +15,7 @@ import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class SubscriptionsPage extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class SubscriptionsPage extends AppCompatActivity {
 
         //仅测试，最后将allPosts改成数据库中需要显示的post即可
 
-        ArrayList<String> allUsers = me.getFollowing();
+        ArrayList<String> allUsers = new ArrayList<>(me.getFollowing());
         if (allUsers.size() == 0){
             Toast.makeText(SubscriptionsPage.this, "You have not subscribed to anyone yet", Toast.LENGTH_LONG).show();
         }

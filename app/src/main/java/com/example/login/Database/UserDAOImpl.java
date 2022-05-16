@@ -308,11 +308,11 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
 
     // Following
-    public boolean setFollowing(String username, ArrayList<String> following){
-        return setList(username, "username", following, "following", "user");
+    public boolean setFollowing(String username, HashSet<String> following){
+        return setSet(username, "username", following, "following", "user");
     }
-    public ArrayList<String> getFollowing(String username) {
-        return getList(username, "username", "following", "user");
+    public HashSet<String> getFollowing(String username) {
+        return getSet(username, "username", "following", "user");
     }
 
     // Signature
@@ -369,24 +369,24 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
 
     // Blacklist
-    public boolean setBlacklist(String username, ArrayList<String> blacklist){
-        return setList(username, "username", blacklist, "blacklist", "user");
+    public boolean setBlacklist(String username, HashSet<String> blacklist){
+        return setSet(username, "username", blacklist, "blacklist", "user");
     }
-    public ArrayList<String> getBlacklist(String username) {
-        return getList(username, "username", "blacklist", "user");
+    public HashSet<String> getBlacklist(String username) {
+        return getSet(username, "username", "blacklist", "user");
     }
 
     // View History
-    public boolean setViewHistory(String username, ArrayList<Integer> historyInt){
-        ArrayList<String> historyString = new ArrayList<>();
+    public boolean setViewHistory(String username, HashSet<Integer> historyInt){
+        HashSet<String> historyString = new HashSet<>();
         for (int elem : historyInt){
             historyString.add(elem + "");
         }
-        return setList(username, "username", historyString, "viewHistory", "user");
+        return setSet(username, "username", historyString, "viewHistory", "user");
     }
-    public ArrayList<Integer> getViewHistory(String username) {
-        ArrayList<String> historyString = getList(username, "username", "viewHistory", "user");
-        ArrayList<Integer> historyInt = new ArrayList<>();
+    public HashSet<Integer> getViewHistory(String username) {
+        HashSet<String> historyString = getSet(username, "username", "viewHistory", "user");
+        HashSet<Integer> historyInt = new HashSet<>();
         for (String elem : historyString){
             historyInt.add(Integer.parseInt(elem));
         }
