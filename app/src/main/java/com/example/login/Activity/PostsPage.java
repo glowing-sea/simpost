@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Me;
-import com.example.login.DataContainer.PostOld;
-import com.example.login.DataContainer.UserAdmin;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;

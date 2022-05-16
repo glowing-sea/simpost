@@ -238,6 +238,16 @@
             app:layout_constraintStart_toEndOf="@+id/avatar_other"
             app:layout_constraintTop_toBottomOf="@+id/background_other" />
 
+        <TextView
+            android:id="@+id/name_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="username"
+            app:layout_constraintTop_toBottomOf="@id/avatar_other"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="305dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
