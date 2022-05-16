@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 
 import com.example.login.DataContainer.Comment;
+import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
 
 import java.util.ArrayList;
@@ -97,4 +98,16 @@ public interface UserDAO {
     Bitmap getAvatar(String username);
 
     void setMessage(String usname, String mess);
+
+
+    boolean setMessages(String username, ArrayList<Message> messages);
+    ArrayList<Message> getMessages(String username);
+
+    /*
+    return 0 success
+    return -1 sender not found
+    return -2 receiver not found
+    return -3 store message fail
+    */
+    int sendMessages(Message sent);
 }

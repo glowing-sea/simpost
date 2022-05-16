@@ -11,6 +11,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
@@ -42,13 +43,19 @@ public class UserDAOTest {
     public void setup(){
         db = new UserDAOImpl(appContext);
         db.addUser("TestUser", "123");
+        db.addUser("user1", "123");
+        db.addUser("user2", "123");
+        db.addUser("user3", "123");
     }
 
-//    @After
-//    public void finish(){
-//        db.deleteUser("TestUser");
-//        db.close();
-//    }
+    @After
+    public void finish(){
+        db.deleteUser("TestUser");
+        db.deleteUser("user1");
+        db.deleteUser("user2");
+        db.deleteUser("user3");
+        db.close();
+    }
 
 
     @Test
@@ -137,16 +144,18 @@ public class UserDAOTest {
     }
 
     @Test
-    public void titleMatchTest(){
-        Post test = new Post("Dai","Hello world","this is a testing post"
-        ,null,null,null,null, appContext.getApplicationContext());
-        int id = test.postID;
-        System.out.println(db.addPost(test));
-        System.out.println("Founded");
-        Set<Post> result= db.postTitleMatch("hello");
-        Iterator<Post> iterator = result.iterator();
-        while (iterator.hasNext()){
-            System.out.println(iterator.next().postID);
-        }
+    public void sendMessageTest(){
+//        Message m1 = new Message("user1", "user2", "n.d.", false, )
+//
+//
+//        ArrayList<Integer> expected = new ArrayList<>();
+//        ArrayList<Integer> actual;
+//        expected.add(13213213);
+//        expected.add(232323);
+//        expected.add(23213213);
+//        db.setViewHistory("TestUser", expected);
+//        actual = db.getViewHistory("TestUser");
+//        assertEquals(expected, actual);
     }
+
 }

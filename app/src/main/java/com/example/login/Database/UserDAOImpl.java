@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import androidx.annotation.Nullable;
 
 import com.example.login.DataContainer.Comment;
+import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
 
 import java.io.ByteArrayOutputStream;
@@ -413,6 +414,47 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     public Bitmap getAvatar(String username) {
         return getImage(username, "username", "avatar", "user");
     }
+
+    // Messages Box
+    public boolean setMessages(String username, ArrayList<Message> messages){
+        String encode = Message.messagesEncode(messages);
+        return setString(username, "username", encode, "messages", "user");
+    }
+    public ArrayList<Message> getMessages(String username) {
+        String encode = getString(username, "username", "messages", "user");
+        if (encode == null) return null;
+        return Message.messagesDecode(encode);
+    }
+
+    /*
+    return 0 success
+    return -1 sender not found
+    return -2 receiver not found
+    return -3 store message fail
+     */
+    public int sendMessages(Message sent) {
+        String sender = sent.getSender();
+        String receiver = sent.getReceiver();
+        String senderCopy = sent.toString();
+        sent.setRead(false);
+        String receiverCopy = sent.toString();
+
+        // Put the message into sender's messages box
+        String senderMessagesBox = getString(sender, "username", "messages", "user");
+        if (senderMessagesBox == null) return -1;
+        senderMessagesBox = senderMessagesBox + senderCopy + '~';
+
+        // Put the message into receiver's messages box
+        String receiverMessagesBox = getString(receiver, "username", "messages", "user");
+        if (receiverMessagesBox == null) return -2;
+        receiverMessagesBox = receiverMessagesBox + receiverCopy + '~';
+
+        boolean result1 = setString(sender, "username", senderMessagesBox, "message", "user");
+        boolean result2 = setString(receiver, "username", receiverMessagesBox, "message", "user");
+
+        return result1 && result2 ? 0 : -3;
+    }
+
 
     // ================================ PRIVATE  HELPER METHODS ================================= //
 
