@@ -59,13 +59,17 @@ public class SearchPage extends AppCompatActivity {
             public void onClick(View view) {
                 TextView input = findViewById(R.id.editText_search_page_searcheContent);
                 String searchedText = input.getText().toString();
-                Toast debug = Toast.makeText(getApplicationContext(),"serchitng:" + searchedText,Toast.LENGTH_LONG);
+                Toast debug = Toast.makeText(getApplicationContext(),"searching:" + searchedText,Toast.LENGTH_LONG);
                 debug.show();
+                if (!searchedText.equals("")){
+                    Intent toResult = new Intent(getApplicationContext(), SearchResultPage.class);
+                    toResult.putExtra("keyword", searchText.getText().toString());
+                    startActivity(toResult);}
+                else {
+                    Toast.makeText(SearchPage.this, "keyword can`t be empty", Toast.LENGTH_SHORT).show();
+                }
 
-                //这个部分我想的我们可以把关键词pass到result page，然后在result page再根据关键词从数据库里找结果
-                Intent toResult = new Intent(getApplicationContext(), SearchResultPage.class);
-                toResult.putExtra("keyword", searchText.getText().toString());
-                startActivity(toResult);
+
             }
         });
     }
