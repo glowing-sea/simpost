@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.UserAdmin;
+import com.example.login.DataContainer.UserOld;
 import com.example.login.R;
 
 import java.util.List;
@@ -19,8 +19,8 @@ import java.util.List;
 public class FollowerAdapter extends RecyclerView.Adapter<FollowerAdapter.FollowerViewHolder> {
 
     private final Context ctx;
-    private final List<UserAdmin> dataset;
-    public FollowerAdapter(Context ctx, List<UserAdmin> dataset){
+    private final List<UserOld> dataset;
+    public FollowerAdapter(Context ctx, List<UserOld> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -34,7 +34,7 @@ public class FollowerAdapter extends RecyclerView.Adapter<FollowerAdapter.Follow
 
     @Override
     public void onBindViewHolder(@NonNull FollowerAdapter.FollowerViewHolder holder, int position) {
-        UserAdmin current = dataset.get(position);
+        UserOld current = dataset.get(position);
 
         holder.getFollower().setText(current.getUsername());
 

@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import com.example.login.DataContainer.UserAdmin;
+import com.example.login.DataContainer.UserOld;
 import com.example.login.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FollowerPage extends AppCompatActivity {
-    UserAdmin current;
+    UserOld current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +22,13 @@ public class FollowerPage extends AppCompatActivity {
         RecyclerView rvPosts = (RecyclerView) findViewById(R.id.followers);
 
         //仅测试，最后将allPosts改成数据库中需要显示的post即可
-        UserAdmin p1 = new UserAdmin("xyz", "1234");
-        UserAdmin p2 = new UserAdmin("Post B", "This is content B.");
-        UserAdmin p3 = new UserAdmin("Post C", "This is content C.");
-        UserAdmin p4 = new UserAdmin("Post D", "This is content D.");
-        UserAdmin p5 = new UserAdmin("Post E", "This is content E.");
+        UserOld p1 = new UserOld("xyz", "1234");
+        UserOld p2 = new UserOld("Post B", "This is content B.");
+        UserOld p3 = new UserOld("Post C", "This is content C.");
+        UserOld p4 = new UserOld("Post D", "This is content D.");
+        UserOld p5 = new UserOld("Post E", "This is content E.");
 
-        List<UserAdmin> allPosts = new ArrayList<>();
+        List<UserOld> allPosts = new ArrayList<>();
         allPosts.add(p1);
         allPosts.add(p2);
         allPosts.add(p3);

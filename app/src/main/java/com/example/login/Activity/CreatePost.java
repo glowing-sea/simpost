@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.example.login.DataContainer.UserAdmin;
+import com.example.login.DataContainer.UserOld;
 import com.example.login.DataContainer.PostOld;
 import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,7 +26,7 @@ public class CreatePost extends AppCompatActivity {
     EditText userInput, title;
     ImageView image1, image2, image3;
     FloatingActionButton add1, add2, add3;
-    UserAdmin current;
+    UserOld current;
     Intent commingIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

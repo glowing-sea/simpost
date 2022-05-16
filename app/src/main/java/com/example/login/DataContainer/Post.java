@@ -38,8 +38,8 @@ public class Post {
     private ArrayList<Comment> comments; // Auto initialised
     public Context context;
 
-    // Don't use
-    // This method is designed for the database to generate a post object only, don't use this method manually.
+    // Don't use this method to create post.
+    // This method is designed for the database to generate a post object only.
     public Post(int postID, String creator, String title, String content, String date,
                 Bitmap image1, Bitmap image2, Bitmap image3, String tag, HashSet<String> likes,
                 HashSet<String> views, ArrayList<Comment> comments, Context context) {
