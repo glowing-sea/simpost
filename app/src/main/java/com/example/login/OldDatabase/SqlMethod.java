@@ -1,13 +1,5 @@
 package com.example.login.OldDatabase;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
-import com.example.login.DataContainer.UserAdmin;
-import com.example.login.OldDatabase.MyDBMethod;
-
 public class SqlMethod {
     /*MyDBMethod dbMethod;
     SQLiteDatabase db = dbMethod.getWritableDatabase();

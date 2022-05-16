@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.UserAdmin;
+import com.example.login.DataContainer.UserOld;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -25,7 +25,7 @@ public class AdminPage extends AppCompatActivity {
     FloatingActionButton addButton,updateButton,deleteButton, getterMethodTest;
 
     UserDAO db;
-    ArrayList<UserAdmin> users;
+    ArrayList<UserOld> users;
     UserAdapter userAdapter;
 
     @Override
@@ -98,7 +98,7 @@ public class AdminPage extends AppCompatActivity {
             while (cursor.moveToNext()){
                 String username = cursor.getString(0);
                 String password = cursor.getString(1);
-                UserAdmin user = new UserAdmin(username, password);
+                UserOld user = new UserOld(username, password);
                 users.add(user);
             }
         }

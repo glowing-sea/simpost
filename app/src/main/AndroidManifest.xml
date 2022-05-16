@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".Activity.other_home"
+            android:exported="false" />
+        <activity
             android:name=".Activity.MessagesChat"
             android:exported="false"
             android:parentActivityName=".Activity.Messages" />
