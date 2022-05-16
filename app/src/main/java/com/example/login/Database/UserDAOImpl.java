@@ -435,6 +435,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     public int sendMessages(Message sent) {
         String sender = sent.getSender();
         String receiver = sent.getReceiver();
+        sent.setRead(true);
         String senderCopy = sent.toString();
         sent.setRead(false);
         String receiverCopy = sent.toString();
@@ -449,8 +450,8 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         if (receiverMessagesBox == null) return -2;
         receiverMessagesBox = receiverMessagesBox + receiverCopy + '~';
 
-        boolean result1 = setString(sender, "username", senderMessagesBox, "message", "user");
-        boolean result2 = setString(receiver, "username", receiverMessagesBox, "message", "user");
+        boolean result1 = setString(sender, "username", senderMessagesBox, "messages", "user");
+        boolean result2 = setString(receiver, "username", receiverMessagesBox, "messages", "user");
 
         return result1 && result2 ? 0 : -3;
     }
