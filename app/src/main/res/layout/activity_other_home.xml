@@ -8,7 +8,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@id/follow_this_user"
+        android:id="@+id/constraint11"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigationView">
@@ -219,7 +219,7 @@
             tools:src="@tools:sample/avatars" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/follow_this_user"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginEnd="5dp"

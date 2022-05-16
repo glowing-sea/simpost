@@ -68,11 +68,10 @@ public class PostsPage extends AppCompatActivity {
 
 //        RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
 //
-//        allPosts = db.getRecentPost();
+//        allPosts = db.getAllPost();
 //
 //        PostAdapter postAdapter = new PostAdapter(PostsPage.this,allPosts);
 //        rvPosts.setAdapter(postAdapter);
-//        // rvPosts.setLayoutManager(new LinearLayoutManager((this)));
 //        rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
 
     }
