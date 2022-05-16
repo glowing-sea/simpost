@@ -5,18 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ServiceStartNotAllowedException;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.PostOld;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
+import com.example.login.parserAndTokenizer.Parser;
 import com.example.login.parserAndTokenizer.Token;
 import com.example.login.parserAndTokenizer.Tokenizier;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class SearchResultPage extends AppCompatActivity {
     private final  String TAG = "SearchResultPage";
@@ -35,37 +41,20 @@ public class SearchResultPage extends AppCompatActivity {
         }
         getIntent().removeExtra("keyword");
 
-        Log.i(TAG,"tokenizing:" + searchedText);
-
-        //tokenize the searched text
-        Tokenizier tokenizier = new Tokenizier(searchedText);
-        List<Token> tokensContained = tokenizier.tokenize();
-
-        //catorgise the tokens we have for optimising search
-        List<Token> userNamtToken = new ArrayList<>();
-        List<Token> titleToken = new ArrayList<>();
-        List<Token> wordToken = new ArrayList<>();
-        //debuging code
-        String debugString = "";
-        int index = 0;
-        while(index < tokensContained.size()){
-            debugString += tokensContained.get(index).show();
-            debugString += "|";
-            int type = tokensContained.get(index).returnType();
-            if (type == 0){
-                userNamtToken.add(tokensContained.get(index));
-            }else if(type == 2){
-                titleToken.add(tokensContained.get(index));
-            }else {
-                wordToken.add(tokensContained.get(index));
-            }
-            index ++;
-        }
-        Log.i(TAG,"tokens are:" + debugString);
+        Log.i(TAG,"Parsing:" + searchedText);
+        Parser parser = new Parser(searchedText);
+        String matchingString = parser.parsedString();
+        UserDAOImpl userDAO = new UserDAOImpl(getApplicationContext());
+        Set<Post> result = userDAO.postMathchFTS4(matchingString);
 
         //select things form data base according to the token
-
-
+        List<Post> allPosts = new ArrayList<>();
+        if (result != null){
+            Iterator iterator = result.iterator();
+            while (iterator.hasNext()){
+                allPosts.add((Post)iterator.next());
+            }
+        }
         //adding things to the result
         RecyclerView rvPosts = findViewById(R.id.result_posts);
         PostOld p1 = new PostOld("Post A", "This is content A.");
@@ -74,8 +63,8 @@ public class SearchResultPage extends AppCompatActivity {
         PostOld p4 = new PostOld("Post D", "This is content D.");
         PostOld p5 = new PostOld("Post E", "This is content E.");
 
-        List<Integer> allPosts = new ArrayList<>();
-        SearchResultAdapter searchResultAdapter = new SearchResultAdapter(SearchResultPage.this,allPosts);
+
+        SearchResultAdapter searchResultAdapter = new SearchResultAdapter(getApplicationContext(),allPosts);
         rvPosts.setAdapter(searchResultAdapter);
         rvPosts.setLayoutManager(new LinearLayoutManager((this)));
 

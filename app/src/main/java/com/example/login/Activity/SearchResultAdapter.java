@@ -21,9 +21,9 @@ import java.util.List;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ResultHolder> {
     private final Context ctx;
-    private final List<Integer> dataset;
+    private final List<Post> dataset;
     UserDAO db;
-    public SearchResultAdapter(Context ctx, List<Integer> dataset){
+    public SearchResultAdapter(Context ctx, List<Post> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -37,9 +37,8 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ResultHolder holder, int position) {
-        db = new UserDAOImpl(ctx.getApplicationContext());
-        Integer current = dataset.get(position);
-        Post post = db.getPost(current);
+        Integer current = dataset.get(position).postID;
+        Post post = dataset.get(position);
         holder.getPoster().setText(post.getPoster());
         holder.getTitle().setText(post.getTitle());
         holder.getSingleResult().setOnClickListener(new View.OnClickListener() {
