@@ -16,26 +16,26 @@ public class Me{
     // ========================== FIELD SETTING AND GETTING METHODS ============================= //
 
     private static Me instance = null;
-    public String username;
     public Context context;
 
-    /* The following fields are saved directly in the database instead of the object.
+    // All attributes of the current user
+    public String username;
+    private String password;
+    private int age;
+    private int gender;
+    private String location;
+    private String signature;
+    private Bitmap avatar;
+    private Bitmap background;
+    private HashSet<String> following;
+    private HashSet<String> blacklist;
+    private HashSet<Integer> history;
+    private ArrayList<Boolean> privacy;
+    private ArrayList<Message> messages;
 
-    String password;
-    HashSet<String> following;
-    String signature;
-    int age;
-    int gender;
-    String location;
-    ArrayList<Boolean> privacy;
-    HashSet<String> blacklist;
-    HashSet<Integer> history;
-    Bitmap avatar;
-    Bitmap background;
 
-    */
 
-    private Me() {
+    private Me(){
     }
 
     public static Me getInstance() {
@@ -44,6 +44,10 @@ public class Me{
         }
         return instance;
     }
+
+
+
+
 
     public void setUsername(String username) {
         this.username = username;

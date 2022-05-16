@@ -54,16 +54,16 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         String query1 = "CREATE TABLE user (" +
                 "username TEXT PRIMARY KEY, " +
                 "password TEXT NOT NULL, " +
-                "avatar BLOB DEFAULT NULL, " +
-                "background BLOB DEFAULT NULL, " +
-                "following TEXT DEFAULT '', " +
-                "signature TEXT DEFAULT 'This is a default signature for everyone!', " +
                 "age INTEGER DEFAULT -1, " +
                 "gender INTEGER DEFAULT -1, " +
                 "location TEXT DEFAULT '', " +
-                "viewHistory TEXT DEFAULT '', " +
-                "privacySettings INTEGER DEFAULT 1000001, " +
+                "signature TEXT DEFAULT 'This is a default signature for everyone!', " +
+                "avatar BLOB DEFAULT NULL, " +
+                "background BLOB DEFAULT NULL, " +
+                "following TEXT DEFAULT '', " +
                 "blacklist TEXT DEFAULT '', " +
+                "history TEXT DEFAULT '', " +
+                "privacy INTEGER DEFAULT 1000001, " +
                 "messages TEXT DEFAULT '');";
 
         db.execSQL(query1);
@@ -351,22 +351,13 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
 
     // Privacy Setting
     public boolean setPrivacySettings(String username, ArrayList<Boolean> settings){
-        int s = 1000001;
-        s += settings.get(0) ? 100000 : 0;
-        s += settings.get(1) ? 10000 : 0;
-        s += settings.get(2) ? 1000 : 0;
-        s += settings.get(3) ? 100 : 0;
-        s += settings.get(4) ? 10 : 0;
-        return setInt(username, "username", s, "privacySettings", "user");
+        return setInt(username, "username", HelperMethods.privacyEncode(settings), "privacy", "user");
     }
     public ArrayList<Boolean> getPrivacySettings(String username){
-        String encode = getInt(username, "username", "privacySettings", "user") + "";
-        ArrayList<Boolean> s = new ArrayList<>();
-        for (int i = 1; i < 6; i++){
-            s.add(encode.charAt(i) == '1');
-        }
-        return s;
+        int encode = getInt(username, "username", "privacy", "user");
+        return HelperMethods.privacyDecode(encode);
     }
+
 
     // Blacklist
     public boolean setBlacklist(String username, HashSet<String> blacklist){
@@ -382,10 +373,10 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         for (int elem : historyInt){
             historyString.add(elem + "");
         }
-        return setSet(username, "username", historyString, "viewHistory", "user");
+        return setSet(username, "username", historyString, "history", "user");
     }
     public HashSet<Integer> getViewHistory(String username) {
-        HashSet<String> historyString = getSet(username, "username", "viewHistory", "user");
+        HashSet<String> historyString = getSet(username, "username", "history", "user");
         HashSet<Integer> historyInt = new HashSet<>();
         for (String elem : historyString){
             historyInt.add(Integer.parseInt(elem));

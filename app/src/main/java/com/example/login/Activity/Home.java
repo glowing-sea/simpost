@@ -85,7 +85,7 @@ public class Home extends AppCompatActivity {
         // =========================== SETTING TEXT AND PICTURE ================================= //
 
         // Set title
-        setTitle(me.username + "'s " + "Profile");
+        setTitle(me.getUsername() + "'s " + "Profile");
 
         // Set background and avatar
         backgroundImage = me.getBackground();
@@ -96,7 +96,7 @@ public class Home extends AppCompatActivity {
             avatar.setImageBitmap(avatarImage);
 
         // Set username
-        userName.setText(me.username);
+        userName.setText(me.getUsername());
 
         // Set signature
         signature.setText(me.getSignature());

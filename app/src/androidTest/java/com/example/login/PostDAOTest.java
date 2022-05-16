@@ -89,10 +89,16 @@ public class PostDAOTest {
         comments.add(new Comment("Daniel", "Well", "n.d."));
         a.setComments(comments);
 
-        // Get comments, views, and likes and check if we get the same things.
+        // Check if the comments, views, and likes are stored in the temporary Post class.
         assertTrue(a.getLikes().contains("Jack") && a.getLikes().contains("Henry") && a.getLikes().contains("Daniel"));
         assertTrue(a.getViews().contains("Jack") && a.getViews().contains("Henry") && a.getViews().contains("Daniel"));
         assertEquals(Comment.commentsEncode(comments), Comment.commentsEncode(a.getComments()));
+
+        // Check if the comments, views, and likes are stored in the database.
+        Post b = db.getPost(POST_ID);
+        assertTrue(b.getLikes().contains("Jack") && b.getLikes().contains("Henry") && b.getLikes().contains("Daniel"));
+        assertTrue(b.getViews().contains("Jack") && b.getViews().contains("Henry") && b.getViews().contains("Daniel"));
+        assertEquals(Comment.commentsEncode(comments), Comment.commentsEncode(b.getComments()));
     }
 
     @Test
@@ -109,10 +115,16 @@ public class PostDAOTest {
         a.addComments(new Comment("Henry", "Great", "n.d."));
         a.addComments(new Comment("Daniel", "Well", "n.d."));
 
-        // Get comments, views, and likes and check if we get the same things.
+        // Check if the comments, views, and likes are stored in the temporary Post class.
         assertTrue(a.getLikes().contains("Jack") && a.getLikes().contains("Henry") && a.getLikes().contains("Daniel"));
         assertTrue(a.getViews().contains("Jack") && a.getViews().contains("Henry") && a.getViews().contains("Daniel"));
         assertEquals("Jack`Good`n.d.~Henry`Great`n.d.~Daniel`Well`n.d.~", Comment.commentsEncode(a.getComments()));
+
+        // Check if the comments, views, and likes are stored in the database.
+        Post b = db.getPost(POST_ID);
+        assertTrue(b.getLikes().contains("Jack") && b.getLikes().contains("Henry") && b.getLikes().contains("Daniel"));
+        assertTrue(b.getViews().contains("Jack") && b.getViews().contains("Henry") && b.getViews().contains("Daniel"));
+        assertEquals("Jack`Good`n.d.~Henry`Great`n.d.~Daniel`Well`n.d.~", Comment.commentsEncode(b.getComments()));
     }
 
     @Test

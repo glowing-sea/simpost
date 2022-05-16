@@ -37,6 +37,25 @@ public class HelperMethods {
         return list;
     }
 
+    // Encode and decode privacy setting
+    public static int privacyEncode (ArrayList<Boolean> settings){
+        int s = 1000001;
+        s += settings.get(0) ? 100000 : 0;
+        s += settings.get(1) ? 10000 : 0;
+        s += settings.get(2) ? 1000 : 0;
+        s += settings.get(3) ? 100 : 0;
+        s += settings.get(4) ? 10 : 0;
+        return s;
+    }
+    public static ArrayList<Boolean> privacyDecode (int encodeInt){
+        String encode = String.valueOf(encodeInt);
+        ArrayList<Boolean> s = new ArrayList<>();
+        for (int i = 1; i < 6; i++){
+            s.add(encode.charAt(i) == '1');}
+        return s;
+    }
+
+
     // Encode and decode an array list
     public static String setEncode (HashSet<String> list){
         StringBuilder stringBuilder= new StringBuilder();
