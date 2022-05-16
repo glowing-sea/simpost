@@ -59,7 +59,7 @@ public class SearchPage extends AppCompatActivity {
             public void onClick(View view) {
                 TextView input = findViewById(R.id.editText_search_page_searcheContent);
                 String searchedText = input.getText().toString();
-                Toast debug = Toast.makeText(getApplicationContext(),"searching:" + searchedText,Toast.LENGTH_LONG);
+                Toast debug = Toast.makeText(getApplicationContext(),"Searching: " + searchedText,Toast.LENGTH_LONG);
                 debug.show();
                 if (!searchedText.equals("")){
                     Intent toResult = new Intent(getApplicationContext(), SearchResultPage.class);
