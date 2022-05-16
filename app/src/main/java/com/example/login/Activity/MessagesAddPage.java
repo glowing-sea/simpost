@@ -2,6 +2,7 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -17,7 +18,9 @@ import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class MessagesAddPage extends AppCompatActivity {
 
@@ -25,6 +28,8 @@ public class MessagesAddPage extends AppCompatActivity {
     Button messageSentButton;
     UserDAO db;
     Me me = Me.getInstance();
+    @SuppressLint("SimpleDateFormat")
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,10 @@ public class MessagesAddPage extends AppCompatActivity {
                     String name = userMessage.getText().toString();
                     if (isUserNameExisted(name)) {
                         String mess = contentMessageSentTextView.getText().toString();
-                        String newMess = insertMessages(name,mess);
+                        Date curDate =  new Date(System.currentTimeMillis());
+                        //获取当前时间
+                        String time =  formatter.format(curDate);
+                        String newMess = insertMessages(time,name,mess);
                         db.setMessage(me.username, newMess);
                         Toast.makeText(getApplicationContext(), "Message Sent!", Toast.LENGTH_LONG).show();
                     } else {
@@ -75,7 +83,7 @@ public class MessagesAddPage extends AppCompatActivity {
         }
     }
 
-    public String insertMessages(String name,String mess) {
+    public String insertMessages(String time,String name,String mess) {
         Cursor cursor = db.getCursor(new String[]{"username,messages"}, "user");
         if(cursor.getCount() == 0){
             Toast.makeText(this, this.getText(R.string.no_data), Toast.LENGTH_SHORT).show();
@@ -85,7 +93,7 @@ public class MessagesAddPage extends AppCompatActivity {
                 String username = cursor.getString(0);
                 if (username.equals(name)) {
                     String messages = cursor.getString(1);
-                    messages = messages + "[" + me.username + "|" + name + "|" + mess + "]";
+                    messages = messages + "[" + time + "@" + me.username + "|" + name + "|" + mess + "]";
                     return messages;
                 }
             }
@@ -101,7 +109,7 @@ public class MessagesAddPage extends AppCompatActivity {
             return false;
         for (int i = 0; i < message.length(); i++){
             char c = message.charAt(i);
-            if (c == '|' || c == '[' || c == ']')
+            if (c == '|' || c == '[' || c == ']' || c == '@')
                 return false;
         }
         return true;
