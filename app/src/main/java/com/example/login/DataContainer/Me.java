@@ -35,7 +35,6 @@ public class Me{
 
     private Me (){}
 
-
     public static Me getInstance() {
         if (instance == null) {
             instance = new Me();

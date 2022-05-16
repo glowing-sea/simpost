@@ -22,6 +22,8 @@ public interface UserDAO {
     // Be careful of null return of image1-3
     Post getPost (int postID);
 
+    ArrayList<Post> getAllPosts ();
+
     boolean setLikes (int postID, HashSet<String> likes);
 
     boolean setViews (int postID, HashSet<String> views);

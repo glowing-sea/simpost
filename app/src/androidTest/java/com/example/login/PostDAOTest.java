@@ -39,7 +39,7 @@ public class PostDAOTest {
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     UserDAOImpl db = new UserDAOImpl(appContext);
     Post e = new Post("TestUser", "Game Review", "This is the content", null, null, null, "RPG", appContext);
-    final int POST_ID = 100000;
+    final int POST_ID = 100;
 
     @Before
     public void setup(){
@@ -68,6 +68,26 @@ public class PostDAOTest {
         assertTrue(a.getLikes().isEmpty());
         assertTrue(a.getComments().isEmpty());
     }
+
+    @Test
+    public void getAllPosts(){
+        int before = db.getAllPosts().size();
+        Post p1 = new Post("TestUser1", "Game Review1", "This is the content", null, null, null, "RPG", appContext);
+        Post p2 = new Post("TestUser2", "Game Review2", "This is the content", null, null, null, "RPG", appContext);
+        Post p3 = new Post("TestUser3", "Game Review3", "This is the content", null, null, null, "RPG", appContext);
+        db.addPostSpecifyID(p1, 100001);
+        db.addPostSpecifyID(p2, 100002);
+        db.addPostSpecifyID(p3, 100003);
+        // Check Size
+        ArrayList<Post> allPosts = db.getAllPosts();
+        int after = allPosts.size();
+        assertEquals(before + 3, after);
+        db.deletePost(100001);
+        db.deletePost(100002);
+        db.deletePost(100003);
+    }
+
+
 
     @Test
     public void setLikeViewCommentTest(){

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.Post;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -66,13 +67,17 @@ public class PostsPage extends AppCompatActivity {
             }
         });
 
-//        RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
-//
-//        allPosts = db.getAllPost();
-//
-//        PostAdapter postAdapter = new PostAdapter(PostsPage.this,allPosts);
-//        rvPosts.setAdapter(postAdapter);
-//        rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
+        RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
+
+        ArrayList<Post> allPosts = db.getAllPosts();
+
+        if (allPosts == null) {
+            Toast.makeText(PostsPage.this, "No Post", Toast.LENGTH_LONG).show();
+        } else {
+            PostAdapter postAdapter = new PostAdapter(PostsPage.this,allPosts);
+            rvPosts.setAdapter(postAdapter);
+            rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
+        }
 
     }
     @Override

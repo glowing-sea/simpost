@@ -135,7 +135,11 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         db.close();
     }
 
-    // Be careful of null return of image1-3
+    /**
+     * This function get a posts from the database
+     * @param postID the post ID
+     * @return the post with the input id or null if there is no such a post
+     */
     public Post getPost (int postID){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM post WHERE postID = ?;";
@@ -159,6 +163,39 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         db.close();
         return new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
     }
+
+
+    /**
+     * This function get all posts from the database
+     * Be careful when use it as the database may contain many posts.
+     * @return all posts in the database or null if there is not post in the database
+     */
+    public ArrayList<Post> getAllPosts (){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM post;";
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, null);
+        ArrayList<Post> allPosts = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            int postID = cursor.getInt(0);
+            String creator = cursor.getString(1);
+            String title = cursor.getString(2);
+            String content = cursor.getString(3);
+            String date = cursor.getString(4);
+            Bitmap image1 = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
+            Bitmap image2 = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
+            Bitmap image3 = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
+            String tag = cursor.getString(8);
+            HashSet<String> likes = HelperMethods.setDecode(cursor.getString(9));
+            HashSet<String> views = HelperMethods.setDecode(cursor.getString(10));
+            ArrayList<Comment> comments = Comment.commentsDecode(cursor.getString(11));
+            allPosts.add(new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context));
+        }
+        cursor.close();
+        db.close();
+        return allPosts;
+    }
+
 
     /**
      * this function use the keyword to match post with this word in title
