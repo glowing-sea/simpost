@@ -169,6 +169,20 @@ public class Me{
         return db.getAvatar(username);
     }
 
+    // Message
+    public boolean setMessages(ArrayList<Message> messages){
+        UserDAO db = new UserDAOImpl(context);
+        return db.setMessages(username, messages);
+    }
+    public ArrayList<Message> getMessages(){
+        UserDAO db = new UserDAOImpl(context);
+        return db.getMessages(username);
+    }
+    public int sendMessage(Message message){
+        UserDAO db = new UserDAOImpl(context);
+        return db.sendMessages(message);
+    }
+
     // ================================= USER REPORT METHODS ==================================== //
 
     public ArrayList<String> getFollowers(){
