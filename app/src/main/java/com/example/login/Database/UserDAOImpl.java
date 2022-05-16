@@ -214,11 +214,6 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         return result;
     }
 
-    public List<Post> postTitleMatch(String word){
-        Set<Post> result = new HashSet<>();
-        List<Post> returnVale = new ArrayList<>();
-        return null;
-    }
 
     // Don't use the following setting and adding method, use those in Post class.
 
