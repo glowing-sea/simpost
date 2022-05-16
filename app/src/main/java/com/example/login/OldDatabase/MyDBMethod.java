@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.login.Activity.LoginPage;
 
-public class MyDBMethod extends SQLiteOpenHelper {
-    public MyDBMethod(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+public class MyDBMethod/* extends SQLiteOpenHelper */{
+    /*public MyDBMethod(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "my.db", factory, version);
     }
 
@@ -21,6 +21,6 @@ public class MyDBMethod extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
-    }
+    }*/
 
 }

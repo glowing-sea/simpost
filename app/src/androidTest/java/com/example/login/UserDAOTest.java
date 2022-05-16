@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.example.login.DataContainer.Me;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 
@@ -29,7 +30,7 @@ import java.util.Collections;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class DatabaseDAOTest {
+public class UserDAOTest {
 
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     UserDAOImpl db = new UserDAOImpl(appContext);
@@ -45,6 +46,7 @@ public class DatabaseDAOTest {
 //        db.deleteUser("TestUser");
 //        db.close();
 //    }
+
 
     @Test
     public void passwordDOATest(){

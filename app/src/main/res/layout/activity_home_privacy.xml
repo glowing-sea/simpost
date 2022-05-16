@@ -16,22 +16,30 @@
         app:layout_constraintVertical_bias="0.0">
 
         <Switch
-            android:id="@+id/switch_SettingPage_filterSwitch"
-            android:layout_width="match_parent"
+            android:id="@+id/switch_hide_age"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="Filter(replacing bad words with *)" />
+            android:text="Hide age"/>
 
         <Switch
-            android:id="@+id/switch_SettingPage_NightMode"
-            android:layout_width="match_parent"
+            android:id="@+id/switch_hide_gender"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="NightMode" />
+            android:text="Hide gender"/>
 
         <Switch
-            android:id="@+id/switch_SettingPage_unusedSwitch"
-            android:layout_width="match_parent"
+            android:id="@+id/switch_hide_location"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
-            android:text="switch5" />
+            android:text="Hide location"/>
+
+        <Switch
+            android:id="@+id/hide_message"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="Filter inappropriate language"/>
+
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

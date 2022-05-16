@@ -10,10 +10,8 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
-import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostOld;
 import com.example.login.FileIO.FileRW;
-
-import java.io.File;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -27,7 +25,7 @@ public class PostRWTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.login", appContext.getPackageName());
-        Post testPost = new Post("test","HelloWorld");
+        PostOld testPost = new PostOld("test","HelloWorld");
         FileRW fileRW = new FileRW(appContext);
         String postString = testPost.toJson();
         String fileName = "test.json";

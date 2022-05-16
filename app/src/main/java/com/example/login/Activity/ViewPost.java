@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostOld;
 import com.example.login.R;
 
 public class ViewPost extends AppCompatActivity {
-    Post current;
+    PostOld current;
     TextView title, content, likeCount, viewCount, postTime;
     Button back, like, dislike;
 
@@ -26,11 +26,11 @@ public class ViewPost extends AppCompatActivity {
         String t = "";
         String c = "";
         if (fromCreate != null){
-            current = (Post) getIntent().getExtras().getSerializable("POST");
+            current = (PostOld) getIntent().getExtras().getSerializable("POST");
         }
         t = current.getTitle();
         c = current.getContent();
-        String l = String.valueOf(current.getLike());
+        String l = String.valueOf(current.getLikes());
         title = findViewById(R.id.postTitleText);
         content = findViewById(R.id.postContentText);
         back = findViewById(R.id.returnKey);
@@ -59,9 +59,9 @@ public class ViewPost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //这里最后改成改变数据库
-                current.changeLike(1);
+                // current.changeLike(1);
                 like.setEnabled(false);
-                String LA = "Current likes:" + " " + String.valueOf(current.getLike());
+                String LA = "Current likes:" + " " + current.getLikes().length();
                 likeCount.setText(LA);
             }
         });
@@ -69,9 +69,9 @@ public class ViewPost extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //这里最后改成改变数据库
-                current.changeLike(-1);
+                // current.changeLike(-1); 这里改成添加当前用户名进like
                 dislike.setEnabled(false);
-                String LA = "Current likes:" + " " + String.valueOf(current.getLike());
+                String LA = "Current likes:" + " " + current.getLikes().length();
                 likeCount.setText(LA);
             }
         });

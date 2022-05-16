@@ -27,13 +27,10 @@ import android.widget.Toast;
 
 
 public class Home extends AppCompatActivity {
-    Activity activity;
-    boolean changeBackground;
 
-    ImageView background, avatar, setting, privacy,report;
+    ImageView background, avatar, setting, privacy, message,report;
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
-    UserAdmin current;
     FloatingActionButton changeBackgroundButton;
     Me me = Me.getInstance();
 
@@ -79,6 +76,7 @@ public class Home extends AppCompatActivity {
         following = findViewById(R.id.following_me);
         setting = findViewById(R.id.setting_me);
         privacy = findViewById(R.id.privacy_me);
+        message = findViewById(R.id.message_me);
 
 
         // =========================== SETTING TEXT AND PICTURE ================================= //
@@ -101,22 +99,24 @@ public class Home extends AppCompatActivity {
         signature.setText(me.getSignature());
 
         // Set age
-        if (me.getAge() != -1)
+        if (me.getAge() != -1 && !me.getPrivacySettings().get(0)) {
             age.setText(me.getAge() + "");
+        }
 
         // Set gender
-        int genderInt = me.getGender();
-        switch (genderInt) {
-            case 0:
-                gender.setText("M");
-                break;
-            case 1:
-                gender.setText("F");
-                break;
-            case 2:
-                gender.setText("O");
-                break;
-        }
+        if ( !me.getPrivacySettings().get(1)){
+            int genderInt = me.getGender();
+            switch (genderInt) {
+                case 0:
+                    gender.setText("M");
+                    break;
+                case 1:
+                    gender.setText("F");
+                    break;
+                case 2:
+                    gender.setText("O");
+                    break;
+        }}
 
         // Setting following and followers
 
@@ -152,7 +152,15 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), HomeSetting.class);
-                startActivityForResult(intent, 1);
+                startActivityForResult(intent, 100);
+            }
+        });
+
+        message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), Messages.class);
+                startActivityForResult(intent, 100);
             }
         });
 
@@ -182,7 +190,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 2);
+                startActivityForResult(intent, 200);
             }
         });
 
@@ -192,7 +200,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(intent, 3);
+                startActivityForResult(intent, 300);
             }
         });
     }
@@ -201,33 +209,36 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        boolean re;
-        if (requestCode == 1) {
-            recreate();
-        }
-        if (requestCode == 2 || requestCode == 3) {
-            Uri imageUri = data.getData();
-            Bitmap image = HelperMethods.uri2bitmap(imageUri, getApplicationContext());
-            if (requestCode == 3) {
-                re = me.setBackground(image);
-                if (!re) {
-                    Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
+
+        if (resultCode == RESULT_OK){
+            boolean re;
+            if (requestCode == 100) {
+                recreate();
+            }
+            if (requestCode == 200 || requestCode == 300) {
+                Uri imageUri = data.getData();
+                Bitmap image = HelperMethods.uri2bitmap(imageUri, getApplicationContext());
+                if (requestCode == 300) {
+                    re = me.setBackground(image);
+                    if (!re) {
+                        Toast.makeText(getApplicationContext(), "The maximum image size is 200kb", Toast.LENGTH_SHORT).show();
+                    } else {
+                        background.setImageBitmap(image);
+                    }
                 } else {
-                    background.setImageBitmap(image);
-                }
-            } else {
-                re = me.setAvatar(image);
-                if (!re) {
-                    Toast.makeText(getApplicationContext(), "The image is too large", Toast.LENGTH_SHORT).show();
-                } else {
-                    avatar.setImageBitmap(image);
+                    re = me.setAvatar(image);
+                    if (!re) {
+                        Toast.makeText(getApplicationContext(), "The maximum image size is 200kb", Toast.LENGTH_SHORT).show();
+                    } else {
+                        avatar.setImageBitmap(image);
+                    }
                 }
             }
         }
     }
 }
 
-    // ================================DELETED METHODS=========================================== //
+// ================================DELETED METHODS=========================================== //
 
 
 //        cameraBackground.setOnClickListener(new View.OnClickListener() {

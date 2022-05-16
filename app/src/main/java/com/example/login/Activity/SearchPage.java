@@ -1,6 +1,8 @@
 package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.login.DataContainer.Post;
 import com.example.login.R;
 import com.example.login.parserAndTokenizer.Token;
 import com.example.login.parserAndTokenizer.Tokenizier;
