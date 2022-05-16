@@ -509,6 +509,9 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
 
     public void setMessage(String usname, String mess){
-
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE user SET messages = ? WHERE username = ?",
+                new String[]{mess,usname});
+        db.close();
     }
 }
