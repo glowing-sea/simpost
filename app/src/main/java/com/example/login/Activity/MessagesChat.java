@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.login.DataContainer.ChatBox;
 import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.Message;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -28,7 +29,9 @@ public class MessagesChat extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+        //old
+        /*super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages_chat);
 
         recyclerView = findViewById(R.id.message_chat_recycle_view);
@@ -45,8 +48,37 @@ public class MessagesChat extends AppCompatActivity {
 
         messagesChatAdapter = new MessagesChatAdapter(MessagesChat.this, this,messages);
         recyclerView.setAdapter(messagesChatAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager((this)));
+        recyclerView.setLayoutManager(new LinearLayoutManager((this)));*/
 
+        //new
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_messages_chat);
+
+        recyclerView = findViewById(R.id.message_chat_recycle_view);
+
+        db = new UserDAOImpl(getApplicationContext());
+        messages = new ArrayList<>();
+
+        Bundle fromCreate = getIntent().getExtras();
+        if (fromCreate != null){
+            String name = (String) getIntent().getExtras().getSerializable("NAME");
+            getIntent().removeExtra("NAME");
+            ArrayList<Message> mess = db.getMessages(me.username);
+            for (Message m:mess
+                 ) {
+                if (m.getReceiver().equals(name)) {
+                    ChatBox chatBox1 = new ChatBox(m.getSender() + " " + m.getDate(),m.getContent());
+                    messages.add(chatBox1);
+                } else if (m.getSender().equals(name)) {
+                    ChatBox chatBox2 = new ChatBox(m.getSender() + " " + m.getDate(), m.getContent());
+                    messages.add(chatBox2);
+                }
+            }
+        }
+
+        messagesChatAdapter = new MessagesChatAdapter(MessagesChat.this, this,messages);
+        recyclerView.setAdapter(messagesChatAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager((this)));
     }
 
     @Override
@@ -57,7 +89,8 @@ public class MessagesChat extends AppCompatActivity {
         }
     }
 
-    void databaseToMessageChatBox(String targetName){
+    //old
+    /*void databaseToMessageChatBox(String targetName){
         Cursor cursor = db.getCursor(new String[]{"username, messages"}, "user");
         if(cursor.getCount() == 0){
             Toast.makeText(this, this.getText(R.string.no_data), Toast.LENGTH_SHORT).show();
@@ -105,5 +138,7 @@ public class MessagesChat extends AppCompatActivity {
                     }
             }
         }
-    }
+    }*/
+
+
 }

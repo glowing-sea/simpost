@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.Message;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -29,7 +30,8 @@ public class Messages extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        //old
+        /*super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
         recyclerView = findViewById(R.id.message_list);
@@ -38,6 +40,38 @@ public class Messages extends AppCompatActivity {
         db = new UserDAOImpl(getApplicationContext());
         users = new ArrayList<>();
         databaseToUsersArrays();
+
+        messageAdapter = new MessageAdapter(Messages.this, this, users);
+        recyclerView.setAdapter(messageAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager((this)));
+
+        addNewMessageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MessagesAddPage.class);
+                startActivity(intent);
+            }
+        });*/
+
+
+        //new
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_messages);
+
+        recyclerView = findViewById(R.id.message_list);
+        addNewMessageButton = findViewById(R.id.addNewMessageButton);
+
+        db = new UserDAOImpl(getApplicationContext());
+        users = new ArrayList<>();
+        ArrayList<Message> receivers = db.getMessages(me.username);
+        for (Message m:receivers
+        ) {
+            if (m.getReceiver().equals(me.username)) {
+                users.add(m.getSender());
+            } else if (m.getSender().equals(me.username)) {
+                users.add(m.getReceiver());
+            }
+        }
 
         messageAdapter = new MessageAdapter(Messages.this, this, users);
         recyclerView.setAdapter(messageAdapter);
@@ -61,7 +95,8 @@ public class Messages extends AppCompatActivity {
     }
 
 
-    void databaseToUsersArrays(){
+    //old
+    /*void databaseToUsersArrays(){
         Cursor cursor = db.getCursor(new String[]{"username, messages"}, "user");
         if(cursor.getCount() == 0){
             Toast.makeText(this, this.getText(R.string.no_data), Toast.LENGTH_SHORT).show();
@@ -112,5 +147,7 @@ public class Messages extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
+
+
 }

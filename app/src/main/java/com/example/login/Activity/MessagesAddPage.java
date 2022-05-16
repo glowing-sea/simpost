@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.Message;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -39,7 +40,8 @@ public class MessagesAddPage extends AppCompatActivity {
         contentMessageSentTextView = findViewById(R.id.contentMessageSentTextView);
         messageSentButton = findViewById(R.id.messageSentButton);
 
-        messageSentButton.setOnClickListener(new View.OnClickListener() {
+        //old
+        /*messageSentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String message = contentMessageSentTextView.getText().toString();
@@ -54,6 +56,32 @@ public class MessagesAddPage extends AppCompatActivity {
                         String time =  formatter.format(curDate);
                         String newMess = insertMessages(time,name,mess);
                         db.setMessage(me.username, newMess);
+                        Toast.makeText(getApplicationContext(), "Message Sent!", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Username not existed!", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Message can not contain '|' or '[' or ']'", Toast.LENGTH_LONG).show();
+                }
+            }
+        });*/
+
+        messageSentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String message = contentMessageSentTextView.getText().toString();
+                //check message not contains '`' or '~'
+                if(checkMessageValid(message)) {
+                    db = new UserDAOImpl(getApplicationContext());
+                    String name = userMessage.getText().toString();
+                    if (isUserNameExisted(name)) {
+
+                        Date curDate =  new Date(System.currentTimeMillis());
+                        //获取当前时间
+                        String time =  formatter.format(curDate);
+                        Message mess = new Message(me.username, name, time, false, message);
+
+                        db.sendMessages(mess);
                         Toast.makeText(getApplicationContext(), "Message Sent!", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Username not existed!", Toast.LENGTH_LONG).show();
@@ -82,7 +110,8 @@ public class MessagesAddPage extends AppCompatActivity {
         }
     }
 
-    public String insertMessages(String time,String name,String mess) {
+    //old
+    /*public String insertMessages(String time,String name,String mess) {
         Cursor cursor = db.getCursor(new String[]{"username,messages"}, "user");
         if(cursor.getCount() == 0){
             Toast.makeText(this, this.getText(R.string.no_data), Toast.LENGTH_SHORT).show();
@@ -98,10 +127,11 @@ public class MessagesAddPage extends AppCompatActivity {
             }
         }
         return null;
-    }
+    }*/
 
 
-    boolean checkMessageValid(String message) {
+    //old
+    /*boolean checkMessageValid(String message) {
         if (message == null)
             return false;
         if (message.length() > 2000)
@@ -112,6 +142,19 @@ public class MessagesAddPage extends AppCompatActivity {
                 return false;
         }
         return true;
-    }
+    }*/
 
+    //new
+    boolean checkMessageValid(String message) {
+        if (message == null)
+            return false;
+        if (message.length() > 2000)
+            return false;
+        for (int i = 0; i < message.length(); i++){
+            char c = message.charAt(i);
+            if (c == '~' || c == '`')
+                return false;
+        }
+        return true;
+    }
 }
