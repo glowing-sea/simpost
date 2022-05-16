@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 
@@ -17,6 +18,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /*
 
@@ -152,6 +155,63 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor.close();
         db.close();
         return new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
+    }
+    //overloading method
+    public Post getPost (String postID){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM post WHERE postID = ?;";
+        String[] replace = {postID};
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, replace);
+        if (cursor.getCount() != 1) return null;
+        cursor.moveToNext();
+        String creator = cursor.getString(1);
+        String title = cursor.getString(2);
+        String content = cursor.getString(3);
+        String date = cursor.getString(4);
+        Bitmap image1 = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
+        Bitmap image2 = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
+        Bitmap image3 = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
+        String tag = cursor.getString(8);
+        HashSet<String> likes = HelperMethods.setDecode(cursor.getString(9));
+        HashSet<String> views = HelperMethods.setDecode(cursor.getString(10));
+        ArrayList<Comment> comments = Comment.commentsDecode(cursor.getString(11));
+        cursor.close();
+        db.close();
+        return new Post(Integer.parseInt(postID), creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
+    }
+
+    /**
+     * this function use the keywrod to match post with this word in title
+     * @param keyword the key word need to match details in fts4
+     * @return set of posts
+     */
+    public Set<Post> postTitleMatch(String keyword){
+        Set<Post> result = new HashSet<>();
+        //cleaning and creating the tables that is used
+        SQLiteDatabase db = this.getReadableDatabase();
+        String cleaning = "DROP TABLE IF EXISTS searchResult";
+        db.execSQL(cleaning);
+        String creat = "CREATE VIRTUAL TABLE searchResult USING fts4(postId,title)";
+        db.execSQL(creat);
+        String dataInsert= "INSERT INTO searchResult(postId,title) SELECT postID,title FROM post";
+        db.execSQL(dataInsert);
+        //matching
+        String matching = "SELECT * FROM searchResult WHERE title MATCH ?";
+        String[] keyWordList =new String[1];
+        keyWordList[0] = keyword;
+        Cursor cursor = null;
+        cursor = db.rawQuery(matching,keyWordList);
+        //returning the ids
+        if (cursor.getCount() == 0) return null;
+        while(cursor.isBeforeFirst()){
+            cursor.moveToNext();
+        }
+        while (!cursor.isAfterLast()){
+            result.add(getPost(cursor.getString(0)));
+            cursor.moveToNext();
+        }
+        return result;
     }
 
     // Don't use the following setting and adding method, use those in Post class.

@@ -60,6 +60,18 @@ public class Post {
 
     // This method is designed for create a new post. After creating a post, use addPost method in
     // UserDAO to store this post into the data base.
+
+    /**
+     * this creat a post
+     * @param creator the name of creator
+     * @param title titile of post
+     * @param content contant of post
+     * @param image1 image1
+     * @param image2 image2
+     * @param image3 image 3
+     * @param tag tag of post
+     * @param context unknown
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Post(String creator, String title, String content, Bitmap image1,
                 Bitmap image2, Bitmap image3, String tag, Context context) {
