@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.Locale;
 
 // A temporary object holding the partial information of a post.
-public class Post {
+public class Post{
     public final int postID; // Auto initialised
     public final String creator;
     public final String title;
@@ -117,6 +117,21 @@ public class Post {
 
     public HashSet<String> getViews() { return views; }
 
+    public String getPoster() {
+        return this.creator;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public String getDate() {
+        return this.date;
+    }
 }
 
 
