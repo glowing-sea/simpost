@@ -12,12 +12,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.login.R;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class SubscribeAdapter extends RecyclerView.Adapter<SubscribeAdapter.SubscribeViewHolder> {
     private final Context ctx;
-    private final List<String> dataset;
-    public SubscribeAdapter(Context ctx, List<String> dataset){
+    private final ArrayList<String> dataset;
+    public SubscribeAdapter(Context ctx, ArrayList<String> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }

@@ -26,6 +26,7 @@ import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -69,8 +70,8 @@ public class UserDAOTest {
     @Test
     public void followingDOATest(){
         assertTrue(db.getFollowing("TestUser").isEmpty());
-        ArrayList<String> expected = new ArrayList<>();
-        ArrayList<String> actual;
+        HashSet<String> expected = new HashSet<>();
+        HashSet<String> actual;
         expected.add("Henry");
         expected.add("Amy");
         expected.add("Ben");
@@ -127,8 +128,8 @@ public class UserDAOTest {
     @Test
     public void blacklistDOATest(){
         assertTrue(db.getBlacklist("TestUser").isEmpty());
-        ArrayList<String> expected = new ArrayList<>();
-        ArrayList<String> actual;
+        HashSet<String> expected = new HashSet<>();
+        HashSet<String> actual;
         expected.add("BadGuy1");
         expected.add("BadGuy2");
         expected.add("BadGuy3");
@@ -141,8 +142,8 @@ public class UserDAOTest {
     public void historyDOATest(){
         // Empty
         assertTrue(db.getViewHistory("TestUser").isEmpty());
-        ArrayList<Integer> expected = new ArrayList<>();
-        ArrayList<Integer> actual;
+        HashSet<Integer> expected = new HashSet<>();
+        HashSet<Integer> actual;
         expected.add(13213213);
         expected.add(232323);
         expected.add(23213213);

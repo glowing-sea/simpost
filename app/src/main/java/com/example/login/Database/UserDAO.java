@@ -58,8 +58,8 @@ public interface UserDAO {
     String getPassword(String username);
 
     // Following
-    boolean setFollowing(String username, ArrayList<String> following);
-    ArrayList<String> getFollowing(String username);
+    boolean setFollowing(String username, HashSet<String> following);
+    HashSet<String> getFollowing(String username);
 
     // Signature
     boolean setSignature(String username, String newSignature);
@@ -82,12 +82,12 @@ public interface UserDAO {
     ArrayList<Boolean> getPrivacySettings(String username);
 
     // Blacklist
-    boolean setBlacklist(String username, ArrayList<String> blacklist);
-    ArrayList<String> getBlacklist(String username);
+    boolean setBlacklist(String username, HashSet<String> blacklist);
+    HashSet<String> getBlacklist(String username);
 
     // View History
-    boolean setViewHistory(String username, ArrayList<Integer> historyInt);
-    ArrayList<Integer> getViewHistory(String username);
+    boolean setViewHistory(String username, HashSet<Integer> historyInt);
+    HashSet<Integer> getViewHistory(String username);
 
     // Background
     boolean setBackground(String username, Bitmap background);

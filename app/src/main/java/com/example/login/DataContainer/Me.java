@@ -7,6 +7,7 @@ import com.example.login.Database.SearchFacade;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 // A singleton user
 
@@ -21,14 +22,14 @@ public class Me{
     /* The following fields are saved directly in the database instead of the object.
 
     String password;
-    ArrayList<String> following;
+    HashSet<String> following;
     String signature;
     int age;
     int gender;
     String location;
     ArrayList<Boolean> privacy;
-    ArrayList<String> blacklist;
-    ArrayList<Integer> history;
+    HashSet<String> blacklist;
+    HashSet<Integer> history;
     Bitmap avatar;
     Bitmap background;
 
@@ -70,11 +71,11 @@ public class Me{
     }
 
     // Following
-    public boolean setFollowing(ArrayList<String> following){
+    public boolean setFollowing(HashSet<String> following){
         UserDAO db = new UserDAOImpl(context);
         return db.setFollowing(username, following);
     }
-    public ArrayList<String> getFollowing() {
+    public HashSet<String> getFollowing() {
         UserDAO db = new UserDAOImpl(context);
         return db.getFollowing(username);
     }
@@ -130,21 +131,21 @@ public class Me{
     }
 
     // Blacklist
-    public boolean setBlacklist(ArrayList<String> blacklist){
+    public boolean setBlacklist(HashSet<String> blacklist){
         UserDAO db = new UserDAOImpl(context);
         return db.setBlacklist(username, blacklist);
     }
-    public ArrayList<String> getBlacklist(){
+    public HashSet<String> getBlacklist(){
         UserDAO db = new UserDAOImpl(context);
         return db.getBlacklist(username);
     }
 
     // View History
-    public boolean setViewHistory(ArrayList<Integer> historyInt){
+    public boolean setViewHistory(HashSet<Integer> historyInt){
         UserDAO db = new UserDAOImpl(context);
         return db.setViewHistory(username, historyInt);
     }
-    public ArrayList<Integer> getViewHistory(){
+    public HashSet<Integer> getViewHistory(){
         UserDAO db = new UserDAOImpl(context);
         return db.getViewHistory(username);
     }
