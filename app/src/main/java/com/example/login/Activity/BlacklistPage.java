@@ -8,36 +8,30 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
-
-import com.example.login.DataContainer.UserOld;
-import com.example.login.Database.UserDAO;
-import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class SubscriptionsPage extends AppCompatActivity {
+public class BlacklistPage extends AppCompatActivity {
     Me me = Me.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_subscriptions_page);
-        RecyclerView rvPosts = (RecyclerView) findViewById(R.id.subscriptions);
+        setContentView(R.layout.activity_blacklist_page);
+        RecyclerView rvPosts = (RecyclerView) findViewById(R.id.blacklist_recycler);
 
         //仅测试，最后将allPosts改成数据库中需要显示的post即可
 
-        ArrayList<String> allUsers = me.getFollowing();
+        ArrayList<String> allUsers = me.getBlacklist();
         if (allUsers.size() == 0){
-            Toast.makeText(SubscriptionsPage.this, "You have not subscribed to anyone yet", Toast.LENGTH_LONG).show();
+            Toast.makeText(BlacklistPage.this, "You have no one in blacklist yet", Toast.LENGTH_SHORT).show();
         }
         allUsers.add("hello");
         allUsers.add("lty");
         allUsers.add("you");
-        SubscribeAdapter subscriberAdapter = new SubscribeAdapter(SubscriptionsPage.this,allUsers);
+        SubscribeAdapter subscriberAdapter = new SubscribeAdapter(BlacklistPage.this,allUsers);
         rvPosts.setAdapter(subscriberAdapter);
         rvPosts.setLayoutManager(new LinearLayoutManager((this)));
-
     }
 }

@@ -35,13 +35,12 @@ public class SubscribeAdapter extends RecyclerView.Adapter<SubscribeAdapter.Subs
 
         holder.getSubscribeName().setText(current);
 
-
         holder.getSingleSubscribe().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Toast.makeText(ctx, "Clicked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(ctx, Home.class);
-                intent.putExtra("USER", current);
+                Intent intent = new Intent(ctx, other_home.class);
+                intent.putExtra("OTHER", current);
                 // intent.putExtra("username", String.valueOf(users.get(position)));
                 ctx.startActivity(intent);
             }

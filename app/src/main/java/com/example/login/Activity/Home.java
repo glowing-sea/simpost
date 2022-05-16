@@ -38,8 +38,7 @@ public class Home extends AppCompatActivity {
         blacklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, other_home.class);
-                i.putExtra("OTHER", me.username);
+                Intent i = new Intent(Home.this, BlacklistPage.class);
                 startActivity(i);
             }
         });
