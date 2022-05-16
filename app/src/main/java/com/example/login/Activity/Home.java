@@ -154,7 +154,7 @@ public class Home extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeSetting.class);
+                Intent intent = new Intent(Home.this, HomeSetting.class);
                 startActivityForResult(intent, 100);
             }
         });
@@ -163,7 +163,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Messages.class);
-                startActivityForResult(intent, 100);
+                startActivityForResult(intent, 500);
             }
         });
 

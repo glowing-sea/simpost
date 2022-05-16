@@ -149,9 +149,8 @@ public class HomeSetting extends AppCompatActivity {
                     isSuccess = false;
                 }
                 if (isSuccess)
+                    setResult(RESULT_OK);
                     finish();
-                Intent intent = new Intent(HomeSetting.this, Home.class);
-                startActivity(intent);
             }
         });
     }
