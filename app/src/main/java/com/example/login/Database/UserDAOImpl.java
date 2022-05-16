@@ -156,33 +156,9 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         db.close();
         return new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
     }
-    //overloading method
-    public Post getPost (String postID){
-        SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM post WHERE postID = ?;";
-        String[] replace = {postID};
-        Cursor cursor = null;
-        cursor = db.rawQuery(query, replace);
-        if (cursor.getCount() != 1) return null;
-        cursor.moveToNext();
-        String creator = cursor.getString(1);
-        String title = cursor.getString(2);
-        String content = cursor.getString(3);
-        String date = cursor.getString(4);
-        Bitmap image1 = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
-        Bitmap image2 = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
-        Bitmap image3 = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
-        String tag = cursor.getString(8);
-        HashSet<String> likes = HelperMethods.setDecode(cursor.getString(9));
-        HashSet<String> views = HelperMethods.setDecode(cursor.getString(10));
-        ArrayList<Comment> comments = Comment.commentsDecode(cursor.getString(11));
-        cursor.close();
-        db.close();
-        return new Post(Integer.parseInt(postID), creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
-    }
 
     /**
-     * this function use the keywrod to match post with this word in title
+     * this function use the keyword to match post with this word in title
      * @param keyword the key word need to match details in fts4
      * @return set of posts
      */
@@ -208,7 +184,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
             cursor.moveToNext();
         }
         while (!cursor.isAfterLast()){
-            result.add(getPost(cursor.getString(0)));
+            result.add(getPost(cursor.getInt(0)));
             cursor.moveToNext();
         }
         return result;

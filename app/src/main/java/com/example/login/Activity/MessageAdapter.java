@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.UserAdmin;
 import com.example.login.R;
 
 import java.util.ArrayList;
@@ -45,8 +44,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, MessagesAddPage.class);
-                intent.putExtra("USER", user);
+                Intent intent = new Intent(context, MessagesChat.class);
+                intent.putExtra("NAME", user);
                 // intent.putExtra("username", String.valueOf(users.get(position)));
                 activity.startActivityForResult(intent, 1);
             }

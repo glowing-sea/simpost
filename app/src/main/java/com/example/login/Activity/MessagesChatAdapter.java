@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login.DataContainer.ChatBox;
 import com.example.login.R;
 
 import java.util.ArrayList;
@@ -21,12 +22,12 @@ public class MessagesChatAdapter extends RecyclerView.Adapter<MessagesChatAdapte
 
     private Context context;
     Activity activity;
-    private ArrayList<String> users;
+    private ArrayList<ChatBox> messages;
 
-    MessagesChatAdapter(Activity activity, Context context, ArrayList users){
+    MessagesChatAdapter(Activity activity, Context context, ArrayList message){
         this.activity = activity;
         this.context = context;
-        this.users = users;
+        this.messages = message;
     }
 
     @NonNull
@@ -38,35 +39,28 @@ public class MessagesChatAdapter extends RecyclerView.Adapter<MessagesChatAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MessagesChatAdapter.MessageChatViewHolder holder, int position) {
-        String user = users.get(position);
-        holder.username.setText(user);
-        holder.messageRow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, MessagesAddPage.class);
-                intent.putExtra("USER", user);
-                // intent.putExtra("username", String.valueOf(users.get(position)));
-                activity.startActivityForResult(intent, 1);
-            }
-        });
+        ChatBox chatBox = messages.get(position);
+        holder.username.setText(chatBox.getUsername());
+        holder.context.setText(chatBox.getmessage());
+
     }
 
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return messages.size();
     }
 
     public class MessageChatViewHolder extends RecyclerView.ViewHolder{
 
-        TextView username;
+        TextView username,context;
         LinearLayout messageRow;
 
         public MessageChatViewHolder(@NonNull View itemView) {
             super(itemView);
-            username = (TextView) itemView.findViewById(R.id.message_adapter_user_name);
-            messageRow = itemView.findViewById(R.id.message_row);
+            username = (TextView) itemView.findViewById(R.id.chat_box_username);
+            context = (TextView) itemView.findViewById(R.id.chat_box_content);
+            messageRow = itemView.findViewById(R.id.chat_box_row);
         }
     }
 }
