@@ -20,7 +20,8 @@
         android:theme="@style/Theme.Login">
         <activity
             android:name=".Activity.MessagesChat"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".Activity.Messages" />
         <activity
             android:name=".Activity.MessagesAddPage"
             android:exported="false"
