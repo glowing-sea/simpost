@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 
@@ -17,6 +18,8 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /*
 
@@ -152,6 +155,12 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor.close();
         db.close();
         return new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
+    }
+
+    public List<Post> postTitleMatch(String word){
+        Set<Post> result = new HashSet<>();
+        List<Post> returnVale = new ArrayList<>();
+        return null;
     }
 
     // Don't use the following setting and adding method, use those in Post class.
