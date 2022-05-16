@@ -42,6 +42,9 @@
             android:name=".Activity.SubscriptionsPage"
             android:exported="false" />
         <activity
+            android:name=".Activity.reportPage"
+            android:exported="false" />
+        <activity
             android:name=".Activity.FollowerPage"
             android:exported="false" />
         <activity
