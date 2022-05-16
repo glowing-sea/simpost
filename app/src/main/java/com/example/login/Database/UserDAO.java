@@ -3,11 +3,36 @@ package com.example.login.Database;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 
+import com.example.login.DataContainer.Comment;
+import com.example.login.DataContainer.Post;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public interface UserDAO {
 
-    // ================================= ROWS MANAGEMENT ======================================== //
+    // ================================ POSTS MANAGEMENT ======================================== //
+
+    boolean addPost (Post post);
+
+    void deletePost (int postID);
+
+    Post getPost (int postID);
+
+    boolean setLikes (int postID, HashSet<String> likes);
+
+    boolean setViews (int postID, HashSet<String> views);
+
+    boolean setComments (int postID, ArrayList<Comment> comments);
+
+    boolean addLikes (int postID, String username);
+
+    boolean addViews (int postID, String username);
+
+    boolean addComments (int postID, Comment comment);
+
+
+    // ============================ ADDING AND DELETING USERS =================================== //
 
     // The following methods access, insert, or delete, a whole row in the database.
 
@@ -22,7 +47,7 @@ public interface UserDAO {
 
     Cursor getCursor(String[] columns, String tableName);
 
-    // ================================= CELLS MANAGEMENT ======================================= //
+    // ======================== SETTING AND GETTING A USER'S ATTRIBUTES ========================= //
 
     // The following methods access and update a single cell in the database.
 
@@ -69,4 +94,6 @@ public interface UserDAO {
     // Avatar
     boolean setAvatar(String username, Bitmap avatar);
     Bitmap getAvatar(String username);
+
+    void setMessage(String usname, String mess);
 }

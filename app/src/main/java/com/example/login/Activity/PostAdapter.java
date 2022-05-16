@@ -16,15 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostOld;
 
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
     private final Context ctx;
-    private final List<Post> dataset;
-    public PostAdapter(Context ctx, List<Post> dataset){
+    private final List<PostOld> dataset;
+    public PostAdapter(Context ctx, List<PostOld> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -41,7 +41,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         int max =100;
         int min =0;
         int id = (int) (Math.random()*((max-min) + 1) + min);
-        Post current = dataset.get(position);
+        PostOld current = dataset.get(position);
 
         holder.getPostUser().setText(dataset.get(position).getPoster());
         holder.getPostContent().setText(dataset.get(position).getContent());

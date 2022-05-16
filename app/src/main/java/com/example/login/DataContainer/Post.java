@@ -1,6 +1,7 @@
 package com.example.login.DataContainer;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.util.Log;
@@ -8,6 +9,9 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.login.Database.HelperMethods;
+import com.example.login.Database.UserDAO;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.FileIO.FileRW;
 import com.google.gson.Gson;
 
@@ -15,92 +19,108 @@ import java.io.File;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Locale;
 
-public class Post implements Serializable {
-    private int postID;
-    private String poster;
-    private String title;
-    private String content;
-    private String date;
-    private Byte[] image1;
-    private Byte[] image2;
-    private Byte[] image3;
-    private String gameName;
-    private int like;
-    private ArrayList<String> comment;
-    private String preserved;
+// A temporary object holding the partial information of a post.
+public class Post {
+    public final int postID; // Auto initialised
+    public final String creator;
+    public final String title;
+    public final String content;
+    public final String date; // Auto initialised
+    public final Bitmap image1;
+    public final Bitmap image2;
+    public final Bitmap image3;
+    public final String tag;
+    private HashSet<String> likes; // Auto initialised
+    private HashSet<String> views; // Auto initialised
+    private ArrayList<Comment> comments; // Auto initialised
+    public Context context;
 
-    private static final String TAG = "Post";
+    // Don't use
+    // This method is designed for the database to generate a post object only, don't use this method manually.
+    public Post(int postID, String creator, String title, String content, String date,
+                Bitmap image1, Bitmap image2, Bitmap image3, String tag, HashSet<String> likes,
+                HashSet<String> views, ArrayList<Comment> comments, Context context) {
+        this.postID = postID;
+        this.creator = creator;
+        this.title = title;
+        this.content = content;
+        this.date = date;
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        this.tag = tag;
+        this.likes = likes;
+        this.views = views;
+        this.comments = comments;
+        this.context = context;
+    }
 
-
+    // This method is designed for create a new post. After creating a post, use addPost method in
+    // UserDAO to store this post into the data base.
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public Post(String title, String content){
+    public Post(String creator, String title, String content, Bitmap image1,
+                Bitmap image2, Bitmap image3, String tag, Context context) {
+        this.postID = -1; // The id value will be generated automatically when be stored in the database.
+        this.creator = creator;
         this.title = title;
         this.content = content;
-        this.like = 0;
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        date = sdf.format(c.getTime());
+        this.date = HelperMethods.getDateTime();
+        this.image1 = image1;
+        this.image2 = image2;
+        this.image3 = image3;
+        this.tag = tag;
+        this.context = context;
     }
 
-    public String getPoster() {return poster; }
-    public String getTitle(){
-        return this.title;
-    }
-    public String getContent(){
-        return this.content;
-    }
-    public int getPostID(){
-        return this.postID;
-    }
-    public int getLike() {return this.like;}
-    public String getDate(){return this.date;}
-    public Byte[] getImage1() {
-        return image1;
+    public boolean setLikes(HashSet<String> likes) {
+        UserDAO db = new UserDAOImpl(context);
+        this.likes = likes;
+        return db.setLikes(postID, likes);
     }
 
-    public Byte[] getImage2() {
-        return image2;
+    public boolean setViews(HashSet<String> views) {
+        UserDAO db = new UserDAOImpl(context);
+        this.views = views;
+        return db.setViews(postID, views);
     }
 
-    public Byte[] getImage3() {
-        return image3;
+    public boolean setComments(ArrayList<Comment> comments) {
+        UserDAO db = new UserDAOImpl(context);
+        this.comments = comments;
+        return db.setComments(postID, comments);
     }
 
-    public void changeLike(int change){
-        this.like = this.like + change;
-    }
-    public void setTitle(String title){
-        this.title = title;
-    }
-    public void setContent(String content){
-        this.content = content;
-    }
-    public String toJson(){
-        Gson gson = new Gson();
-        return gson.toJson(this);
+    public boolean addLikes(String username) {
+        UserDAO db = new UserDAOImpl(context);
+        this.likes.add(username);
+        return db.addLikes(postID, username);
     }
 
-    /**
-     * this function svae the post as [postID].json file under the [privateDirectory]/post
-     * @param context getApplicationContext()
-     */
-    public void savePost(Context context){
-        String postFileName = this.getPostID() + ".json";
-        String jsonString = this.toJson();
-        FileRW fileRW = new FileRW(context);
-        String PRIVATE_DIR = context.getFilesDir().getPath();
-        boolean folderExist = new File(PRIVATE_DIR,"post").exists();
-        boolean savedFile = false;
-        if (!folderExist){
-            fileRW.makDir(PRIVATE_DIR,"post");
-        }
-        savedFile =  fileRW.savingString("post",postFileName,jsonString);
-        if(!savedFile){
-            Toast.makeText(context, "unable to save", Toast.LENGTH_SHORT).show();
-            Log.e(TAG,"file not saved");
-        }
-        //create file that can write in
-        Log.i(TAG,"file created");
+    public boolean addViews(String username) {
+        UserDAO db = new UserDAOImpl(context);
+        this.views.add(username);
+        return db.addViews(postID, username);
     }
+
+    public boolean addComments(Comment comment) {
+        UserDAO db = new UserDAOImpl(context);
+        this.comments.add(comment);
+        return db.addComments(postID, comment);
+    }
+
+    public ArrayList<Comment> getComments() { return comments; }
+
+    public HashSet<String> getLikes() { return likes; }
+
+    public HashSet<String> getViews() { return views; }
+
 }
+
+
+
+
+
+

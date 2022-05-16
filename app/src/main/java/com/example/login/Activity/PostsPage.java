@@ -1,18 +1,24 @@
 package com.example.login.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostOld;
 import com.example.login.DataContainer.UserAdmin;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +26,7 @@ import java.util.List;
 public class PostsPage extends AppCompatActivity {
     UserAdmin currentUser;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,13 +70,13 @@ public class PostsPage extends AppCompatActivity {
         RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
 
         //仅测试，最后将allPosts改成数据库中需要显示的post即可
-        Post p1 = new Post("Post A", "This is content A.");
-        Post p2 = new Post("Post B", "This is content B.");
-        Post p3 = new Post("Post C", "This is content C.");
-        Post p4 = new Post("Post D", "This is content D.");
-        Post p5 = new Post("Post E", "This is content E.");
+        PostOld p1 = new PostOld("Post A", "This is content A.");
+        PostOld p2 = new PostOld("Post B", "This is content B.");
+        PostOld p3 = new PostOld("Post C", "This is content C.");
+        PostOld p4 = new PostOld("Post D", "This is content D.");
+        PostOld p5 = new PostOld("Post E", "This is content E.");
 
-        List<Post> allPosts = new ArrayList<>();
+        List<PostOld> allPosts = new ArrayList<>();
         allPosts.add(p1);
         allPosts.add(p2);
         allPosts.add(p3);
@@ -81,5 +88,19 @@ public class PostsPage extends AppCompatActivity {
         // rvPosts.setLayoutManager(new LinearLayoutManager((this)));
         rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.options, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_show_recent){
+            Toast.makeText(PostsPage.this, "recent posts shown", Toast.LENGTH_LONG).show();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
