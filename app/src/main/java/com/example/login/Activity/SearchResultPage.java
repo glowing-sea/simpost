@@ -74,12 +74,7 @@ public class SearchResultPage extends AppCompatActivity {
         PostOld p4 = new PostOld("Post D", "This is content D.");
         PostOld p5 = new PostOld("Post E", "This is content E.");
 
-        List<PostOld> allPosts = new ArrayList<>();
-        allPosts.add(p1);
-        allPosts.add(p2);
-        allPosts.add(p3);
-        allPosts.add(p4);
-        allPosts.add(p5);
+        List<Integer> allPosts = new ArrayList<>();
         SearchResultAdapter searchResultAdapter = new SearchResultAdapter(SearchResultPage.this,allPosts);
         rvPosts.setAdapter(searchResultAdapter);
         rvPosts.setLayoutManager(new LinearLayoutManager((this)));

@@ -11,15 +11,19 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.PostOld;
+import com.example.login.Database.UserDAO;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import java.util.List;
 
 public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapter.ResultHolder> {
     private final Context ctx;
-    private final List<PostOld> dataset;
-    public SearchResultAdapter(Context ctx, List<PostOld> dataset){
+    private final List<Integer> dataset;
+    UserDAO db;
+    public SearchResultAdapter(Context ctx, List<Integer> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -33,9 +37,11 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ResultHolder holder, int position) {
-        PostOld current = dataset.get(position);
-        holder.getPoster().setText(dataset.get(position).getPoster());
-        holder.getTitle().setText(dataset.get(position).getTitle());
+        db = new UserDAOImpl(ctx.getApplicationContext());
+        Integer current = dataset.get(position);
+        Post post = db.getPost(current);
+        holder.getPoster().setText(post.getPoster());
+        holder.getTitle().setText(post.getTitle());
         holder.getSingleResult().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
