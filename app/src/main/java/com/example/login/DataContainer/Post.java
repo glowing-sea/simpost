@@ -33,9 +33,9 @@ public class Post {
     public final Bitmap image2;
     public final Bitmap image3;
     public final String tag;
-    public HashSet<String> likes; // Auto initialised
-    public HashSet<String> views; // Auto initialised
-    public ArrayList<Comment> comments; // Auto initialised
+    private HashSet<String> likes; // Auto initialised
+    private HashSet<String> views; // Auto initialised
+    private ArrayList<Comment> comments; // Auto initialised
     public Context context;
 
     // Don't use
@@ -58,8 +58,8 @@ public class Post {
         this.context = context;
     }
 
-    // This method is designed for create a new post. Use addPost method in UserDAO to store this post
-    // into the data base.
+    // This method is designed for create a new post. After creating a post, use addPost method in
+    // UserDAO to store this post into the data base.
     @RequiresApi(api = Build.VERSION_CODES.N)
     public Post(String creator, String title, String content, Bitmap image1,
                 Bitmap image2, Bitmap image3, String tag, Context context) {
@@ -110,6 +110,13 @@ public class Post {
         this.comments.add(comment);
         return db.addComments(postID, comment);
     }
+
+    public ArrayList<Comment> getComments() { return comments; }
+
+    public HashSet<String> getLikes() { return likes; }
+
+    public HashSet<String> getViews() { return views; }
+
 }
 
 

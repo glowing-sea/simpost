@@ -62,54 +62,54 @@ public class PostDAOTest {
         assertNull(a.image2);
         assertNull(a.image3);
         assertEquals(e.tag, a.tag);
-        assertTrue(a.views.isEmpty());
-        assertTrue(a.likes.isEmpty());
-        assertTrue(a.comments.isEmpty());
+        assertTrue(a.getViews().isEmpty());
+        assertTrue(a.getLikes().isEmpty());
+        assertTrue(a.getComments().isEmpty());
     }
 
     @Test
     public void setLikeViewCommentTest(){
+        Post a = db.getPost(POST_ID);
         // Set comments, views, and likes.
         HashSet<String> likes = new HashSet<>();
         likes.add("Jack");
         likes.add("Henry");
         likes.add("Daniel");
-        db.setLikes(POST_ID, likes);
+        a.setLikes(likes);
         HashSet<String> views = new HashSet<>();
         views.add("Jack");
         views.add("Henry");
         views.add("Daniel");
-        db.setViews(POST_ID, views);
+        a.setViews(views);
         ArrayList<Comment> comments = new ArrayList<>();
         comments.add(new Comment("Jack", "Good", "n.d."));
         comments.add(new Comment("Henry", "Great", "n.d."));
         comments.add(new Comment("Daniel", "Well", "n.d."));
-        db.setComments(POST_ID, comments);
+        a.setComments(comments);
 
         // Get comments, views, and likes and check if we get the same things.
-        Post actual = db.getPost(POST_ID);
-        assertTrue(actual.likes.contains("Jack") && actual.likes.contains("Henry") && actual.likes.contains("Daniel"));
-        assertTrue(actual.views.contains("Jack") && actual.views.contains("Henry") && actual.views.contains("Daniel"));
-        assertEquals(Comment.commentsEncode(comments), Comment.commentsEncode(actual.comments));
+        assertTrue(a.getLikes().contains("Jack") && a.getLikes().contains("Henry") && a.getLikes().contains("Daniel"));
+        assertTrue(a.getViews().contains("Jack") && a.getViews().contains("Henry") && a.getViews().contains("Daniel"));
+        assertEquals(Comment.commentsEncode(comments), Comment.commentsEncode(a.getComments()));
     }
 
     @Test
     public void addLikeViewCommentTest(){
+        Post a = db.getPost(POST_ID);
         // Add comments, views, and likes.
-        db.addLikes(POST_ID, "Jack");
-        db.addLikes(POST_ID, "Henry");
-        db.addLikes(POST_ID, "Daniel");
-        db.addViews(POST_ID, "Jack");
-        db.addViews(POST_ID, "Henry");
-        db.addViews(POST_ID, "Daniel");
-        db.addComments(POST_ID, new Comment("Jack", "Good", "n.d."));
-        db.addComments(POST_ID, new Comment("Henry", "Great", "n.d."));
-        db.addComments(POST_ID, new Comment("Daniel", "Well", "n.d."));
+        a.addLikes("Jack");
+        a.addLikes("Henry");
+        a.addLikes("Daniel");
+        a.addViews("Jack");
+        a.addViews("Henry");
+        a.addViews("Daniel");
+        a.addComments(new Comment("Jack", "Good", "n.d."));
+        a.addComments(new Comment("Henry", "Great", "n.d."));
+        a.addComments(new Comment("Daniel", "Well", "n.d."));
 
         // Get comments, views, and likes and check if we get the same things.
-        Post actual = db.getPost(POST_ID);
-        assertTrue(actual.likes.contains("Jack") && actual.likes.contains("Henry") && actual.likes.contains("Daniel"));
-        assertTrue(actual.views.contains("Jack") && actual.views.contains("Henry") && actual.views.contains("Daniel"));
-        assertEquals("Jack`Good`n.d.~Henry`Great`n.d.~Daniel`Well`n.d.~", Comment.commentsEncode(actual.comments));
+        assertTrue(a.getLikes().contains("Jack") && a.getLikes().contains("Henry") && a.getLikes().contains("Daniel"));
+        assertTrue(a.getViews().contains("Jack") && a.getViews().contains("Henry") && a.getViews().contains("Daniel"));
+        assertEquals("Jack`Good`n.d.~Henry`Great`n.d.~Daniel`Well`n.d.~", Comment.commentsEncode(a.getComments()));
     }
 }
