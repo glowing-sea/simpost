@@ -214,6 +214,12 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         return result;
     }
 
+    public List<Post> postTitleMatch(String word){
+        Set<Post> result = new HashSet<>();
+        List<Post> returnVale = new ArrayList<>();
+        return null;
+    }
+
     // Don't use the following setting and adding method, use those in Post class.
 
     public boolean setLikes (int postID, HashSet<String> likes){
@@ -560,6 +566,9 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     }
 
     public void setMessage(String usname, String mess){
-
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE user SET messages = ? WHERE username = ?",
+                new String[]{mess,usname});
+        db.close();
     }
 }
