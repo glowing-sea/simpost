@@ -200,20 +200,87 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     /**
      * this function use the keyword to match post with this word in title
      * @param keyword the key word need to match details in fts4
-     * @return set of posts
+     * @return set of posts Set<Post> null if no mathing has found
      */
-    public Set<Post> postTitleMatch(String keyword){
+    public Set<Post> postMathchFTS4(String keyword){
         Set<Post> result = new HashSet<>();
         //cleaning and creating the tables that is used
         SQLiteDatabase db = this.getReadableDatabase();
         String cleaning = "DROP TABLE IF EXISTS searchResult";
         db.execSQL(cleaning);
-        String creat = "CREATE VIRTUAL TABLE searchResult USING fts4(postId,title)";
+        String creat = "CREATE VIRTUAL TABLE searchResult USING fts4(postId,creator,title,content)";
         db.execSQL(creat);
-        String dataInsert= "INSERT INTO searchResult(postId,title) SELECT postID,title FROM post";
+        String dataInsert= "INSERT INTO searchResult(postId,creator,title,content) SELECT postID,creator,title,content FROM post";
         db.execSQL(dataInsert);
         //matching
         String matching = "SELECT * FROM searchResult WHERE title MATCH ?";
+        String[] keyWordList =new String[1];
+        keyWordList[0] = keyword;
+        Cursor cursor = null;
+        cursor = db.rawQuery(matching,keyWordList);
+        //returning the ids
+        if (cursor.getCount() == 0) return null;
+        while(cursor.isBeforeFirst()){
+            cursor.moveToNext();
+        }
+        while (!cursor.isAfterLast()){
+            result.add(getPost(cursor.getInt(0)));
+            cursor.moveToNext();
+        }
+        return result;
+    }
+
+    /**depricated
+     * this function use the keyword to match post with this word in the content of the post
+     * @param keyword the key word need to match details in fts4
+     * @return set of posts Set<Post> null if no mathing has found
+     */
+    public Set<Post> postContentMatch(String keyword){
+        Set<Post> result = new HashSet<>();
+        //cleaning and creating the tables that is used
+        SQLiteDatabase db = this.getReadableDatabase();
+        String cleaning = "DROP TABLE IF EXISTS searchResult";
+        db.execSQL(cleaning);
+        String creat = "CREATE VIRTUAL TABLE searchResult USING fts4(postId,content)";
+        db.execSQL(creat);
+        String dataInsert= "INSERT INTO searchResult(postId,content) SELECT postID,content FROM post";
+        db.execSQL(dataInsert);
+        //matching
+        String matching = "SELECT * FROM searchResult WHERE content MATCH ?";
+        String[] keyWordList =new String[1];
+        keyWordList[0] = keyword;
+        Cursor cursor = null;
+        cursor = db.rawQuery(matching,keyWordList);
+        //returning the ids
+        if (cursor.getCount() == 0) return null;
+        while(cursor.isBeforeFirst()){
+            cursor.moveToNext();
+        }
+        while (!cursor.isAfterLast()){
+            result.add(getPost(cursor.getInt(0)));
+            cursor.moveToNext();
+        }
+        return result;
+    }
+
+    /**
+     * depricated
+     * this function use the keyword to match post with this word in the content of the post
+     * @param keyword the key word need to match details in fts4
+     * @return set of posts Set<Post> null if no mathing has found
+     */
+    public Set<Post> postAuthorMatch(String keyword){
+        Set<Post> result = new HashSet<>();
+        //cleaning and creating the tables that is used
+        SQLiteDatabase db = this.getReadableDatabase();
+        String cleaning = "DROP TABLE IF EXISTS searchResult";
+        db.execSQL(cleaning);
+        String creat = "CREATE VIRTUAL TABLE searchResult USING fts4(postId,content)";
+        db.execSQL(creat);
+        String dataInsert= "INSERT INTO searchResult(postId,content) SELECT postID,content FROM post";
+        db.execSQL(dataInsert);
+        //matching
+        String matching = "SELECT * FROM searchResult WHERE content MATCH ?";
         String[] keyWordList =new String[1];
         keyWordList[0] = keyword;
         Cursor cursor = null;

@@ -5,20 +5,15 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.Build;
 
-import androidx.annotation.RequiresApi;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.login.DataContainer.Comment;
 import com.example.login.DataContainer.Post;
-import com.example.login.Database.HelperMethods;
 import com.example.login.Database.UserDAOImpl;
 
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -148,17 +143,41 @@ public class PostDAOTest {
     }
 
     @Test
-    public void titleMatchTest(){
+    public void postMatch(){
         // 这个Post Constructor不会生成ID的，是当Post被放进去Database才会生成ID，如果想知道你放进去的Post的ID是啥（为了在测试结束删掉），用addPostSpecifyID
         Post test = new Post("Dai","Hello world","this is a testing post"
                 ,null,null,null,null, appContext.getApplicationContext());
         int id = 100004;
         db.addPostSpecifyID(test, 100004);
         System.out.println("Founded");
-        Set<Post> result= db.postTitleMatch("hello");
+        Set<Post> result= db.postMathchFTS4("content:testing");
         Iterator<Post> iterator = result.iterator();
         while (iterator.hasNext()){
-            System.out.println(iterator.next().postID);
+            Post current = iterator.next();
+            System.out.println(current.postID);
+            System.out.println(current.creator);
+            System.out.println(current.title);
+            System.out.println(current.content);
+        }
+
+        // 测试完最好把Post删掉
+        db.deletePost(100004);
+    }
+
+    @Test
+    public void contnetMatchTest(){
+        // 这个Post Constructor不会生成ID的，是当Post被放进去Database才会生成ID，如果想知道你放进去的Post的ID是啥（为了在测试结束删掉），用addPostSpecifyID
+        Post test = new Post("Dai","Hello world","!Do you like video games like the doom"
+                ,null,null,null,null, appContext.getApplicationContext());
+        int id = 100004;
+        db.addPostSpecifyID(test, 100004);
+        System.out.println("Founded");
+        Set<Post> result= db.postContentMatch("games NEAR doom");
+        Iterator<Post> iterator = result.iterator();
+        while (iterator.hasNext()){
+            Post current = iterator.next();
+            System.out.println(current.postID);
+            System.out.println(current.content);
         }
 
         // 测试完最好把Post删掉
