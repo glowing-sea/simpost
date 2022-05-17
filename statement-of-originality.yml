@@ -17,9 +17,9 @@ collaboration:
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external code)
 code:
-  - comment:
-    url:
-    licence:
+  - comment:external library for graphics and charts
+    url: https://github.com/PhilJay/MPAndroidChart
+    licence: http://www.apache.org/licenses/LICENSE-2.0
 
 
 # add as many "url+licence+comment" entries as necessary
@@ -33,8 +33,8 @@ assets:
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
-  - name:
-    uid:
+  - name:Boyu Dai
+    uid: u7241110
   - name:
     uid:
   - name:
