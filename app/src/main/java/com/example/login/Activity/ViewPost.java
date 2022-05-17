@@ -11,10 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Post;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
+
+import java.util.HashSet;
 
 public class ViewPost extends AppCompatActivity {
     Post current;
@@ -22,6 +25,7 @@ public class ViewPost extends AppCompatActivity {
     TextView title, content, likeCount, viewCount, postTime;
     Button back, like, dislike;
     UserDAO db;
+    Me me = Me.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,18 +63,22 @@ public class ViewPost extends AppCompatActivity {
         if (i1 != null){
             image1.setImageBitmap(i1);
         }
-        Bitmap i2 = current.image1;
+        Bitmap i2 = current.image2;
         if (i2 != null){
-            image1.setImageBitmap(i2);
+            image2.setImageBitmap(i2);
         }
-        Bitmap i3 = current.image1;
+        Bitmap i3 = current.image3;
         if (i3 != null){
-            image1.setImageBitmap(i3);
+            image3.setImageBitmap(i3);
         }
         //Set date and likes
         String date = current.getDate();
-        String lString = "Current likes: " + String.valueOf(current.getLikes().size());
-        String vString = "Current Views: " + String.valueOf(current.getViews().size());
+        HashSet<String> viewers = current.getViews();
+        HashSet<String> likes = current.getLikes();
+        viewers.add(me.getUsername());
+        String lString = "Current likes: " + String.valueOf(likes.size());
+        String vString = "Current Views: " + String.valueOf(viewers.size());
+        current.setViews(viewers);
         likeCount.setText(lString);
         viewCount.setText(vString);
         date = "Post published by - "+ date;
@@ -78,6 +86,15 @@ public class ViewPost extends AppCompatActivity {
         // Set title and content
         title.setText(t);
         content.setText(c);
+        // Check liked or not
+        if (likes.contains(me.username)){
+            like.setEnabled(false);
+            dislike.setEnabled(true);
+        }
+        else {
+            like.setEnabled(true);
+            dislike.setEnabled(false);
+        }
         // button going back to main page
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,21 +108,31 @@ public class ViewPost extends AppCompatActivity {
             public void onClick(View view) {
                 like.setEnabled(false);
                 String LA = "Current likes:" + " " + String.valueOf(current.getLikes().size() + 1);
-                boolean b = current.addLikes(current.creator);
+                boolean b = current.addLikes(me.getUsername());
                 if (b){
                    likeCount.setText(LA);}
                 else {
                     Toast.makeText(ViewPost.this, "You`ve already liked this post", Toast.LENGTH_SHORT).show();
                 }
+                dislike.setEnabled(true);
             }
         });
         dislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dislike.setEnabled(false);
-                String LA = "Current likes:" + " " + String.valueOf(current.getLikes().size() - 1);
-                likeCount.setText(LA);
+                HashSet<String> likers = current.getLikes();
+                if (likers.contains(me.username)){
+                    likers.remove(me.username);
+                    current.setLikes(likers);
+                    String LA = "Current likes:" + " " + String.valueOf(likers.size());
+                    likeCount.setText(LA);}
+                else {
+                    Toast.makeText(ViewPost.this, "You haven`t liked the post yet", Toast.LENGTH_SHORT).show();
+                }
+                like.setEnabled(true);
             }
+
         });
     }
 }
