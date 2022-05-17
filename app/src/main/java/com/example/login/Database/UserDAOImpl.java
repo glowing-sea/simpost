@@ -241,12 +241,12 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         SQLiteDatabase db = this.getReadableDatabase();
         String cleaning = "DROP TABLE IF EXISTS searchResult";
         db.execSQL(cleaning);
-        String creat = "CREATE VIRTUAL TABLE searchResult USING fts4(postId,content)";
+        String creat = "CREATE VIRTUAL TABLE searchResult USING fts4(postId,creator,title,content,likes,views)";
         db.execSQL(creat);
-        String dataInsert= "INSERT INTO searchResult(postId,content) SELECT postID,content FROM post";
+        String dataInsert= "INSERT INTO searchResult(postId,creator,title,content,likes,views) SELECT postID,creator,title,content FROM post";
         db.execSQL(dataInsert);
         //matching
-        String matching = "SELECT * FROM searchResult WHERE content MATCH ?";
+        String matching = "SELECT * FROM searchResult WHERE creator = ?";
         String[] keyWordList =new String[1];
         keyWordList[0] = keyword;
         Cursor cursor = null;
@@ -280,7 +280,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         String dataInsert= "INSERT INTO searchResult(postId,content) SELECT postID,content FROM post";
         db.execSQL(dataInsert);
         //matching
-        String matching = "SELECT * FROM searchResult WHERE content MATCH ?";
+        String matching = "SELECT * FROM searchResult WHERE creator = ?";
         String[] keyWordList =new String[1];
         keyWordList[0] = keyword;
         Cursor cursor = null;
