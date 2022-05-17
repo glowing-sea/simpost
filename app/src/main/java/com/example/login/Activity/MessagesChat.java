@@ -62,22 +62,38 @@ public class MessagesChat extends AppCompatActivity {
         someMessages = new ArrayList<>();
 
         String name = (String) getIntent().getExtras().getSerializable("NAME");
-        setTitle("name");
+        setTitle(name);
+
 
         Bundle fromCreate = getIntent().getExtras();
         if (fromCreate != null){
             getIntent().removeExtra("NAME");
-            for (Message m: allMessages) {
-                if (m.getReceiver().equals(name)) {
-                    someMessages.add(m);
-                    // ChatBox chatBox1 = new ChatBox(m.getSender() + " " + m.getDate(),m.getContent());
-                    // messages.add(chatBox1);
-                } else if (m.getSender().equals(name)) {
-                    someMessages.add(m);
-                    // ChatBox chatBox2 = new ChatBox(m.getSender() + " " + m.getDate(), m.getContent());
-                    // messages.add(chatBox2);
+
+            // I sent to myself
+            if (name.equals(me.username)){
+                for (Message m : allMessages) {
+                    if (m.getReceiver().equals(me.username) && m.getSender().equals(me.username))
+                        someMessages.add(m);
+                }
+            } else {
+                // I sent to someone
+                for (Message m: allMessages){
+                    if (m.getSender().equals(name) || m.getReceiver().equals(name))
+                        someMessages.add(m);
                 }
             }
+
+//            for (Message m: allMessages) {
+//                if (m.getReceiver().equals(name)) {
+//                    someMessages.add(m);
+//                    // ChatBox chatBox1 = new ChatBox(m.getSender() + " " + m.getDate(),m.getContent());
+//                    // messages.add(chatBox1);
+//                } else if (m.getSender().equals(name)) {
+//                    someMessages.add(m);
+//                    // ChatBox chatBox2 = new ChatBox(m.getSender() + " " + m.getDate(), m.getContent());
+//                    // messages.add(chatBox2);
+//                }
+//            }
         }
 
         messagesChatAdapter = new MessagesChatAdapter(MessagesChat.this, this,someMessages);

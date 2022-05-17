@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
+import com.example.login.DataContainer.PendingTasks;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -73,10 +74,22 @@ public class Messages extends AppCompatActivity {
         ArrayList<Message> messages = db.getMessages(me.username);
         contacts = new HashSet<>();
 
+        boolean containSelfMessage = false;
+
         for (Message m : messages){
-            contacts.add(m.getReceiver());
-            contacts.add(m.getSender());
+            String sender = m.getSender();
+            String receiver = m.getReceiver();
+            contacts.add(receiver);
+            contacts.add(sender);
+
+            // I sent to myself
+            if (sender.equals(receiver))
+                containSelfMessage = true;
         }
+        // If there is no self messages, me should not be in the contact
+        if (!containSelfMessage)
+            contacts.remove(me.username);
+
         ArrayList<String> contactFinal = new ArrayList<>(contacts);
 
 
@@ -117,7 +130,10 @@ public class Messages extends AppCompatActivity {
             alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    setResult(RESULT_OK);
+                    Intent intent = new Intent(getApplicationContext(), Deleting.class);
+                    intent.putExtra("DELETE", "AllMessages");
+                    overridePendingTransition(0, 0);
+                    startActivity(intent);
                     finish();
                 }
             });

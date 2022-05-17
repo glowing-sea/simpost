@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.PendingTasks;
 import com.example.login.Database.HelperMethods;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -183,7 +184,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Messages.class);
-                startActivityForResult(intent, 500);
+                startActivity(intent);
             }
         });
 
@@ -228,6 +229,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        // ================================= Check Pending Tasks ===================================
     }
 
 
@@ -258,11 +260,6 @@ public class Home extends AppCompatActivity {
                         avatar.setImageBitmap(image);
                     }
                 }
-            }
-            if (requestCode == 500) {
-                Me m = Me.getInstance();
-                m.setMessages(new ArrayList<>());
-                Toast.makeText(getApplicationContext(), "All Messages Have Been Deleted!", Toast.LENGTH_SHORT).show();
             }
         }
     }

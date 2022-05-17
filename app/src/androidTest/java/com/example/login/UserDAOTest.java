@@ -286,14 +286,35 @@ public class UserDAOTest {
         // Check user1 messages box
         ArrayList<Message> user1Box = db.getMessages("user1");
         assertEquals(2, user1Box.size()); // Messages box has 2 messages
-        assertEquals("user1`user2`n.d.`1`A message from user1 to user2~user2`user1`n.d.`0`A message from user2 to user1~",
+        assertEquals("user1`user2`n.d.`A message from user1 to user2`1~user2`user1`n.d.`A message from user2 to user1`0~",
                 Message.messagesEncode(user1Box)); // First Message Read, Second Unread
 
         // Check user2 messages box
         ArrayList<Message> user2Box = db.getMessages("user2");
         assertEquals(2, user2Box.size()); // Messages box has 2 messages
 
-        assertEquals("user1`user2`n.d.`0`A message from user1 to user2~user2`user1`n.d.`1`A message from user2 to user1~",
+        assertEquals("user1`user2`n.d.`A message from user1 to user2`0~user2`user1`n.d.`A message from user2 to user1`1~",
+                Message.messagesEncode(user2Box)); // First Message Unread, Second Read
+    }
+
+    @Test
+    public void sendEmptyMessageTest(){
+        Message m1to2 = new Message("user1", "user2", "n.d.", false, "");
+        Message m2to1 = new Message("user2", "user1", "n.d.", false, "");
+        db.sendMessages(m1to2);
+        db.sendMessages(m2to1);
+
+        // Check user1 messages box
+        ArrayList<Message> user1Box = db.getMessages("user1");
+        assertEquals(2, user1Box.size()); // Messages box has 2 messages
+        assertEquals("user1`user2`n.d.``1~user2`user1`n.d.``0~",
+                Message.messagesEncode(user1Box)); // First Message Read, Second Unread
+
+        // Check user2 messages box
+        ArrayList<Message> user2Box = db.getMessages("user2");
+        assertEquals(2, user2Box.size()); // Messages box has 2 messages
+
+        assertEquals("user1`user2`n.d.``0~user2`user1`n.d.``1~",
                 Message.messagesEncode(user2Box)); // First Message Unread, Second Read
     }
     @Test
@@ -347,4 +368,6 @@ public class UserDAOTest {
         assertNull(s.getGender());
         assertNull(s.getLocation());
     }
+
+
 }
