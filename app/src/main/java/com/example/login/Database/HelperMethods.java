@@ -41,18 +41,19 @@ public class HelperMethods {
 
     // Encode and decode privacy setting
     public static int privacyEncode (ArrayList<Boolean> settings){
-        int s = 1000001;
-        s += settings.get(0) ? 100000 : 0;
-        s += settings.get(1) ? 10000 : 0;
-        s += settings.get(2) ? 1000 : 0;
-        s += settings.get(3) ? 100 : 0;
-        s += settings.get(4) ? 10 : 0;
+        int s = 10000001;
+        s += settings.get(0) ? 1000000 : 0;
+        s += settings.get(1) ? 100000 : 0;
+        s += settings.get(2) ? 10000 : 0;
+        s += settings.get(3) ? 1000 : 0;
+        s += settings.get(4) ? 100 : 0;
+        s += settings.get(5) ? 10 : 0;
         return s;
     }
     public static ArrayList<Boolean> privacyDecode (int encodeInt){
         String encode = String.valueOf(encodeInt);
         ArrayList<Boolean> s = new ArrayList<>();
-        for (int i = 1; i < 6; i++){
+        for (int i = 1; i < 7; i++){
             s.add(encode.charAt(i) == '1');}
         return s;
     }

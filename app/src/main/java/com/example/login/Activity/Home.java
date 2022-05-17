@@ -32,6 +32,7 @@ public class Home extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -123,8 +124,8 @@ public class Home extends AppCompatActivity {
 
 
         // Setting following and followers
-        followingNum.setText(me.getFollowing().size() + "");
-        followersNum.setText(me.getFollowers().size() + "");
+        followingNum.setText(String.valueOf(me.getFollowing().size()));
+        followersNum.setText(String.valueOf(me.getFollowers().size()));
 
         followersNum.setOnClickListener(new View.OnClickListener() {
             @Override

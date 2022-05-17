@@ -7,21 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.widget.ArrayAdapter;
 
 import androidx.annotation.Nullable;
 
 import com.example.login.DataContainer.Comment;
 import com.example.login.DataContainer.Gender;
-import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
+import com.example.login.DataContainer.Someone;
 import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.User;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /*
@@ -65,7 +63,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
                 "following TEXT DEFAULT '', " +
                 "blacklist TEXT DEFAULT '', " +
                 "history TEXT DEFAULT '', " +
-                "privacy INTEGER DEFAULT 1000001, " +
+                "privacy INTEGER DEFAULT 10000001, " +
                 "messages TEXT DEFAULT '');";
 
         db.execSQL(query1);
@@ -401,38 +399,101 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
 
     // ======================== SETTING AND GETTING A USER'S ATTRIBUTES ========================= //
 
+    /**
+     * Retrieve current user's data from the database
+     * @param username the user looking for
+     * @param password double check the password
+     * @return return all data of the user except password, privacy, and messages.
+     */
+    public User getMyData (String username, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM user WHERE username = ?;";
+        String[] replace = {String.valueOf(username)};
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, replace);
+        if (cursor.getCount() != 1) return null;
+        cursor.moveToNext();
+        // Double Check the password
+        String pw = cursor.getString(1);
+        if (!pw.equals(password))
+            return null;
+        int age = cursor.getInt(2);
+        Gender gender = HelperMethods.genderDecode(cursor.getInt(3));
+        String location = cursor.getString(4);
+        String signature = cursor.getString(5);
+        Bitmap avatar = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
+        Bitmap background = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
+        HashSet<String> following = HelperMethods.setDecode(cursor.getString(8));
+        HashSet<String> blacklist = HelperMethods.setDecode(cursor.getString(9));
+        HashSet<String> historyString = HelperMethods.setDecode(cursor.getString(10));
+        HashSet<Integer> history = new HashSet<>();
+        for (String elem : historyString) {
+            history.add(Integer.parseInt(elem));
+        }
+        User user = new User(username, age, gender, location, signature, avatar, background, following, blacklist, history);
+        cursor.close();
+        db.close();
+        return user;
+    }
 
-    // Be careful of null return of image1-3
-    public boolean getMyData (String username, String password){
-//        me.setUsername(username);
-//        me.setUsername(password);
+    /**
+     * Retrieve someone's data from the database
+     * @param username the user looking for
+     * @return return limited data of a user based on their privacy setting
+     */
+    public Someone getSomeoneData (String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM user WHERE username = ?;";
+        String[] replace = {String.valueOf(username)};
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, replace);
+        if (cursor.getCount() != 1) return null;
+        cursor.moveToNext();
 
+        int age;
+        Gender gender;
+        String location;
+        String signature;
+        Bitmap avatar;
+        Bitmap background;
+        HashSet<String> following;
+        HashSet<String> followers;
+        HashSet<String> blacklist;
 
+        // Get data based on privacy setting
+        ArrayList<Boolean> privacy = HelperMethods.privacyDecode(cursor.getInt(11));
+        if (privacy.size() != 6)
+            return null;
+        if (!privacy.get(0))
+            age = cursor.getInt(2);
+        else
+            age = -1;
+        if (!privacy.get(1))
+            gender = HelperMethods.genderDecode(cursor.getInt(3));
+        else
+            gender = null;
+        if (!privacy.get(2))
+            location = cursor.getString(4);
+        else
+            location = null;
+        if (!privacy.get(3))
+            following = HelperMethods.setDecode(cursor.getString(8));
+        else
+            following = null;
+        if (!privacy.get(4))
+            followers = getFollowers(username);
+        else
+            followers = null;
 
-
-
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String query = "SELECT * FROM post WHERE postID = ?;";
-//        String[] replace = {String.valueOf(postID)};
-//        Cursor cursor = null;
-//        cursor = db.rawQuery(query, replace);
-//        if (cursor.getCount() != 1) return null;
-//        cursor.moveToNext();
-//        String creator = cursor.getString(1);
-//        String title = cursor.getString(2);
-//        String content = cursor.getString(3);
-//        String date = cursor.getString(4);
-//        Bitmap image1 = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
-//        Bitmap image2 = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
-//        Bitmap image3 = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
-//        String tag = cursor.getString(8);
-//        HashSet<String> likes = HelperMethods.setDecode(cursor.getString(9));
-//        HashSet<String> views = HelperMethods.setDecode(cursor.getString(10));
-//        ArrayList<Comment> comments = Comment.commentsDecode(cursor.getString(11));
-//        cursor.close();
-//        db.close();
-//        return new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
-        return false;
+        // Get data
+        signature = cursor.getString(5);
+        avatar = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
+        background = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
+        blacklist = HelperMethods.setDecode(cursor.getString(9));
+        Someone someone = new Someone(username, following, followers, signature, age, gender, location, blacklist, avatar, background);
+        cursor.close();
+        db.close();
+        return someone;
     }
 
 
@@ -551,6 +612,27 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         if (encode == null) return null;
         return Message.messagesDecode(encode);
     }
+
+    // Get followers of a username
+    public HashSet<String> getFollowers(String username){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT username, following FROM user;";
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, null);
+        HashSet<String> followers = new HashSet<>();
+        if(cursor.getCount() == 0)
+            return null;
+        while (cursor.moveToNext()){
+            String stringList = cursor.getString(1);
+            ArrayList<String> someoneFollowingList = HelperMethods.listDecode(stringList);
+            if (someoneFollowingList.contains(username)){
+                followers.add(cursor.getString(0));
+            }
+        }
+        cursor.close();
+        return followers;
+    }
+
 
     /*
     return 0 success
@@ -712,12 +794,5 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         byte[] imageBytes = getByteArray(id, idColumn, valueColumn, tableName);
         if (imageBytes == null) return null;
         return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
-    }
-
-    public void setMessage(String usname, String mess){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE user SET messages = ? WHERE username = ?",
-                new String[]{mess,usname});
-        db.close();
     }
 }

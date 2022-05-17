@@ -1,37 +1,46 @@
 package com.example.login.DataContainer;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import com.example.login.Database.HelperMethods;
 import com.example.login.Database.SearchFacade;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-// A singleton user
-
-public class Me{
+/*
+A local temporary copy of data of the current user
+ */
+public class Me extends User{
 
     // ========================== FIELD SETTING AND GETTING METHODS ============================= //
 
+    @SuppressLint("StaticFieldLeak")
     private static Me instance = null;
     public Context context;
 
     // All attributes of the current user
     public String username;
-//    private String password;
-//    private int age;
-//    private Gender gender;
-//    private String location;
-//    private String signature;
-//    private Bitmap avatar;
-//    private Bitmap background;
-//    private HashSet<String> following;
-//    private HashSet<String> blacklist;
-//    private HashSet<Integer> history;
-//    private ArrayList<Boolean> privacy;
-//    private ArrayList<Message> messages;
+    private int age;
+    private Gender gender;
+    private String location;
+    private String signature;
+    private Bitmap avatar;
+    private Bitmap background;
+    private HashSet<String> following;
+    private HashSet<String> blacklist;
+    private HashSet<Integer> history;
+
+    /*
+    The following attributes of a user are only stored in the database. No local temporary copy.
+
+    String password (for security)
+    ArrayList<Boolean> privacy (for security)
+    ArrayList<Message> messages (make sure the messages box is always up to date whenever access)
+     */
 
     private Me (){}
 
@@ -42,28 +51,141 @@ public class Me{
         return instance;
     }
 
-    /*
-    This method retrieve all the current user's data from the database and make a temporary copy in Me class.
+    /**
+     * This method retrieve most data of the current from the database and make a temporary copy in Me class.
+     * Used only when login
+     * @return true if get data successfully and false if get data failed
      */
-    public boolean getAllMyData(String username, String password){
-        return false;
-    }
-
-
-    public void setUsername(String username) {
+    public boolean makeLocalCopyOfMyData(String username, String password, Context context){
+        UserDAO db = new UserDAOImpl(context);
+        User myData = db.getMyData(username, password);
+        if (myData == null)
+            return false;
         this.username = username;
-    }
-
-    public void setContext(Context context) {
+        this.age = myData.getAge();
+        this.gender = myData.getGender();
+        this.location = myData.getLocation();
+        this.signature = myData.getSignature();
+        this.avatar = myData.getAvatar();
+        this.background = myData.getBackground();
+        this.following = myData.getFollowing();
+        this.blacklist = myData.getBlacklist();
+        this.history = myData.getHistory();
         this.context = context;
+        return true;
     }
 
+
+    // ======================== USER DATA ACCESS AND MODIFY METHODS 1 =========================== //
+
+    /*
+    For getter method, data is got from Me Class.
+    For setter method, data is stored into both Me Class (temporary) and database.
+     */
+
+
+    // Username
     public String getUsername() {
         return username;
     }
 
+    // Age
+    public boolean setAge(int age){
+        UserDAO db = new UserDAOImpl(context);
+        this.age = age;
+        return db.setAge(username, age);
+    }
+    public int getAge() {
+        return this.age;
+    }
 
-    // ============================== USER DATA ACCESS METHODS ================================== //
+    // Gender
+    public boolean setGender(Gender gender){
+        UserDAO db = new UserDAOImpl(context);
+        this.gender = gender;
+        return db.setGender(username, gender);
+    }
+    public Gender getGender() {
+        return this.gender;
+    }
+
+    // Location
+    public boolean setLocation(String location) {
+        UserDAO db = new UserDAOImpl(context);
+        this.location = location;
+        return db.setLocation(username, location);
+    }
+    public String getLocation() {
+        return this.location;
+    }
+
+    // Signature
+    public boolean setSignature(String newSignature){
+        UserDAO db = new UserDAOImpl(context);
+        this.signature = newSignature;
+        return db.setSignature(username, newSignature);
+    }
+    public String getSignature() {
+        return this.signature;
+    }
+
+    // Avatar
+    public boolean setAvatar(Bitmap avatar){
+        UserDAO db = new UserDAOImpl(context);
+        this.avatar = avatar;
+        return db.setAvatar(username, avatar);
+    }
+    public Bitmap getAvatar(){
+        return avatar;
+    }
+
+    // Background (Be Careful of Null return!)
+    public boolean setBackground(Bitmap background){
+        UserDAO db = new UserDAOImpl(context);
+        this.background = background;
+        return db.setBackground(username, background);
+    }
+    public Bitmap getBackground(){
+        return background;
+    }
+
+    // Following
+    public boolean setFollowing(HashSet<String> following){
+        UserDAO db = new UserDAOImpl(context);
+        this.following = following;
+        return db.setFollowing(username, following);
+    }
+    public HashSet<String> getFollowing() {
+        return this.following;
+    }
+
+    // Blacklist
+    public boolean setBlacklist(HashSet<String> blacklist){
+        UserDAO db = new UserDAOImpl(context);
+        this.blacklist = blacklist;
+        return db.setBlacklist(username, blacklist);
+    }
+    public HashSet<String> getBlacklist(){
+        return this.blacklist;
+    }
+
+    // View History
+    public boolean setViewHistory(HashSet<Integer> history){
+        UserDAO db = new UserDAOImpl(context);
+        this.history = history;
+        return db.setViewHistory(username, history);
+    }
+    public HashSet<Integer> getViewHistory(){
+        return this.history;
+    }
+
+
+    // ======================== USER DATA ACCESS AND MODIFY METHODS 2 =========================== //
+
+    /*
+    For getter method, data is got from database.
+    For setter method, data is stored into database only.
+     */
 
     // Password
     public boolean setPassword(String newPassword) {
@@ -75,56 +197,6 @@ public class Me{
         return db.getPassword(username);
     }
 
-    // Following
-    public boolean setFollowing(HashSet<String> following){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setFollowing(username, following);
-    }
-    public HashSet<String> getFollowing() {
-        UserDAO db = new UserDAOImpl(context);
-        return db.getFollowing(username);
-    }
-
-    // Signature
-    public boolean setSignature(String newSignature){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setSignature(username, newSignature);
-    }
-    public String getSignature() {
-        UserDAO db = new UserDAOImpl(context);
-        return db.getSignature(username);
-    }
-
-    // Age
-    public boolean setAge(int age){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setAge(username, age);
-    }
-    public int getAge() {
-        UserDAO db = new UserDAOImpl(context);
-        return db.getAge(username);
-    }
-
-    // Gender
-    public boolean setGender(Gender gender){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setGender(username, gender);
-    }
-    public Gender getGender() {
-        UserDAO db = new UserDAOImpl(context);
-        return db.getGender(username);
-    }
-
-    // Location
-    public boolean setLocation(String location) {
-        UserDAO db = new UserDAOImpl(context);
-        return db.setLocation(username, location);
-    }
-    public String getLocation() {
-        UserDAO db = new UserDAOImpl(context);
-        return db.getLocation(username);
-    }
-
     // Privacy Setting
     public boolean setPrivacySettings(ArrayList<Boolean> settings){
         UserDAO db = new UserDAOImpl(context);
@@ -133,46 +205,6 @@ public class Me{
     public ArrayList<Boolean> getPrivacySettings(){
         UserDAO db = new UserDAOImpl(context);
         return db.getPrivacySettings(username);
-    }
-
-    // Blacklist
-    public boolean setBlacklist(HashSet<String> blacklist){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setBlacklist(username, blacklist);
-    }
-    public HashSet<String> getBlacklist(){
-        UserDAO db = new UserDAOImpl(context);
-        return db.getBlacklist(username);
-    }
-
-    // View History
-    public boolean setViewHistory(HashSet<Integer> historyInt){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setViewHistory(username, historyInt);
-    }
-    public HashSet<Integer> getViewHistory(){
-        UserDAO db = new UserDAOImpl(context);
-        return db.getViewHistory(username);
-    }
-
-    // Background (Be Careful of Null return!)
-    public boolean setBackground(Bitmap background){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setBackground(username, background);
-    }
-    public Bitmap getBackground(){
-        UserDAO db = new UserDAOImpl(context);
-        return db.getBackground(username);
-    }
-
-    // Avatar
-    public boolean setAvatar(Bitmap avatar){
-        UserDAO db = new UserDAOImpl(context);
-        return db.setAvatar(username, avatar);
-    }
-    public Bitmap getAvatar(){
-        UserDAO db = new UserDAOImpl(context);
-        return db.getAvatar(username);
     }
 
     // Message
@@ -191,9 +223,9 @@ public class Me{
 
     // ================================= USER REPORT METHODS ==================================== //
 
-    public ArrayList<String> getFollowers(){
-        SearchFacade searchFacade = new SearchFacade(context);
-        return searchFacade.getFollowers(username);
+    public HashSet<String> getFollowers(){
+        UserDAO db = new UserDAOImpl(context);
+        return db.getFollowers(username);
     }
 }
 

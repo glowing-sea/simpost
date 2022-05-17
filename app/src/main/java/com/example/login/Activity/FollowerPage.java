@@ -11,6 +11,7 @@ import com.example.login.DataContainer.Me;
 import com.example.login.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class FollowerPage extends AppCompatActivity {
@@ -24,12 +25,12 @@ public class FollowerPage extends AppCompatActivity {
 
         //仅测试，最后将allPosts改成数据库中需要显示的post即可
 
-        List<String> allUsers = me.getFollowers();
-        if (allUsers.size() == 0){
+        ArrayList<String> followers = new ArrayList<>(me.getFollowers());
+        if (followers.size() == 0){
             Toast.makeText(FollowerPage.this, "You don`t have any followers yet", Toast.LENGTH_LONG).show();
         }
 
-        FollowerAdapter followerAdapter = new FollowerAdapter(FollowerPage.this,allUsers);
+        FollowerAdapter followerAdapter = new FollowerAdapter(FollowerPage.this,followers);
         rvPosts.setAdapter(followerAdapter);
         rvPosts.setLayoutManager(new LinearLayoutManager((this)));
 

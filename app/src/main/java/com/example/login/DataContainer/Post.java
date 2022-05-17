@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Locale;
 
-// A temporary object holding the partial information of a post.
+/*
+A local temporary copy of data of a post
+ */
 public class Post{
     public final int postID; // Auto initialised
     public final String creator;
@@ -38,8 +40,8 @@ public class Post{
     private ArrayList<Comment> comments; // Auto initialised
     public Context context;
 
-    // Don't use this method to create post.
-    // This method is designed for the database to generate a post object only.
+    // Don't use this method to create new post.
+    // This method is designed to generate a temporary post object of a existing post in the database.
     public Post(int postID, String creator, String title, String content, String date,
                 Bitmap image1, Bitmap image2, Bitmap image3, String tag, HashSet<String> likes,
                 HashSet<String> views, ArrayList<Comment> comments, Context context) {

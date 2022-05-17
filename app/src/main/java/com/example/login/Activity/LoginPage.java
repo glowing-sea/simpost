@@ -67,17 +67,21 @@ public class LoginPage extends AppCompatActivity {
         username = usernameInput.getText().toString();
         password = passwordInput.getText().toString();
         SearchFacade searchFacade = new SearchFacade(getApplicationContext());
-        int result = searchFacade.loginAuthentication(username, password);
-        switch (result) {
+        int result1 = searchFacade.loginAuthentication(username, password);
+        switch (result1) {
             case 0: {
                 Me me = Me.getInstance();
-                me.username = username;
-                me.context = this;
-                Intent in = new Intent(LoginPage.this, PostsPage.class);
-                startActivity(in);
-                finish();
-            }
-            break;
+                boolean result2 = me.makeLocalCopyOfMyData(username, password, this);
+
+                if (result2){
+                    Intent in = new Intent(LoginPage.this, PostsPage.class);
+                    startActivity(in);
+                    finish();
+                } else{
+                    Toast.makeText(this, "Retrieve user data failed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                break;
             case -1:
                 Toast.makeText(this, "Password Incorrect", Toast.LENGTH_SHORT).show();
                 break;

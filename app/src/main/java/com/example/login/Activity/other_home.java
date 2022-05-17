@@ -4,20 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.login.DataContainer.Me;
-import com.example.login.DataContainer.Other;
+import com.example.login.DataContainer.Someone;
 import com.example.login.R;
 
-import java.util.ArrayList;
-
 public class other_home extends AppCompatActivity {
-    Other other;
+    Someone someone_home;
     ImageView background, avatar, blackList;
     TextView age, gender, follower, following, signature, name;
     Button follow;
