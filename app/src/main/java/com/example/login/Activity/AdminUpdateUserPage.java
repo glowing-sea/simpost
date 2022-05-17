@@ -2,7 +2,7 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.login.DataContainer.UserOld;
+import com.example.login.DataContainer.UserAdmin;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
@@ -16,7 +16,7 @@ public class AdminUpdateUserPage extends AppCompatActivity {
 
     EditText username, password;
     Button updateButton;
-    UserOld current;
+    String current;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +28,8 @@ public class AdminUpdateUserPage extends AppCompatActivity {
         updateButton = findViewById(R.id.admin_update_button);
         Bundle fromCreate = getIntent().getExtras();
         if (fromCreate != null){
-            current = (UserOld) getIntent().getExtras().getSerializable("USER");
-            String name = current.getUsername();
-            username.setText(name);
+            current = getIntent().getStringExtra("USER");
+            username.setText(current);
             getIntent().removeExtra("USER");
         }
 
@@ -39,8 +38,8 @@ public class AdminUpdateUserPage extends AppCompatActivity {
             public void onClick(View view) {
                 UserDAOImpl db = new UserDAOImpl(getApplicationContext());
                 db.setPassword(username.getText().toString().trim(), password.getText().toString().trim());
-                Intent i = new Intent(AdminUpdateUserPage.this, AdminPage.class);
-                startActivity(i);
+                setResult(RESULT_OK);
+                finish();
             }
         });
     }

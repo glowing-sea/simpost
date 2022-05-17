@@ -2,6 +2,7 @@ package com.example.login.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Me;
@@ -20,6 +21,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class Home extends AppCompatActivity {
 
@@ -27,6 +30,7 @@ public class Home extends AppCompatActivity {
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     FloatingActionButton changeBackgroundButton;
+    ConstraintLayout followingBox, followersBox;
     Me me = Me.getInstance();
 
 
@@ -68,21 +72,23 @@ public class Home extends AppCompatActivity {
 
         // Link IDs
         report = findViewById(R.id.report_me);
-        background = findViewById(R.id.background_me);
-        avatar = findViewById(R.id.avatar_me);
+        background = findViewById(R.id.background_someone);
+        avatar = findViewById(R.id.avatar_someone);
         changeBackgroundButton = findViewById(R.id.gallery_background);
-        userName = findViewById(R.id.username_me);
-        signature = findViewById(R.id.signature_me);
-        age = findViewById(R.id.age_me);
-        gender = findViewById(R.id.gender_me);
-        followersNum = findViewById(R.id.followers_me_num);
-        followingNum = findViewById(R.id.following_me_num);
-        followers = findViewById(R.id.followers_me);
-        following = findViewById(R.id.following_me);
+        userName = findViewById(R.id.location_someone);
+        signature = findViewById(R.id.signature_someone);
+        age = findViewById(R.id.age_someone);
+        gender = findViewById(R.id.gender_someone);
+        followersNum = findViewById(R.id.followers_someone_num);
+        followingNum = findViewById(R.id.following_someone_num);
+        followers = findViewById(R.id.followers_other);
+        following = findViewById(R.id.following_other);
         setting = findViewById(R.id.setting_me);
         privacy = findViewById(R.id.privacy_me);
         message = findViewById(R.id.message_me);
-
+        followingBox = findViewById(R.id.following_box);
+        followersBox = findViewById(R.id.followers_box);
+        blacklist = findViewById(R.id.blacklist_me);
 
         // =========================== SETTING TEXT AND PICTURE ================================= //
 
@@ -122,27 +128,40 @@ public class Home extends AppCompatActivity {
                 break;
         }
 
+        // ================================== BUTTONS =========================================== //
 
         // Setting following and followers
         followingNum.setText(String.valueOf(me.getFollowing().size()));
         followersNum.setText(String.valueOf(me.getFollowers().size()));
 
-        followersNum.setOnClickListener(new View.OnClickListener() {
+        followersBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, FollowerPage.class);
+                Intent i = new Intent(Home.this, HomeUsersList.class);
+                i.putExtra("UserListType", "Followers");
                 startActivity(i);
+
             }
         });
-        followingNum.setOnClickListener(new View.OnClickListener() {
+        followingBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, SubscriptionsPage.class);
+                Intent i = new Intent(Home.this, HomeUsersList.class);
+                i.putExtra("UserListType", "Following");
                 startActivity(i);
             }
         });
 
-        // ================================== BUTTONS =========================================== //
+        blacklist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, HomeUsersList.class);
+                i.putExtra("UserListType", "Blacklist");
+                startActivity(i);
+            }
+        });
+
+
 
         privacy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,6 +258,11 @@ public class Home extends AppCompatActivity {
                         avatar.setImageBitmap(image);
                     }
                 }
+            }
+            if (requestCode == 500) {
+                Me m = Me.getInstance();
+                m.setMessages(new ArrayList<>());
+                Toast.makeText(getApplicationContext(), "All Messages Have Been Deleted!", Toast.LENGTH_SHORT).show();
             }
         }
     }

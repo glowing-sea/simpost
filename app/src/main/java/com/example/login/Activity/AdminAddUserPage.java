@@ -31,8 +31,7 @@ public class AdminAddUserPage extends AppCompatActivity {
             public void onClick(View view) {
                 UserDAOImpl db = new UserDAOImpl(getApplicationContext());
                 db.addUser(username.getText().toString().trim(), password.getText().toString().trim());
-                Intent i = new Intent(AdminAddUserPage.this, AdminPage.class);
-                startActivity(i);
+                setResult(RESULT_OK);
             }
         });
     }

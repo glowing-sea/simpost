@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 public class AdminDeleteUserPage extends AppCompatActivity {
 
     EditText username;
-    Button deleteButton;
+    Button deleteButton, deleteAll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +24,26 @@ public class AdminDeleteUserPage extends AppCompatActivity {
 
         username = findViewById(R.id.admin_username_input2);
         deleteButton = findViewById(R.id.admin_delete_button);
+        deleteAll = findViewById(R.id.delete_all_users);
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserDAOImpl db = new UserDAOImpl(getApplicationContext());
+                UserDAO db = new UserDAOImpl(getApplicationContext());
                 db.deleteUser(username.getText().toString().trim());
-                Intent i = new Intent(AdminDeleteUserPage.this, AdminPage.class);
-                startActivity(i);
+                setResult(RESULT_OK);
+                finish();
             }
         });
+        deleteAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UserDAO db = new UserDAOImpl(getApplicationContext());
+                db.truncateUsers();
+                setResult(RESULT_OK);
+                finish();
+            }
+        });
+
     }
 }

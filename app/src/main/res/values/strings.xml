@@ -36,4 +36,12 @@
     <string name="password_incorrect">Username Not Found</string>
     <string name="database_access_fail">Database Access Fail</string>
 
+    <string name="signature">Signature</string>
+
+    <string name="message">Message</string>
+    <string name="block">Block</string>
+    <string name="follow">Follow</string>
+
+    <string name="create_post">Create</string>
+
 </resources>

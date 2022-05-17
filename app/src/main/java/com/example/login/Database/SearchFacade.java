@@ -42,6 +42,7 @@ public class SearchFacade {
         }
     }
 
+    // Deprecate
     // Get followers of a username
     public HashSet<String> getFollowers(String username){
         HashSet<String> followers = new HashSet<>();

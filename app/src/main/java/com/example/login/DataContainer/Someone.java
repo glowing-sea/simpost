@@ -3,10 +3,11 @@ package com.example.login.DataContainer;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Someone extends User{
+public class Someone extends User implements Serializable {
     public final String username;
     private final  String signature;
     private final Bitmap avatar;

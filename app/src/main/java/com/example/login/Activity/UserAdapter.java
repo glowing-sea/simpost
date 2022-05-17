@@ -1,5 +1,6 @@
 package com.example.login.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.UserOld;
+import com.example.login.DataContainer.UserAdmin;
+import com.example.login.DataContainer.UserPreview;
 import com.example.login.R;
 
 import java.util.ArrayList;
@@ -22,12 +24,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     private Context context;
     Activity activity;
-    private ArrayList<UserOld> users;
+    private ArrayList<UserPreview> usersPreview;
+    private ArrayList<UserAdmin> usersAdmin;
 
-    UserAdapter(Activity activity, Context context, ArrayList users){
+
+    UserAdapter(Activity activity, Context context,  ArrayList<UserPreview> usersPreview, ArrayList<UserAdmin> usersAdmin){
         this.activity = activity;
         this.context = context;
-        this.users = users;
+        this.usersPreview = usersPreview;
+        this.usersAdmin = usersAdmin;
     }
 
 
@@ -38,38 +43,55 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return new UserAdapter.UserViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        UserOld user = users.get(position);
-        holder.username.setText(user.getUsername());
-        holder.password.setText(user.getPassword());
+
+        String extra = null;
+
+        if (usersAdmin == null) {
+            UserPreview userPreview = usersPreview.get(position);
+            holder.username.setText(userPreview.getUsername());
+            holder.something.setText(userPreview.getSignature());
+            holder.somethingText.setText(context.getText(R.string.signature));
+            extra = userPreview.getUsername();
+        }
+        if (usersPreview == null) {
+            UserAdmin userAdmin = usersAdmin.get(position);
+            holder.username.setText(userAdmin.getUsername());
+            holder.something.setText(userAdmin.getPassword());
+            holder.somethingText.setText(context.getText(R.string.password));
+            extra = userAdmin.getUsername();
+        }
+
+
+        String finalExtra = extra;
         holder.adminUserRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show();
-                 Intent intent = new Intent(context, AdminUpdateUserPage.class);
-                 intent.putExtra("USER", user);
-                 // intent.putExtra("username", String.valueOf(users.get(position)));
-                 activity.startActivityForResult(intent, 1);
+                Intent intent = new Intent(context, HomeSomeone.class);
+                intent.putExtra("USER", finalExtra);
+                activity.startActivityForResult(intent, 1);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return usersAdmin == null ? usersPreview.size() : usersAdmin.size();
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder{
 
-        TextView username, password;
+        TextView username, something, somethingText ;
         LinearLayout adminUserRow;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
-            username = (TextView) itemView.findViewById(R.id.admin_username);
-            password = (TextView) itemView.findViewById(R.id.admin_password);
-            adminUserRow = itemView.findViewById(R.id.admin_user_row);
+            username = (TextView) itemView.findViewById(R.id.preview_username);
+            something = (TextView) itemView.findViewById(R.id.preview_something);
+            somethingText = (TextView) itemView.findViewById(R.id.preview_something_text);
+            adminUserRow = itemView.findViewById(R.id.user_preview_row);
         }
     }
 }

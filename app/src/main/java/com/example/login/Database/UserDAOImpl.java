@@ -16,6 +16,8 @@ import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Someone;
 import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.User;
+import com.example.login.DataContainer.UserAdmin;
+import com.example.login.DataContainer.UserPreview;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -333,9 +335,9 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         SQLiteDatabase db = this.getWritableDatabase();
         // Query
         String sQuery1 = "DELETE FROM user";
-        String sQuery2 = "DELETE FROM sqlite_sequence where username = user";
+        // String sQuery2 = "DELETE FROM sqlite_sequence where username = user";
         db.execSQL(sQuery1);
-        db.execSQL(sQuery2);
+        // db.execSQL(sQuery2);
         db.close();
     }
 
@@ -462,6 +464,46 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         cursor.close();
         db.close();
         return someone;
+    }
+
+    /**
+     * Get all users' names and signatures
+     * @return return preview of all users
+     */
+    public ArrayList<UserPreview> getAllUsers(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT username, signature FROM user;";
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, null);
+        ArrayList<UserPreview> allUsers = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            String username = cursor.getString(0);
+            String signature = cursor.getString(1);
+            allUsers.add(new UserPreview(username, signature));
+        }
+        cursor.close();
+        db.close();
+        return allUsers;
+    }
+
+    /**
+     * Get all users' names and password
+     * @return return preview of all users
+     */
+    public ArrayList<UserAdmin> getAllUsersAdmin(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT username, password FROM user;";
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, null);
+        ArrayList<UserAdmin> allUsers = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            String username = cursor.getString(0);
+            String password = cursor.getString(1);
+            allUsers.add(new UserAdmin(username, password));
+        }
+        cursor.close();
+        db.close();
+        return allUsers;
     }
 
 

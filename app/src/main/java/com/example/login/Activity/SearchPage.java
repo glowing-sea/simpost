@@ -1,22 +1,20 @@
 package com.example.login.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.login.DataContainer.Post;
 import com.example.login.R;
-import com.example.login.parserAndTokenizer.Token;
-import com.example.login.parserAndTokenizer.Tokenizier;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.List;
 
 public class SearchPage extends AppCompatActivity {
 
@@ -72,6 +70,37 @@ public class SearchPage extends AppCompatActivity {
 
             }
         });
+
+
+
+//        Button findUsers;
+//        findUsers = findViewById(R.id.go_to_find_users);
+//        findUsers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(SearchPage.this, SearchUsers.class));
+//                overridePendingTransition(0, 0);
+//                finish();
+//            }
+//        });
+
+
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.to_search_users, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.to_find_users){
+            startActivity(new Intent(SearchPage.this, SearchUsers.class));
+            overridePendingTransition(0, 0);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

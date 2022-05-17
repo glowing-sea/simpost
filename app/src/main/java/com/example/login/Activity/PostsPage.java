@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class PostsPage extends AppCompatActivity {
     Me me;
@@ -89,7 +88,7 @@ public class PostsPage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_show_recent){
+        if (id == R.id.to_find_users){
             Toast.makeText(PostsPage.this, "recent posts shown", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);

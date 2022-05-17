@@ -9,14 +9,9 @@ import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
 
-import com.example.login.DataContainer.UserOld;
-import com.example.login.Database.UserDAO;
-import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 public class SubscriptionsPage extends AppCompatActivity {
     Me me = Me.getInstance();

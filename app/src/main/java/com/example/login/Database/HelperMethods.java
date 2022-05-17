@@ -9,7 +9,9 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.login.Activity.Messages;
 import com.example.login.DataContainer.Gender;
+import com.example.login.DataContainer.Message;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -173,5 +175,10 @@ public class HelperMethods {
             message = message.replaceAll(p, replace);
         }
         return message;}
+
+    public static boolean sameMessage(Message m1, Message m2){
+        return m1.getSender().equals(m2.getSender()) && m1.getReceiver().equals(m2.getReceiver())
+                && m1.getDate().equals(m2.getDate()) && m1.getContent().equals(m2.getContent());
+    }
 
 }

@@ -19,6 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".Activity.HomeUsersList"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.HomeSomeone"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SearchUsers"
+            android:exported="false" />
+        <activity
             android:name=".Activity.BlacklistPage"
             android:exported="false" />
         <activity
@@ -51,7 +60,7 @@
         <activity
             android:name=".Activity.ReportPage"
             android:exported="false"
-            android:label="statistic"/>
+            android:label="statistic" />
         <activity
             android:name=".Activity.FollowerPage"
             android:exported="false" />

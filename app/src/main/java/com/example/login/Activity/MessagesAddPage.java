@@ -40,6 +40,12 @@ public class MessagesAddPage extends AppCompatActivity {
         contentMessageSentTextView = findViewById(R.id.contentMessageSentTextView);
         messageSentButton = findViewById(R.id.messageSentButton);
 
+        String from = getIntent().getStringExtra("Receiver");
+        if (from != null){
+            userMessage.setText(from);
+        }
+        getIntent().removeExtra("USER");
+
         //old
         /*messageSentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +83,7 @@ public class MessagesAddPage extends AppCompatActivity {
                     if (isUserNameExisted(name)) {
 
                         Date curDate =  new Date(System.currentTimeMillis());
-                        //获取当前时间
+                        //Get Current Time
                         String time =  formatter.format(curDate);
                         Message mess = new Message(me.username, name, time, false, message);
 
@@ -87,7 +93,7 @@ public class MessagesAddPage extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Username not existed!", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Message can not contain '|' or '[' or ']'", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Message can not contain '~' or '`'", Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -3,13 +3,16 @@ package com.example.login.DataContainer;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class UserOld implements Serializable {
+/*
+A user class for admin which contain username and password only.
+ */
+public class UserAdmin implements Serializable {
 
     // Authentication
     private String username;
     private String password;
 
-    public UserOld(String name, String password){
+    public UserAdmin(String name, String password){
         this.username = name;
         this.password = password;
     }

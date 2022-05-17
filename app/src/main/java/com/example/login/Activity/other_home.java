@@ -22,7 +22,7 @@ public class other_home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_other_home);
+        setContentView(R.layout.activity_home_someone);
 //        Bundle fromCreate = getIntent().getExtras();
 //        if (fromCreate != null){
 //            other = new Other(fromCreate.getString("OTHER"), getApplicationContext());
