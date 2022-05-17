@@ -129,6 +129,8 @@ public class Post{
 
     public HashSet<String> getViews() { return views; }
 
+
+
     public String getPoster() {
         return this.creator;
     }
