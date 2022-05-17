@@ -66,7 +66,7 @@ public class SearchResultPage extends AppCompatActivity {
 
         SearchResultAdapter searchResultAdapter = new SearchResultAdapter(getApplicationContext(),allPosts);
         rvPosts.setAdapter(searchResultAdapter);
-        rvPosts.setLayoutManager(new LinearLayoutManager((this)));
+        rvPosts.setLayoutManager(new LinearLayoutManager((getApplicationContext())));
 
     }
 }

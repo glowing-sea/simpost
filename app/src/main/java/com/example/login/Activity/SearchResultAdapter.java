@@ -2,6 +2,7 @@ package com.example.login.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ResultHolder holder, int position) {
+        Log.i("Search result","on click");
         Integer current = dataset.get(position).postID;
         Post post = dataset.get(position);
         holder.getPoster().setText(post.getPoster());
@@ -46,16 +48,20 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
             public void onClick(View view) {
                 Intent i = new Intent(ctx, ViewPost.class);
                 i.putExtra("POST", current);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                Log.i("Search result",current.toString());
                 ctx.startActivity(i);
             }
         });
-
     }
+
+
 
     @Override
     public int getItemCount() {
         return dataset.size();
     }
+
     public class ResultHolder extends RecyclerView.ViewHolder{
         private final TextView title;
         private final TextView poster;
@@ -70,4 +76,5 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         public TextView getPoster(){return this.poster;}
         public ConstraintLayout getSingleResult(){return this.singleResult;}
     }
+
 }

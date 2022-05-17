@@ -172,7 +172,7 @@ public class PostDAOTest {
         int id = 100004;
         db.addPostSpecifyID(test, 100004);
         System.out.println("Founded");
-        Set<Post> result= db.postContentMatch("games NEAR doom");
+        Set<Post> result= db.postAuthorMatch("games NEAR doom");
         Iterator<Post> iterator = result.iterator();
         while (iterator.hasNext()){
             Post current = iterator.next();
