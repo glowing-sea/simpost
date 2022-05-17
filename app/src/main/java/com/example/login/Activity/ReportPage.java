@@ -11,9 +11,10 @@ import com.example.login.DataContainer.Post;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
+import java.util.Iterator;
 import java.util.Set;
 
-public class reportPage extends AppCompatActivity {
+public class ReportPage extends AppCompatActivity {
     TextView postCount;
     TextView likeCount;
     TextView viewCount;
@@ -37,8 +38,18 @@ public class reportPage extends AppCompatActivity {
         UserDAOImpl userDAO = new UserDAOImpl(getApplicationContext());
         Set<Post> allPost = userDAO.postAuthorMatch(userNmae);
 
-        numberOfPost = allPost.size();
-        postCount.setText(Integer.toString(numberOfPost) );
+        if (allPost != null) {
+            numberOfPost = allPost.size();
+            Iterator iterator = allPost.iterator();
+            while (iterator.hasNext()){
+                Post post = (Post) iterator.next();
+                numberOfLikes =numberOfLikes + post.getLikes().size();
+                numberOfViews = numberOfViews + post.getViews().size();
 
+            }
+        }
+        likeCount.setText(Integer.toString(numberOfLikes));
+        postCount.setText(Integer.toString(numberOfPost) );
+        viewCount.setText(Integer.toString(numberOfViews));
     }
 }

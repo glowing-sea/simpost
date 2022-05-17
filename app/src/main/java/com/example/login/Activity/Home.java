@@ -170,7 +170,7 @@ public class Home extends AppCompatActivity {
         report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), reportPage.class);
+                Intent intent = new Intent(getApplicationContext(), ReportPage.class);
                 intent.putExtra("userName",me.getUsername());
                 startActivity(intent);
             }
