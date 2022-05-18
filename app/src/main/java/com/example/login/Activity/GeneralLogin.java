@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,9 +17,13 @@ import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GeneralLogin extends AppCompatActivity {
 
-
+    SoundPool soundPool;
+    List<Integer> soundIds;
     UserDAO db;
     EditText usernameInput, passwordInput;
     String username, password;
@@ -29,6 +34,14 @@ public class GeneralLogin extends AppCompatActivity {
         this.setTitle(this.getText(R.string.welcome));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_login);
+
+        //autido effect
+        soundPool = new SoundPool.Builder().setMaxStreams(1).build();
+        soundIds = new ArrayList<>();
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.loginsucess,1));
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.loginfail,1));
+
+
         keepLogin = getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
 
         // Database
@@ -73,6 +86,7 @@ public class GeneralLogin extends AppCompatActivity {
                 boolean result2 = me.makeLocalCopyOfMyData(username, password, this);
 
                 if (result2){
+                    this.soundPool.play(soundIds.get(0),1,1,1,1,1);
                     Intent in = new Intent(GeneralLogin.this, Post.class);
                     startActivity(in);
                     finish();
@@ -83,12 +97,19 @@ public class GeneralLogin extends AppCompatActivity {
                 break;
             case -1:
                 Toast.makeText(this, "Password Incorrect", Toast.LENGTH_SHORT).show();
+                //play sound of fail login
+                this.soundPool.play(soundIds.get(1),1,1,1,1,1);
                 break;
             case -2:
                 Toast.makeText(this, "Username Not Found", Toast.LENGTH_SHORT).show();
+                //play sound of fail login
+                this.soundPool.play(soundIds.get(1),1,1,1,1,1);
                 break;
             case -3:
                 Toast.makeText(this, "Database Access Failed", Toast.LENGTH_SHORT).show();
+                //play sound of fail login
+                this.soundPool.play(soundIds.get(1),1,1,1,1,1);
+
         }
     }
 
