@@ -196,6 +196,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+                me.deleteLocalCopyOfMyData();
                 Intent toResult = new Intent(getApplicationContext(), GeneralLogin.class);
                 startActivity(toResult);
             }

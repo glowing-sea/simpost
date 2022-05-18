@@ -8,7 +8,7 @@ import java.util.HashSet;
 A local temporary copy of data of a user
 This class is mainly used for transferring data from the database to either Me or Other class.
  */
-public class User {
+public class User{
     private String username;
     private int age;
     private Gender gender;

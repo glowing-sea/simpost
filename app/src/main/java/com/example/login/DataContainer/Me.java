@@ -75,6 +75,14 @@ public class Me extends User{
         return true;
     }
 
+    /**
+     * This delete temporary copy of my data
+     * Used only when logout
+     */
+    public void deleteLocalCopyOfMyData(){
+        instance = null;
+    }
+
 
     // ======================== USER DATA ACCESS AND MODIFY METHODS 1 =========================== //
 

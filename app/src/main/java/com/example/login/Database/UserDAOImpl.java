@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import com.example.login.DataContainer.Comment;
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Message;
+import com.example.login.DataContainer.PostPreview;
 import com.example.login.DataContainer.Someone;
 import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.User;
@@ -79,7 +80,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
                 "image1 BLOB DEFAULT NULL, " +
                 "image2 BLOB DEFAULT NULL, " +
                 "image3 BLOB DEFAULT NULL, " +
-                "tag INTEGER DEFAULT '', " +
+                "tag TEXT DEFAULT '', " +
                 "likes TEXT DEFAULT '', " +
                 "views TEXT DEFAULT '', " +
                 "comments TEXT DEFAULT '', " +
@@ -166,35 +167,31 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
 
 
     /**
-     * This function get all posts from the database
+     * This function get all post previews from the database
      * Be careful when use it as the database may contain many posts.
      * @return all posts in the database or null if there is not post in the database
      */
-    public ArrayList<Post> getAllPosts (){
+    public ArrayList<PostPreview> getAllPosts (){
         SQLiteDatabase db = this.getReadableDatabase();
         String query = "SELECT * FROM post;";
         Cursor cursor = null;
         cursor = db.rawQuery(query, null);
-        ArrayList<Post> allPosts = new ArrayList<>();
+        ArrayList<PostPreview> allPosts = new ArrayList<>();
         while (cursor.moveToNext()) {
             int postID = cursor.getInt(0);
             String creator = cursor.getString(1);
             String title = cursor.getString(2);
             String content = cursor.getString(3);
             String date = cursor.getString(4);
-            Bitmap image1 = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
-            Bitmap image2 = HelperMethods.byteArrayToBitmap(cursor.getBlob(6));
-            Bitmap image3 = HelperMethods.byteArrayToBitmap(cursor.getBlob(7));
+            Bitmap image = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
             String tag = cursor.getString(8);
-            HashSet<String> likes = HelperMethods.setDecode(cursor.getString(9));
-            HashSet<String> views = HelperMethods.setDecode(cursor.getString(10));
-            ArrayList<Comment> comments = Comment.commentsDecode(cursor.getString(11));
-            allPosts.add(new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context));
+            allPosts.add(new PostPreview(postID, creator, title, content, date, image, tag));
         }
         cursor.close();
         db.close();
         return allPosts;
     }
+
 
 
     /**

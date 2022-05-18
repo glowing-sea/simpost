@@ -1,18 +1,22 @@
 package com.example.login.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.PostPreview;
+import com.example.login.Database.HelperMethods;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
@@ -61,13 +65,14 @@ public class Post extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Post.this, PostCreate.class);
-                startActivity(i);
+                startActivityForResult(i, 100);
             }
         });
 
         RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
 
-        ArrayList<com.example.login.DataContainer.Post> allPosts = db.getAllPosts();
+        ArrayList<PostPreview> allPosts = db.getAllPosts();
+
 
         if (allPosts == null) {
             Toast.makeText(Post.this, "No Post", Toast.LENGTH_LONG).show();
@@ -91,5 +96,13 @@ public class Post extends AppCompatActivity {
             Toast.makeText(Post.this, "recent posts shown", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 100){
+            recreate();
+        }
     }
 }

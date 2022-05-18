@@ -8,22 +8,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostPreview;
 import com.example.login.R;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
 
     private final Context ctx;
-    private final List<Post> dataset;
-    public PostAdapter(Context ctx, List<Post> dataset){
+    private final ArrayList<PostPreview> dataset;
+    public PostAdapter(Context ctx, ArrayList<PostPreview> dataset){
         this.ctx = ctx;
         this.dataset = dataset;
     }
@@ -40,25 +37,43 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         int max =100;
         int min =0;
         int id = (int) (Math.random()*((max-min) + 1) + min);
-        Post current = dataset.get(position);
+        PostPreview current = dataset.get(position);
 
-        holder.getPostUser().setText(dataset.get(position).getPoster());
-        holder.getPostContent().setText(dataset.get(position).getTitle());
-        if (current.image1 == null && current.image2 == null && current.image3 == null){
-            Glide.with(ctx).load("https://picsum.photos/id/" + id + "/300/200").apply(new RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .skipMemoryCache(true))
-                    .into(holder.getPostImage());
+        String title = current.title;
+        if (title.length() > 15) {
+            title = title.substring(0, 12);
+            title = title + "...";
         }
-        else if (current.image1 != null){
-            holder.getPostImage().setImageBitmap(current.image1);
+        String content = current.content;
+        if (content.length() > 43) {
+            content = content.substring(0, 40);
+            content = content + "...";
         }
-        else if (current.image2 != null){
-            holder.getPostImage().setImageBitmap(current.image2);
+
+        holder.getPostTitle().setText(title);
+        holder.getPostContent().setText(content);
+        holder.getPostCreator().setText(current.creator);
+        holder.getPostTag().setText(current.getTag());
+
+
+        if (current.image != null){
+            holder.getPostImage().setImageBitmap(current.image);
         }
-        else if (current.image3 != null){
-            holder.getPostImage().setImageBitmap(current.image3);
-        }
+//        if (current.image1 == null && current.image2 == null && current.image3 == null){
+//            Glide.with(ctx).load("https://picsum.photos/id/" + id + "/300/200").apply(new RequestOptions()
+//                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+//                    .skipMemoryCache(true))
+//                    .into(holder.getPostImage());
+//        }
+//        else if (current.image1 != null){
+//            holder.getPostImage().setImageBitmap(current.image1);
+//        }
+//        else if (current.image2 != null){
+//            holder.getPostImage().setImageBitmap(current.image2);
+//        }
+//        else if (current.image3 != null){
+//            holder.getPostImage().setImageBitmap(current.image3);
+//        }
 
 
         holder.getSinglePost().setOnClickListener(new View.OnClickListener() {
@@ -66,9 +81,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             public void onClick(View view) {
                 // Toast.makeText(ctx, "Clicked", Toast.LENGTH_LONG).show();
                  Intent intent = new Intent(ctx, PostView.class);
-                 intent.putExtra("POST", current.postID);
+                 intent.putExtra("postID", current.postID);
                  // intent.putExtra("username", String.valueOf(users.get(position)));
                  ctx.startActivity(intent);
+
+//                Intent intent = new Intent(ctx,PostView.class);
+//                intent.putExtra("POST", current);
+//                ctx.startActivity(intent);
             }
         });
     }
@@ -80,22 +99,42 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     public class PostViewHolder extends RecyclerView.ViewHolder{
         private final ImageView postImage;
-        private final TextView postUser;
-        private final TextView postContent;
+        private final TextView postTitle, postContent, postTag, postCreator;
         private final ConstraintLayout singlePost;
 
         public PostViewHolder(@NonNull View itemView){
             super(itemView);
             postImage = (ImageView) itemView.findViewById(R.id.post_image);
-            postUser = (TextView) itemView.findViewById(R.id.post_user);
+            postTitle = (TextView) itemView.findViewById(R.id.post_title);
             postContent = (TextView) itemView.findViewById(R.id.post_content);
+            postTag = (TextView) itemView.findViewById(R.id.post_tag);
+            postCreator = (TextView) itemView.findViewById(R.id.post_creator);
             singlePost = (ConstraintLayout) itemView.findViewById(R.id.single_post);
         }
 
-        public ImageView getPostImage() { return postImage; }
-        public TextView getPostUser() { return postUser; }
-        public TextView getPostContent() { return postContent; }
-        public ConstraintLayout getSinglePost() { return singlePost; }
+        public ImageView getPostImage() {
+            return postImage;
+        }
+
+        public TextView getPostTitle() {
+            return postTitle;
+        }
+
+        public TextView getPostContent() {
+            return postContent;
+        }
+
+        public TextView getPostTag() {
+            return postTag;
+        }
+
+        public TextView getPostCreator() {
+            return postCreator;
+        }
+
+        public ConstraintLayout getSinglePost() {
+            return singlePost;
+        }
     }
 
 }
