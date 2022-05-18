@@ -40,6 +40,8 @@ public class GeneralLogin extends AppCompatActivity {
         soundIds = new ArrayList<>();
         soundIds.add(soundPool.load(getApplicationContext(),R.raw.loginsucess,1));
         soundIds.add(soundPool.load(getApplicationContext(),R.raw.loginfail,1));
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.start_sign_up,1));
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.sign_up_fail,1));
 
 
         keepLogin = getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
@@ -60,14 +62,17 @@ public class GeneralLogin extends AppCompatActivity {
         re = db.addUser(username,password);
         switch (re) {
             case 0: {
+                soundPool.play(soundIds.get(2),1,1,1,1,1);
                 Toast.makeText(getApplicationContext(), "You have successfully signed up", Toast.LENGTH_LONG).show();
                 break;
             }
             case -2: {
+                soundPool.play(soundIds.get(3),1,1,1,1,1);
                 Toast.makeText(getApplicationContext(), "Username can only contains numbers, letter, '_', or '-'.", Toast.LENGTH_LONG).show();
                 break;
             }
             case -1: {
+                soundPool.play(soundIds.get(3),1,1,1,1,1);
                 Toast.makeText(getApplicationContext(), "Username already existed", Toast.LENGTH_LONG).show();
             }
         }
