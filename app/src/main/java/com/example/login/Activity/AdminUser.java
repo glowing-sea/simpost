@@ -1,5 +1,6 @@
 package com.example.login.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,21 +14,25 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class AdminPage extends AppCompatActivity {
+public class AdminUser extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FloatingActionButton addButton,updateButton,deleteButton;
 
     UserDAO db;
     ArrayList<UserAdmin> users;
-    HomeUserListAdapter userAdapter;
+    AdminUserAdapter userAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Admin Users");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
@@ -38,7 +43,7 @@ public class AdminPage extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminAddUser.class);
+                Intent intent = new Intent(getApplicationContext(), AdminUserAdd.class);
                 startActivityForResult(intent, 100);
             }
         });
@@ -46,7 +51,7 @@ public class AdminPage extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminUpdateUser.class);
+                Intent intent = new Intent(getApplicationContext(), AdminUserUpdate.class);
                 startActivityForResult(intent, 100);
             }
         });
@@ -54,7 +59,7 @@ public class AdminPage extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminDeleteUser.class);
+                Intent intent = new Intent(getApplicationContext(), AdminUserDelete.class);
                 startActivityForResult(intent, 100);
             }
         });
@@ -64,7 +69,7 @@ public class AdminPage extends AppCompatActivity {
         users = db.getAllUsersAdmin();
 
 
-        userAdapter = new HomeUserListAdapter(AdminPage.this, this,null, users);
+        userAdapter = new AdminUserAdapter(AdminUser.this, this, users);
         recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         // rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
@@ -78,6 +83,22 @@ public class AdminPage extends AppCompatActivity {
                 recreate();
             }
         }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.admin_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.admin_post_management){
+            startActivity(new Intent(AdminUser.this, AdminPost.class));
+            overridePendingTransition(0, 0);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

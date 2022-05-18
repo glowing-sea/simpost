@@ -59,13 +59,18 @@
         <entry key="app/src/main/res/drawable/nav_ico_search.xml" value="0.4185" />
         <entry key="app/src/main/res/drawable/new_post_ico.xml" value="0.4185" />
         <entry key="app/src/main/res/drawable/profile.xml" value="0.4185" />
-        <entry key="app/src/main/res/layout/activity_admin.xml" value="0.2947916666666667" />
+        <entry key="app/src/main/res/layout/activity_admin.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_admin_add_user.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_admin_add_user_page.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/activity_admin_delete_user_page.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_admin_edit_page.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/activity_admin_getter_test_page.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_admin_getter_test_page2.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_admin_page.xml" value="0.5177083333333333" />
+        <entry key="app/src/main/res/layout/activity_admin_post.xml" value="0.5177083333333333" />
+        <entry key="app/src/main/res/layout/activity_admin_post_delete.xml" value="0.5177083333333333" />
+        <entry key="app/src/main/res/layout/activity_admin_post_reset.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_admin_update_user.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_admin_update_user_page.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/activity_blacklist_page.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.33" />

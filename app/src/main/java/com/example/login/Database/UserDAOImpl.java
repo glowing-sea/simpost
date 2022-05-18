@@ -136,6 +136,18 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         db.close();
     }
 
+    // Delete all posts
+    public void truncatePosts (){
+        // Get database
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Query
+        String sQuery1 = "DELETE FROM post";
+        // String sQuery2 = "DELETE FROM sqlite_sequence where username = user";
+        db.execSQL(sQuery1);
+        // db.execSQL(sQuery2);
+        db.close();
+    }
+
     /**
      * This function get a posts from the database
      * @param postID the post ID

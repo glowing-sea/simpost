@@ -126,7 +126,7 @@ public class GeneralLogin extends AppCompatActivity {
 
 
     public void onClickAdmin(View view) {
-        Intent i = new Intent(getApplicationContext(), AdminPage.class);
+        Intent i = new Intent(getApplicationContext(), AdminUser.class);
         startActivity(i);
     }
 }

@@ -19,6 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".Activity.AdminPostReset"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AdminPostDelete"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.AdminPost"
+            android:exported="false"
+            android:label="Admin Post"
+            android:parentActivityName=".Activity.GeneralLogin" />
+        <activity
             android:name=".Activity.PostViewComments"
             android:exported="false" />
         <activity
@@ -57,21 +68,21 @@
             android:exported="false"
             android:label="statistic" />
         <activity
-            android:name=".Activity.AdminDeleteUser"
+            android:name=".Activity.AdminUserDelete"
             android:exported="false"
-            android:parentActivityName=".Activity.AdminPage" />
+            android:parentActivityName=".Activity.AdminUser" />
         <activity
-            android:name=".Activity.AdminUpdateUser"
+            android:name=".Activity.AdminUserUpdate"
             android:exported="false"
             android:label="@string/update_user"
-            android:parentActivityName=".Activity.AdminPage" />
+            android:parentActivityName=".Activity.AdminUser" />
         <activity
-            android:name=".Activity.AdminAddUser"
+            android:name=".Activity.AdminUserAdd"
             android:exported="false"
             android:label="@string/add_user"
-            android:parentActivityName=".Activity.AdminPage" />
+            android:parentActivityName=".Activity.AdminUser" />
         <activity
-            android:name=".Activity.AdminPage"
+            android:name=".Activity.AdminUser"
             android:exported="false"
             android:label="@string/admin"
             android:parentActivityName=".Activity.GeneralLogin" />

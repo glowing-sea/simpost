@@ -24,6 +24,8 @@ public interface UserDAO {
 
     void deletePost (int postID);
 
+    void truncatePosts ();
+
     // Be careful of null return of image1-3
     Post getPost (int postID);
 
