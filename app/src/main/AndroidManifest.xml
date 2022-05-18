@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".Activity.PostViewComments"
+            android:exported="false" />
+        <activity
             android:name=".Activity.GeneralDeleting"
             android:exported="false"
             android:label="Deleting" />

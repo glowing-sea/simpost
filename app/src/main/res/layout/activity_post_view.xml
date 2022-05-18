@@ -13,9 +13,9 @@
         android:id="@+id/postLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,53 +27,52 @@
             android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="21dp"
             android:text="Like"
-            app:layout_constraintBottom_toTopOf="@+id/returnKey"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_publish_time" />
 
         <Button
             android:id="@+id/dislike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="50dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="16dp"
             android:text="dislike"
-            app:layout_constraintBottom_toTopOf="@+id/returnKey"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_image_3" />
 
         <TextView
             android:id="@+id/like_count"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="22dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
             android:text="likecount"
-            app:layout_constraintBottom_toTopOf="@+id/returnKey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/view_count" />
 
         <TextView
             android:id="@+id/view_count"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="19dp"
             android:text="viewcount"
-            app:layout_constraintBottom_toTopOf="@+id/returnKey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/like" />
 
         <TextView
             android:id="@+id/post_publish_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
             android:text="Published time"
-            app:layout_constraintTop_toBottomOf="@id/view_image_3"
             app:layout_constraintBottom_toTopOf="@+id/like"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_image_3" />
 
         <TextView
             android:id="@+id/postTitleText"
@@ -89,53 +88,81 @@
             android:id="@+id/postContentText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="test"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/postTitleText" />
-
-        <Button
-            android:id="@+id/returnKey"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="Return to Posts"
-            android:layout_marginStart="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/view_image_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="#F6F0F0"
             android:scaleType="centerCrop"
-            tools:layout_editor_absoluteY="12dp"
+            app:layout_constraintBottom_toTopOf="@id/view_image_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/postContentText"
-            app:layout_constraintBottom_toTopOf="@id/view_image_2"
             tools:srcCompat="@tools:sample/avatars" />
+
         <ImageView
             android:id="@+id/view_image_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="#F6F0F0"
             android:scaleType="centerCrop"
-            tools:layout_editor_absoluteY="12dp"
+            app:layout_constraintBottom_toTopOf="@id/view_image_3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_image_1"
-            app:layout_constraintBottom_toTopOf="@id/view_image_3"
             tools:srcCompat="@tools:sample/avatars" />
+
         <ImageView
             android:id="@+id/view_image_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="#F6F0F0"
             android:scaleType="centerCrop"
-            tools:layout_editor_absoluteY="12dp"
+            app:layout_constraintBottom_toTopOf="@id/post_publish_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_image_2"
-            app:layout_constraintBottom_toTopOf="@id/post_publish_time"
             tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="19dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/like"
+            app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="11dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:srcCompat="@drawable/ic_baseline_thumb_up_24" />
+
+        <Button
+            android:id="@+id/to_comments"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="208dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="30dp"
+            android:text="comments"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_image_3" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
