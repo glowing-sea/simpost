@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Post;
+import com.example.login.Database.HelperMethods;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -87,8 +88,15 @@ public class PostView extends AppCompatActivity {
         date = "Post published by - "+ date;
         postTime.setText(date);
         // Set title and content
-        title.setText(t);
-        content.setText(c);
+        if (me.getPrivacySettings().get(5)){
+            title.setText(HelperMethods.getCensored(t));
+            content.setText(HelperMethods.getCensored(c));
+
+        }
+        else {
+            title.setText(t);
+            content.setText(c);
+        }
         // Check liked or not
         if (likes.contains(me.username)){
             like.setEnabled(false);
