@@ -4,22 +4,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.Comment;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import android.os.Bundle;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class PostViewComments extends AppCompatActivity {
 
     ArrayList<Comment> comments;
     RecyclerView recyclerView;
-    MessagesChatAdapter postCommentsAdapter;
+    PostCommentsAdapter postCommentsAdapter;
     UserDAO db;
 
     @Override
@@ -30,10 +34,12 @@ public class PostViewComments extends AppCompatActivity {
         int id = getIntent().getIntExtra("postID", 0);
         db = new UserDAOImpl(getApplicationContext());
         Post p = db.getPost(id);
-        comments = p.getComments();
 
 
-        comments = p.getComments();
+
+
+
+        comments = new ArrayList<>();
 
         comments.add(new Comment("a", "b","sfjsjdkfksldjfkljsdklf"));
         comments.add(new Comment("a", "b","sfjsjdkfksldjfkljsdklf"));
@@ -49,11 +55,22 @@ public class PostViewComments extends AppCompatActivity {
         ms.add(new Message("dd","ddd","dfdfdf",true, "dfdfd"));
 
 
+        RecyclerView recyclerView;
+        // UserDAO db;
+        // HashSet<String> contacts;
+        MessageAdapter messageAdapter;
+        FloatingActionButton addNewMessageButton;
+        // Me me = Me.getInstance();
 
+        recyclerView = findViewById(R.id.message_list);
+        // addNewMessageButton = findViewById(R.id.addNewMessageButton);
 
-        recyclerView.findViewById(R.id.comment_list);
-        postCommentsAdapter = new MessagesChatAdapter(PostViewComments.this, this,ms);
-        recyclerView.setAdapter(postCommentsAdapter);
+        messageAdapter = new MessageAdapter(PostViewComments.this, this, ms);
+        recyclerView.setAdapter(messageAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
+//        recyclerView.findViewById(R.id.comment_list);
+//        postCommentsAdapter = new PostCommentsAdapter(PostViewComments.this, this,comments);
+//        recyclerView.setAdapter(postCommentsAdapter);
+//        recyclerView.setLayoutManager(new LinearLayoutManager((this)));
     }
 }
