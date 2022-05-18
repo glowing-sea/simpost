@@ -41,14 +41,6 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        blacklist = findViewById(R.id.blacklist_me);
-        blacklist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Home.this, BlacklistPage.class);
-                startActivity(i);
-            }
-        });
 
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
@@ -140,6 +132,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, HomeUsersList.class);
                 i.putExtra("UserListType", "Followers");
+                i.putExtra("Whose", me.username);
                 startActivity(i);
 
             }
@@ -149,6 +142,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, HomeUsersList.class);
                 i.putExtra("UserListType", "Following");
+                i.putExtra("Whose", me.username);
                 startActivity(i);
             }
         });
@@ -158,6 +152,7 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, HomeUsersList.class);
                 i.putExtra("UserListType", "Blacklist");
+                i.putExtra("Whose", me.username);
                 startActivity(i);
             }
         });
@@ -240,7 +235,6 @@ public class Home extends AppCompatActivity {
         if (resultCode == RESULT_OK){
             boolean re;
             if (requestCode == 100) {
-                recreate();
             }
             if (requestCode == 200 || requestCode == 300) {
                 Uri imageUri = data.getData();

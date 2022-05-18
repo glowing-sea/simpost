@@ -164,9 +164,9 @@ public class HelperMethods {
     }
 
 
-    static String[] censorWords = {"fuck ", "shit ", "cock ", "titties ", "boner ", "muff ", "pussy ", "asshole ", "cunt ",
-            "ass ", "cockfoam ", "nigger ", "damn ", "Fuck ", "Shit ", "Cock ", "Titties ", "Boner ", "Muff ", "Pussy ", "Asshole ", "Cunt ",
-            "Ass ", "Cockfoam ", "Nigger ", "Damn "};
+    static String[] censorWords = {"fuck", "shit", "cock", "titties", "boner", "muff", "pussy", "asshole", "cunt",
+            "ass ", "cockfoam", "nigger", "damn", "Fuck", "Shit", "Cock", "Titties", "Boner", "Muff", "Pussy", "Asshole", "Cunt",
+            "Ass ", "Cockfoam", "Nigger", "Damn"};
 
     public static String getCensored(String message){
         for (int i = 0; i <= censorWords.length - 1; i++){

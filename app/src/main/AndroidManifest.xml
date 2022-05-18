@@ -111,7 +111,8 @@
         <activity
             android:name=".Activity.HomePrivacy"
             android:exported="false"
-            android:label="Settings" />
+            android:label="Settings"
+            android:parentActivityName=".Activity.Home"/>
         <activity
             android:name=".Activity.CreatePost"
             android:exported="false"

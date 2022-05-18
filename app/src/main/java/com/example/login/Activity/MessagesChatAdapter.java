@@ -56,6 +56,11 @@ public class MessagesChatAdapter extends RecyclerView.Adapter<MessagesChatAdapte
         else
             holder.username.setText(sender + " " + "<" + message.getDate() + ">");
 
+
+        if (m.getPrivacySettings().get(5)) {
+            content = HelperMethods.getCensored(content);
+        }
+
         holder.context.setText(content);
     }
 

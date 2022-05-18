@@ -7,6 +7,7 @@
     tools:context=".Activity.SearchPage">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/find_users_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigationView">
@@ -32,7 +33,8 @@
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/user_search_button"

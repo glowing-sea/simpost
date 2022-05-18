@@ -1,8 +1,10 @@
 package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.login.DataContainer.Gender;
+import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Someone;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
@@ -28,11 +30,14 @@ public class HomeSomeone extends AppCompatActivity {
     UserDAO db;
     Bitmap backgroundImage;
     Bitmap avatarImage;
+    ConstraintLayout followingBox, followersBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_someone);
+
+        setResult(RESULT_OK);
 
         // Link views
         background = findViewById(R.id.background_someone);
@@ -44,6 +49,8 @@ public class HomeSomeone extends AppCompatActivity {
         following = findViewById(R.id.following_someone_num);
         followers = findViewById(R.id.followers_someone_num);
         location = findViewById(R.id.location_someone);
+        followersBox = findViewById(R.id.followers_box_someone);
+        followingBox = findViewById(R.id.following_box_someone);
 
         // Get this person's data
         name = getIntent().getStringExtra("USER");
@@ -101,35 +108,72 @@ public class HomeSomeone extends AppCompatActivity {
         }
 
 
-        followers.setOnClickListener(new View.OnClickListener() {
+        // ================================== BUTTONS =========================================== //
+
+        followersBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (followersList != null){
+                    Intent i = new Intent(getApplicationContext(), HomeUsersList.class);
+                    i.putExtra("UserListType", "Followers");
+                    i.putExtra("Whose", name);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "The followers list of the current user is hidden", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
-
-        following.setOnClickListener(new View.OnClickListener() {
+        followingBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (followingList != null){
+                    Intent i = new Intent(getApplicationContext(), HomeUsersList.class);
+                    i.putExtra("UserListType", "Following");
+                    i.putExtra("Whose", name);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "The following list of the current user is hidden", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-
-
 
 
         nav = findViewById(R.id.someone_home_bottom_nav);
         nav.setOnItemSelectedListener(item -> {
+            Me me = Me.getInstance();
+            Someone someone = db.getSomeoneData(name);
             switch (item.getItemId()) {
                 case R.id.nav_message:
-                    Intent intent = new Intent(getApplicationContext(), MessagesAddPage.class);
-                    intent.putExtra("Receiver",name);
-                    startActivity(intent);
+                    if (someone.getBlacklist().contains(me.username)){
+                        Toast.makeText(getApplicationContext(), "You are blocked by " + name + "!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Intent intent = new Intent(getApplicationContext(), MessagesAddPage.class);
+                        intent.putExtra("Receiver",name);
+                        startActivity(intent);
+                    }
                     break;
                 case R.id.nav_block:
-                    Toast.makeText(getApplicationContext(), "Block", Toast.LENGTH_SHORT).show();
+                    HashSet<String> blacklist = me.getBlacklist();
+                    if (blacklist.contains(name)) {
+                        Toast.makeText(getApplicationContext(), "You have unblocked this user", Toast.LENGTH_SHORT).show();
+                        blacklist.remove(name);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "You are blocking this user", Toast.LENGTH_SHORT).show();
+                        blacklist.add(name);
+                    }
+                    me.setBlacklist(blacklist);
                     break;
                 case R.id.nav_follow:
-                    Toast.makeText(getApplicationContext(), "Follow", Toast.LENGTH_SHORT).show();
+                    HashSet<String> following = me.getFollowing();
+                    if (following.contains(name)) {
+                        Toast.makeText(getApplicationContext(), "You have unfollowed this user", Toast.LENGTH_SHORT).show();
+                        following.remove(name);
+                    } else {
+                        Toast.makeText(getApplicationContext(),"You are following this user" , Toast.LENGTH_SHORT).show();
+                        following.add(name);
+                    }
+                    me.setFollowing(following);
                     break;
             }
             return false;

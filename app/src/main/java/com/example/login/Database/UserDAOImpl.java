@@ -649,6 +649,8 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     return -1 sender not found
     return -2 receiver not found
     return -3 store message fail
+    return -4 receiver has blocked sender
+    return -5 invalid characters used in the content
      */
     public int sendMessages(Message sent) {
         String sender = sent.getSender();
@@ -658,14 +660,24 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         sent.setRead(false);
         String receiverCopy = sent.toString();
 
+        // Check content
+        if (!HelperMethods.isValidCommentOrMessage(sent.getContent())){
+            return -5;
+        }
+
         // Put the message into sender's messages box
         String senderMessagesBox = getString(sender, "username", "messages", "user");
         if (senderMessagesBox == null) return -1;
+
+        // Check receiver's black list
+        HashSet<String> blacklist = getBlacklist(receiver);
+        if (blacklist == null) return -2;
+        if (blacklist.contains(sender))
+            return -4;
         senderMessagesBox = senderMessagesBox + senderCopy + '~';
 
         // Put the message into receiver's messages box
         String receiverMessagesBox = getString(receiver, "username", "messages", "user");
-        if (receiverMessagesBox == null) return -2;
         receiverMessagesBox = receiverMessagesBox + receiverCopy + '~';
 
         boolean result1 = setString(sender, "username", senderMessagesBox, "messages", "user");

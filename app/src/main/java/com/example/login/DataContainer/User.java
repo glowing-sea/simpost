@@ -17,6 +17,7 @@ public class User {
     private Bitmap avatar;
     private Bitmap background;
     private HashSet<String> following;
+    private HashSet<String> followers;
     private HashSet<String> blacklist;
     private HashSet<Integer> history;
 
@@ -82,5 +83,9 @@ public class User {
 
     public HashSet<Integer> getHistory() {
         return history;
+    }
+
+    public HashSet<String> getFollowers() {
+        return followers;
     }
 }
