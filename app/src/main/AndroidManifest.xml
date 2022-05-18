@@ -32,12 +32,6 @@
             android:name=".Activity.SearchUsers"
             android:exported="false" />
         <activity
-            android:name=".Activity.BlacklistPage"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.other_home"
-            android:exported="false" />
-        <activity
             android:name=".Activity.MessagesChat"
             android:exported="false"
             android:parentActivityName=".Activity.Messages" />
@@ -59,15 +53,9 @@
             android:name=".Activity.AdminGetterTestPage"
             android:exported="false" />
         <activity
-            android:name=".Activity.SubscriptionsPage"
-            android:exported="false" />
-        <activity
             android:name=".Activity.ReportPage"
             android:exported="false"
             android:label="statistic" />
-        <activity
-            android:name=".Activity.FollowerPage"
-            android:exported="false" />
         <activity
             android:name=".Activity.AdminDeleteUserPage"
             android:exported="false"

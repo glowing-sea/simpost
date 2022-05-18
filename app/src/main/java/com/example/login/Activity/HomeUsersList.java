@@ -59,7 +59,8 @@ public class HomeUsersList extends AppCompatActivity {
                     listContent.add(new UserPreview(name, someone.getSignature()));
                 }
                 if (listContent.isEmpty())
-                    Toast.makeText(getApplicationContext(), "You don't have any following people!", Toast.LENGTH_SHORT).show();
+                    if (m.equals(me))
+                        Toast.makeText(getApplicationContext(), "You don't have any following people!", Toast.LENGTH_SHORT).show();
                 setTitle(m.getUsername() + "'s " + "following list");
                 break;
             }
@@ -71,7 +72,8 @@ public class HomeUsersList extends AppCompatActivity {
                     listContent.add(new UserPreview(name, someone.getSignature()));
                 }
                 if (listContent.isEmpty())
-                    Toast.makeText(getApplicationContext(), "You don't have any followers!", Toast.LENGTH_SHORT).show();
+                    if (m.equals(me))
+                        Toast.makeText(getApplicationContext(), "You don't have any followers!", Toast.LENGTH_SHORT).show();
                 setTitle(m.getUsername() + "'s " + "follower list");
                 break;
             }
@@ -83,7 +85,8 @@ public class HomeUsersList extends AppCompatActivity {
                     listContent.add(new UserPreview(name, someone.getSignature()));
                 }
                 if (listContent.isEmpty())
-                    Toast.makeText(getApplicationContext(), "Your blacklist is empty", Toast.LENGTH_SHORT).show();
+                    if (m.equals(me))
+                        Toast.makeText(getApplicationContext(), "Your blacklist is empty", Toast.LENGTH_SHORT).show();
                 setTitle(m.getUsername() + "'s " + "blacklist");
                 break;
             }
