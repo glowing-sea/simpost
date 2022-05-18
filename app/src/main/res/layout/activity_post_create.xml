@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     tools:context=".Activity.PostCreate">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,10 +15,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postTitle"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/postTitle">
 
         <TextView
             android:id="@+id/textview_CreatePost_display1"
@@ -24,10 +24,10 @@
             android:layout_height="wrap_content"
             android:text="Feeling sharing something?"
             android:textColor="#000000"
+            app:layout_constraintBottom_toTopOf="@id/postTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/postTitle"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/postTitle"
@@ -119,15 +119,49 @@
             app:layout_constraintBottom_toBottomOf="@id/post_image_3"
             app:layout_constraintEnd_toEndOf="@id/post_image_3"
             tools:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+
         <Button
             android:id="@+id/btn_CreatePost_posting"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
+            android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:text="Post"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/post_image_2" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="182dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_image_1">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_label_24" />
+
+            <TextView
+                android:id="@+id/tag_create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="7dp"
+                android:text="UNSELECTED"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+</ScrollView>

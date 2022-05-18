@@ -20,8 +20,8 @@
         android:theme="@style/Theme.Login">
         <activity
             android:name=".Activity.GeneralDeleting"
-            android:label="Deleting"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Deleting" />
         <activity
             android:name=".Activity.HomeUserList"
             android:exported="false" />
@@ -97,11 +97,12 @@
             android:name=".Activity.HomePrivacy"
             android:exported="false"
             android:label="Settings"
-            android:parentActivityName=".Activity.Home"/>
+            android:parentActivityName=".Activity.Home" />
         <activity
             android:name=".Activity.PostCreate"
             android:exported="false"
-            android:label="Create Your Post" />
+            android:label="Create Your Post"
+            android:parentActivityName=".Activity.Post" />
         <activity
             android:name=".Activity.GeneralLogin"
             android:exported="true">

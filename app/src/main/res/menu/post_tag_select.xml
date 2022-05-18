@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title = "Anime"
+        android:id = "@+id/anime"></item>
+    <item
+        android:title = "Games"
+        android:id = "@+id/game"></item>
+    <item
+        android:title = "Manga"
+        android:id = "@+id/manga"></item>
+    <item
+        android:title = "Light-Novels"
+        android:id = "@+id/novels"></item>
+    <item
+        android:title = "Art"
+        android:id = "@+id/art"></item>
+    <item
+        android:title = "Study"
+        android:id = "@+id/study"></item>
+    <item
+        android:title = "Music"
+        android:id = "@+id/music"></item>
+    <item
+        android:title = "Memes"
+        android:id = "@+id/memes"></item>
+    <item
+        android:title = "Cosplay"
+        android:id = "@+id/cosplay"></item>
+    <item
+        android:title = "Other"
+        android:id = "@+id/other"></item>
+
+</menu>

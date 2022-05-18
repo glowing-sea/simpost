@@ -11,6 +11,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.example.login.DataContainer.Comment;
 import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostPreview;
 import com.example.login.Database.UserDAOImpl;
 
 import org.junit.After;
@@ -33,7 +34,7 @@ public class PostDAOTest {
 
     Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
     UserDAOImpl db = new UserDAOImpl(appContext);
-    Post e = new Post("TestUser", "Game Review", "This is the content", null, null, null, "RPG", appContext);
+    Post e = new Post("TestUser", "Game Review", "This is the content", null, null, null, "Anime", appContext);
     final int POST_ID = 100;
 
     @Before
@@ -58,6 +59,7 @@ public class PostDAOTest {
         assertNull(a.image1);
         assertNull(a.image2);
         assertNull(a.image3);
+        assertEquals("Anime", a.tag);
         assertEquals(e.tag, a.tag);
         assertTrue(a.getViews().isEmpty());
         assertTrue(a.getLikes().isEmpty());
@@ -67,14 +69,16 @@ public class PostDAOTest {
     @Test
     public void getAllPosts(){
         int before = db.getAllPosts().size();
-        Post p1 = new Post("TestUser1", "Game Review1", "This is the content", null, null, null, "RPG", appContext);
-        Post p2 = new Post("TestUser2", "Game Review2", "This is the content", null, null, null, "RPG", appContext);
-        Post p3 = new Post("TestUser3", "Game Review3", "This is the content", null, null, null, "RPG", appContext);
+        Post p1 = new Post("TestUser1", "Game Review1", "This is the content", null, null, null, "Anime", appContext);
+        Post p2 = new Post("TestUser2", "Game Review2", "This is the content", null, null, null, "Anime", appContext);
+        Post p3 = new Post("TestUser3", "Game Review3", "This is the content", null, null, null, "Anime", appContext);
         db.addPostSpecifyID(p1, 100001);
         db.addPostSpecifyID(p2, 100002);
         db.addPostSpecifyID(p3, 100003);
         // Check Size
-        ArrayList<Post> allPosts = db.getAllPosts();
+        ArrayList<PostPreview> allPosts = db.getAllPosts();
+        PostPreview a1 = allPosts.get(1);
+        assertEquals("Anime", a1.tag);
         int after = allPosts.size();
         assertEquals(before + 3, after);
         db.deletePost(100001);

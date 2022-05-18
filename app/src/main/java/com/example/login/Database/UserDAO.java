@@ -7,6 +7,7 @@ import com.example.login.DataContainer.Comment;
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.PostPreview;
 import com.example.login.DataContainer.Someone;
 import com.example.login.DataContainer.User;
 import com.example.login.DataContainer.UserAdmin;
@@ -26,7 +27,7 @@ public interface UserDAO {
     // Be careful of null return of image1-3
     Post getPost (int postID);
 
-    ArrayList<Post> getAllPosts ();
+    ArrayList<PostPreview> getAllPosts ();
 
     boolean setLikes (int postID, HashSet<String> likes);
 

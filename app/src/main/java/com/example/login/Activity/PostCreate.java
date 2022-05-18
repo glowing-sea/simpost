@@ -1,5 +1,6 @@
 package com.example.login.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +11,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
+import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.Me;
 import com.example.login.Database.HelperMethods;
 import com.example.login.Database.UserDAO;
@@ -27,6 +31,7 @@ public class PostCreate extends AppCompatActivity {
     private static final String TAG = "Activity_CreatPost";
     String poster = Me.getInstance().getUsername();
     Button posting;
+    TextView tag;
     EditText userInput, title;
     ImageView image1, image2, image3;
     FloatingActionButton add1, add2, add3;
@@ -52,29 +57,60 @@ public class PostCreate extends AppCompatActivity {
         add1 = findViewById(R.id.add_post_image_1);
         add2 = findViewById(R.id.add_post_image_2);
         add3 = findViewById(R.id.add_post_image_3);
+        tag = findViewById(R.id.tag_create);
+
+        tag.setText("UNSELECTED");
+
+        setTitle("Choose a tag here -->");
+
         posting.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Post.class);
+
+                // Rearrange Images. null image image -> image image null
+                if (i1 == null && i2 != null && i3 != null){
+                    i1 = i2;
+                    i2 = i3;
+                    i3 = null;
+                }
+
+                // Rearrange Images image null image -> image image null
+                if (i1 != null && i2 == null && i3 != null){
+                    i2 = i3;
+                    i3 = null;
+                }
+
+                // Rearrange Images null null image -> image null null
+                if (i1 == null && i2 == null && i3 != null){
+                    i1 = i3;
+                    i3 = null;
+                }
+
+                // Rearrange Images null image null -> image null null
+                if (i1 == null && i2 != null){
+                    i1 = i2;
+                    i2 = null;
+                }
+
+
+                String tagString = tag.getText().toString();
                 String head = title.getText().toString();
                 String postContent = userInput.getText().toString();
                 //creating file
-                com.example.login.DataContainer.Post current = new com.example.login.DataContainer.Post(poster, head, postContent, i1, i2, i3, TAG, getApplicationContext());
-                boolean ind = db.addPost(current);
-                if (head.equals("")){
-                    Toast.makeText(PostCreate.this, "post title can`t be empty", Toast.LENGTH_SHORT).show();
-                }
-                else if (postContent.equals("")){
-                    Toast.makeText(PostCreate.this, "post content can`t be empty", Toast.LENGTH_SHORT).show();
-                }
-                else if (ind) {
-                    title.setText("");
-                    userInput.setText("");
-                    Toast.makeText(PostCreate.this, "post created successfully", Toast.LENGTH_SHORT).show();
-                    startActivity(intent);}
-                else {
-                    Toast.makeText(PostCreate.this, "post creation failed", Toast.LENGTH_SHORT).show();
+
+                Post current = new Post(poster, head, postContent, i1, i2, i3, tagString, getApplicationContext());
+
+                if (head.isEmpty() || postContent.isEmpty()){
+                    Toast.makeText(PostCreate.this, "Post title or content can`t be empty", Toast.LENGTH_SHORT).show();
+                } else if (tagString.equals("UNSELECTED")){
+                    Toast.makeText(PostCreate.this, "Tag can`t be empty", Toast.LENGTH_SHORT).show();
+                } else if (db.addPost(current)) {
+                    Toast.makeText(PostCreate.this, "Post created successfully", Toast.LENGTH_SHORT).show();
+                    setResult(RESULT_OK);
+                    finish();
+                } else {
+                    Toast.makeText(PostCreate.this, "Post creation failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -118,4 +154,58 @@ public class PostCreate extends AppCompatActivity {
             Uri imageURI = data.getData();
             image3.setImageURI(imageURI);
             i3 = HelperMethods.uri2bitmap(imageUri, getApplicationContext());
-        }}}
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.post_tag_select, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.anime){
+            Toast.makeText(getApplicationContext(), "ANIME", Toast.LENGTH_SHORT).show();
+            tag.setText("ANIME");
+        }
+        if (id == R.id.game){
+            Toast.makeText(getApplicationContext(), "GAMES", Toast.LENGTH_SHORT).show();
+            tag.setText("GAMES");
+        }
+        if (id == R.id.manga){
+            Toast.makeText(getApplicationContext(), "MANGA", Toast.LENGTH_SHORT).show();
+            tag.setText("MANGA");
+        }
+        if (id == R.id.novels){
+            Toast.makeText(getApplicationContext(), "LIGHT-NOVELS", Toast.LENGTH_SHORT).show();
+            tag.setText("LIGHT-NOVELS");
+        }
+        if (id == R.id.art){
+            Toast.makeText(getApplicationContext(), "ART", Toast.LENGTH_SHORT).show();
+            tag.setText("ART");
+        }
+        if (id == R.id.study){
+            Toast.makeText(getApplicationContext(), "STUDY", Toast.LENGTH_SHORT).show();
+            tag.setText("STUDY");
+        }
+        if (id == R.id.music){
+            Toast.makeText(getApplicationContext(), "MUSIC", Toast.LENGTH_SHORT).show();
+            tag.setText("MUSIC");
+        }
+        if (id == R.id.memes){
+            Toast.makeText(getApplicationContext(), "MEMES", Toast.LENGTH_SHORT).show();
+            tag.setText("MEMES");
+        }
+        if (id == R.id.cosplay){
+            Toast.makeText(getApplicationContext(), "COSPLAY", Toast.LENGTH_SHORT).show();
+            tag.setText("COSPLAY");
+        }
+        if (id == R.id.other){
+            Toast.makeText(getApplicationContext(), "OTHER", Toast.LENGTH_SHORT).show();
+            tag.setText("OTHER");
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}

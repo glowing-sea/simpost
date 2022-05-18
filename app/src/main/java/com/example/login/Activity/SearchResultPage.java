@@ -57,11 +57,6 @@ public class SearchResultPage extends AppCompatActivity {
         }
         //adding things to the result
         RecyclerView rvPosts = findViewById(R.id.result_posts);
-        PostOld p1 = new PostOld("Post A", "This is content A.");
-        PostOld p2 = new PostOld("Post B", "This is content B.");
-        PostOld p3 = new PostOld("Post C", "This is content C.");
-        PostOld p4 = new PostOld("Post D", "This is content D.");
-        PostOld p5 = new PostOld("Post E", "This is content E.");
 
 
         SearchResultAdapter searchResultAdapter = new SearchResultAdapter(getApplicationContext(),allPosts);

@@ -25,7 +25,7 @@ import java.util.Locale;
 /*
 A local temporary copy of data of a post
  */
-public class Post{
+public class Post implements Serializable{
     public final int postID; // Auto initialised
     public final String creator;
     public final String title;
