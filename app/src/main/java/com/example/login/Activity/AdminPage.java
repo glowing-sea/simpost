@@ -1,6 +1,5 @@
 package com.example.login.Activity;
 
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -13,36 +12,33 @@ import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class AdminPage extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    FloatingActionButton addButton,updateButton,deleteButton, getterMethodTest;
+    FloatingActionButton addButton,updateButton,deleteButton;
 
     UserDAO db;
     ArrayList<UserAdmin> users;
-    UserAdapter userAdapter;
+    HomeUserListAdapter userAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_page);
+        setContentView(R.layout.activity_admin);
 
         recyclerView = findViewById(R.id.admin_user_list);
         addButton = findViewById(R.id.admin_add_button);
         updateButton = findViewById(R.id.admin_refresh_button);
         deleteButton = findViewById(R.id.delete_button);
-        getterMethodTest = findViewById(R.id.getterMethodTest);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminAddUserPage.class);
+                Intent intent = new Intent(getApplicationContext(), AdminAddUser.class);
                 startActivityForResult(intent, 100);
             }
         });
@@ -50,7 +46,7 @@ public class AdminPage extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminUpdateUserPage.class);
+                Intent intent = new Intent(getApplicationContext(), AdminUpdateUser.class);
                 startActivityForResult(intent, 100);
             }
         });
@@ -58,24 +54,17 @@ public class AdminPage extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminDeleteUserPage.class);
+                Intent intent = new Intent(getApplicationContext(), AdminDeleteUser.class);
                 startActivityForResult(intent, 100);
             }
         });
 
-        getterMethodTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AdminGetterTestPage.class);
-                startActivity(intent);
-            }
-        });
 
         db = new UserDAOImpl(getApplicationContext());
         users = db.getAllUsersAdmin();
 
 
-        userAdapter = new UserAdapter(AdminPage.this, this,null, users);
+        userAdapter = new HomeUserListAdapter(AdminPage.this, this,null, users);
         recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         // rvPosts.setLayoutManager(new GridLayoutManager(this, 2));

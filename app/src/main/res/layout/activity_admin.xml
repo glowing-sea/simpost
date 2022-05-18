@@ -50,15 +50,4 @@
         app:layout_constraintEnd_toStartOf="@+id/admin_refresh_button"
         app:srcCompat="@android:drawable/ic_menu_delete" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/getterMethodTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="36dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/delete_button"
-        app:srcCompat="@drawable/nav_ico_search" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

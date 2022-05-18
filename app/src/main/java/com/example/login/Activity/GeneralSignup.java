@@ -6,20 +6,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
-public class SignupPage extends AppCompatActivity {
+public class GeneralSignup extends AppCompatActivity {
     EditText name, password;
     Button confirm;
     UserDAOImpl db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup_page);
+        setContentView(R.layout.activity_general_signup);
         db = new UserDAOImpl(getApplicationContext());
 
         name = findViewById(R.id.signupname);
@@ -35,17 +34,17 @@ public class SignupPage extends AppCompatActivity {
                 re = db.addUser(n,p);
                 switch (re) {
                     case 0: {
-                        Toast.makeText(SignupPage.this, "You have successfully signed up", Toast.LENGTH_LONG).show();
+                        Toast.makeText(GeneralSignup.this, "You have successfully signed up", Toast.LENGTH_LONG).show();
                         finish();
                         break;
                     }
                     case -2: {
-                        Toast.makeText(SignupPage.this,
+                        Toast.makeText(GeneralSignup.this,
                                 "Username can only contains numbers, letter, '_', or '-', and at most 20 character", Toast.LENGTH_LONG).show();
                         break;
                     }
                     case -1: {
-                        Toast.makeText(SignupPage.this, "Username already existed", Toast.LENGTH_LONG).show();
+                        Toast.makeText(GeneralSignup.this, "Username already existed", Toast.LENGTH_LONG).show();
                     }
                 }
             }

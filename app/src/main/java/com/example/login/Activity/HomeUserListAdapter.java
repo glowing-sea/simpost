@@ -1,6 +1,5 @@
 package com.example.login.Activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +18,7 @@ import com.example.login.R;
 
 import java.util.ArrayList;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+public class HomeUserListAdapter extends RecyclerView.Adapter<HomeUserListAdapter.UserViewHolder> {
 
     private Context context;
     Activity activity;
@@ -28,7 +26,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private ArrayList<UserAdmin> usersAdmin;
 
 
-    UserAdapter(Activity activity, Context context,  ArrayList<UserPreview> usersPreview, ArrayList<UserAdmin> usersAdmin){
+    HomeUserListAdapter(Activity activity, Context context, ArrayList<UserPreview> usersPreview, ArrayList<UserAdmin> usersAdmin){
         this.activity = activity;
         this.context = context;
         this.usersPreview = usersPreview;
@@ -38,9 +36,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @NonNull
     @Override
-    public UserAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public HomeUserListAdapter.UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.adapter_user, parent, false);
-        return new UserAdapter.UserViewHolder(view);
+        return new HomeUserListAdapter.UserViewHolder(view);
     }
 
 

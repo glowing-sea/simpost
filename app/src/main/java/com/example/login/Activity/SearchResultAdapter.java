@@ -13,9 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Post;
-import com.example.login.DataContainer.PostOld;
 import com.example.login.Database.UserDAO;
-import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import java.util.List;
@@ -32,7 +30,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     @NonNull
     @Override
     public ResultHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(ctx).inflate(R.layout.activity_view_result, parent, false);
+        View view = LayoutInflater.from(ctx).inflate(R.layout.adapter_search_post_result, parent, false);
         return new ResultHolder(view);
     }
 
@@ -46,7 +44,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         holder.getSingleResult().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ctx, ViewPost.class);
+                Intent i = new Intent(ctx, PostView.class);
                 i.putExtra("POST", current);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Log.i("Search result",current.toString());

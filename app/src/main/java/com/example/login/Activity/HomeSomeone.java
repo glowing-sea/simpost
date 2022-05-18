@@ -114,7 +114,7 @@ public class HomeSomeone extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (followersList != null){
-                    Intent i = new Intent(getApplicationContext(), HomeUsersList.class);
+                    Intent i = new Intent(getApplicationContext(), HomeUserList.class);
                     i.putExtra("UserListType", "Followers");
                     i.putExtra("Whose", name);
                     startActivity(i);
@@ -128,7 +128,7 @@ public class HomeSomeone extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (followingList != null){
-                    Intent i = new Intent(getApplicationContext(), HomeUsersList.class);
+                    Intent i = new Intent(getApplicationContext(), HomeUserList.class);
                     i.putExtra("UserListType", "Following");
                     i.putExtra("Whose", name);
                     startActivity(i);

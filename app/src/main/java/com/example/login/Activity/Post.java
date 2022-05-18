@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Me;
-import com.example.login.DataContainer.Post;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -24,7 +23,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class PostsPage extends AppCompatActivity {
+public class Post extends AppCompatActivity {
     Me me;
     UserDAO db;
 
@@ -32,7 +31,7 @@ public class PostsPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_posts_page);
+        setContentView(R.layout.activity_post);
         this.setTitle(this.getText(R.string.posts));
         me = Me.getInstance();
         db = new UserDAOImpl(getApplicationContext());
@@ -61,19 +60,19 @@ public class PostsPage extends AppCompatActivity {
         newPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(PostsPage.this, CreatePost.class);
+                Intent i = new Intent(Post.this, PostCreate.class);
                 startActivity(i);
             }
         });
 
         RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
 
-        ArrayList<Post> allPosts = db.getAllPosts();
+        ArrayList<com.example.login.DataContainer.Post> allPosts = db.getAllPosts();
 
         if (allPosts == null) {
-            Toast.makeText(PostsPage.this, "No Post", Toast.LENGTH_LONG).show();
+            Toast.makeText(Post.this, "No Post", Toast.LENGTH_LONG).show();
         } else {
-            PostAdapter postAdapter = new PostAdapter(PostsPage.this,allPosts);
+            PostAdapter postAdapter = new PostAdapter(Post.this,allPosts);
             rvPosts.setAdapter(postAdapter);
             rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
         }
@@ -89,7 +88,7 @@ public class PostsPage extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.to_find_users){
-            Toast.makeText(PostsPage.this, "recent posts shown", Toast.LENGTH_LONG).show();
+            Toast.makeText(Post.this, "recent posts shown", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }

@@ -17,14 +17,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
-import com.example.login.DataContainer.Post;
 import com.example.login.Database.HelperMethods;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class CreatePost extends AppCompatActivity {
+public class PostCreate extends AppCompatActivity {
     private static final String TAG = "Activity_CreatPost";
     String poster = Me.getInstance().getUsername();
     Button posting;
@@ -39,7 +38,7 @@ public class CreatePost extends AppCompatActivity {
         //basic set up
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_post);
+        setContentView(R.layout.activity_post_create);
         //getIntent
         db = new UserDAOImpl(getApplicationContext());
 
@@ -57,25 +56,25 @@ public class CreatePost extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),PostsPage.class);
+                Intent intent = new Intent(getApplicationContext(), Post.class);
                 String head = title.getText().toString();
                 String postContent = userInput.getText().toString();
                 //creating file
-                Post current = new Post(poster, head, postContent, i1, i2, i3, TAG, getApplicationContext());
+                com.example.login.DataContainer.Post current = new com.example.login.DataContainer.Post(poster, head, postContent, i1, i2, i3, TAG, getApplicationContext());
                 boolean ind = db.addPost(current);
                 if (head.equals("")){
-                    Toast.makeText(CreatePost.this, "post title can`t be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostCreate.this, "post title can`t be empty", Toast.LENGTH_SHORT).show();
                 }
                 else if (postContent.equals("")){
-                    Toast.makeText(CreatePost.this, "post content can`t be empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostCreate.this, "post content can`t be empty", Toast.LENGTH_SHORT).show();
                 }
                 else if (ind) {
                     title.setText("");
                     userInput.setText("");
-                    Toast.makeText(CreatePost.this, "post created successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostCreate.this, "post created successfully", Toast.LENGTH_SHORT).show();
                     startActivity(intent);}
                 else {
-                    Toast.makeText(CreatePost.this, "post creation failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostCreate.this, "post creation failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });

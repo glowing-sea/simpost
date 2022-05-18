@@ -9,16 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
-import com.example.login.DataContainer.PendingTasks;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -130,7 +127,7 @@ public class Messages extends AppCompatActivity {
             alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(getApplicationContext(), Deleting.class);
+                    Intent intent = new Intent(getApplicationContext(), GeneralDeleting.class);
                     intent.putExtra("DELETE", "AllMessages");
                     overridePendingTransition(0, 0);
                     startActivity(intent);

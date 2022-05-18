@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Someone;
-import com.example.login.DataContainer.UserAdmin;
 import com.example.login.DataContainer.UserPreview;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
@@ -29,7 +28,7 @@ public class SearchUsers extends AppCompatActivity {
 
     UserDAO db;
     ArrayList<UserPreview> users;
-    UserAdapter userAdapter;
+    HomeUserListAdapter userAdapter;
     RecyclerView recyclerView;
     Button searchUser;
     EditText username;
@@ -45,7 +44,7 @@ public class SearchUsers extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.nav_ico_posts:
-                    startActivity(new Intent(getApplicationContext(), PostsPage.class));
+                    startActivity(new Intent(getApplicationContext(), Post.class));
                     this.overridePendingTransition(0, 0);
                     finish();
                     break;
@@ -62,7 +61,7 @@ public class SearchUsers extends AppCompatActivity {
         recyclerView = findViewById(R.id.users_list);
         db = new UserDAOImpl(getApplicationContext());
         users = db.getAllUsers();
-        userAdapter = new UserAdapter(SearchUsers.this, this, users, null);
+        userAdapter = new HomeUserListAdapter(SearchUsers.this, this, users, null);
         recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         // rvPosts.setLayoutManager(new GridLayoutManager(this, 2));

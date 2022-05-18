@@ -11,12 +11,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Deleting extends AppCompatActivity {
+public class GeneralDeleting extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deleting);
+        setContentView(R.layout.activity_general_deleting);
 
         String from = getIntent().getStringExtra("DELETE");
 

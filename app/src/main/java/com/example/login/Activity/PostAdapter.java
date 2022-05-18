@@ -17,8 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.PostOld;
-
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
@@ -67,7 +65,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             @Override
             public void onClick(View view) {
                 // Toast.makeText(ctx, "Clicked", Toast.LENGTH_LONG).show();
-                 Intent intent = new Intent(ctx, ViewPost.class);
+                 Intent intent = new Intent(ctx, PostView.class);
                  intent.putExtra("POST", current.postID);
                  // intent.putExtra("username", String.valueOf(users.get(position)));
                  ctx.startActivity(intent);

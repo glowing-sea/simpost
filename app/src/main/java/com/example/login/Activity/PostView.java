@@ -12,15 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
-import com.example.login.DataContainer.Post;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import java.util.HashSet;
 
-public class ViewPost extends AppCompatActivity {
-    Post current;
+public class PostView extends AppCompatActivity {
+    com.example.login.DataContainer.Post current;
     ImageView image1, image2, image3;
     TextView title, content, likeCount, viewCount, postTime;
     Button back, like, dislike;
@@ -30,7 +29,7 @@ public class ViewPost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_post);
+        setContentView(R.layout.activity_post_view);
         this.setTitle("Here is the detail of the post");
         // create post by intent
         Bundle fromCreate = getIntent().getExtras();
@@ -99,7 +98,7 @@ public class ViewPost extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewPost.this, PostsPage.class);
+                Intent intent = new Intent(PostView.this, Post.class);
                 startActivity(intent);
             }
         });
@@ -112,7 +111,7 @@ public class ViewPost extends AppCompatActivity {
                 if (b){
                    likeCount.setText(LA);}
                 else {
-                    Toast.makeText(ViewPost.this, "You`ve already liked this post", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostView.this, "You`ve already liked this post", Toast.LENGTH_SHORT).show();
                 }
                 dislike.setEnabled(true);
             }
@@ -128,7 +127,7 @@ public class ViewPost extends AppCompatActivity {
                     String LA = "Current likes:" + " " + String.valueOf(likers.size());
                     likeCount.setText(LA);}
                 else {
-                    Toast.makeText(ViewPost.this, "You haven`t liked the post yet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PostView.this, "You haven`t liked the post yet", Toast.LENGTH_SHORT).show();
                 }
                 like.setEnabled(true);
             }

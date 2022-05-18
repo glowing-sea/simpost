@@ -1,6 +1,5 @@
 package com.example.login.Activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -17,7 +16,7 @@ import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
-public class LoginPage extends AppCompatActivity {
+public class GeneralLogin extends AppCompatActivity {
 
 
     UserDAO db;
@@ -29,7 +28,7 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         this.setTitle(this.getText(R.string.welcome));
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_general_login);
         keepLogin = getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
 
         // Database
@@ -74,7 +73,7 @@ public class LoginPage extends AppCompatActivity {
                 boolean result2 = me.makeLocalCopyOfMyData(username, password, this);
 
                 if (result2){
-                    Intent in = new Intent(LoginPage.this, PostsPage.class);
+                    Intent in = new Intent(GeneralLogin.this, Post.class);
                     startActivity(in);
                     finish();
                 } else{

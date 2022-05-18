@@ -9,31 +9,28 @@ import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Someone;
 import com.example.login.DataContainer.User;
 import com.example.login.DataContainer.UserPreview;
-import com.example.login.Database.HelperMethods;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class HomeUsersList extends AppCompatActivity {
+public class HomeUserList extends AppCompatActivity {
 
     RecyclerView recyclerView;
     UserDAO db;
     ArrayList<UserPreview> users;
-    UserAdapter userAdapter;
+    HomeUserListAdapter userAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_follow);
+        setContentView(R.layout.activity_home_user_list);
 
         String from = getIntent().getStringExtra("UserListType");
         String whose = getIntent().getStringExtra("Whose");
@@ -94,7 +91,7 @@ public class HomeUsersList extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.users_follow_list);
         db = new UserDAOImpl(getApplicationContext());
-        userAdapter = new UserAdapter(HomeUsersList.this, this, listContent, null);
+        userAdapter = new HomeUserListAdapter(HomeUserList.this, this, listContent, null);
         recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         // rvPosts.setLayoutManager(new GridLayoutManager(this, 2));

@@ -6,7 +6,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Me;
-import com.example.login.DataContainer.PendingTasks;
 import com.example.login.Database.HelperMethods;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,8 +20,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 
 public class Home extends AppCompatActivity {
@@ -47,7 +44,7 @@ public class Home extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_ico_posts:
-                    startActivity(new Intent(getApplicationContext(), PostsPage.class));
+                    startActivity(new Intent(getApplicationContext(), Post.class));
                     this.overridePendingTransition(0, 0);
                     finish();
                     break;
@@ -130,7 +127,7 @@ public class Home extends AppCompatActivity {
         followersBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, HomeUsersList.class);
+                Intent i = new Intent(Home.this, HomeUserList.class);
                 i.putExtra("UserListType", "Followers");
                 i.putExtra("Whose", me.username);
                 startActivity(i);
@@ -140,7 +137,7 @@ public class Home extends AppCompatActivity {
         followingBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, HomeUsersList.class);
+                Intent i = new Intent(Home.this, HomeUserList.class);
                 i.putExtra("UserListType", "Following");
                 i.putExtra("Whose", me.username);
                 startActivity(i);
@@ -150,7 +147,7 @@ public class Home extends AppCompatActivity {
         blacklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, HomeUsersList.class);
+                Intent i = new Intent(Home.this, HomeUserList.class);
                 i.putExtra("UserListType", "Blacklist");
                 i.putExtra("Whose", me.username);
                 startActivity(i);
@@ -199,7 +196,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                Intent toResult = new Intent(getApplicationContext(), LoginPage.class);
+                Intent toResult = new Intent(getApplicationContext(), GeneralLogin.class);
                 startActivity(toResult);
             }
         });

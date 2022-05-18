@@ -2,7 +2,6 @@ package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +11,7 @@ import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
-public class AdminDeleteUserPage extends AppCompatActivity {
+public class AdminDeleteUser extends AppCompatActivity {
 
     EditText username;
     Button deleteButton, deleteAll;
@@ -20,7 +19,7 @@ public class AdminDeleteUserPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_delete_user_page);
+        setContentView(R.layout.activity_admin_delete_user);
 
         username = findViewById(R.id.admin_username_input2);
         deleteButton = findViewById(R.id.admin_delete_button);
