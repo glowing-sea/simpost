@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login.DataContainer.Comment;
 import com.example.login.DataContainer.Message;
 import com.example.login.R;
 
@@ -21,12 +22,12 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     private Context context;
     Activity activity;
-    private ArrayList<Message> users;
+    private ArrayList<Comment> comments;
 
-    CommentAdapter(Activity activity, Context context, ArrayList users){
+    CommentAdapter(Activity activity, Context context, ArrayList<Comment> comments){
         this.activity = activity;
         this.context = context;
-        this.users = users;
+        this.comments = comments;
     }
 
     @NonNull
@@ -38,17 +39,17 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
 
     @Override
     public void onBindViewHolder(@NonNull CommentAdapter.CommentViewHolder holder, int position) {
-        Message user = users.get(position);
-        holder.username.setText(user.getSender());
-        holder.content.setText(user.getContent());
-        holder.date.setText(user.getDate());
+        Comment comment = comments.get(position);
+        holder.username.setText(comment.username);
+        holder.content.setText(comment.content);
+        holder.date.setText(comment.date);
 
     }
 
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return comments.size();
     }
 
     public class CommentViewHolder extends RecyclerView.ViewHolder{
