@@ -1,0 +1,172 @@
+package com.example.simpostapp.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.SoundPool;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.simpostapp.DataContainer.Me;
+import com.example.simpostapp.DataContainer.Post;
+import com.example.simpostapp.Database.HelperMethods;
+import com.example.simpostapp.Database.UserDAO;
+import com.example.simpostapp.Database.UserDAOImpl;
+import com.example.simpostapp.R;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+public class PostView extends AppCompatActivity {
+    SoundPool soundPool;
+    List<Integer> soundIds;
+    Post current;
+    ImageView image1, image2, image3;
+    TextView title, content, likeCount, viewCount, postTime;
+    Button toComments, like, dislike;
+    UserDAO db;
+    Me me = Me.getInstance();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_post_view);
+
+        soundPool = new SoundPool.Builder().setMaxStreams(1).build();
+        soundIds = new ArrayList<>();
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.welcome,1));
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.dislike_post,1));
+
+
+        int id = getIntent().getIntExtra("postID", 0);
+
+
+        db = new UserDAOImpl(getApplicationContext());
+        current = db.getPost(id);
+
+        current = db.getPost(id);
+        getIntent().removeExtra("postID");
+
+        //Set up
+        String t = current.getTitle();
+        String c = current.getContent();
+        String l = String.valueOf(current.getLikes());
+        title = findViewById(R.id.postTitleText);
+        content = findViewById(R.id.postContentText);
+        like = findViewById(R.id.like);
+        dislike = findViewById(R.id.dislike);
+        likeCount = findViewById(R.id.like_count);
+        viewCount = findViewById(R.id.view_count);
+        postTime = findViewById(R.id.post_publish_time);
+        image1 = findViewById(R.id.view_image_1);
+        image2 = findViewById(R.id.view_image_2);
+        image3 = findViewById(R.id.view_image_3);
+        toComments = findViewById(R.id.to_comments);
+
+        //Set images
+        Bitmap i1 = current.image1;
+        if (i1 != null){
+            image1.setImageBitmap(i1);
+        }
+        Bitmap i2 = current.image2;
+        if (i2 != null){
+            image2.setImageBitmap(i2);
+        }
+        Bitmap i3 = current.image3;
+        if (i3 != null){
+            image3.setImageBitmap(i3);
+        }
+        //Set date and likes
+        String date = current.getDate();
+        HashSet<String> viewers = current.getViews();
+        HashSet<String> likes = current.getLikes();
+        viewers.add(me.getUsername());
+        String lString = "Current likes: " + likes.size();
+        String vString = "Current Views: " + viewers.size();
+        current.setViews(viewers);
+        likeCount.setText(lString);
+        viewCount.setText(vString);
+        date = "Post published by <" + current.creator + "> on " + date;
+        postTime.setText(date);
+        // Set title and content
+        if (me.getPrivacySettings().get(5)){
+            title.setText(HelperMethods.getCensored(t));
+            content.setText(HelperMethods.getCensored(c));
+
+        }
+        else {
+            title.setText(t);
+            content.setText(c);
+        }
+        // Check liked or not
+        if (likes.contains(me.username)){
+            like.setEnabled(false);
+            dislike.setEnabled(true);
+        }
+        else {
+            like.setEnabled(true);
+            dislike.setEnabled(false);
+        }
+        // button going back to main page
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(PostView.this, Post.class);
+//                startActivity(intent);
+//            }
+//        });
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                soundPool.play(soundIds.get(0),1,1,1,0,1);
+                like.setEnabled(false);
+                String LA = "Current likes:" + " " + String.valueOf(current.getLikes().size() + 1);
+                boolean b = current.addLikes(me.getUsername());
+                if (b){
+                    likeCount.setText(LA);}
+                else {
+                    Toast.makeText(PostView.this, "You`ve already liked this post", Toast.LENGTH_SHORT).show();
+                }
+                dislike.setEnabled(true);
+            }
+        });
+        dislike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                soundPool.play(soundIds.get(1),1,1,1,0,1);
+                dislike.setEnabled(false);
+                HashSet<String> likers = current.getLikes();
+                if (likers.contains(me.username)){
+                    likers.remove(me.username);
+                    current.setLikes(likers);
+                    String LA = "Current likes:" + " " + String.valueOf(likers.size());
+                    likeCount.setText(LA);}
+                else {
+                    Toast.makeText(PostView.this, "You haven`t liked the post yet", Toast.LENGTH_SHORT).show();
+                }
+                like.setEnabled(true);
+            }
+
+        });
+
+        toComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PostView.this, PostViewComments.class);
+                intent.putExtra("postID",id);
+                startActivity(intent);
+                // finish();
+            }
+        });
+
+
+
+
+    }
+}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.login">
+    package="com.example.simpostapp">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -19,108 +19,108 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".Activity.AdminPostReset"
+            android:name="com.example.simpostapp.Activity.AdminPostReset"
             android:label="Admin Post Reset"
             android:exported="false" />
         <activity
-            android:name=".Activity.AdminPostDelete"
+            android:name="com.example.simpostapp.Activity.AdminPostDelete"
             android:label="Admin Post Delete"
             android:exported="false" />
         <activity
-            android:name=".Activity.AdminPost"
+            android:name="com.example.simpostapp.Activity.AdminPost"
             android:exported="false"
             android:label="Admin Post"
-            android:parentActivityName=".Activity.GeneralLogin" />
+            android:parentActivityName="com.example.simpostapp.Activity.GeneralLogin" />
         <activity
-            android:name=".Activity.PostViewComments"
+            android:name="com.example.simpostapp.Activity.PostViewComments"
             android:exported="false" />
         <activity
-            android:name=".Activity.GeneralDeleting"
+            android:name="com.example.simpostapp.Activity.GeneralDeleting"
             android:exported="false"
             android:label="Deleting" />
         <activity
-            android:name=".Activity.HomeUserList"
+            android:name="com.example.simpostapp.Activity.HomeUserList"
             android:exported="false" />
         <activity
-            android:name=".Activity.HomeSomeone"
+            android:name="com.example.simpostapp.Activity.HomeSomeone"
             android:exported="false" />
         <activity
-            android:name=".Activity.SearchUsers"
+            android:name="com.example.simpostapp.Activity.SearchUsers"
             android:exported="false" />
         <activity
-            android:name=".Activity.MessagesChat"
+            android:name="com.example.simpostapp.Activity.MessagesChat"
             android:exported="false"
-            android:parentActivityName=".Activity.Messages" />
+            android:parentActivityName="com.example.simpostapp.Activity.Messages" />
         <activity
-            android:name=".Activity.MessagesAddPage"
+            android:name="com.example.simpostapp.Activity.MessagesAddPage"
             android:exported="false"
             android:label="Send a message"
-            android:parentActivityName=".Activity.Messages" />
+            android:parentActivityName="com.example.simpostapp.Activity.Messages" />
         <activity
-            android:name=".Activity.Messages"
+            android:name="com.example.simpostapp.Activity.Messages"
             android:exported="false"
             android:label="Contacts"
-            android:parentActivityName=".Activity.Home" />
+            android:parentActivityName="com.example.simpostapp.Activity.Home" />
         <activity
-            android:name=".Activity.HomeSetting"
+            android:name="com.example.simpostapp.Activity.HomeSetting"
             android:exported="false"
-            android:parentActivityName=".Activity.Home" />
+            android:parentActivityName="com.example.simpostapp.Activity.Home" />
         <activity
-            android:name=".Activity.ReportPage"
+            android:name="com.example.simpostapp.Activity.ReportPage"
             android:exported="false"
             android:label="statistic" />
         <activity
-            android:name=".Activity.AdminUserDelete"
+            android:name="com.example.simpostapp.Activity.AdminUserDelete"
             android:exported="false"
-            android:parentActivityName=".Activity.AdminUser" />
+            android:parentActivityName="com.example.simpostapp.Activity.AdminUser" />
         <activity
-            android:name=".Activity.AdminUserUpdate"
+            android:name="com.example.simpostapp.Activity.AdminUserUpdate"
             android:exported="false"
             android:label="@string/update_user"
-            android:parentActivityName=".Activity.AdminUser" />
+            android:parentActivityName="com.example.simpostapp.Activity.AdminUser" />
         <activity
-            android:name=".Activity.AdminUserAdd"
+            android:name="com.example.simpostapp.Activity.AdminUserAdd"
             android:exported="false"
             android:label="@string/add_user"
-            android:parentActivityName=".Activity.AdminUser" />
+            android:parentActivityName="com.example.simpostapp.Activity.AdminUser" />
         <activity
-            android:name=".Activity.AdminUser"
+            android:name="com.example.simpostapp.Activity.AdminUser"
             android:exported="false"
             android:label="@string/admin"
-            android:parentActivityName=".Activity.GeneralLogin" />
+            android:parentActivityName="com.example.simpostapp.Activity.GeneralLogin" />
         <activity
-            android:name=".Activity.SearchPage"
+            android:name="com.example.simpostapp.Activity.SearchPage"
             android:exported="false" />
         <activity
-            android:name=".Activity.Home"
+            android:name="com.example.simpostapp.Activity.Home"
             android:exported="false" />
         <activity
-            android:name=".Activity.Post"
+            android:name="com.example.simpostapp.Activity.Post"
             android:exported="false" />
         <activity
-            android:name=".Activity.SearchResultPage"
+            android:name="com.example.simpostapp.Activity.SearchResultPage"
             android:exported="false"
             android:label="Search result" />
         <activity
-            android:name=".Activity.GeneralSignup"
+            android:name="com.example.simpostapp.Activity.GeneralSignup"
             android:exported="false"
-            android:parentActivityName=".Activity.GeneralLogin" />
+            android:parentActivityName="com.example.simpostapp.Activity.GeneralLogin" />
         <activity
-            android:name=".Activity.PostView"
+            android:name="com.example.simpostapp.Activity.PostView"
             android:exported="false"
-            android:parentActivityName=".Activity.Home" />
+            android:parentActivityName="com.example.simpostapp.Activity.Home" />
         <activity
-            android:name=".Activity.HomePrivacy"
+            android:name="com.example.simpostapp.Activity.HomePrivacy"
             android:exported="false"
             android:label="Settings"
-            android:parentActivityName=".Activity.Home" />
+            android:parentActivityName="com.example.simpostapp.Activity.Home" />
         <activity
-            android:name=".Activity.PostCreate"
+            android:name="com.example.simpostapp.Activity.PostCreate"
             android:exported="false"
             android:label="Create Your Post"
-            android:parentActivityName=".Activity.Post" />
+            android:parentActivityName="com.example.simpostapp.Activity.Post" />
         <activity
-            android:name=".Activity.GeneralLogin"
+            android:name="com.example.simpostapp.Activity.GeneralLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
