@@ -23,8 +23,8 @@ public class Message {
         this.sender = result[0];
         this.receiver = result[1];
         this.date = result[2];
-        this.isRead = result[3].equals("1");
-        this.content = result[4];
+        this.content = result[3];
+        this.isRead = result[4].equals("1");
     }
 
     @Override
@@ -35,7 +35,7 @@ public class Message {
         } else {
             isReadChar = '0';
         }
-        return sender + '`' + receiver + '`' + date + '`' + isReadChar + '`' + content;
+        return sender + '`' + receiver + '`' + date + '`' + content + '`' + isReadChar;
     }
 
 

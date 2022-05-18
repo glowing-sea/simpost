@@ -14,7 +14,7 @@
         android:layout_above="@id/bottomNavigationView">
 
         <ImageView
-            android:id="@+id/background_me"
+            android:id="@+id/background_someone"
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/avatar_me"
+            android:id="@+id/avatar_someone"
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_marginStart="32dp"
@@ -33,7 +33,7 @@
             android:background="@color/white"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/background_me"
+            app:layout_constraintTop_toTopOf="@+id/background_someone"
             app:srcCompat="@drawable/blank_profile_picture"
             app:strokeColor="@color/teal_700"
             app:strokeWidth="5dp"
@@ -66,7 +66,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+            app:layout_constraintTop_toBottomOf="@+id/someone_location">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
@@ -77,19 +77,19 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/age_me"
+                    android:id="@+id/age_someone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NA"
                     android:textSize="34sp"
-                    app:layout_constraintBottom_toTopOf="@+id/age_text_me"
+                    app:layout_constraintBottom_toTopOf="@+id/age_text_other"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/age_text_me"
+                    android:id="@+id/age_text_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -109,19 +109,19 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/gender_me"
+                    android:id="@+id/gender_someone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="NA"
                     android:textSize="34sp"
-                    app:layout_constraintBottom_toTopOf="@+id/gender_text_me"
+                    app:layout_constraintBottom_toTopOf="@+id/gender_text_other"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/gender_text_me"
+                    android:id="@+id/gender_text_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -133,7 +133,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout4"
+                android:id="@+id/following_box"
                 android:layout_width="76dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="10dp"
@@ -141,19 +141,19 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/following_me_num"
+                    android:id="@+id/following_someone_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:textSize="34sp"
-                    app:layout_constraintBottom_toTopOf="@+id/following_me"
+                    app:layout_constraintBottom_toTopOf="@+id/following_other"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/following_me"
+                    android:id="@+id/following_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -165,26 +165,27 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/followers_box"
                 android:layout_width="76dp"
                 android:layout_height="80dp"
                 android:layout_marginStart="10dp"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout4"
+                app:layout_constraintStart_toEndOf="@+id/following_box"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/followers_me_num"
+                    android:id="@+id/followers_someone_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:textSize="34sp"
-                    app:layout_constraintBottom_toTopOf="@+id/followers_me"
+                    app:layout_constraintBottom_toTopOf="@+id/followers_other"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/followers_me"
+                    android:id="@+id/followers_other"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="2dp"
@@ -297,7 +298,7 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/signature_me"
+            android:id="@+id/signature_someone"
             android:layout_width="match_parent"
             android:layout_height="76dp"
             android:layout_marginStart="170dp"
@@ -307,7 +308,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.843"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/background_me" />
+            app:layout_constraintTop_toBottomOf="@+id/background_someone" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/gallery_background"
@@ -321,16 +322,16 @@
             app:srcCompat="@android:drawable/ic_menu_gallery" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout5"
+            android:id="@+id/someone_location"
             android:layout_width="144dp"
             android:layout_height="28dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avatar_me">
+            app:layout_constraintTop_toBottomOf="@+id/avatar_someone">
 
             <TextView
-                android:id="@+id/username_me"
+                android:id="@+id/location_someone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Username"

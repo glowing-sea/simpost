@@ -299,7 +299,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/auto_graph/baseline_auto_graph_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/post_add/baseline_post_add_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -310,7 +310,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="727272" />
-                            <entry key="outputName" value="ic_baseline_auto_graph_24" />
+                            <entry key="outputName" value="ic_baseline_post_add_24" />
                           </map>
                         </option>
                       </PersistentState>

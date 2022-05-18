@@ -43,7 +43,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         holder.messageRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Clicked", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, MessagesChat.class);
                 intent.putExtra("NAME", user);
                 // intent.putExtra("username", String.valueOf(users.get(position)));

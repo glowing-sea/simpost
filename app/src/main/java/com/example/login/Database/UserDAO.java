@@ -7,6 +7,10 @@ import com.example.login.DataContainer.Comment;
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Message;
 import com.example.login.DataContainer.Post;
+import com.example.login.DataContainer.Someone;
+import com.example.login.DataContainer.User;
+import com.example.login.DataContainer.UserAdmin;
+import com.example.login.DataContainer.UserPreview;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -56,6 +60,18 @@ public interface UserDAO {
 
     // The following methods access and update a single cell in the database.
 
+    // Get all the current user's data except password, privacy, and messages;
+    User getMyData (String username, String password);
+
+    // Get limited data of someone.
+    Someone getSomeoneData (String username);
+
+    // Get all users' names and signatures;
+    ArrayList<UserPreview> getAllUsers();
+
+    // Get all users' names and password;
+    ArrayList<UserAdmin> getAllUsersAdmin();
+
     // Password
     boolean setPassword(String username, String newPassword);
     String getPassword(String username);
@@ -63,6 +79,9 @@ public interface UserDAO {
     // Following
     boolean setFollowing(String username, HashSet<String> following);
     HashSet<String> getFollowing(String username);
+
+    // Followers
+    HashSet<String> getFollowers(String username);
 
     // Signature
     boolean setSignature(String username, String newSignature);
@@ -100,9 +119,7 @@ public interface UserDAO {
     boolean setAvatar(String username, Bitmap avatar);
     Bitmap getAvatar(String username);
 
-    void setMessage(String usname, String mess);
-
-
+    // Messages
     boolean setMessages(String username, ArrayList<Message> messages);
     ArrayList<Message> getMessages(String username);
 

@@ -1,15 +1,18 @@
 package com.example.login.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
@@ -19,11 +22,12 @@ import com.example.login.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Messages extends AppCompatActivity {
     RecyclerView recyclerView;
     UserDAO db;
-    ArrayList<String> users;
+    HashSet<String> contacts;
     MessageAdapter messageAdapter;
     FloatingActionButton addNewMessageButton;
     Me me = Me.getInstance();
@@ -58,22 +62,35 @@ public class Messages extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
+        setTitle("Contacts");
+
         recyclerView = findViewById(R.id.message_list);
         addNewMessageButton = findViewById(R.id.addNewMessageButton);
 
         db = new UserDAOImpl(getApplicationContext());
-        users = new ArrayList<>();
-        ArrayList<Message> receivers = db.getMessages(me.username);
-        for (Message m:receivers
-        ) {
-            if (m.getReceiver().equals(me.username)) {
-                users.add(m.getSender());
-            } else if (m.getSender().equals(me.username)) {
-                users.add(m.getReceiver());
-            }
-        }
+        ArrayList<Message> messages = db.getMessages(me.username);
+        contacts = new HashSet<>();
 
-        messageAdapter = new MessageAdapter(Messages.this, this, users);
+        boolean containSelfMessage = false;
+
+        for (Message m : messages){
+            String sender = m.getSender();
+            String receiver = m.getReceiver();
+            contacts.add(receiver);
+            contacts.add(sender);
+
+            // I sent to myself
+            if (sender.equals(receiver))
+                containSelfMessage = true;
+        }
+        // If there is no self messages, me should not be in the contact
+        if (!containSelfMessage)
+            contacts.remove(me.username);
+
+        ArrayList<String> contactFinal = new ArrayList<>(contacts);
+
+
+        messageAdapter = new MessageAdapter(Messages.this, this, contactFinal);
         recyclerView.setAdapter(messageAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
 
@@ -94,6 +111,38 @@ public class Messages extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.message_manu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.delete_all_messages){
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setMessage("Are you sure to delete all messages?");
+            alertDialog.setCancelable(true);
+            alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Intent intent = new Intent(getApplicationContext(), GeneralDeleting.class);
+                    intent.putExtra("DELETE", "AllMessages");
+                    overridePendingTransition(0, 0);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+            alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                }
+            });
+            alertDialog.create().show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     //old
     /*void databaseToUsersArrays(){

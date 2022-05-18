@@ -9,7 +9,9 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.login.Activity.Messages;
 import com.example.login.DataContainer.Gender;
+import com.example.login.DataContainer.Message;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -41,18 +43,19 @@ public class HelperMethods {
 
     // Encode and decode privacy setting
     public static int privacyEncode (ArrayList<Boolean> settings){
-        int s = 1000001;
-        s += settings.get(0) ? 100000 : 0;
-        s += settings.get(1) ? 10000 : 0;
-        s += settings.get(2) ? 1000 : 0;
-        s += settings.get(3) ? 100 : 0;
-        s += settings.get(4) ? 10 : 0;
+        int s = 10000001;
+        s += settings.get(0) ? 1000000 : 0;
+        s += settings.get(1) ? 100000 : 0;
+        s += settings.get(2) ? 10000 : 0;
+        s += settings.get(3) ? 1000 : 0;
+        s += settings.get(4) ? 100 : 0;
+        s += settings.get(5) ? 10 : 0;
         return s;
     }
     public static ArrayList<Boolean> privacyDecode (int encodeInt){
         String encode = String.valueOf(encodeInt);
         ArrayList<Boolean> s = new ArrayList<>();
-        for (int i = 1; i < 6; i++){
+        for (int i = 1; i < 7; i++){
             s.add(encode.charAt(i) == '1');}
         return s;
     }
@@ -161,9 +164,9 @@ public class HelperMethods {
     }
 
 
-    static String[] censorWords = {"fuck ", "shit ", "cock ", "titties ", "boner ", "muff ", "pussy ", "asshole ", "cunt ",
-            "ass ", "cockfoam ", "nigger ", "damn ", "Fuck ", "Shit ", "Cock ", "Titties ", "Boner ", "Muff ", "Pussy ", "Asshole ", "Cunt ",
-            "Ass ", "Cockfoam ", "Nigger ", "Damn "};
+    static String[] censorWords = {"fuck", "shit", "cock", "titties", "boner", "muff", "pussy", "asshole", "cunt",
+            "ass ", "cockfoam", "nigger", "damn", "Fuck", "Shit", "Cock", "Titties", "Boner", "Muff", "Pussy", "Asshole", "Cunt",
+            "Ass ", "Cockfoam", "Nigger", "Damn"};
 
     public static String getCensored(String message){
         for (int i = 0; i <= censorWords.length - 1; i++){
@@ -172,5 +175,10 @@ public class HelperMethods {
             message = message.replaceAll(p, replace);
         }
         return message;}
+
+    public static boolean sameMessage(Message m1, Message m2){
+        return m1.getSender().equals(m2.getSender()) && m1.getReceiver().equals(m2.getReceiver())
+                && m1.getDate().equals(m2.getDate()) && m1.getContent().equals(m2.getContent());
+    }
 
 }

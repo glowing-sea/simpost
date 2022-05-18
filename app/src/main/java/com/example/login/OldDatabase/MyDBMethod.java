@@ -1,11 +1,5 @@
 package com.example.login.OldDatabase;
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.login.Activity.LoginPage;
-
 public class MyDBMethod/* extends SQLiteOpenHelper */{
     /*public MyDBMethod(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, "my.db", factory, version);

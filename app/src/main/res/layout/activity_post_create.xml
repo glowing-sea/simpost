@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PostCreate">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/post_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/postTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textview_CreatePost_display1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Feeling sharing something?"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/postTitle"/>
+
+        <EditText
+            android:id="@+id/postTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Title here"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_CreatePost_display1" />
+
+        <EditText
+            android:id="@+id/multxt_CreatePost_userInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:autoText="false"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="Content here"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/postTitle" />
+
+        <ImageView
+            android:id="@+id/post_image_1"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="#F8F1F1"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/post_image_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/post_image_2"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/post_image_2"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="#F6F0F0"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toStartOf="@+id/post_image_3"
+            app:layout_constraintStart_toEndOf="@+id/post_image_1"
+            app:layout_constraintTop_toBottomOf="@+id/multxt_CreatePost_userInput"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/post_image_3"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="#F4EBEB"
+            android:scaleType="centerCrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/post_image_2"
+            app:layout_constraintTop_toBottomOf="@+id/multxt_CreatePost_userInput"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_post_image_1"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/post_image_1"
+            app:layout_constraintEnd_toEndOf="@+id/post_image_1"
+            tools:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_post_image_2"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/post_image_2"
+            app:layout_constraintEnd_toEndOf="@+id/post_image_2"
+            tools:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_post_image_3"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="1dp"
+            android:clickable="true"
+            app:layout_constraintBottom_toBottomOf="@id/post_image_3"
+            app:layout_constraintEnd_toEndOf="@id/post_image_3"
+            tools:srcCompat="@drawable/ic_baseline_add_circle_outline_24" />
+        <Button
+            android:id="@+id/btn_CreatePost_posting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:gravity="center_horizontal"
+            android:text="Post"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/post_image_2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

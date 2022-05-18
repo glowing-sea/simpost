@@ -19,10 +19,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".Activity.BlacklistPage"
+            android:name=".Activity.GeneralDeleting"
+            android:label="Deleting"
             android:exported="false" />
         <activity
-            android:name=".Activity.other_home"
+            android:name=".Activity.HomeUserList"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.HomeSomeone"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.SearchUsers"
             android:exported="false" />
         <activity
             android:name=".Activity.MessagesChat"
@@ -43,29 +50,20 @@
             android:exported="false"
             android:parentActivityName=".Activity.Home" />
         <activity
-            android:name=".Activity.AdminGetterTestPage"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.SubscriptionsPage"
-            android:exported="false" />
-        <activity
             android:name=".Activity.ReportPage"
             android:exported="false"
-            android:label="statistic"/>
+            android:label="statistic" />
         <activity
-            android:name=".Activity.FollowerPage"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.AdminDeleteUserPage"
+            android:name=".Activity.AdminDeleteUser"
             android:exported="false"
             android:parentActivityName=".Activity.AdminPage" />
         <activity
-            android:name=".Activity.AdminUpdateUserPage"
+            android:name=".Activity.AdminUpdateUser"
             android:exported="false"
             android:label="@string/update_user"
             android:parentActivityName=".Activity.AdminPage" />
         <activity
-            android:name=".Activity.AdminAddUserPage"
+            android:name=".Activity.AdminAddUser"
             android:exported="false"
             android:label="@string/add_user"
             android:parentActivityName=".Activity.AdminPage" />
@@ -73,7 +71,7 @@
             android:name=".Activity.AdminPage"
             android:exported="false"
             android:label="@string/admin"
-            android:parentActivityName=".Activity.LoginPage" />
+            android:parentActivityName=".Activity.GeneralLogin" />
         <activity
             android:name=".Activity.SearchPage"
             android:exported="false" />
@@ -81,30 +79,31 @@
             android:name=".Activity.Home"
             android:exported="false" />
         <activity
-            android:name=".Activity.PostsPage"
+            android:name=".Activity.Post"
             android:exported="false" />
         <activity
             android:name=".Activity.SearchResultPage"
             android:exported="false"
             android:label="Search result" />
         <activity
-            android:name=".Activity.SignupPage"
+            android:name=".Activity.GeneralSignup"
             android:exported="false"
-            android:parentActivityName=".Activity.LoginPage" />
+            android:parentActivityName=".Activity.GeneralLogin" />
         <activity
-            android:name=".Activity.ViewPost"
+            android:name=".Activity.PostView"
             android:exported="false"
             android:parentActivityName=".Activity.Home" />
         <activity
             android:name=".Activity.HomePrivacy"
             android:exported="false"
-            android:label="Settings" />
+            android:label="Settings"
+            android:parentActivityName=".Activity.Home"/>
         <activity
-            android:name=".Activity.CreatePost"
+            android:name=".Activity.PostCreate"
             android:exported="false"
             android:label="Create Your Post" />
         <activity
-            android:name=".Activity.LoginPage"
+            android:name=".Activity.GeneralLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

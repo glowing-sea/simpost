@@ -10,7 +10,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.login.DataContainer.ChatBox;
+
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
 import com.example.login.Database.UserDAO;
@@ -23,7 +23,8 @@ public class MessagesChat extends AppCompatActivity {
 
     RecyclerView recyclerView;
     UserDAO db;
-    ArrayList<ChatBox> messages;
+    ArrayList<Message> allMessages;
+    ArrayList<Message> someMessages;
     MessagesChatAdapter messagesChatAdapter;
     Me me = Me.getInstance();
 
@@ -57,26 +58,45 @@ public class MessagesChat extends AppCompatActivity {
         recyclerView = findViewById(R.id.message_chat_recycle_view);
 
         db = new UserDAOImpl(getApplicationContext());
-        messages = new ArrayList<>();
+        allMessages = db.getMessages(me.username);
+        someMessages = new ArrayList<>();
+
+        String name = (String) getIntent().getExtras().getSerializable("NAME");
+        setTitle(name);
+
 
         Bundle fromCreate = getIntent().getExtras();
         if (fromCreate != null){
-            String name = (String) getIntent().getExtras().getSerializable("NAME");
             getIntent().removeExtra("NAME");
-            ArrayList<Message> mess = db.getMessages(me.username);
-            for (Message m:mess
-                 ) {
-                if (m.getReceiver().equals(name)) {
-                    ChatBox chatBox1 = new ChatBox(m.getSender() + " " + m.getDate(),m.getContent());
-                    messages.add(chatBox1);
-                } else if (m.getSender().equals(name)) {
-                    ChatBox chatBox2 = new ChatBox(m.getSender() + " " + m.getDate(), m.getContent());
-                    messages.add(chatBox2);
+
+            // I sent to myself
+            if (name.equals(me.username)){
+                for (Message m : allMessages) {
+                    if (m.getReceiver().equals(me.username) && m.getSender().equals(me.username))
+                        someMessages.add(m);
+                }
+            } else {
+                // I sent to someone
+                for (Message m: allMessages){
+                    if (m.getSender().equals(name) || m.getReceiver().equals(name))
+                        someMessages.add(m);
                 }
             }
+
+//            for (Message m: allMessages) {
+//                if (m.getReceiver().equals(name)) {
+//                    someMessages.add(m);
+//                    // ChatBox chatBox1 = new ChatBox(m.getSender() + " " + m.getDate(),m.getContent());
+//                    // messages.add(chatBox1);
+//                } else if (m.getSender().equals(name)) {
+//                    someMessages.add(m);
+//                    // ChatBox chatBox2 = new ChatBox(m.getSender() + " " + m.getDate(), m.getContent());
+//                    // messages.add(chatBox2);
+//                }
+//            }
         }
 
-        messagesChatAdapter = new MessagesChatAdapter(MessagesChat.this, this,messages);
+        messagesChatAdapter = new MessagesChatAdapter(MessagesChat.this, this,someMessages);
         recyclerView.setAdapter(messagesChatAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
     }

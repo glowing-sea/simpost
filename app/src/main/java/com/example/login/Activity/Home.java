@@ -2,6 +2,7 @@ package com.example.login.Activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Me;
@@ -27,29 +28,23 @@ public class Home extends AppCompatActivity {
     Bitmap backgroundImage, avatarImage;
     TextView userName, signature, age, gender, followersNum, followers, followingNum, following;
     FloatingActionButton changeBackgroundButton;
+    ConstraintLayout followingBox, followersBox;
     Me me = Me.getInstance();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        blacklist = findViewById(R.id.blacklist_me);
-        blacklist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(Home.this, BlacklistPage.class);
-                startActivity(i);
-            }
-        });
 
         // Page transfer method of the bottom navigator
         BottomNavigationView nav = findViewById(R.id.bottomNavigationView);
         nav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_ico_posts:
-                    startActivity(new Intent(getApplicationContext(), PostsPage.class));
+                    startActivity(new Intent(getApplicationContext(), Post.class));
                     this.overridePendingTransition(0, 0);
                     finish();
                     break;
@@ -67,21 +62,23 @@ public class Home extends AppCompatActivity {
 
         // Link IDs
         report = findViewById(R.id.report_me);
-        background = findViewById(R.id.background_me);
-        avatar = findViewById(R.id.avatar_me);
+        background = findViewById(R.id.background_someone);
+        avatar = findViewById(R.id.avatar_someone);
         changeBackgroundButton = findViewById(R.id.gallery_background);
-        userName = findViewById(R.id.username_me);
-        signature = findViewById(R.id.signature_me);
-        age = findViewById(R.id.age_me);
-        gender = findViewById(R.id.gender_me);
-        followersNum = findViewById(R.id.followers_me_num);
-        followingNum = findViewById(R.id.following_me_num);
-        followers = findViewById(R.id.followers_me);
-        following = findViewById(R.id.following_me);
+        userName = findViewById(R.id.location_someone);
+        signature = findViewById(R.id.signature_someone);
+        age = findViewById(R.id.age_someone);
+        gender = findViewById(R.id.gender_someone);
+        followersNum = findViewById(R.id.followers_someone_num);
+        followingNum = findViewById(R.id.following_someone_num);
+        followers = findViewById(R.id.followers_other);
+        following = findViewById(R.id.following_other);
         setting = findViewById(R.id.setting_me);
         privacy = findViewById(R.id.privacy_me);
         message = findViewById(R.id.message_me);
-
+        followingBox = findViewById(R.id.following_box);
+        followersBox = findViewById(R.id.followers_box);
+        blacklist = findViewById(R.id.blacklist_me);
 
         // =========================== SETTING TEXT AND PICTURE ================================= //
 
@@ -121,27 +118,43 @@ public class Home extends AppCompatActivity {
                 break;
         }
 
+        // ================================== BUTTONS =========================================== //
 
         // Setting following and followers
-        followingNum.setText(me.getFollowing().size() + "");
-        followersNum.setText(me.getFollowers().size() + "");
+        followingNum.setText(String.valueOf(me.getFollowing().size()));
+        followersNum.setText(String.valueOf(me.getFollowers().size()));
 
-        followersNum.setOnClickListener(new View.OnClickListener() {
+        followersBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, FollowerPage.class);
+                Intent i = new Intent(Home.this, HomeUserList.class);
+                i.putExtra("UserListType", "Followers");
+                i.putExtra("Whose", me.username);
+                startActivity(i);
+
+            }
+        });
+        followingBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, HomeUserList.class);
+                i.putExtra("UserListType", "Following");
+                i.putExtra("Whose", me.username);
                 startActivity(i);
             }
         });
-        followingNum.setOnClickListener(new View.OnClickListener() {
+
+        blacklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Home.this, SubscriptionsPage.class);
+                Intent i = new Intent(Home.this, HomeUserList.class);
+                i.putExtra("UserListType", "Blacklist");
+                i.putExtra("Whose", me.username);
                 startActivity(i);
             }
         });
 
-        // ================================== BUTTONS =========================================== //
+
 
         privacy.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +176,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Messages.class);
-                startActivityForResult(intent, 500);
+                startActivity(intent);
             }
         });
 
@@ -183,7 +196,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-                Intent toResult = new Intent(getApplicationContext(), LoginPage.class);
+                Intent toResult = new Intent(getApplicationContext(), GeneralLogin.class);
                 startActivity(toResult);
             }
         });
@@ -208,6 +221,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        // ================================= Check Pending Tasks ===================================
     }
 
 
@@ -218,7 +232,6 @@ public class Home extends AppCompatActivity {
         if (resultCode == RESULT_OK){
             boolean re;
             if (requestCode == 100) {
-                recreate();
             }
             if (requestCode == 200 || requestCode == 300) {
                 Uri imageUri = data.getData();

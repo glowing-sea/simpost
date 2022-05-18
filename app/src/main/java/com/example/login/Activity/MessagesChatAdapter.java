@@ -1,7 +1,9 @@
 package com.example.login.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,12 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.login.DataContainer.ChatBox;
+
+import com.example.login.DataContainer.Me;
+import com.example.login.DataContainer.Message;
+import com.example.login.Database.HelperMethods;
+import com.example.login.Database.UserDAO;
+import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
 import java.util.ArrayList;
@@ -22,12 +29,12 @@ public class MessagesChatAdapter extends RecyclerView.Adapter<MessagesChatAdapte
 
     private Context context;
     Activity activity;
-    private ArrayList<ChatBox> messages;
+    private ArrayList<Message> messages;
 
-    MessagesChatAdapter(Activity activity, Context context, ArrayList message){
+    MessagesChatAdapter(Activity activity, Context context, ArrayList<Message> messages){
         this.activity = activity;
         this.context = context;
-        this.messages = message;
+        this.messages = messages;
     }
 
     @NonNull
@@ -39,10 +46,22 @@ public class MessagesChatAdapter extends RecyclerView.Adapter<MessagesChatAdapte
 
     @Override
     public void onBindViewHolder(@NonNull MessagesChatAdapter.MessageChatViewHolder holder, int position) {
-        ChatBox chatBox = messages.get(position);
-        holder.username.setText(chatBox.getUsername());
-        holder.context.setText(chatBox.getmessage());
+        Me m = Me.getInstance();
+        Message message = messages.get(position);
+        String sender = message.getSender();
+        String content = message.getContent();
 
+        if (sender.equals(m.username))
+            holder.username.setText("You" + " " + "<" + message.getDate() + ">");
+        else
+            holder.username.setText(sender + " " + "<" + message.getDate() + ">");
+
+
+        if (m.getPrivacySettings().get(5)) {
+            content = HelperMethods.getCensored(content);
+        }
+
+        holder.context.setText(content);
     }
 
 

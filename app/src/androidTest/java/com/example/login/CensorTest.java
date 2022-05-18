@@ -11,10 +11,10 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 public class CensorTest {
-    String test1 = "fuck you";
+    String test1 = " fuck you";
     String test2 = "oh shit ";
     @Test public void censorTest1(){
-        String expected1 = "**** you";
+        String expected1 = " **** you";
         assertEquals(HelperMethods.getCensored(test1), expected1);
     }
     @Test public void censorTest2(){

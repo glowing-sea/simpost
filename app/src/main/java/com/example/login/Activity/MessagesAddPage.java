@@ -40,6 +40,12 @@ public class MessagesAddPage extends AppCompatActivity {
         contentMessageSentTextView = findViewById(R.id.contentMessageSentTextView);
         messageSentButton = findViewById(R.id.messageSentButton);
 
+        String from = getIntent().getStringExtra("Receiver");
+        if (from != null){
+            userMessage.setText(from);
+        }
+        getIntent().removeExtra("USER");
+
         //old
         /*messageSentButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,28 +72,36 @@ public class MessagesAddPage extends AppCompatActivity {
             }
         });*/
 
+
+            /*
+    return 0 success
+    return -1 sender not found
+    return -2 receiver not found
+    return -3 store message fail
+    return -4 receiver has blocked sender
+    return -5 invalid characters used in the content
+     */
+
         messageSentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String message = contentMessageSentTextView.getText().toString();
-                //check message not contains '`' or '~'
-                if(checkMessageValid(message)) {
-                    db = new UserDAOImpl(getApplicationContext());
-                    String name = userMessage.getText().toString();
-                    if (isUserNameExisted(name)) {
+                db = new UserDAOImpl(getApplicationContext());
+                String name = userMessage.getText().toString();
 
-                        Date curDate =  new Date(System.currentTimeMillis());
-                        //获取当前时间
-                        String time =  formatter.format(curDate);
-                        Message mess = new Message(me.username, name, time, false, message);
+                Date curDate =  new Date(System.currentTimeMillis());
+                //Get Current Time
+                String time =  formatter.format(curDate);
+                Message mess = new Message(me.username, name, time, false, message);
+                int result = db.sendMessages(mess);
 
-                        db.sendMessages(mess);
-                        Toast.makeText(getApplicationContext(), "Message Sent!", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Username not existed!", Toast.LENGTH_LONG).show();
-                    }
-                } else {
-                    Toast.makeText(getApplicationContext(), "Message can not contain '|' or '[' or ']'", Toast.LENGTH_LONG).show();
+                switch (result){
+                    case 0: Toast.makeText(getApplicationContext(), "Message Sent!", Toast.LENGTH_SHORT).show(); break;
+                    case -1: Toast.makeText(getApplicationContext(), "Sender Not Found!", Toast.LENGTH_SHORT).show(); break;
+                    case -2: Toast.makeText(getApplicationContext(), "Receiver Not Found!", Toast.LENGTH_SHORT).show(); break;
+                    case -3: Toast.makeText(getApplicationContext(), "Message Store Failed!", Toast.LENGTH_SHORT).show(); break;
+                    case -4: Toast.makeText(getApplicationContext(), "You are blocked by " + name + "!", Toast.LENGTH_SHORT).show(); break;
+                    case -5: Toast.makeText(getApplicationContext(), "Message can not contain '~' or '`'", Toast.LENGTH_SHORT).show(); break;
                 }
             }
         });

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /*
 
@@ -41,9 +42,10 @@ public class SearchFacade {
         }
     }
 
+    // Deprecate
     // Get followers of a username
-    public ArrayList<String> getFollowers(String username){
-        ArrayList<String> followers = new ArrayList<>();
+    public HashSet<String> getFollowers(String username){
+        HashSet<String> followers = new HashSet<>();
         Cursor cursor = db.getCursor(new String[]{"username" , "following"}, "user");
         if(cursor.getCount() == 0)
             return null;
