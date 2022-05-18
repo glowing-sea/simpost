@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +18,13 @@ import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class PostView extends AppCompatActivity {
+    SoundPool soundPool;
+    List<Integer> soundIds;
     Post current;
     ImageView image1, image2, image3;
     TextView title, content, likeCount, viewCount, postTime;
@@ -29,11 +34,14 @@ public class PostView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_view);
         this.setTitle("Here is the detail of the post");
+
+        soundPool = new SoundPool.Builder().setMaxStreams(1).build();
+        soundIds = new ArrayList<>();
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.welcome,1));
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.dislike_post,1));
 
 
         int id = getIntent().getIntExtra("postID", 0);
@@ -109,6 +117,7 @@ public class PostView extends AppCompatActivity {
         like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                soundPool.play(soundIds.get(0),1,1,1,0,1);
                 like.setEnabled(false);
                 String LA = "Current likes:" + " " + String.valueOf(current.getLikes().size() + 1);
                 boolean b = current.addLikes(me.getUsername());
@@ -123,6 +132,7 @@ public class PostView extends AppCompatActivity {
         dislike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                soundPool.play(soundIds.get(1),1,1,1,0,1);
                 dislike.setEnabled(false);
                 HashSet<String> likers = current.getLikes();
                 if (likers.contains(me.username)){

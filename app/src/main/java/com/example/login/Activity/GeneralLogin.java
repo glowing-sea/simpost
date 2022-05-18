@@ -42,7 +42,8 @@ public class GeneralLogin extends AppCompatActivity {
         soundIds.add(soundPool.load(getApplicationContext(),R.raw.loginfail,1));
         soundIds.add(soundPool.load(getApplicationContext(),R.raw.start_sign_up,1));
         soundIds.add(soundPool.load(getApplicationContext(),R.raw.sign_up_fail,1));
-
+        soundIds.add(soundPool.load(getApplicationContext(),R.raw.welcome,1));
+        welComeSouneEffect();
 
         keepLogin = getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
 
@@ -53,6 +54,9 @@ public class GeneralLogin extends AppCompatActivity {
         passwordInput = findViewById(R.id.password);
     }
 
+    private void welComeSouneEffect(){
+        soundPool.play(soundIds.get(4),1,1,1,0,1);
+    }
 
 
     public void onClickSignup(View view) {
@@ -62,17 +66,17 @@ public class GeneralLogin extends AppCompatActivity {
         re = db.addUser(username,password);
         switch (re) {
             case 0: {
-                soundPool.play(soundIds.get(2),1,1,1,1,1);
+                soundPool.play(soundIds.get(2),1,1,1,0,1);
                 Toast.makeText(getApplicationContext(), "You have successfully signed up", Toast.LENGTH_LONG).show();
                 break;
             }
             case -2: {
-                soundPool.play(soundIds.get(3),1,1,1,1,1);
+                soundPool.play(soundIds.get(3),1,1,1,0,1);
                 Toast.makeText(getApplicationContext(), "Username can only contains numbers, letter, '_', or '-'.", Toast.LENGTH_LONG).show();
                 break;
             }
             case -1: {
-                soundPool.play(soundIds.get(3),1,1,1,1,1);
+                soundPool.play(soundIds.get(3),1,1,1,0,1);
                 Toast.makeText(getApplicationContext(), "Username already existed", Toast.LENGTH_LONG).show();
             }
         }
@@ -91,7 +95,7 @@ public class GeneralLogin extends AppCompatActivity {
                 boolean result2 = me.makeLocalCopyOfMyData(username, password, this);
 
                 if (result2){
-                    this.soundPool.play(soundIds.get(0),1,1,1,1,1);
+                    this.soundPool.play(soundIds.get(0),1,1,1,0,1);
                     Intent in = new Intent(GeneralLogin.this, Post.class);
                     startActivity(in);
                     finish();
@@ -103,17 +107,17 @@ public class GeneralLogin extends AppCompatActivity {
             case -1:
                 Toast.makeText(this, "Password Incorrect", Toast.LENGTH_SHORT).show();
                 //play sound of fail login
-                this.soundPool.play(soundIds.get(1),1,1,1,1,1);
+                this.soundPool.play(soundIds.get(1),1,1,1,0,1);
                 break;
             case -2:
                 Toast.makeText(this, "Username Not Found", Toast.LENGTH_SHORT).show();
                 //play sound of fail login
-                this.soundPool.play(soundIds.get(1),1,1,1,1,1);
+                this.soundPool.play(soundIds.get(1),1,1,1,0,1);
                 break;
             case -3:
                 Toast.makeText(this, "Database Access Failed", Toast.LENGTH_SHORT).show();
                 //play sound of fail login
-                this.soundPool.play(soundIds.get(1),1,1,1,1,1);
+                this.soundPool.play(soundIds.get(1),1,1,1,0,1);
 
         }
     }
