@@ -55,22 +55,17 @@ public class PostViewComments extends AppCompatActivity {
         ms.add(new Message("dd","ddd","dfdfdf",true, "dfdfd"));
 
 
-        RecyclerView recyclerView;
+        recyclerView = findViewById(R.id.comment_list);
         // UserDAO db;
         // HashSet<String> contacts;
-        MessageAdapter messageAdapter;
+        CommentAdapter commentAdapter;
         FloatingActionButton addNewMessageButton;
         // Me me = Me.getInstance();
 
-        recyclerView = findViewById(R.id.message_list);
         // addNewMessageButton = findViewById(R.id.addNewMessageButton);
 
-        messageAdapter = new MessageAdapter(PostViewComments.this, this, ms);
-        recyclerView.setAdapter(messageAdapter);
+        commentAdapter = new CommentAdapter(PostViewComments.this, this, ms);
+        recyclerView.setAdapter(commentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
-//        recyclerView.findViewById(R.id.comment_list);
-//        postCommentsAdapter = new PostCommentsAdapter(PostViewComments.this, this,comments);
-//        recyclerView.setAdapter(postCommentsAdapter);
-//        recyclerView.setLayoutManager(new LinearLayoutManager((this)));
     }
 }

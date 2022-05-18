@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login.DataContainer.Message;
 import com.example.login.R;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     private Context context;
     Activity activity;
-    private ArrayList<String> users;
+    private ArrayList<Message> users;
 
     MessageAdapter(Activity activity, Context context, ArrayList users){
         this.activity = activity;
@@ -38,13 +39,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.MessageViewHolder holder, int position) {
-        String user = users.get(position);
-        holder.username.setText(user);
+        Message user = users.get(position);
+        holder.username.setText(user.getSender());
         holder.messageRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MessagesChat.class);
-                intent.putExtra("NAME", user);
+                intent.putExtra("NAME", user.getSender());
                 // intent.putExtra("username", String.valueOf(users.get(position)));
                 activity.startActivityForResult(intent, 1);
             }

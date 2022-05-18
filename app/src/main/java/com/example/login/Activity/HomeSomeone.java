@@ -13,6 +13,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,6 +33,11 @@ public class HomeSomeone extends AppCompatActivity {
     Bitmap backgroundImage;
     Bitmap avatarImage;
     ConstraintLayout followingBox, followersBox;
+    LocationManager locationManager;
+    LocationListener locationListener;
+    TextView locationText;
+    double longitude;
+    double latitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
