@@ -20,9 +20,11 @@
         android:theme="@style/Theme.Login">
         <activity
             android:name=".Activity.AdminPostReset"
+            android:label="Admin Post Reset"
             android:exported="false" />
         <activity
             android:name=".Activity.AdminPostDelete"
+            android:label="Admin Post Delete"
             android:exported="false" />
         <activity
             android:name=".Activity.AdminPost"

@@ -40,7 +40,6 @@ public class PostView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_view);
-        this.setTitle("Here is the detail of the post");
 
         soundPool = new SoundPool.Builder().setMaxStreams(1).build();
         soundIds = new ArrayList<>();
@@ -165,7 +164,7 @@ public class PostView extends AppCompatActivity {
                 Intent intent = new Intent(PostView.this, PostViewComments.class);
                 intent.putExtra("postID",id);
                 startActivity(intent);
-                finish();
+                // finish();
             }
         });
 
