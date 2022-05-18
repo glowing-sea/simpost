@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">login</string>
+    <string name="app_name">SimpostBar</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
