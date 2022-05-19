@@ -15,6 +15,7 @@ import com.example.login.R;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,11 +27,13 @@ public class HomeUserList extends AppCompatActivity {
     UserDAO db;
     ArrayList<UserPreview> users;
     HomeUserListAdapter userAdapter;
+    TextView empty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_user_list);
+        empty = findViewById(R.id.userlistempty);
 
         String from = getIntent().getStringExtra("UserListType");
         String whose = getIntent().getStringExtra("Whose");
@@ -57,7 +60,7 @@ public class HomeUserList extends AppCompatActivity {
                 }
                 if (listContent.isEmpty())
                     if (m.equals(me))
-                        Toast.makeText(getApplicationContext(), "You don't have any following people!", Toast.LENGTH_SHORT).show();
+                        empty.setText("You don't have any following people!");
                 setTitle(m.getUsername() + "'s " + "following list");
                 break;
             }
@@ -70,7 +73,7 @@ public class HomeUserList extends AppCompatActivity {
                 }
                 if (listContent.isEmpty())
                     if (m.equals(me))
-                        Toast.makeText(getApplicationContext(), "You don't have any followers!", Toast.LENGTH_SHORT).show();
+                        empty.setText("You don't have any followers!");
                 setTitle(m.getUsername() + "'s " + "follower list");
                 break;
             }
@@ -83,7 +86,7 @@ public class HomeUserList extends AppCompatActivity {
                 }
                 if (listContent.isEmpty())
                     if (m.equals(me))
-                        Toast.makeText(getApplicationContext(), "Your blacklist is empty", Toast.LENGTH_SHORT).show();
+                        empty.setText("Your blacklist is empty.");
                 setTitle(m.getUsername() + "'s " + "blacklist");
                 break;
             }

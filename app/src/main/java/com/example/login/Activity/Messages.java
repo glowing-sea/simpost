@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Message;
@@ -31,6 +32,7 @@ public class Messages extends AppCompatActivity {
     MessageAdapter messageAdapter;
     FloatingActionButton addNewMessageButton, deleteAllMessages;
     Me me = Me.getInstance();
+    TextView empty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,15 +64,23 @@ public class Messages extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
+
+
         setTitle("Contacts");
 
         recyclerView = findViewById(R.id.message_list);
         addNewMessageButton = findViewById(R.id.addNewMessageButton);
         deleteAllMessages = findViewById(R.id.delete_all_message);
+        empty = findViewById(R.id.emptymessagebox);
 
         db = new UserDAOImpl(getApplicationContext());
         ArrayList<Message> messages = db.getMessages(me.username);
+
+        if (messages.isEmpty())
+            empty.setText("Your Messages Box is Empty");
+
         contacts = new HashSet<>();
+
 
         boolean containSelfMessage = false;
 

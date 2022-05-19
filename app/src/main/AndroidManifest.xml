@@ -46,10 +46,6 @@
             android:exported="false"
             android:label="Comments" />
         <activity
-            android:name=".Activity.GeneralDeleting"
-            android:exported="false"
-            android:label="Deleting" />
-        <activity
             android:name=".Activity.HomeUserList"
             android:exported="false" />
         <activity

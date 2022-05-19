@@ -70,7 +70,7 @@ public class Post extends AppCompatActivity {
         if (me.currentPage.equals("myPosts")){
             HashSet<String> single = new HashSet<>();
             single.add(me.username);
-            posts = db.getPeoplePosts(100, single);
+            posts = db.getPeoplePosts(Integer.MAX_VALUE, single);
             this.setTitle("My Posts");
             newPost.hide();
             deleteOption = 1;
