@@ -172,7 +172,7 @@ public class HelperMethods {
     public static String getCensored(String message){
         for (int i = 0; i <= censorWords.length - 1; i++){
             String p = censorWords[i];
-            String replace = new String(new char[p.length() - 1]).replace("\0", "*") + " ";
+            String replace = new String(new char[p.length()]).replace("\0", "*");
             message = message.replaceAll(p, replace);
         }
         return message;}
