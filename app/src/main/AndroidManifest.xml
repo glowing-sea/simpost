@@ -22,6 +22,10 @@
             android:name=".Activity.HomeSettingLocation"
             android:exported="false" />
         <activity
+            android:name=".Activity.GamePage"
+            android:label="music time"
+            android:exported="false" />
+        <activity
             android:name=".Activity.AdminPostReset"
             android:exported="false"
             android:label="Admin Post Reset" />

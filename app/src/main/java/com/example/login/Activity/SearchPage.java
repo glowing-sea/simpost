@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.R;
-import com.example.login.gamePage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
@@ -76,7 +75,7 @@ public class SearchPage extends AppCompatActivity {
         game.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =(new Intent(getApplicationContext(), gamePage.class));
+                Intent intent =(new Intent(getApplicationContext(), GamePage.class));
                 startActivity(intent);
             }
         });

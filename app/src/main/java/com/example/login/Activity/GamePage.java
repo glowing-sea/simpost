@@ -1,4 +1,4 @@
-package com.example.login;
+package com.example.login.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.login.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class gamePage extends AppCompatActivity {
+public class GamePage extends AppCompatActivity {
     Button btn_knock0;
     Button btn_knock1;
     Button btn_sound1;
