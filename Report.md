@@ -130,12 +130,17 @@ in one app, we use the singleton design pattern so that everytime an instance of
 guaranteed to give us the only current user. And only when there is a login, a new instance of Me would be created and the old
 one is being replaced.
 
+*[State]
+Location: java/com.example.login/DataContainer/User, java/com.example.login/DataContainer/Someone, java/com.example.login/DataContainer/Me
+Reason: In this section, we want to separate two different states of user - logged in state and logged out state.
+This makes it easy to create and distinguish different pages for viewing the current users own profile page and other users profile
+page, and allow us to identify when the user is logged in or not.
+
 *[DAO]
 Location: Database/UserDAO, Database/UserDAOImpl
 Reason: In this section of the app, we want to store the information of each user and each post in our database, and allow users
-to access a particular part of the database that we provide them, yet hide deeper information. The DAO design pattern is the 
+to access a particular part of the database that we provide them, yet hide deeper information. The DAO design pattern is the
 best tool for this, since it allows us to give users the access to some information, while keeping the rest hidden.
-
 **Grammar(s)**
 
 <br> *Production Rules* <br>
