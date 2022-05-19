@@ -2,10 +2,14 @@ package com.example.login.DataContainer;
 
 import android.graphics.Bitmap;
 
+import com.example.login.Database.UserDAO;
+import com.example.login.Database.UserDAOImpl;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
 
-public class Someone extends User implements Serializable {
+public class Someone extends User implements Serializable, UserState {
     public final String username;
     private final  String signature;
     private final Bitmap avatar;
@@ -83,5 +87,103 @@ public class Someone extends User implements Serializable {
     @Override
     public String getLocation() {
         return location;
+    }
+
+
+    /**
+     *
+     * The following 4 getting method are not available when a user is in logout state.
+     *
+     */
+
+    @Override
+    // Someone's privacy setting is not available
+    public ArrayList<Boolean> getPrivacy() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Message> getMessages() {
+        return null;
+    }
+
+    @Override
+    // Getting password is not available in logout state
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    // Someone history is not visiable
+    public HashSet<Integer> getHistory() {
+        return null;
+    }
+
+    /**
+     *
+     * All 12 setting methods are not available when a user is in logout state.
+     *
+     */
+
+    // Password
+    public boolean setPassword(String password){
+        return false;
+    }
+
+    // Location
+    public boolean setLocation(String location){
+        return false;
+    }
+
+
+    // Age
+    public boolean setAge(int age){
+        return false;
+    }
+
+    // Gender
+    public boolean setGender(Gender gender){
+        return false;
+    }
+
+
+    // Signature
+    public boolean setSignature(String newSignature){
+        return false;
+    }
+
+    // Avatar
+    public boolean setAvatar(Bitmap avatar){
+        return false;
+    }
+
+    // Background (Be Careful of Null return!)
+    public boolean setBackground(Bitmap background){
+        return false;
+    }
+
+    // Following
+    public boolean setFollowing(HashSet<String> following){
+        return false;
+    }
+
+    // Blacklist
+    public boolean setBlacklist(HashSet<String> blacklist){
+        return false;
+    }
+
+    // History
+    public boolean setHistory(HashSet<Integer> history){
+        return false;
+    }
+
+    // Privacy
+    public boolean setPrivacy(ArrayList<Boolean> history){
+        return false;
+    }
+
+    // Messages
+    public boolean setMessages(ArrayList<Message> messages){
+        return false;
     }
 }

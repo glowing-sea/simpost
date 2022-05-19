@@ -45,7 +45,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         String content = current.content;
 
         Me me = Me.getInstance();
-        if (me.getPrivacySettings().get(5)){
+        if (me.getPrivacy().get(5)){
             title = (HelperMethods.getCensored(title));
             content = (HelperMethods.getCensored(content)); }
 

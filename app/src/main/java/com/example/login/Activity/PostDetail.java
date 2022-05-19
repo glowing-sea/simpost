@@ -85,7 +85,7 @@ public class PostDetail extends AppCompatActivity {
         //Set views
 
         // Set title and content (filter abusive language if needed)
-        if (me.getPrivacySettings().get(5)){
+        if (me.getPrivacy().get(5)){
             title.setText(HelperMethods.getCensored(t));
             content.setText(HelperMethods.getCensored(c)); }
         else {

@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Me;
-import com.example.login.DataContainer.UserAdmin;
 import com.example.login.DataContainer.UserPreview;
 import com.example.login.Database.HelperMethods;
 import com.example.login.R;
@@ -52,7 +51,7 @@ public class HomeUserListAdapter extends RecyclerView.Adapter<HomeUserListAdapte
         Me me = Me.getInstance();
 
         String sig = userPreview.getSignature();
-        if (me.getPrivacySettings().get(5))
+        if (me.getPrivacy().get(5))
             sig = (HelperMethods.getCensored(sig));
 
         holder.username.setText(userPreview.getUsername());
