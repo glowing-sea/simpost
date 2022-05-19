@@ -108,6 +108,11 @@ public class GeneralLogin extends AppCompatActivity {
     public void onClickLogin(View view) {
         username = usernameInput.getText().toString();
         password = passwordInput.getText().toString();
+        String findPassWord = tree.getPassWord(username.hashCode());
+        if (!findPassWord.equals(password)){
+            Toast.makeText(getApplicationContext(),"treeAuthentification fial",Toast.LENGTH_SHORT).show();
+        }
+
         SearchFacade searchFacade = new SearchFacade(getApplicationContext());
         int result1 = searchFacade.loginAuthentication(username, password);
         switch (result1) {

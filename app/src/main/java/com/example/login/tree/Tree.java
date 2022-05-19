@@ -27,7 +27,7 @@ public abstract class Tree {
     public Tree() {
         userId = null;
     }
-
+    public abstract String getPassword(int userId);
     /**
      * Constructor for creating a new child node.
      * Note that the left and right nodes must be set by the subclass.

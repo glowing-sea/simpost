@@ -32,12 +32,26 @@ public class AVLTree extends BinarySearchTree {
             - leftNode
             - rightNode
      */
+
     public AVLTree(Integer value, String userName, String passWord) {
         super(value,userName,passWord);//refering to binarySearch tree
         // Set left and right children to be of EmptyAVL as opposed to EmptyBST.
         this.leftNode = new EmptyAVL();
         this.rightNode = new EmptyAVL();
     }
+
+    public String getPassWord(int userId){
+        if(this.userId == userId){
+            return this.password;
+        }else {
+            if (this.userId < userId){
+                return leftNode.getPassword(userId);
+            }else {
+                return rightNode.getPassword(userId);
+            }
+        }
+    }
+
 
     public AVLTree(){
         this.leftNode = null;
@@ -277,6 +291,11 @@ public class AVLTree extends BinarySearchTree {
      * to the parent class inheriting Tree from BinarySearchTree. In this case an AVL tree.
      */
     public static class EmptyAVL extends EmptyTree {
+        @Override
+        public String getPassword(int userId) {
+            return "null";
+        }
+
         @Override
         public Tree insert(Integer element,String userName,String password) {
             // The creation of a new Tree, hence, return tree.

@@ -20,6 +20,11 @@ public class BinarySearchTree extends Tree {
         this.rightNode = null;
     }
 
+    @Override
+    public String getPassword(int userId) {
+        return null;
+    }
+
     public BinarySearchTree(Integer value,String userName,String passWord, Tree leftNode, Tree rightNode) {
         super(value,userName,passWord ,leftNode, rightNode);
     }
@@ -119,6 +124,11 @@ public class BinarySearchTree extends Tree {
      */
     public static class EmptyBST extends EmptyTree {
         @Override
+        public String getPassword(int userId) {
+            return "";
+        }
+
+        @Override
         public Tree insert(Integer element,String userName,String passWord) {
             // The creation of a new Tree, hence, return tree.
             return new BinarySearchTree(element,userName,passWord);
@@ -133,6 +143,7 @@ public class BinarySearchTree extends Tree {
         public Integer getPreccesor(Tree parent) {
             return null;
         }
+
 
         @Override
         public boolean contain(Integer elemnet) {
