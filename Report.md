@@ -179,6 +179,10 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 1. *Bug 1:*
 
 - *After using the databases for a long time, the databases needs to be deleted and recreated to let the app function normally.
+1. *Bug 2:*
+
+- *When choosing image for a post, if one image is selected and you choose to replace it but doesn`t choose anything, the app would report an error.
+
 
 
 *List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
@@ -227,7 +231,9 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 
 *Number of test cases: 1*
 
-*Code coverage: AndroidTest/com.example.login/HelperMethodsTest, line 26 - 30
+*Code coverage: AndroidTest/com.example.login/HelperMethodsTest, line 26 - 30,
+java/com.example.login/Database/HelperMethods, line 160 - 165
+java/com.example.login/DataContainer/Post, line 76
 
 *Types of tests created: white box testing*
 
@@ -240,6 +246,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 3*
 
 *Code coverage: AndroidTest/com.example.login/HelperMethodsTest, line 34 - 43
+java/com.example.login/Database/UserDAOImpl, line 775
 
 *Types of tests created: white box testing*
 
@@ -265,6 +272,9 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/HelperMethodsTest, line 47 - 68
+java/com.example.login/Database/HelperMethods, line 27 - 41
+java/com.example.login/Activity/Comments, line 61 - 65
+java/com.example.login/Activity/CommentAdapter, line 42 - 47
 
 *Types of tests created: white box testing*
 
@@ -277,6 +287,8 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/HelperMethodsTest, line 71 - 95
+java/com.example.login/Database/HelperMethods, line 27 - 41
+java/com.example.login/Activity/MessagesAddPage, line 82 - 100
 
 *Types of tests created: white box testing*
 
@@ -289,6 +301,8 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 11*
 
 *Code coverage: AndroidTest/com.example.login/PostDAOTest, line 52 - 64
+java/com.example.login/DataContainer/Post, line 128
+
 
 *Types of tests created: white box testing*
 
@@ -301,6 +315,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 3*
 
 *Code coverage: AndroidTest/com.example.login/PostDAOTest, line 68 - 82
+java/com.example.login/Database/UserDAOImpl, line 251 - 271
 
 *Types of tests created: white box testing*
 
@@ -313,6 +328,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 3*
 
 *Code coverage: AndroidTest/com.example.login/PostDAOTest, line 88 - 116
+java/com.example.login/Database/UserDAOImpl, line 378 - 388
 
 *Types of tests created: white box testing*
 
@@ -325,6 +341,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 3*
 
 *Code coverage: AndroidTest/com.example.login/PostDAOTest, line 120 - 142
+java/com.example.login/Database/UserDAOImpl, line 391 - 402
 
 *Types of tests created: white box testing*
 
@@ -337,6 +354,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 1*
 
 *Code coverage: AndroidTest/com.example.login/PostDAOTest, line 146 - 164
+java/com.example.login/Database/UserDAOImpl, line 307 - 338
 
 *Types of tests created: white box testing*
 
@@ -349,6 +367,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 1*
 
 *Code coverage: AndroidTest/com.example.login/PostDAOTest, line 168 - 184
+java/com.example.login/Database/UserDAOImpl, line 340 - 371
 
 *Types of tests created: white box testing*
 
@@ -361,6 +380,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 5*
 
 *Code coverage: AndroidTest/com.example.login/PostIdAssignerTest
+java/com.example.login/IdAssigner/PostIdAssigner
 
 *Types of tests created: white box testing*
 
@@ -373,6 +393,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 2*
 
 *Code coverage: AndroidTest/com.example.login/PostRWTest
+java/com.example.login/FileIO/FileRW
 
 *Types of tests created: white box testing*
 
@@ -385,6 +406,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 3*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 73 - 84
+java/com.example.login/Database/UserDAOImpl, line 518 - 576, 626 - 631
 
 *Types of tests created: white box testing*
 
@@ -397,6 +419,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 3*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 88 - 100
+java/com.example.login/Database/UserDAOImpl, line 651 - 657
 
 *Types of tests created: white box testing*
 
@@ -409,6 +432,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 104 - 122
+java/com.example.login/Database/UserDAOImpl, line 634 - 638
 
 *Types of tests created: white box testing*
 
@@ -421,6 +445,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 127 - 139
+java/com.example.login/Database/UserDAOImpl, line 737 - 754
 
 *Types of tests created: white box testing*
 
@@ -433,6 +458,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 144 - 158
+java/com.example.login/Database/UserDAOImpl, line 641 - 648
 
 *Types of tests created: white box testing*
 
@@ -445,6 +471,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 161 - 177
+java/com.example.login/Database/UserDAOImpl, line 659 - 665
 
 *Types of tests created: white box testing*
 
@@ -457,6 +484,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 179 - 195
+java/com.example.login/Database/UserDAOImpl, line 667 - 673
 
 *Types of tests created: white box testing*
 
@@ -469,6 +497,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 197 - 214
+java/com.example.login/Database/UserDAOImpl, line 675 - 682
 
 *Types of tests created: white box testing*
 
@@ -481,6 +510,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 217 - 236
+java/com.example.login/Database/UserDAOImpl, line 685 - 691
 
 *Types of tests created: white box testing*
 
@@ -493,6 +523,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 238 - 258
+java/com.example.login/Database/UserDAOImpl, line 693 - 708
 
 *Types of tests created: white box testing*
 
@@ -505,6 +536,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 2*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 260 - 276
+java/com.example.login/Database/UserDAOImpl, line 736 - 735
 
 *Types of tests created: white box testing*
 
@@ -517,6 +549,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 279 - 298
+java/com.example.login/Database/UserDAOImpl, line 766 - 798
 
 *Types of tests created: white box testing*
 
@@ -529,6 +562,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 4*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 300 - 318
+java/com.example.login/Database/UserDAOImpl, line 766 - 798
 
 *Types of tests created: white box testing*
 
@@ -541,6 +575,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 13*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 320 - 340
+java/com.example.login/Database/UserDAOImpl, line 481 - 516
 
 *Types of tests created: white box testing*
 
@@ -553,6 +588,7 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
 *Number of test cases: 17*
 
 *Code coverage: AndroidTest/com.example.login/UserDAOTest, line 342 - 370
+java/com.example.login/Database/UserDAOImpl, line 518 - 576
 
 *Types of tests created: white box testing*
 
