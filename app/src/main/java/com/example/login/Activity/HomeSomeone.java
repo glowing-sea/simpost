@@ -73,7 +73,7 @@ public class HomeSomeone extends AppCompatActivity {
         // Censor signature
         Me me = Me.getInstance();
         String sig = s.getSignature();
-        if (me.getPrivacySettings().get(5))
+        if (me.getPrivacy().get(5))
             sig = (HelperMethods.getCensored(sig));
         signature.setText(sig);
 
