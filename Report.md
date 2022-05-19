@@ -31,9 +31,9 @@ The following is a report template to help your team successfully provide all th
 | UID | Name | Role |
 | :--- | :----: | ---: |
 | [u7253519] | [Jack Fan] | [] |
-| [uid] | [Dai Boyu] | [] |
-| [uid] | [Haoting Chen] | [] |
-| [uid] | [Zhengling Zhang] | [] |
+| [u7241110] | [Dai Boyu] | [] |
+| [u7227871] | [Haoting Chen] | [] |
+| [u7323177] | [Zhengling Zhang] | [] |
 
 ## Summary of Individual Contributions
 
@@ -575,7 +575,8 @@ java/com.example.login/Activity/SearchPage, line 53 - 67
    
 2. *Feature 2: . Use GPS information (see the demo presented by our tutors. For example, your app
    may use the latitude/longitude to show some information relevant to your app). (easy)
-   Code: 
+   Code:  java/com.example.login/Activity/HomeSettingLocation
+   ![img.png](ReportImages/locationimg.png)
    
 
 3. *Feature 3: Report viewer. Provide users with the ability to see a report of interactions with your app
