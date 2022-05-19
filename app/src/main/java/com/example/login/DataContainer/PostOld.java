@@ -97,7 +97,7 @@ public class PostOld implements Serializable {
         if (!folderExist){
             fileRW.makDir(PRIVATE_DIR,"post");
         }
-        savedFile =  fileRW.savingString("post",postFileName,jsonString);
+        savedFile =  fileRW.savingString(postFileName,jsonString);
         if(!savedFile){
             Toast.makeText(context, "unable to save", Toast.LENGTH_SHORT).show();
             Log.e(TAG,"file not saved");

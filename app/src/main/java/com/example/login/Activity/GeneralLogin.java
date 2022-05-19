@@ -15,7 +15,12 @@ import com.example.login.DataContainer.Me;
 import com.example.login.Database.SearchFacade;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
+import com.example.login.FileIO.FileRW;
 import com.example.login.R;
+import com.example.login.tree.AVLTree;
+import com.example.login.tree.AVLTreeAdapter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +33,28 @@ public class GeneralLogin extends AppCompatActivity {
     EditText usernameInput, passwordInput;
     String username, password;
     SharedPreferences keepLogin;
-
+    AVLTree tree;
+    Gson treeBuilder;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.setTitle(this.getText(R.string.welcome));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_login);
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(AVLTree.class, new AVLTreeAdapter());
+        treeBuilder = builder.create();
+        FileRW fileRW = new FileRW(getApplicationContext());
+        try{
+            String treeString = fileRW.readJSON("AVLTree.json");
+            tree = treeBuilder.fromJson(treeString,AVLTree.class);
+        }catch (Exception e){
+            tree = new AVLTree("none".hashCode(),"none","pwd");
+            tree.save(getApplicationContext());
+        }
+
+
+
 
         //autido effect
         soundPool = new SoundPool.Builder().setMaxStreams(1).build();

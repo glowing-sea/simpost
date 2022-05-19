@@ -56,7 +56,7 @@ public class UserIdAssigner {
         if(checkSelf.exists()){
             checkSelf.delete();
         }
-        fileRW.savingString(folder,fileName,this.toJson());
+        //fileRW.savingString(folder,fileName,this.toJson());
     }
 
     private static UserIdAssigner readSelf(Context context) {

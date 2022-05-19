@@ -51,23 +51,14 @@ public class FileRW {
      * @param string content of the json
      * @return a boolean indicating it is success
      */
-    public boolean savingString(String folder, String fileName, String string){
-        folder = context.getFilesDir().toString() + "/" +folder;
+    public boolean savingString(String fileName, String string){
 
-        Log.i(TAG,"attemp to save file to" + folder);
-
-        //test whether the folder exists
-        File testFolder = new File(folder);
-        if(!testFolder.exists()){
-            Log.e(TAG,"the folder:"+folder+"\ndo not exist");
-            testFolder.mkdir();
-        }
+        Log.i(TAG,"attemp to save file to");
 
         //creating file
-        File targetFile = new File(folder,fileName);
+        File targetFile = new File(context.getFilesDir(),fileName);
         if(targetFile.exists()){
-            Log.e(TAG,"the file attemp to write to already exist"+ folder+fileName);
-            return false;
+            Log.e(TAG,"the file attemp to write to already exist"+fileName);
         }else {
             try{
                 targetFile.createNewFile();
@@ -87,7 +78,7 @@ public class FileRW {
             e.printStackTrace();
             return false;
         }
-        Log.i(TAG,"File saved to "+ folder +"/"+fileName);
+        Log.i(TAG,"File saved to /"+fileName);
         return true;
     }
 

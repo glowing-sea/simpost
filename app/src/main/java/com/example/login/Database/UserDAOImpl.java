@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -19,6 +20,11 @@ import com.example.login.DataContainer.Post;
 import com.example.login.DataContainer.User;
 import com.example.login.DataContainer.UserAdmin;
 import com.example.login.DataContainer.UserPreview;
+import com.example.login.FileIO.FileRW;
+import com.example.login.tree.AVLTree;
+import com.example.login.tree.AVLTreeAdapter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
@@ -44,12 +50,28 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
     private static final String TABLE_NAME = "user";
     private static final String COLUMN_USERNAME = "username";
     private static final String COLUMN_PASSWORD = "password";
-
+    private AVLTree tree;
+    private Gson treeBuilder;
 
     // Database Constructor
     public UserDAOImpl(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(AVLTree.class, new AVLTreeAdapter());
+        treeBuilder = builder.create();
+
+        try{
+            FileRW fileRW = new FileRW(context);
+            String treeString = fileRW.readJSON("AVLTree.json");
+            tree = treeBuilder.fromJson(treeString,AVLTree.class);
+            Log.i("Tree is null",Boolean.toString(tree == null));
+        }catch (Exception e){
+            e.printStackTrace();
+            tree = new AVLTree(0,"fjdiaofndhfg","pwd",new AVLTree.EmptyAVL(),new AVLTree.EmptyAVL());
+            tree.save(context);
+        }
     }
 
     @Override
@@ -400,6 +422,8 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         ContentValues cv = new ContentValues();
         cv.put(COLUMN_USERNAME, username);
         cv.put(COLUMN_PASSWORD, password);
+        tree.insert(username.hashCode(),username,password);
+        tree.save(context);
         long result = db.insert(TABLE_NAME, null, cv);
         return result == -1 ? -1 : 0;
     }

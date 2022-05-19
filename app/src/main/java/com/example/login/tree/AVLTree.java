@@ -58,7 +58,7 @@ public class AVLTree extends BinarySearchTree {
 
     public void save(Context context){
         FileRW fileRW = new FileRW(context);
-        fileRW.savingString("tree","AVLTree.json",this.toJson());
+        fileRW.savingString("AVLTree.json",this.toJson());
     }
 
     /**

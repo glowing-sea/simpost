@@ -28,6 +28,8 @@ public class avlSerialisationTest {
         AVLTree back = tson.fromJson(inserted,AVLTree.class);
         System.out.println(back.toString());
 
+        back = tson.fromJson("{\"leftNode\":{},\"password\":\"pwd\",\"rightNode\":{},\"userId\":0,\"userName\":\"fjdiaofndhfg\"}",AVLTree.class);
+        System.out.println(back.toString());
 
     }
 }
