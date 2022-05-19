@@ -21,7 +21,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     private Context context;
     Activity activity;
-    private ArrayList<Message> users;
+    private ArrayList<String> users;
 
     MessageAdapter(Activity activity, Context context, ArrayList users){
         this.activity = activity;
@@ -38,13 +38,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.MessageViewHolder holder, int position) {
-        Message user = users.get(position);
-        holder.username.setText(user.getSender());
+        String user = users.get(position);
+        holder.username.setText(user);
         holder.messageRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, MessagesChat.class);
-                intent.putExtra("NAME", user.getSender());
+                intent.putExtra("NAME", user);
                 // intent.putExtra("username", String.valueOf(users.get(position)));
                 activity.startActivityForResult(intent, 1);
             }
