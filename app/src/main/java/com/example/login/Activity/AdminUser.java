@@ -65,7 +65,7 @@ public class AdminUser extends AppCompatActivity {
 
 
         db = new UserDAOImpl(getApplicationContext());
-        users = db.getAllUsersAdmin();
+        users = db.getAllUsersAdmin(Integer.MAX_VALUE);
 
 
         userAdapter = new AdminUserAdapter(AdminUser.this, this, users);

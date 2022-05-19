@@ -29,7 +29,11 @@ public interface UserDAO {
     // Be careful of null return of image1-3
     Post getPost (int postID);
 
-    ArrayList<PostPreview> getAllPosts ();
+    ArrayList<PostPreview> getAllPosts (int maxPosts);
+
+    ArrayList<PostPreview> getFollowingPosts (int maxPosts, HashSet<String> following);
+
+    ArrayList<PostPreview> getSelectPosts (int maxPosts, HashSet<Integer> postIDs);
 
     boolean setLikes (int postID, HashSet<String> likes);
 
@@ -70,10 +74,10 @@ public interface UserDAO {
     Someone getSomeoneData (String username);
 
     // Get all users' names and signatures;
-    ArrayList<UserPreview> getAllUsers();
+    ArrayList<UserPreview> getAllUsers(int limit);
 
     // Get all users' names and password;
-    ArrayList<UserAdmin> getAllUsersAdmin();
+    ArrayList<UserAdmin> getAllUsersAdmin(int limit);
 
     // Password
     boolean setPassword(String username, String newPassword);

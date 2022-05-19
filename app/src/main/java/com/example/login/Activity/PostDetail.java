@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class PostView extends AppCompatActivity {
+public class PostDetail extends AppCompatActivity {
     SoundPool soundPool;
     List<Integer> soundIds;
     Post current;
@@ -54,6 +54,11 @@ public class PostView extends AppCompatActivity {
 
         // IMPORTANT ADD ME TO THE VIEWER SET OF THE POST
         current.addViews(me.username);
+
+        // IMPORTANT ADD POST TO MY HISTORY
+        HashSet<Integer> history = me.getHistory();
+        history.add(id);
+        me.setHistory(history);
 
         // Link views IDs
         title = findViewById(R.id.postTitleText);
@@ -116,7 +121,7 @@ public class PostView extends AppCompatActivity {
                     l.remove(me.username);
                     boolean result = current.setLikes(l);
                     if (result){
-                        Toast.makeText(PostView.this, "You unliked this post!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PostDetail.this, "You unliked this post!", Toast.LENGTH_SHORT).show();
                         String lString = "Current likes: " + l.size();
                         likeCount.setText(lString);
                         likeButton.setText("Like");
@@ -125,7 +130,7 @@ public class PostView extends AppCompatActivity {
                     soundPool.play(soundIds.get(0),1,1,1,0,1);
                     boolean result = current.addLikes(me.getUsername());
                     if (result){
-                        Toast.makeText(PostView.this, "You liked this post!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PostDetail.this, "You liked this post!", Toast.LENGTH_SHORT).show();
                         String lString = "Current likes: " + l.size();
                         likeCount.setText(lString);
                         likeButton.setText("Unlike");
@@ -138,7 +143,7 @@ public class PostView extends AppCompatActivity {
         commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PostView.this, Comments.class);
+                Intent intent = new Intent(PostDetail.this, Comments.class);
                 intent.putExtra("postID",id);
                 startActivity(intent);
                 // finish();

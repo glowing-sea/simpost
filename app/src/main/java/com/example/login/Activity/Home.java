@@ -44,7 +44,7 @@ public class Home extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.nav_ico_posts:
-                    startActivity(new Intent(getApplicationContext(), Post.class));
+                    startActivity(new Intent(getApplicationContext(), PostRecent.class));
                     this.overridePendingTransition(0, 0);
                     finish();
                     break;

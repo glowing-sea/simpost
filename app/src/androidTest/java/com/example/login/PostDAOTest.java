@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -20,6 +21,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -50,6 +52,49 @@ public class PostDAOTest {
     }
 
     @Test
+    public void getFollowingPostTest(){
+        Post p1 = new Post("Test1", "Game Review", "This is the content", null, null, null, "Anime", appContext);
+        Post p2 = new Post("Test2", "Game Review", "This is the content", null, null, null, "Anime", appContext);
+        Post p3 = new Post("Test3", "Game Review", "This is the content", null, null, null, "Anime", appContext);
+        db.addPostSpecifyID(p1, 100001);
+        db.addPostSpecifyID(p2, 100002);
+        db.addPostSpecifyID(p3, 100003);
+
+        HashSet<String> following = new HashSet<>();
+        following.add("Test1");
+        following.add("Test2");
+        following.add("Test3");
+
+        int actual = db.getFollowingPosts(Integer.MAX_VALUE, following).size();
+        assertEquals(3, actual);
+
+        db.deletePost(100001);
+        db.deletePost(100002);
+        db.deletePost(100003);
+    }
+
+    @Test
+    public void getSelectPostsTest(){
+        Post p1 = new Post("Test1", "Game Review", "This is the content", null, null, null, "Anime", appContext);
+        Post p2 = new Post("Test2", "Game Review", "This is the content", null, null, null, "Anime", appContext);
+        Post p3 = new Post("Test3", "Game Review", "This is the content", null, null, null, "Anime", appContext);
+        db.addPostSpecifyID(p1, 100001);
+        db.addPostSpecifyID(p2, 100002);
+        db.addPostSpecifyID(p3, 100003);
+        HashSet<Integer> postIDs = new HashSet<>();
+        postIDs.add(100001);
+        postIDs.add(100002);
+        postIDs.add(100003);
+        
+        int actual = db.getSelectPosts(Integer.MAX_VALUE, postIDs).size();
+        assertEquals(3, actual);
+
+        db.deletePost(100001);
+        db.deletePost(100002);
+        db.deletePost(100003);
+    }
+
+    @Test
     public void getPostTest(){
         Post a = db.getPost(POST_ID);
         assertEquals(e.creator, a.creator);
@@ -68,7 +113,7 @@ public class PostDAOTest {
 
     @Test
     public void getAllPosts(){
-        int before = db.getAllPosts().size();
+        int before = db.getAllPosts(Integer.MAX_VALUE).size();
         Post p1 = new Post("TestUser1", "Game Review1", "This is the content", null, null, null, "Anime", appContext);
         Post p2 = new Post("TestUser2", "Game Review2", "This is the content", null, null, null, "Anime", appContext);
         Post p3 = new Post("TestUser3", "Game Review3", "This is the content", null, null, null, "Anime", appContext);
@@ -76,7 +121,7 @@ public class PostDAOTest {
         db.addPostSpecifyID(p2, 100002);
         db.addPostSpecifyID(p3, 100003);
         // Check Size
-        ArrayList<PostPreview> allPosts = db.getAllPosts();
+        ArrayList<PostPreview> allPosts = db.getAllPosts(Integer.MAX_VALUE);
         PostPreview a1 = allPosts.get(1);
         assertEquals("Anime", a1.tag);
         int after = allPosts.size();
@@ -147,45 +192,45 @@ public class PostDAOTest {
         assertEquals("Jack`Good`n.d.~Henry`Great`n.d.~Daniel`Well`n.d.~", Comment.commentsEncode(b.getComments()));
     }
 
-    @Test
-    public void postMatch(){
-        // 这个Post Constructor不会生成ID的，是当Post被放进去Database才会生成ID，如果想知道你放进去的Post的ID是啥（为了在测试结束删掉），用addPostSpecifyID
-        Post test = new Post("Dai","Hello world","this is a testing post"
-                ,null,null,null,null, appContext.getApplicationContext());
-        int id = 100004;
-        db.addPostSpecifyID(test, 100004);
-        System.out.println("Founded");
-        Set<Post> result= db.postMathchFTS4("content:testing");
-        Iterator<Post> iterator = result.iterator();
-        while (iterator.hasNext()){
-            Post current = iterator.next();
-            System.out.println(current.postID);
-            System.out.println(current.creator);
-            System.out.println(current.title);
-            System.out.println(current.content);
-        }
+//    @Test
+//    public void postMatch(){
+//        // 这个Post Constructor不会生成ID的，是当Post被放进去Database才会生成ID，如果想知道你放进去的Post的ID是啥（为了在测试结束删掉），用addPostSpecifyID
+//        Post test = new Post("Dai","Hello world","this is a testing post"
+//                ,null,null,null,null, appContext.getApplicationContext());
+//        int id = 100004;
+//        db.addPostSpecifyID(test, 100004);
+//        System.out.println("Founded");
+//        Set<Post> result= db.postMathchFTS4("content:testing");
+//        Iterator<Post> iterator = result.iterator();
+//        while (iterator.hasNext()){
+//            Post current = iterator.next();
+//            System.out.println(current.postID);
+//            System.out.println(current.creator);
+//            System.out.println(current.title);
+//            System.out.println(current.content);
+//        }
+//
+//        // 测试完最好把Post删掉
+//        db.deletePost(100004);
+//    }
 
-        // 测试完最好把Post删掉
-        db.deletePost(100004);
-    }
-
-    @Test
-    public void contnetMatchTest(){
-        // 这个Post Constructor不会生成ID的，是当Post被放进去Database才会生成ID，如果想知道你放进去的Post的ID是啥（为了在测试结束删掉），用addPostSpecifyID
-        Post test = new Post("Dai","Hello world","!Do you like video games like the doom"
-                ,null,null,null,null, appContext.getApplicationContext());
-        int id = 100004;
-        db.addPostSpecifyID(test, 100004);
-        System.out.println("Founded");
-        Set<Post> result= db.postAuthorMatch("games NEAR doom");
-        Iterator<Post> iterator = result.iterator();
-        while (iterator.hasNext()){
-            Post current = iterator.next();
-            System.out.println(current.postID);
-            System.out.println(current.content);
-        }
-
-        // 测试完最好把Post删掉
-        db.deletePost(100004);
-    }
+//    @Test
+//    public void contnetMatchTest(){
+//        // 这个Post Constructor不会生成ID的，是当Post被放进去Database才会生成ID，如果想知道你放进去的Post的ID是啥（为了在测试结束删掉），用addPostSpecifyID
+//        Post test = new Post("Dai","Hello world","!Do you like video games like the doom"
+//                ,null,null,null,null, appContext.getApplicationContext());
+//        int id = 100004;
+//        db.addPostSpecifyID(test, 100004);
+//        System.out.println("Founded");
+//        Set<Post> result= db.postAuthorMatch("games NEAR doom");
+//        Iterator<Post> iterator = result.iterator();
+//        while (iterator.hasNext()){
+//            Post current = iterator.next();
+//            System.out.println(current.postID);
+//            System.out.println(current.content);
+//        }
+//
+//        // 测试完最好把Post删掉
+//        db.deletePost(100004);
+//    }
 }

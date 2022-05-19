@@ -32,7 +32,7 @@ public class AdminPost extends AppCompatActivity {
         // Set up recycle view
         RecyclerView rvPosts = (RecyclerView) findViewById(R.id.admin_rv);
         UserDAO db = new UserDAOImpl(this);
-        ArrayList<PostPreview> allPosts = db.getAllPosts();
+        ArrayList<PostPreview> allPosts = db.getAllPosts(Integer.MAX_VALUE);
         AdminPostAdapter adminPostAdapter = new AdminPostAdapter(AdminPost.this, this,allPosts);
         rvPosts.setAdapter(adminPostAdapter);
         rvPosts.setLayoutManager(new GridLayoutManager(this, 2));

@@ -13,6 +13,7 @@ import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import android.content.Intent;
 import android.os.Build;
@@ -21,20 +22,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Post extends AppCompatActivity {
+public class PostFollowing extends AppCompatActivity {
     Me me;
     UserDAO db;
+    RecyclerView rvPosts;
+    TextView noPostsFound;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
-        this.setTitle(this.getText(R.string.posts));
+        this.setTitle("Following Posts");
         me = Me.getInstance();
         db = new UserDAOImpl(getApplicationContext());
         // initiate the current User
@@ -58,24 +61,25 @@ public class Post extends AppCompatActivity {
             return false;
         });
 
-        ImageView newPost = findViewById(R.id.newPost);
+        FloatingActionButton newPost = findViewById(R.id.newPost);
         newPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Post.this, PostCreate.class);
+                Intent i = new Intent(PostFollowing.this, PostCreate.class);
                 startActivityForResult(i, 100);
             }
         });
 
-        RecyclerView rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
+        rvPosts = (RecyclerView) findViewById(R.id.rv_posts);
 
-        ArrayList<PostPreview> allPosts = db.getAllPosts();
+        ArrayList<PostPreview> allPosts = db.getFollowingPosts(100, me.getFollowing());
 
 
-        if (allPosts == null) {
-            Toast.makeText(Post.this, "No Post", Toast.LENGTH_LONG).show();
+        noPostsFound = findViewById(R.id.no_post_found);
+        if (allPosts == null || allPosts.isEmpty())  {
+            noPostsFound.setText("No Posts Found");
         } else {
-            PostAdapter postAdapter = new PostAdapter(Post.this,allPosts);
+            PostAdapter postAdapter = new PostAdapter(PostFollowing.this,allPosts);
             rvPosts.setAdapter(postAdapter);
             rvPosts.setLayoutManager(new GridLayoutManager(this, 2));
         }
@@ -90,11 +94,15 @@ public class Post extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.to_find_users){
-            Toast.makeText(Post.this, "recent posts shown", Toast.LENGTH_LONG).show();
+        if (id == R.id.get_recent_posts){
+            Intent intent = new Intent(PostFollowing.this, PostRecent.class);
+            startActivity(intent);
+            this.overridePendingTransition(0, 0);
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data){

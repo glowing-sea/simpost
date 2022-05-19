@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
 
     android:layout_height="wrap_content"
-    tools:context=".Activity.PostView">
+    tools:context=".Activity.PostDetail">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/postLayout"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#F6F0F0"
-            android:scaleType="center"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@id/view_image_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/postContentText"
@@ -102,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#F6F0F0"
-            android:scaleType="center"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@id/view_image_3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_image_1"
@@ -114,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#F6F0F0"
-            android:scaleType="center"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toTopOf="@id/post_publish_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_image_2"

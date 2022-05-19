@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:title = "Show recent"
-        android:id = "@+id/to_find_users"></item>
+        android:title = "Recent"
+        android:id = "@+id/get_recent_posts"></item>
     <item
-        android:title = "Show Subscribed"
-        android:id = "@+id/to_find_posts"></item>
+        android:title = "Following"
+        android:id = "@+id/get_following_posts"></item>
 
 </menu>

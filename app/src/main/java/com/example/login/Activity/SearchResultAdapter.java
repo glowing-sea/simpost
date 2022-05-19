@@ -44,7 +44,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         holder.getSingleResult().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ctx, PostView.class);
+                Intent i = new Intent(ctx, PostDetail.class);
                 i.putExtra("POST", current);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Log.i("Search result",current.toString());

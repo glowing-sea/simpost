@@ -96,7 +96,7 @@ public class GeneralLogin extends AppCompatActivity {
 
                 if (result2){
                     this.soundPool.play(soundIds.get(0),1,1,1,0,1);
-                    Intent in = new Intent(GeneralLogin.this, Post.class);
+                    Intent in = new Intent(GeneralLogin.this, PostRecent.class);
                     startActivity(in);
                     finish();
                 } else{

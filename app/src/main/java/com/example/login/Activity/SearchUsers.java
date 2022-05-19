@@ -44,7 +44,7 @@ public class SearchUsers extends AppCompatActivity {
         nav.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
                 case R.id.nav_ico_posts:
-                    startActivity(new Intent(getApplicationContext(), Post.class));
+                    startActivity(new Intent(getApplicationContext(), PostRecent.class));
                     this.overridePendingTransition(0, 0);
                     finish();
                     break;
@@ -60,7 +60,7 @@ public class SearchUsers extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.users_list);
         db = new UserDAOImpl(getApplicationContext());
-        users = db.getAllUsers();
+        users = db.getAllUsers(100);
         userAdapter = new HomeUserListAdapter(SearchUsers.this, this, users, null);
         recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));

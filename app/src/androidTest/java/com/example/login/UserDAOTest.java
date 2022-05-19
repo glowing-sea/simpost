@@ -241,8 +241,8 @@ public class UserDAOTest {
 
         // User level
         Me m = Me.getInstance();
-        m.setViewHistory(expected);
-        HashSet<Integer> local = m.getViewHistory();
+        m.setHistory(expected);
+        HashSet<Integer> local = m.getHistory();
         HashSet<Integer> database = db.getViewHistory("ur");
         assertEquals(expected, database);
         assertEquals(expected, local);

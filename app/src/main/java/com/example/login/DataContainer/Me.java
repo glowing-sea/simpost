@@ -176,12 +176,12 @@ public class Me extends User{
     }
 
     // View History
-    public boolean setViewHistory(HashSet<Integer> history){
+    public boolean setHistory(HashSet<Integer> history){
         UserDAO db = new UserDAOImpl(context);
         this.history = history;
         return db.setViewHistory(username, history);
     }
-    public HashSet<Integer> getViewHistory(){
+    public HashSet<Integer> getHistory(){
         return this.history;
     }
 

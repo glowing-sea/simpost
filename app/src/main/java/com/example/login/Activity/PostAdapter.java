@@ -80,7 +80,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             @Override
             public void onClick(View view) {
                 // Toast.makeText(ctx, "Clicked", Toast.LENGTH_LONG).show();
-                 Intent intent = new Intent(ctx, PostView.class);
+                 Intent intent = new Intent(ctx, PostDetail.class);
                  intent.putExtra("postID", current.postID);
                  // intent.putExtra("username", String.valueOf(users.get(position)));
                  ctx.startActivity(intent);

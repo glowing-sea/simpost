@@ -177,17 +177,84 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         return new Post(postID, creator, title, content, date, image1, image2, image3, tag, likes, views, comments, context);
     }
 
+    /**
+     * This function get selected posts from the database
+     * @param postIDs the post IDs
+     * @return the post with the input id or null if there is no such a post
+     */
+    public ArrayList<PostPreview> getSelectPosts (int maxPosts, HashSet<Integer> postIDs){
+        StringBuilder idsString = new StringBuilder();
+        for (int id : postIDs)
+            idsString.append(id).append(",");
+        if (idsString.length() != 0)
+            idsString.delete(idsString.length() - 1, idsString.length());
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM post WHERE postID in (" + idsString
+                +") ORDER BY date DESC, postID DESC LIMIT ?;";
+        String[] replace = {String.valueOf(maxPosts)};
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, replace);
+        ArrayList<PostPreview> allPosts = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            int postID = cursor.getInt(0);
+            String creator = cursor.getString(1);
+            String title = cursor.getString(2);
+            String content = cursor.getString(3);
+            String date = cursor.getString(4);
+            Bitmap image = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
+            String tag = cursor.getString(8);
+            allPosts.add(new PostPreview(postID, creator, title, content, date, image, tag));
+        }
+        cursor.close();
+        db.close();
+        return allPosts;
+    }
+
 
     /**
      * This function get all post previews from the database
      * Be careful when use it as the database may contain many posts.
      * @return all posts in the database or null if there is not post in the database
      */
-    public ArrayList<PostPreview> getAllPosts (){
+    public ArrayList<PostPreview> getAllPosts (int maxPosts){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT * FROM post;";
+        String query = "SELECT * FROM post ORDER BY date DESC, postID DESC LIMIT ?;";
+        String[] replace = {String.valueOf(maxPosts)};
         Cursor cursor = null;
-        cursor = db.rawQuery(query, null);
+        cursor = db.rawQuery(query, replace);
+        ArrayList<PostPreview> allPosts = new ArrayList<>();
+        while (cursor.moveToNext()) {
+            int postID = cursor.getInt(0);
+            String creator = cursor.getString(1);
+            String title = cursor.getString(2);
+            String content = cursor.getString(3);
+            String date = cursor.getString(4);
+            Bitmap image = HelperMethods.byteArrayToBitmap(cursor.getBlob(5));
+            String tag = cursor.getString(8);
+            allPosts.add(new PostPreview(postID, creator, title, content, date, image, tag));
+        }
+        cursor.close();
+        db.close();
+        return allPosts;
+    }
+
+    /**
+     * This function get posts created by specific people.
+     * Be careful when use it as the database may contain many posts.
+     * @return all posts in the database or null if there is not post in the database
+     */
+    public ArrayList<PostPreview> getFollowingPosts (int maxPosts, HashSet<String> following){
+        StringBuilder followingString = new StringBuilder();
+        for (String name : following)
+            followingString.append("'").append(name).append("'").append(",");
+        if (followingString.length() != 0)
+            followingString.delete(followingString.length() - 1, followingString.length());
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM post WHERE creator in (" + followingString
+                +") ORDER BY date DESC, postID DESC LIMIT ?;";
+        String[] replace = {String.valueOf(maxPosts)};
+        Cursor cursor = null;
+        cursor = db.rawQuery(query, replace);
         ArrayList<PostPreview> allPosts = new ArrayList<>();
         while (cursor.moveToNext()) {
             int postID = cursor.getInt(0);
@@ -479,11 +546,12 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
      * Get all users' names and signatures
      * @return return preview of all users
      */
-    public ArrayList<UserPreview> getAllUsers(){
+    public ArrayList<UserPreview> getAllUsers(int limit){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT username, signature FROM user;";
+        String query = "SELECT username, signature FROM user LIMIT ?;";
+        String[] replace = {String.valueOf(limit)};
         Cursor cursor = null;
-        cursor = db.rawQuery(query, null);
+        cursor = db.rawQuery(query, replace);
         ArrayList<UserPreview> allUsers = new ArrayList<>();
         while (cursor.moveToNext()) {
             String username = cursor.getString(0);
@@ -499,11 +567,12 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
      * Get all users' names and password
      * @return return preview of all users
      */
-    public ArrayList<UserAdmin> getAllUsersAdmin(){
+    public ArrayList<UserAdmin> getAllUsersAdmin(int limit){
         SQLiteDatabase db = this.getReadableDatabase();
-        String query = "SELECT username, password FROM user;";
+        String query = "SELECT username, password FROM user LIMIT ?;";
+        String[] replace = {String.valueOf(limit)};
         Cursor cursor = null;
-        cursor = db.rawQuery(query, null);
+        cursor = db.rawQuery(query, replace);
         ArrayList<UserAdmin> allUsers = new ArrayList<>();
         while (cursor.moveToNext()) {
             String username = cursor.getString(0);

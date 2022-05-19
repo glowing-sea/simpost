@@ -19,12 +19,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
+            android:name=".Activity.PostFollowing"
+            android:exported="false" />
+        <activity
             android:name=".Activity.HomeSettingLocation"
             android:exported="false" />
         <activity
             android:name=".Activity.GamePage"
-            android:label="music time"
-            android:exported="false" />
+            android:exported="false"
+            android:label="music time" />
         <activity
             android:name=".Activity.AdminPostReset"
             android:exported="false"
@@ -103,7 +106,7 @@
             android:name=".Activity.Home"
             android:exported="false" />
         <activity
-            android:name=".Activity.Post"
+            android:name=".Activity.PostRecent"
             android:exported="false" />
         <activity
             android:name=".Activity.SearchResultPage"
@@ -114,7 +117,7 @@
             android:exported="false"
             android:parentActivityName=".Activity.GeneralLogin" />
         <activity
-            android:name=".Activity.PostView"
+            android:name=".Activity.PostDetail"
             android:exported="false"
             android:parentActivityName=".Activity.Home" />
         <activity
@@ -126,7 +129,7 @@
             android:name=".Activity.PostCreate"
             android:exported="false"
             android:label="Create Your Post"
-            android:parentActivityName=".Activity.Post" />
+            android:parentActivityName=".Activity.PostRecent" />
         <activity
             android:name=".Activity.GeneralLogin"
             android:exported="true">
