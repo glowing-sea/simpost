@@ -233,6 +233,7 @@ public class Home extends AppCompatActivity {
         if (resultCode == RESULT_OK){
             boolean re;
             if (requestCode == 100) {
+                recreate();
             }
             if (requestCode == 200 || requestCode == 300) {
                 Uri imageUri = data.getData();
