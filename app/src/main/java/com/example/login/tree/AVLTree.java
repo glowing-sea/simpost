@@ -15,7 +15,7 @@ package com.example.login.tree;
  * of the method '.display()' (found in Tree.java which class, AVLTree, extends through BinarySearchTree). This
  * method will provide you with a graphical representation of the tree.
  */
-public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
+public class AVLTree extends BinarySearchTree {
     /*
         As a result of inheritance by using 'extends BinarySearchTree<T>,
         all class fields within BinarySearchTree are also present here.
@@ -24,22 +24,20 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             - leftNode
             - rightNode
      */
-    public AVLTree(T value,String userName,String passWord) {
+    public AVLTree(Integer value, String userName, String passWord) {
         super(value,userName,passWord);//refering to binarySearch tree
         // Set left and right children to be of EmptyAVL as opposed to EmptyBST.
-        this.leftNode = new EmptyAVL<>();
-        this.rightNode = new EmptyAVL<>();
+        this.leftNode = new EmptyAVL();
+        this.rightNode = new EmptyAVL();
     }
 
-    public AVLTree(T value,String passWord) {
-        super(value,passWord);//refering to binarySearch tree
-        // Set left and right children to be of EmptyAVL as opposed to EmptyBST.
-        this.leftNode = new EmptyAVL<>();
-        this.rightNode = new EmptyAVL<>();
+    public AVLTree(){
+        this.leftNode = null;
+        this.rightNode = null;
     }
 
-    public AVLTree(T value, Tree<T> leftNode, Tree<T> rightNode) {
-        super(value, leftNode, rightNode);
+    public AVLTree(Integer value,String userName,String password, Tree leftNode, Tree rightNode) {
+        super(value, userName,password,leftNode, rightNode);
     }
 
     /**
@@ -56,38 +54,38 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     @Override
-    public AVLTree<T> insert(T element,String userName,String passWord) {
+    public AVLTree insert(Integer element, String userName, String passWord) {
         /*
             TODO: Write and or complete your insertion code here
             Note that what each method does is described in its superclass unless edited.
             E.g. what 'insert' does is described in Tree.java.
          */
         //System.out.println(element);
-        AVLTree<T> Result = new AVLTree<T>(this.userId,this.leftNode,this.rightNode);
+        AVLTree Result = new AVLTree(this.userId,this.userName,this.password,this.leftNode,this.rightNode);
         if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
 
         //after comparing the value, it is inserted in to tree on a recursive manner
         //after each insert the balance of the tree would be checked
         if (element.compareTo(userId) > 0) {
-            Result = new AVLTree<T>(this.userId,this.leftNode,this.rightNode.insert(element,userName,passWord));
-            Result = (AVLTree<T>) checkAndBalance(Result);
+            Result = new AVLTree(this.userId,this.userName,this.password,this.leftNode,this.rightNode.insert(element,userName,passWord));
+            Result = (AVLTree) checkAndBalance(Result);
             return Result;
         } else if (element.compareTo(userId) < 0) {
-            Result = new AVLTree<T>(this.userId,this.leftNode.insert(element,userName,passWord),this.rightNode);
-            Result = (AVLTree<T>) checkAndBalance(Result);
+            Result = new AVLTree(this.userId,this.userName,this.password,this.leftNode.insert(element,userName,passWord),this.rightNode);
+            Result = (AVLTree) checkAndBalance(Result);
             return Result;
             // COMPLETE
         } else {
-            Result = (AVLTree<T>) checkAndBalance(Result);
+            Result = (AVLTree) checkAndBalance(Result);
             return Result;
         }
         // Ensure input is not null.
     }
 
-    public AVLTree<T> deletion(T element){
-        AVLTree<T> unbalance =(AVLTree<T>) super.deletion(element,null);
-        return (AVLTree<T>) unbalance.checkAndBalance(unbalance);
+    public AVLTree deletion(Integer element){
+        AVLTree unbalance =(AVLTree) super.deletion(element,null);
+        return (AVLTree) unbalance.checkAndBalance(unbalance);
     }
 
     /**
@@ -98,10 +96,10 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      *
      * @return the balanced tree
      */
-    Tree<T> checkAndBalance(Tree<T> tree){
+    Tree checkAndBalance(Tree tree){
         //use try to convert to make sure that not checking on a EmptyAVL
         try{
-            AVLTree<T> nonEmpty = (AVLTree<T>) tree;
+            AVLTree nonEmpty = (AVLTree) tree;
             switch (nonEmpty.getBalanceFactor()) {
                 case (1):
                 case (-1):
@@ -135,7 +133,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * @param tree children of node with balance factor  2
      * @return node after first double flip
      */
-    Tree<T> checkAndBalance2(Tree<T> tree){
+    Tree checkAndBalance2(Tree tree){
         if(tree.getClass() != EmptyAVL.class){ //we don't do check balance on an empty tree
             AVLTree nonEmpty = (AVLTree) tree;
             switch (nonEmpty.getBalanceFactor()){
@@ -161,7 +159,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * @param tree children of node with balance factor  -2
      * @return node after first double flip
      */
-    Tree<T> checkAndBalanceN2(Tree<T> tree){
+    Tree checkAndBalanceN2(Tree tree){
         if(tree.getClass() != EmptyAVL.class){ //we don't do check balance on an empty tree
             AVLTree nonEmpty = (AVLTree) tree;
             switch (nonEmpty.getBalanceFactor()){
@@ -185,7 +183,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      *
      * @return the new 'current' or 'top' node after rotation.
      */
-    public AVLTree<T> leftRotate() {
+    public AVLTree leftRotate() {
         /*
             TODO: Write and or complete this method so that you can conduct a left rotation on the current node.
             This can be quite difficult to get your head around. Try looking for visualisations
@@ -207,7 +205,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         if (this.rightNode == null){
             return this;
         }else {
-            AVLTree<T> Result = (AVLTree<T>) this.rightNode;
+            AVLTree Result = (AVLTree) this.rightNode;
             this.rightNode = Result.leftNode;
             Result.leftNode = this;
             // COMPLETE
@@ -220,7 +218,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      *
      * @return the new 'current' or 'top' node after rotation.
      */
-    public AVLTree<T> rightRotate() {
+    public AVLTree rightRotate() {
         /*
             TODO: Write this method so that you can conduct a right rotation on the current node.
             This can be quite difficult to get your head around. Try looking for visualisations
@@ -241,7 +239,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         if(this.leftNode == null){
             return this;
         }else {
-            AVLTree<T> Result = (AVLTree<T>) this.leftNode;
+            AVLTree Result = (AVLTree) this.leftNode;
             this.leftNode = Result.rightNode;
             Result.rightNode = this;
             // COMPLETE
@@ -257,25 +255,25 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      * The answer is: this is just a design decision. 'insert' here will return something specific
      * to the parent class inheriting Tree from BinarySearchTree. In this case an AVL tree.
      */
-    public static class EmptyAVL<T extends Comparable<T>> extends EmptyTree<T> {
+    public static class EmptyAVL extends EmptyTree {
         @Override
-        public Tree<T> insert(T element,String userName,String PpssWord) {
+        public Tree insert(Integer element,String userName,String password) {
             // The creation of a new Tree, hence, return tree.
-            return new AVLTree<T>(element,userName,password);
+            return new AVLTree(element,userName,password);
         }
 
         @Override
-        public Tree<T> deletion(T value, Tree<T> parent) {
+        public Tree deletion(Integer value, Tree parent) {
             return this;
         }
 
         @Override
-        public T getPreccesor(Tree<T> parent) {
+        public Integer getPreccesor(Tree parent) {
             return null;
         }
 
         @Override
-        public boolean contain(T elemnet) {
+        public boolean contain(Integer elemnet) {
             return false;
         }
     }

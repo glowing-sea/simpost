@@ -6,24 +6,24 @@ package com.example.login.tree;
  * we have a class that represents an 'empty' tree.
  *
  */
-public abstract class EmptyTree<T extends Comparable<T>> extends Tree<T> {
+public abstract class EmptyTree extends Tree {
     // Will need to be implemented by the subclass inheriting this class.
-    public abstract Tree<T> insert(T element,String userName,String passWord);
+    public abstract Tree insert(Integer element, String userName, String passWord);
 
     @Override
-    public T min() {
+    public Integer min() {
         // No minimum.
         return null;
     }
 
     @Override
-    public T max() {
+    public Integer max() {
         // No maximum.
         return null;
     }
 
     @Override
-    public Tree<T> find(T element) {
+    public Tree find(Integer element) {
         // Was unable to find the item. Hence, return null.
         return null;
     }

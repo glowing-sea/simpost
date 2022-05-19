@@ -6,36 +6,36 @@ package com.example.login.tree;
  * with self balancing properties. Hence, our AVL trees will 'extend'
  * this Binary Search tree data structure.
  */
-public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
+public class BinarySearchTree extends Tree {
 
-    public BinarySearchTree(T value,String userName,String passWord) {
+    public BinarySearchTree(Integer value, String userName, String passWord) {
         super(value,userName,passWord);
-        this.leftNode = new EmptyBST<>();
-        this.rightNode = new EmptyBST<>();
+        this.leftNode = new EmptyBST();
+        this.rightNode = new EmptyBST();
     }
 
-    public BinarySearchTree(T value,String password) {
-        super(value,password);
-        this.leftNode = new EmptyBST<>();
-        this.rightNode = new EmptyBST<>();
+    public BinarySearchTree() {
+        super();
+        this.leftNode = null;
+        this.rightNode = null;
     }
 
-    public BinarySearchTree(T value, Tree<T> leftNode, Tree<T> rightNode) {
-        super(value, leftNode, rightNode);
+    public BinarySearchTree(Integer value,String userName,String passWord, Tree leftNode, Tree rightNode) {
+        super(value,userName,passWord ,leftNode, rightNode);
     }
 
     @Override
-    public T min() {
+    public Integer min() {
         return (leftNode instanceof EmptyTree) ? userId : leftNode.min();
     }
 
     @Override
-    public T max() {
+    public Integer max() {
         return (rightNode instanceof EmptyTree) ? userId : rightNode.max();
     }
 
     @Override
-    public Tree<T> find(T element) {
+    public Tree find(Integer element) {
         /*
             Left is less, right is greater in this implementation.
             compareTo returns 0 if both elements are equal.
@@ -57,21 +57,21 @@ public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
     }
 
     @Override
-    public BinarySearchTree<T> insert(T element,String userName,String password) {
+    public BinarySearchTree insert(Integer element, String userName, String password) {
         // Ensure input is not null.
         if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
 
         // If the two values are equal, in this implementation we want to insert to the left.
         if (element.compareTo(userId) > 0) {
-            return new BinarySearchTree<>(userId, leftNode, rightNode.insert(element,userName,password));
+            return new BinarySearchTree(userId,this.userName,this.password, leftNode, rightNode.insert(element,userName,password));
         } else {
-            return new BinarySearchTree<>(userId, leftNode.insert(element,userName,password), rightNode);
+            return new BinarySearchTree(userId,this.userName,this.password,leftNode.insert(element,userName,password), rightNode);
         }
     }
 
     @Override
-    public Tree<T> deletion(T value, Tree<T> parent) {
+    public Tree deletion(Integer value, Tree parent) {
         if(value.compareTo(this.userId)>0){
             this.rightNode = this.rightNode.deletion(value,this);
         }else if(value.compareTo(this.userId )<0) {
@@ -92,7 +92,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
     }
 
     @Override
-    public T getPreccesor(Tree<T> parent) {
+    public Integer getPreccesor(Tree parent) {
         if(this.leftNode.userId != null){
             return this.leftNode.max();
         }else {
@@ -101,7 +101,7 @@ public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
     }
 
     @Override
-    public boolean contain(T elemnet) {
+    public boolean contain(Integer elemnet) {
         if(elemnet.compareTo(this.userId) > 0){
             return this.rightNode.contain(elemnet);
         }else if(elemnet.compareTo(this.userId) < 0){
@@ -117,25 +117,25 @@ public class BinarySearchTree<T extends Comparable<T>> extends Tree<T> {
      * The answer is: this is just a design decision. 'insert' here will return something specific
      * to the parent class inheriting Tree. In this case a BinarySearchTree.
      */
-    public static class EmptyBST<T extends Comparable<T>> extends EmptyTree<T> {
+    public static class EmptyBST extends EmptyTree {
         @Override
-        public Tree<T> insert(T element,String userName,String passWord) {
+        public Tree insert(Integer element,String userName,String passWord) {
             // The creation of a new Tree, hence, return tree.
-            return new BinarySearchTree<T>(element,userName,passWord);
+            return new BinarySearchTree(element,userName,passWord);
         }
 
         @Override
-        public Tree<T> deletion(T value, Tree<T> parent) {
+        public Tree deletion(Integer value, Tree parent) {
             return this;
         }
 
         @Override
-        public T getPreccesor(Tree<T> parent) {
+        public Integer getPreccesor(Tree parent) {
             return null;
         }
 
         @Override
-        public boolean contain(T elemnet) {
+        public boolean contain(Integer elemnet) {
             return false;
         }
 

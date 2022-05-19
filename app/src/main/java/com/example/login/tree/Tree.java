@@ -11,16 +11,16 @@ import java.util.List;
  * @param <T> the generic type this Tree uses. It extends comparable
  *            which allows us to order two of the same type.
  */
-public abstract class Tree<T extends Comparable<T>> {
+public abstract class Tree {
     /**
      * Here we store our class fields.
      */
-    public T userId;
+    public Integer userId;
     public String password;// element stored in this node of the tree.
     public String userName;
-    public Tree<T> leftNode;    // less than the node.
-    public Tree<T> rightNode;   // greater than the node.
-    public Tree<T> parent;
+    public Tree leftNode;    // less than the node.
+    public Tree rightNode;   // greater than the node.
+    public Tree parent;
     /**
      * Constructor to allow for empty trees
      */
@@ -34,7 +34,7 @@ public abstract class Tree<T extends Comparable<T>> {
      *
      * @param value to set as this node's value.
      */
-    public Tree(T value,String userName,String password) {
+    public Tree(Integer value,String userName,String password) {
         // Ensure input is not null.
         if (value == null)
             throw new IllegalArgumentException("Input cannot be null");
@@ -44,7 +44,7 @@ public abstract class Tree<T extends Comparable<T>> {
         this.password = password;
     }
 
-    public Tree(T value,String password) {
+    public Tree(Integer value,String password) {
         // Ensure input is not null.
         if (value == null||password == null)
             throw new IllegalArgumentException("Input cannot be null");
@@ -61,23 +61,25 @@ public abstract class Tree<T extends Comparable<T>> {
      * @param leftNode  left child of current node.
      * @param rightNode right child of current node.
      */
-    public Tree(T value, Tree<T> leftNode, Tree<T> rightNode) {
+    public Tree(Integer value,String userName,String password, Tree leftNode, Tree rightNode) {
         // Ensure inputs are not null.
         if (value == null || leftNode == null || rightNode == null)
             throw new IllegalArgumentException("Inputs cannot be null");
 
         this.userId = value;
+        this.userName = userName;
+        this.password = password;
         this.leftNode = leftNode;
         this.rightNode = rightNode;
     }
 
-    public abstract T min();                     // Finds the minimum.
+    public abstract Integer min();                     // Finds the minimum.
 
-    public abstract T max();                     // Finds the maximum.
+    public abstract Integer max();                     // Finds the maximum.
 
-    public abstract Tree<T> find(T element);     // Finds the element and returns the node.
+    public abstract Tree find(Integer element);     // Finds the element and returns the node.
 
-    public abstract Tree<T> insert(T element,String userName,String password);   // Inserts the element and returns a new instance of itself with the new node.
+    public abstract Tree insert(Integer element,String userName,String password);   // Inserts the element and returns a new instance of itself with the new node.
 
     /**
      * Height of current node.
@@ -129,7 +131,7 @@ public abstract class Tree<T extends Comparable<T>> {
     /**
       * List the elements of the tree with in-order
       */
-    public List<T> inOrder() {
+    public List<Integer> inOrder() {
 		return this.treeToListInOrder(this);
 	}
 
@@ -138,8 +140,8 @@ public abstract class Tree<T extends Comparable<T>> {
      * @param tree to convert to list.
      * @return in-order list of tree values.
      */
-	private List<T> treeToListInOrder(Tree<T> tree) {
-		List<T> list = new LinkedList<>();
+	private List<Integer> treeToListInOrder(Tree tree) {
+		List<Integer> list = new LinkedList<>();
 
 		// Recurse through left subtree.
         if (tree.leftNode != null) {
@@ -164,8 +166,8 @@ public abstract class Tree<T extends Comparable<T>> {
 		return list;
 	}
 
-    public abstract Tree<T> deletion(T value,Tree<T> parent);
-	public abstract T  getPreccesor(Tree<T> parent);
-	public abstract boolean contain(T elemnet);
+    public abstract Tree deletion(Integer value,Tree parent);
+	public abstract Integer  getPreccesor(Tree parent);
+	public abstract boolean contain(Integer elemnet);
 
 }
