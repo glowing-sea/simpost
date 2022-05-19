@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".gamePage"
+            android:name=".Activity.HomeSettingLocation"
             android:exported="false" />
         <activity
             android:name=".Activity.AdminPostReset"
@@ -35,8 +35,9 @@
             android:label="Admin Post"
             android:parentActivityName=".Activity.GeneralLogin" />
         <activity
-            android:name=".Activity.PostViewComments"
-            android:exported="false" />
+            android:name=".Activity.Comments"
+            android:exported="false"
+            android:label="Comments" />
         <activity
             android:name=".Activity.GeneralDeleting"
             android:exported="false"

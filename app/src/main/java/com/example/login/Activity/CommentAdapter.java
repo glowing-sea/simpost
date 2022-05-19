@@ -1,13 +1,17 @@
 package com.example.login.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Comment;
@@ -40,7 +44,6 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         holder.username.setText(comment.username);
         holder.content.setText(comment.content);
         holder.date.setText(comment.date);
-
     }
 
 
@@ -54,6 +57,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
         TextView username;
         TextView content;
         TextView date;
+        ConstraintLayout commentBox;
 
         public
         CommentViewHolder(@NonNull View itemView) {
@@ -61,6 +65,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
             username = (TextView) itemView.findViewById(R.id.comment_writer);
             content = (TextView)  itemView.findViewById(R.id.comment_content);
             date = (TextView)  itemView.findViewById(R.id.comment_date);
+            commentBox = (ConstraintLayout) itemView.findViewById(R.id.comment_box);
         }
     }
 }

@@ -1,11 +1,16 @@
 package com.example.login.Activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Me;
+import com.example.login.Database.HelperMethods;
 import com.example.login.R;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -42,43 +47,13 @@ public class HomeSetting extends AppCompatActivity {
         findLocation = findViewById(R.id.find_location);
         confirm = findViewById(R.id.confirm_setting);
 
-
-//        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//        LocationListener locationListener = new LocationListener() {
-//            @Override
-//            public void onLocationChanged(Location loc) {
-//                longitude = loc.getLongitude();
-//                latitude = loc.getLatitude();
-//            }
-//
-//            @Override
-//            public void onProviderDisabled(String provider) {
-//                Intent intent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-//                startActivity(intent);
-//            }
-//        };
-//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        lm.requestLocationUpdates("gps", 1000, 0, locationListener);
-
-
-//        findLocation.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(HomeSetting.this, "ajabbjk", Toast.LENGTH_LONG).show();
-//                Geocoder geocoder = new Geocoder(HomeSetting.this, Locale.getDefault());
-//                try {
-//                    List<Address> listAddress = geocoder.getFromLocation(longitude, latitude, 1);
-//                    if (listAddress.size() > 0){
-//                        location.setText(listAddress.get(0).getCountryName());
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-
+        findLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeSetting.this, HomeSettingLocation.class);
+                startActivityForResult(intent, 100);
+            }
+        });
 
 
 
@@ -144,5 +119,26 @@ public class HomeSetting extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            if (requestCode == 100) {
+                try{
+                    String cityName = data.getStringExtra("CityName");
+                    if (cityName == null){
+                        location.setText("Unknown");
+                    } else {
+                        location.setText(cityName);
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
+                    location.setText("Unknown");
+                }
+            }
+        }
     }
 }
