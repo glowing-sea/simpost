@@ -24,8 +24,8 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             - leftNode
             - rightNode
      */
-    public AVLTree(T value) {
-        super(value);//refering to binarySearch tree
+    public AVLTree(T value,String userName,String passWord) {
+        super(value,userName,passWord);//refering to binarySearch tree
         // Set left and right children to be of EmptyAVL as opposed to EmptyBST.
         this.leftNode = new EmptyAVL<>();
         this.rightNode = new EmptyAVL<>();
@@ -56,25 +56,25 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
     }
 
     @Override
-    public AVLTree<T> insert(T element) {
+    public AVLTree<T> insert(T element,String userName,String passWord) {
         /*
             TODO: Write and or complete your insertion code here
             Note that what each method does is described in its superclass unless edited.
             E.g. what 'insert' does is described in Tree.java.
          */
         //System.out.println(element);
-        AVLTree<T> Result = new AVLTree<T>(this.value,this.leftNode,this.rightNode);
+        AVLTree<T> Result = new AVLTree<T>(this.userId,this.leftNode,this.rightNode);
         if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
 
         //after comparing the value, it is inserted in to tree on a recursive manner
         //after each insert the balance of the tree would be checked
-        if (element.compareTo(value) > 0) {
-            Result = new AVLTree<T>(this.value,this.leftNode,this.rightNode.insert(element));
+        if (element.compareTo(userId) > 0) {
+            Result = new AVLTree<T>(this.userId,this.leftNode,this.rightNode.insert(element,userName,passWord));
             Result = (AVLTree<T>) checkAndBalance(Result);
             return Result;
-        } else if (element.compareTo(value) < 0) {
-            Result = new AVLTree<T>(this.value,this.leftNode.insert(element),this.rightNode);
+        } else if (element.compareTo(userId) < 0) {
+            Result = new AVLTree<T>(this.userId,this.leftNode.insert(element,userName,passWord),this.rightNode);
             Result = (AVLTree<T>) checkAndBalance(Result);
             return Result;
             // COMPLETE
@@ -250,6 +250,8 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
 
     }
 
+
+
     /**
      * Note that this is not within a file of its own... WHY?
      * The answer is: this is just a design decision. 'insert' here will return something specific
@@ -257,9 +259,9 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
      */
     public static class EmptyAVL<T extends Comparable<T>> extends EmptyTree<T> {
         @Override
-        public Tree<T> insert(T element) {
+        public Tree<T> insert(T element,String userName,String PpssWord) {
             // The creation of a new Tree, hence, return tree.
-            return new AVLTree<T>(element);
+            return new AVLTree<T>(element,userName,password);
         }
 
         @Override

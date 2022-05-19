@@ -15,8 +15,9 @@ public abstract class Tree<T extends Comparable<T>> {
     /**
      * Here we store our class fields.
      */
-    public T value;
+    public T userId;
     public String password;// element stored in this node of the tree.
+    public String userName;
     public Tree<T> leftNode;    // less than the node.
     public Tree<T> rightNode;   // greater than the node.
     public Tree<T> parent;
@@ -24,7 +25,7 @@ public abstract class Tree<T extends Comparable<T>> {
      * Constructor to allow for empty trees
      */
     public Tree() {
-        value = null;
+        userId = null;
     }
 
     /**
@@ -33,12 +34,14 @@ public abstract class Tree<T extends Comparable<T>> {
      *
      * @param value to set as this node's value.
      */
-    public Tree(T value) {
+    public Tree(T value,String userName,String password) {
         // Ensure input is not null.
         if (value == null)
             throw new IllegalArgumentException("Input cannot be null");
 
-        this.value = value;
+        this.userId = value;
+        this.userName = userName;
+        this.password = password;
     }
 
     public Tree(T value,String password) {
@@ -46,7 +49,7 @@ public abstract class Tree<T extends Comparable<T>> {
         if (value == null||password == null)
             throw new IllegalArgumentException("Input cannot be null");
 
-        this.value = value;
+        this.userId = value;
         this.password = password;
     }
 
@@ -63,7 +66,7 @@ public abstract class Tree<T extends Comparable<T>> {
         if (value == null || leftNode == null || rightNode == null)
             throw new IllegalArgumentException("Inputs cannot be null");
 
-        this.value = value;
+        this.userId = value;
         this.leftNode = leftNode;
         this.rightNode = rightNode;
     }
@@ -74,7 +77,7 @@ public abstract class Tree<T extends Comparable<T>> {
 
     public abstract Tree<T> find(T element);     // Finds the element and returns the node.
 
-    public abstract Tree<T> insert(T element);   // Inserts the element and returns a new instance of itself with the new node.
+    public abstract Tree<T> insert(T element,String userName,String password);   // Inserts the element and returns a new instance of itself with the new node.
 
     /**
      * Height of current node.
@@ -90,7 +93,7 @@ public abstract class Tree<T extends Comparable<T>> {
     @Override
     public String toString() {
         return "{" +
-                "value=" + value +
+                "value=" + userId +
                 ", leftNode=" + leftNode +
                 ", rightNode=" + rightNode +
                 '}';
@@ -115,8 +118,8 @@ public abstract class Tree<T extends Comparable<T>> {
      */
     public String display(int tabs) {
         // StringBuilder is faster than using string concatenation (which in java makes a new object per concatenation).
-        assert value != null;
-        StringBuilder sb = new StringBuilder(value.toString());
+        assert userId != null;
+        StringBuilder sb = new StringBuilder(userId.toString());
 
         sb.append("\n").append(new String(new char[tabs]).replace("\0", "\t")).append("├─").append(leftNode.display(tabs + 1));
         sb.append("\n").append(new String(new char[tabs]).replace("\0", "\t")).append("├─").append(rightNode.display(tabs + 1));
@@ -140,20 +143,20 @@ public abstract class Tree<T extends Comparable<T>> {
 
 		// Recurse through left subtree.
         if (tree.leftNode != null) {
-            if (tree.leftNode.value != null) {
+            if (tree.leftNode.userId != null) {
                 list.addAll(treeToListInOrder(tree.leftNode));
             }
         }
 
 
 		// Add current node's value
-        if (tree.value != null) {
-            list.add(tree.value);
+        if (tree.userId != null) {
+            list.add(tree.userId);
         }
 
         // Recurse through left subtree.
         if (tree.rightNode != null) {
-            if (tree.rightNode.value != null) {
+            if (tree.rightNode.userId != null) {
                 list.addAll(treeToListInOrder(tree.rightNode));
             }
         }

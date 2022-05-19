@@ -8,7 +8,7 @@ package com.example.login.tree;
  */
 public abstract class EmptyTree<T extends Comparable<T>> extends Tree<T> {
     // Will need to be implemented by the subclass inheriting this class.
-    public abstract Tree<T> insert(T element);
+    public abstract Tree<T> insert(T element,String userName,String passWord);
 
     @Override
     public T min() {
