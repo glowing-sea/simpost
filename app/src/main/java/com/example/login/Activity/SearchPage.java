@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.login.R;
+import com.example.login.gamePage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
@@ -46,6 +47,7 @@ public class SearchPage extends AppCompatActivity {
 
         Button searchButton;
         EditText searchText;
+        Button game = (Button) findViewById(R.id.btn_search_game);
 
         // Set up search text
         searchText = findViewById(R.id.editText_search_page_searcheContent);
@@ -71,7 +73,13 @@ public class SearchPage extends AppCompatActivity {
             }
         });
 
-
+        game.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =(new Intent(getApplicationContext(), gamePage.class));
+                startActivity(intent);
+            }
+        });
 
 //        Button findUsers;
 //        findUsers = findViewById(R.id.go_to_find_users);

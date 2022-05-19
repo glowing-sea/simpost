@@ -19,108 +19,111 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name="com.example.login.Activity.AdminPostReset"
-            android:label="Admin Post Reset"
+            android:name=".gamePage"
             android:exported="false" />
         <activity
-            android:name="com.example.login.Activity.AdminPostDelete"
-            android:label="Admin Post Delete"
-            android:exported="false" />
+            android:name=".Activity.AdminPostReset"
+            android:exported="false"
+            android:label="Admin Post Reset" />
         <activity
-            android:name="com.example.login.Activity.AdminPost"
+            android:name=".Activity.AdminPostDelete"
+            android:exported="false"
+            android:label="Admin Post Delete" />
+        <activity
+            android:name=".Activity.AdminPost"
             android:exported="false"
             android:label="Admin Post"
-            android:parentActivityName="com.example.login.Activity.GeneralLogin" />
+            android:parentActivityName=".Activity.GeneralLogin" />
         <activity
-            android:name="com.example.login.Activity.PostViewComments"
+            android:name=".Activity.PostViewComments"
             android:exported="false" />
         <activity
-            android:name="com.example.login.Activity.GeneralDeleting"
+            android:name=".Activity.GeneralDeleting"
             android:exported="false"
             android:label="Deleting" />
         <activity
-            android:name="com.example.login.Activity.HomeUserList"
+            android:name=".Activity.HomeUserList"
             android:exported="false" />
         <activity
-            android:name="com.example.login.Activity.HomeSomeone"
+            android:name=".Activity.HomeSomeone"
             android:exported="false" />
         <activity
-            android:name="com.example.login.Activity.SearchUsers"
+            android:name=".Activity.SearchUsers"
             android:exported="false" />
         <activity
-            android:name="com.example.login.Activity.MessagesChat"
+            android:name=".Activity.MessagesChat"
             android:exported="false"
-            android:parentActivityName="com.example.login.Activity.Messages" />
+            android:parentActivityName=".Activity.Messages" />
         <activity
-            android:name="com.example.login.Activity.MessagesAddPage"
+            android:name=".Activity.MessagesAddPage"
             android:exported="false"
             android:label="Send a message"
-            android:parentActivityName="com.example.login.Activity.Messages" />
+            android:parentActivityName=".Activity.Messages" />
         <activity
-            android:name="com.example.login.Activity.Messages"
+            android:name=".Activity.Messages"
             android:exported="false"
             android:label="Contacts"
-            android:parentActivityName="com.example.login.Activity.Home" />
+            android:parentActivityName=".Activity.Home" />
         <activity
-            android:name="com.example.login.Activity.HomeSetting"
+            android:name=".Activity.HomeSetting"
             android:exported="false"
-            android:parentActivityName="com.example.login.Activity.Home" />
+            android:parentActivityName=".Activity.Home" />
         <activity
-            android:name="com.example.login.Activity.ReportPage"
+            android:name=".Activity.ReportPage"
             android:exported="false"
             android:label="statistic" />
         <activity
-            android:name="com.example.login.Activity.AdminUserDelete"
+            android:name=".Activity.AdminUserDelete"
             android:exported="false"
-            android:parentActivityName="com.example.login.Activity.AdminUser" />
+            android:parentActivityName=".Activity.AdminUser" />
         <activity
-            android:name="com.example.login.Activity.AdminUserUpdate"
+            android:name=".Activity.AdminUserUpdate"
             android:exported="false"
             android:label="@string/update_user"
-            android:parentActivityName="com.example.login.Activity.AdminUser" />
+            android:parentActivityName=".Activity.AdminUser" />
         <activity
-            android:name="com.example.login.Activity.AdminUserAdd"
+            android:name=".Activity.AdminUserAdd"
             android:exported="false"
             android:label="@string/add_user"
-            android:parentActivityName="com.example.login.Activity.AdminUser" />
+            android:parentActivityName=".Activity.AdminUser" />
         <activity
-            android:name="com.example.login.Activity.AdminUser"
+            android:name=".Activity.AdminUser"
             android:exported="false"
             android:label="@string/admin"
-            android:parentActivityName="com.example.login.Activity.GeneralLogin" />
+            android:parentActivityName=".Activity.GeneralLogin" />
         <activity
-            android:name="com.example.login.Activity.SearchPage"
+            android:name=".Activity.SearchPage"
             android:exported="false" />
         <activity
-            android:name="com.example.login.Activity.Home"
+            android:name=".Activity.Home"
             android:exported="false" />
         <activity
-            android:name="com.example.login.Activity.Post"
+            android:name=".Activity.Post"
             android:exported="false" />
         <activity
-            android:name="com.example.login.Activity.SearchResultPage"
+            android:name=".Activity.SearchResultPage"
             android:exported="false"
             android:label="Search result" />
         <activity
-            android:name="com.example.login.Activity.GeneralSignup"
+            android:name=".Activity.GeneralSignup"
             android:exported="false"
-            android:parentActivityName="com.example.login.Activity.GeneralLogin" />
+            android:parentActivityName=".Activity.GeneralLogin" />
         <activity
-            android:name="com.example.login.Activity.PostView"
+            android:name=".Activity.PostView"
             android:exported="false"
-            android:parentActivityName="com.example.login.Activity.Home" />
+            android:parentActivityName=".Activity.Home" />
         <activity
-            android:name="com.example.login.Activity.HomePrivacy"
+            android:name=".Activity.HomePrivacy"
             android:exported="false"
             android:label="Settings"
-            android:parentActivityName="com.example.login.Activity.Home" />
+            android:parentActivityName=".Activity.Home" />
         <activity
-            android:name="com.example.login.Activity.PostCreate"
+            android:name=".Activity.PostCreate"
             android:exported="false"
             android:label="Create Your Post"
-            android:parentActivityName="com.example.login.Activity.Post" />
+            android:parentActivityName=".Activity.Post" />
         <activity
-            android:name="com.example.login.Activity.GeneralLogin"
+            android:name=".Activity.GeneralLogin"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

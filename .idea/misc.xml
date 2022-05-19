@@ -62,6 +62,7 @@
         <entry key="app/src/main/res/layout/activity_admin.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_admin_add_user.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_admin_add_user_page.xml" value="0.5635416666666667" />
+        <entry key="app/src/main/res/layout/activity_admin_delete_user.xml" value="0.3374094202898551" />
         <entry key="app/src/main/res/layout/activity_admin_delete_user_page.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_admin_edit_page.xml" value="0.5635416666666667" />
         <entry key="app/src/main/res/layout/activity_admin_getter_test_page.xml" value="0.5177083333333333" />
@@ -76,16 +77,21 @@
         <entry key="app/src/main/res/layout/activity_create_post.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_deleting.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_follower_page.xml" value="0.5177083333333333" />
+        <entry key="app/src/main/res/layout/activity_game_page.xml" value="0.3374094202898551" />
         <entry key="app/src/main/res/layout/activity_general_deleting.xml" value="0.5177083333333333" />
+        <entry key="app/src/main/res/layout/activity_general_login.xml" value="0.3374094202898551" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_home_follow.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.55" />
         <entry key="app/src/main/res/layout/activity_home_privacy.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_home_setting.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_home_someone.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_home_user_list.xml" value="0.3374094202898551" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_messages.xml" value="0.3374094202898551" />
+        <entry key="app/src/main/res/layout/activity_messages_add_page.xml" value="0.3374094202898551" />
         <entry key="app/src/main/res/layout/activity_messages_chat.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_my_dbopen_helper.xml" value="0.4601851851851852" />
         <entry key="app/src/main/res/layout/activity_other_home.xml" value="0.5177083333333333" />
@@ -111,12 +117,14 @@
         <entry key="app/src/main/res/layout/adapter_messages.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/adapter_messages_chat.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/adapter_post.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/adapter_search_post_result.xml" value="0.3374094202898551" />
         <entry key="app/src/main/res/layout/adapter_user.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/follower_view.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.4601851851851852" />
         <entry key="app/src/main/res/layout/fragment_posts.xml" value="0.4601851851851852" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.4601851851851852" />
         <entry key="app/src/main/res/layout/user_adapter_layout.xml" value="0.5635416666666667" />
+        <entry key="app/src/main/res/menu/admin_menu.xml" value="0.375" />
         <entry key="app/src/main/res/menu/find_users_menu.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/menu/home_someone_menu.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/menu/message_manu.xml" value="0.5177083333333333" />
