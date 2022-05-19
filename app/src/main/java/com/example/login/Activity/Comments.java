@@ -19,10 +19,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class PostViewComments extends AppCompatActivity {
+public class Comments extends AppCompatActivity {
 
 
     @Override
@@ -43,7 +44,7 @@ public class PostViewComments extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.comment_list);
         CommentAdapter commentAdapter;
         FloatingActionButton addNewMessageButton;
-        commentAdapter = new CommentAdapter(PostViewComments.this, this, comments);
+        commentAdapter = new CommentAdapter(Comments.this, this, comments);
         recyclerView.setAdapter(commentAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
 
@@ -63,6 +64,7 @@ public class PostViewComments extends AppCompatActivity {
                 Comment c = new Comment(writer, content, date);
                 p.addComments(c);
                 setResult(RESULT_OK);
+                Toast.makeText(Comments.this, "Comment Submitted", Toast.LENGTH_SHORT).show();
                 recreate();
             }
         });

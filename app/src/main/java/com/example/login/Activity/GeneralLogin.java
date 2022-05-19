@@ -72,7 +72,7 @@ public class GeneralLogin extends AppCompatActivity {
             }
             case -2: {
                 soundPool.play(soundIds.get(3),1,1,1,0,1);
-                Toast.makeText(getApplicationContext(), "Username can only contains numbers, letter, '_', or '-'.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Username can only contains numbers, letter, '_', or '-'. and cannot be empty", Toast.LENGTH_LONG).show();
                 break;
             }
             case -1: {

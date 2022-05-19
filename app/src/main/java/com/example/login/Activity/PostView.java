@@ -29,7 +29,7 @@ public class PostView extends AppCompatActivity {
     Post current;
     ImageView image1, image2, image3;
     TextView title, content, likeCount, viewCount, postTime;
-    Button toComments, like, dislike;
+    Button commentButton, likeButton;
     UserDAO db;
     Me me = Me.getInstance();
 
@@ -38,135 +38,111 @@ public class PostView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_view);
 
+        // Set up Sounds
         soundPool = new SoundPool.Builder().setMaxStreams(1).build();
         soundIds = new ArrayList<>();
         soundIds.add(soundPool.load(getApplicationContext(),R.raw.welcome,1));
         soundIds.add(soundPool.load(getApplicationContext(),R.raw.dislike_post,1));
 
-
+        // Retrieve Post ID
         int id = getIntent().getIntExtra("postID", 0);
+        getIntent().removeExtra("postID");
 
-
+        // Access Database
         db = new UserDAOImpl(getApplicationContext());
         current = db.getPost(id);
 
-        current = db.getPost(id);
-        getIntent().removeExtra("postID");
+        // IMPORTANT ADD ME TO THE VIEWER SET OF THE POST
+        current.addViews(me.username);
 
-        //Set up
-        String t = current.getTitle();
-        String c = current.getContent();
-        String l = String.valueOf(current.getLikes());
+        // Link views IDs
         title = findViewById(R.id.postTitleText);
         content = findViewById(R.id.postContentText);
-        like = findViewById(R.id.like);
-        dislike = findViewById(R.id.dislike);
         likeCount = findViewById(R.id.like_count);
         viewCount = findViewById(R.id.view_count);
-        postTime = findViewById(R.id.post_publish_time);
         image1 = findViewById(R.id.view_image_1);
         image2 = findViewById(R.id.view_image_2);
         image3 = findViewById(R.id.view_image_3);
-        toComments = findViewById(R.id.to_comments);
+        postTime = findViewById(R.id.post_publish_time);
+        likeButton = findViewById(R.id.like);
+        commentButton = findViewById(R.id.to_comments);
 
-        //Set images
+        // Extract post information
+        String t = current.getTitle();
+        String c = current.getContent();
+        HashSet<String> l = current.getLikes();
+        HashSet<String> v = current.getViews();
         Bitmap i1 = current.image1;
-        if (i1 != null){
-            image1.setImageBitmap(i1);
-        }
         Bitmap i2 = current.image2;
-        if (i2 != null){
-            image2.setImageBitmap(i2);
-        }
         Bitmap i3 = current.image3;
-        if (i3 != null){
-            image3.setImageBitmap(i3);
-        }
-        //Set date and likes
-        String date = current.getDate();
-        HashSet<String> viewers = current.getViews();
-        HashSet<String> likes = current.getLikes();
-        viewers.add(me.getUsername());
-        String lString = "Current likes: " + likes.size();
-        String vString = "Current Views: " + viewers.size();
-        current.setViews(viewers);
-        likeCount.setText(lString);
-        viewCount.setText(vString);
-        date = "Post published by <" + current.creator + "> on " + date;
-        postTime.setText(date);
-        // Set title and content
+
+        //Set views
+
+        // Set title and content (filter abusive language if needed)
         if (me.getPrivacySettings().get(5)){
             title.setText(HelperMethods.getCensored(t));
-            content.setText(HelperMethods.getCensored(c));
-
-        }
+            content.setText(HelperMethods.getCensored(c)); }
         else {
             title.setText(t);
-            content.setText(c);
-        }
+            content.setText(c); }
+
+        // Set images
+        if (i1 != null){ image1.setImageBitmap(i1); }
+        if (i2 != null){ image2.setImageBitmap(i2); }
+        if (i3 != null){ image3.setImageBitmap(i3); }
+
+
+        //Set date and likes
+        String lString = "Current likes: " + l.size();
+        String vString = "Current Views: " + v.size();
+        String date = "Post published by <" + current.creator + "> on " + current.getDate();
+        likeCount.setText(lString);
+        viewCount.setText(vString);
+        postTime.setText(date);
+
         // Check liked or not
-        if (likes.contains(me.username)){
-            like.setEnabled(false);
-            dislike.setEnabled(true);
+        if (l.contains(me.username)){
+            likeButton.setText("Unlike");
         }
         else {
-            like.setEnabled(true);
-            dislike.setEnabled(false);
+            likeButton.setText("Like");
         }
-        // button going back to main page
-//        back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(PostView.this, Post.class);
-//                startActivity(intent);
-//            }
-//        });
-        like.setOnClickListener(new View.OnClickListener() {
+
+        likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soundPool.play(soundIds.get(0),1,1,1,0,1);
-                like.setEnabled(false);
-                String LA = "Current likes:" + " " + String.valueOf(current.getLikes().size() + 1);
-                boolean b = current.addLikes(me.getUsername());
-                if (b){
-                    likeCount.setText(LA);}
-                else {
-                    Toast.makeText(PostView.this, "You`ve already liked this post", Toast.LENGTH_SHORT).show();
+                if (likeButton.getText().toString().equals("Unlike")){
+                    soundPool.play(soundIds.get(1),1,1,1,0,1);
+                    l.remove(me.username);
+                    boolean result = current.setLikes(l);
+                    if (result){
+                        Toast.makeText(PostView.this, "You unliked this post!", Toast.LENGTH_SHORT).show();
+                        String lString = "Current likes: " + l.size();
+                        likeCount.setText(lString);
+                        likeButton.setText("Like");
+                    }
+                } else {
+                    soundPool.play(soundIds.get(0),1,1,1,0,1);
+                    boolean result = current.addLikes(me.getUsername());
+                    if (result){
+                        Toast.makeText(PostView.this, "You liked this post!", Toast.LENGTH_SHORT).show();
+                        String lString = "Current likes: " + l.size();
+                        likeCount.setText(lString);
+                        likeButton.setText("Unlike");
+                    }
                 }
-                dislike.setEnabled(true);
             }
         });
-        dislike.setOnClickListener(new View.OnClickListener() {
+
+
+        commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                soundPool.play(soundIds.get(1),1,1,1,0,1);
-                dislike.setEnabled(false);
-                HashSet<String> likers = current.getLikes();
-                if (likers.contains(me.username)){
-                    likers.remove(me.username);
-                    current.setLikes(likers);
-                    String LA = "Current likes:" + " " + String.valueOf(likers.size());
-                    likeCount.setText(LA);}
-                else {
-                    Toast.makeText(PostView.this, "You haven`t liked the post yet", Toast.LENGTH_SHORT).show();
-                }
-                like.setEnabled(true);
-            }
-
-        });
-
-        toComments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PostView.this, PostViewComments.class);
+                Intent intent = new Intent(PostView.this, Comments.class);
                 intent.putExtra("postID",id);
                 startActivity(intent);
                 // finish();
             }
         });
-
-
-
-
     }
 }

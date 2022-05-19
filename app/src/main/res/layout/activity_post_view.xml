@@ -27,20 +27,11 @@
             android:id="@+id/like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="50dp"
             android:text="Like"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/post_publish_time" />
-
-        <Button
-            android:id="@+id/dislike"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="16dp"
-            android:text="dislike"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_image_3" />
 
         <TextView
@@ -99,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#F6F0F0"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             app:layout_constraintBottom_toTopOf="@id/view_image_2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/postContentText"
@@ -111,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#F6F0F0"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             app:layout_constraintBottom_toTopOf="@id/view_image_3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_image_1"
@@ -123,7 +114,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#F6F0F0"
-            android:scaleType="centerCrop"
+            android:scaleType="center"
             app:layout_constraintBottom_toTopOf="@id/post_publish_time"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_image_2"
