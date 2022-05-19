@@ -1,8 +1,10 @@
 package com.example.login.tree;
 
 /**
+ * modified from:https://gitlab.cecs.anu.edu.au/u1064702/comp2100-6442-2022.s1
  * To avoid null pointer errors (and because this implementation is immutable)
  * we have a class that represents an 'empty' tree.
+ *
  */
 public abstract class EmptyTree<T extends Comparable<T>> extends Tree<T> {
     // Will need to be implemented by the subclass inheriting this class.

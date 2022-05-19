@@ -1,6 +1,7 @@
 package com.example.login.tree;
 
 /**
+ * modified from https://gitlab.cecs.anu.edu.au/u1064702/comp2100-6442-2022.s1
  * An AVL tree is actually an extension of a Binary Search Tree
  * with self balancing properties. Hence, our AVL trees will 'extend'
  * this Binary Search tree data structure.

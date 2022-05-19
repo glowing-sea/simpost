@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Login">
         <activity
-            android:name=".Activity.PostFollowing"
+            android:name=".soundMeterPage"
             android:exported="false" />
         <activity
             android:name=".Activity.HomeSettingLocation"
@@ -107,6 +107,9 @@
             android:exported="false" />
         <activity
             android:name=".Activity.PostRecent"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.PostFollowing"
             android:exported="false" />
         <activity
             android:name=".Activity.SearchResultPage"

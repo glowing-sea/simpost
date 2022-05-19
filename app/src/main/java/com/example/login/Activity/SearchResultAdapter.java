@@ -37,7 +37,7 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
     @Override
     public void onBindViewHolder(@NonNull ResultHolder holder, int position) {
         Log.i("Search result","on click");
-        Integer current = dataset.get(position).postID;
+        Post current = dataset.get(position);
         Post post = dataset.get(position);
         holder.getPoster().setText(post.getPoster());
         holder.getTitle().setText(post.getTitle());
@@ -45,10 +45,17 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ctx, PostDetail.class);
-                i.putExtra("POST", current);
+                i.putExtra("postID", current.postID);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 Log.i("Search result",current.toString());
                 ctx.startActivity(i);
+
+                // Toast.makeText(ctx, "Clicked", Toast.LENGTH_LONG).show();
+                //Intent intent = new Intent(ctx, PostView.class);
+                //intent.putExtra("postID", current.postID);
+                // intent.putExtra("username", String.valueOf(users.get(position)));
+                //ctx.startActivity(intent);
+
             }
         });
     }
