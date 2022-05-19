@@ -22,13 +22,14 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:text="This is a statistic about you" />
+            android:text="This is a statistic about you"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total Number of Posts:" />
+            android:text="Total Number of your posts:" />
 
         <TextView
             android:id="@+id/textView_report_postCount"
@@ -42,7 +43,7 @@
             android:id="@+id/textView_report_showText0"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Total Likes get:" />
+            android:text="Total Likes you got:" />
 
         <TextView
             android:id="@+id/textView_report_likesCount"
@@ -90,5 +91,29 @@
             android:text="TextView" >
 
         </com.github.mikephil.charting.charts.PieChart>
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="The data above is only based on users who are willing to share their gender." />
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart_report_favourite"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:text="TextView">
+
+        </com.github.mikephil.charting.charts.PieChart>
+
+        <TextView
+            android:id="@+id/total_posts_you_viewed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="TextView" />
+
     </LinearLayout>
 </ScrollView>
