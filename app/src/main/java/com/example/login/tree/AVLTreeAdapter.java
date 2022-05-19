@@ -31,8 +31,8 @@ public class AVLTreeAdapter extends TypeAdapter<Tree> {
         Integer userId = 0;
         String userName = "";
         String userPassword = "";
-        AVLTree leftNode = null;
-        AVLTree rightNode = null;
+        Tree leftNode = null;
+        Tree rightNode = null;
         if (reader.peek() == JsonToken.NULL) {
             reader.nextNull();
             return new AVLTree.EmptyAVL();
@@ -49,15 +49,73 @@ public class AVLTreeAdapter extends TypeAdapter<Tree> {
             }else if (name.equals("password")){
                 userPassword = reader.nextString();
             }else if(name.equals("leftNode")){
-                String leftNodeString = reader.nextString();
-                leftNode = tson.fromJson(leftNodeString,AVLTree.class);
+                leftNode = readNode(reader);
+                if (leftNode == null){
+                    leftNode = new AVLTree.EmptyAVL();
+                }
+                System.out.println("end leftNede");
+                //has next show false at this line
             }else if(name.equals("rightNode")){
-                String rightNodeString = reader.nextString();
-                rightNode = tson.fromJson(rightNodeString,AVLTree.class);
+                rightNode = readNode(reader);
+                if (rightNode == null){
+                    rightNode = new AVLTree.EmptyAVL();
+                }
             }
+        }
+
+        if (rightNode == null){
+            rightNode = new AVLTree.EmptyAVL();
+        }
+
+        if (leftNode == null){
+            leftNode = new AVLTree.EmptyAVL();
+        }
+        AVLTree rtn = new AVLTree(userId,userName,userPassword,leftNode,rightNode);
+
+        return rtn;
+    }
+
+    public Tree readNode(JsonReader reader) throws IOException {
+        Integer userId = null;
+        String userName = null;
+        String userPassword = null;
+        Tree leftNode = null;
+        Tree rightNode = null;
+        if (reader.peek() == JsonToken.NULL) {
+            reader.nextNull();
+            return new AVLTree.EmptyAVL();
+        }
+        if (reader.peek() == JsonToken.BEGIN_OBJECT) {
+            reader.beginObject();
+        }
+        if (reader.peek() == JsonToken.END_OBJECT){
+            reader.endObject();
+            return new AVLTree.EmptyAVL();
+        }
+
+        JsonToken peak= reader.peek();
+        while (reader.peek() != JsonToken.END_OBJECT){
+            String name = reader.nextName();
+            System.out.println(name);
+            if(name.equals("userId")){
+                userId = reader.nextInt();
+            }else if (name.equals("userName")){
+                userName = reader.nextString();
+            }else if (name.equals("password")){
+                userPassword = reader.nextString();
+            }else if(name.equals("leftNode")){
+                leftNode =   readNode(reader);
+            }else if(name.equals("rightNode")){
+                rightNode =   readNode(reader);
+            }
+        }
+        reader.endObject();
+
+        while (reader.peek() == JsonToken.END_OBJECT){
+            reader.endObject();
         }
         AVLTree rtn = new AVLTree(userId,userName,userPassword,leftNode,rightNode);
         Gson gson = new Gson();
-        return null;
+        return rtn;
     }
 }

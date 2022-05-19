@@ -17,15 +17,16 @@ public class avlSerialisationTest {
         System.out.println(gson.toJson(tree));
 
         tree = tree.insert(1,"daniel","passw1rd");
-        System.out.println();
+        tree = tree.insert(-1,"wang","damm");
+
         String inserted = gson.toJson(tree);
-        System.out.println(inserted);
 
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(AVLTree.class, new AVLTreeAdapter());
         Gson tson = builder.create();
 
         AVLTree back = tson.fromJson(inserted,AVLTree.class);
+        System.out.println(back.toString());
 
 
     }
