@@ -12,7 +12,7 @@ import java.util.HashSet;
 /*
 A local temporary copy of data of the current user
  */
-public class Me extends User{
+public class Me extends User implements UserState{
 
     // ========================== FIELD SETTING AND GETTING METHODS ============================= //
 
@@ -91,7 +91,6 @@ public class Me extends User{
     For getter method, data is got from Me Class.
     For setter method, data is stored into both Me Class (temporary) and database.
      */
-
 
     // Username
     public String getUsername() {
@@ -207,11 +206,11 @@ public class Me extends User{
     }
 
     // Privacy Setting
-    public boolean setPrivacySettings(ArrayList<Boolean> settings){
+    public boolean setPrivacy(ArrayList<Boolean> settings){
         UserDAO db = new UserDAOImpl(context);
         return db.setPrivacySettings(username, settings);
     }
-    public ArrayList<Boolean> getPrivacySettings(){
+    public ArrayList<Boolean> getPrivacy(){
         UserDAO db = new UserDAOImpl(context);
         return db.getPrivacySettings(username);
     }

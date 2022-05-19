@@ -20,7 +20,7 @@ public class HomePrivacy extends AppCompatActivity {
     Me current = Me.getInstance();
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch age, gender, location, censor, following, followers;
-    ArrayList<Boolean> privacySettings = current.getPrivacySettings();
+    ArrayList<Boolean> privacySettings = current.getPrivacy();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,49 +48,49 @@ public class HomePrivacy extends AppCompatActivity {
         age.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                privacySettings = current.getPrivacySettings();
+                privacySettings = current.getPrivacy();
                 privacySettings.set(0, b);
-                current.setPrivacySettings(privacySettings);
+                current.setPrivacy(privacySettings);
             }
         });
         gender.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                privacySettings = current.getPrivacySettings();
+                privacySettings = current.getPrivacy();
                 privacySettings.set(1, b);
-                current.setPrivacySettings(privacySettings);
+                current.setPrivacy(privacySettings);
             }
         });
         location.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                privacySettings = current.getPrivacySettings();
+                privacySettings = current.getPrivacy();
                 privacySettings.set(2, b);
-                current.setPrivacySettings(privacySettings);
+                current.setPrivacy(privacySettings);
             }
         });
         following.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                privacySettings = current.getPrivacySettings();
+                privacySettings = current.getPrivacy();
                 privacySettings.set(3, b);
-                current.setPrivacySettings(privacySettings);
+                current.setPrivacy(privacySettings);
             }
         });
         followers.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                privacySettings = current.getPrivacySettings();
+                privacySettings = current.getPrivacy();
                 privacySettings.set(4, b);
-                current.setPrivacySettings(privacySettings);
+                current.setPrivacy(privacySettings);
             }
         });
         censor.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                privacySettings = current.getPrivacySettings();
+                privacySettings = current.getPrivacy();
                 privacySettings.set(5, b);
-                current.setPrivacySettings(privacySettings);
+                current.setPrivacy(privacySettings);
             }
         });
 

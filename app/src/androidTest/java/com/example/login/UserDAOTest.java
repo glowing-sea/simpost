@@ -197,8 +197,8 @@ public class UserDAOTest {
 
         // User level
         Me m = Me.getInstance();
-        m.setPrivacySettings(expected);
-        ArrayList<Boolean> local = m.getPrivacySettings();
+        m.setPrivacy(expected);
+        ArrayList<Boolean> local = m.getPrivacy();
         ArrayList<Boolean> database = db.getPrivacySettings("ur");
         assertEquals(expected, database);
         assertEquals(expected, local);
