@@ -32,6 +32,9 @@ public class Me extends User{
     private HashSet<String> blacklist;
     private HashSet<Integer> history;
 
+
+    public String currentPage = "recent";
+
     /*
     The following attributes of a user are only stored in the database. No local temporary copy.
 

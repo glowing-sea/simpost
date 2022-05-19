@@ -49,9 +49,9 @@
                 android:id="@+id/preview_something"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="5dp"
                 android:text="TextView"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/preview_something_text"
                 app:layout_constraintTop_toBottomOf="@+id/preview_username" />
         </androidx.constraintlayout.widget.ConstraintLayout>

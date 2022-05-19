@@ -91,7 +91,7 @@ public class HomeUserList extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.users_follow_list);
         db = new UserDAOImpl(getApplicationContext());
-        userAdapter = new HomeUserListAdapter(HomeUserList.this, this, listContent, null);
+        userAdapter = new HomeUserListAdapter(HomeUserList.this, this, listContent);
         recyclerView.setAdapter(userAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager((this)));
         // rvPosts.setLayoutManager(new GridLayoutManager(this, 2));

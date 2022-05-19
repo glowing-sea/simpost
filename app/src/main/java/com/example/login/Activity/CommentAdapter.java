@@ -15,6 +15,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.login.DataContainer.Comment;
+import com.example.login.DataContainer.Me;
+import com.example.login.Database.HelperMethods;
 import com.example.login.R;
 
 import java.util.ArrayList;
@@ -41,8 +43,14 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentV
     @Override
     public void onBindViewHolder(@NonNull CommentAdapter.CommentViewHolder holder, int position) {
         Comment comment = comments.get(position);
+        String content = comment.content;
+
+        Me me = Me.getInstance();
+        if (me.getPrivacySettings().get(5))
+            content = (HelperMethods.getCensored(content));
+
         holder.username.setText(comment.username);
-        holder.content.setText(comment.content);
+        holder.content.setText(content);
         holder.date.setText(comment.date);
     }
 

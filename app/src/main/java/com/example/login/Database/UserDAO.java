@@ -24,6 +24,8 @@ public interface UserDAO {
 
     void deletePost (int postID);
 
+    void deleteSomeonePosts(String someone);
+
     void truncatePosts ();
 
     // Be careful of null return of image1-3
@@ -31,7 +33,7 @@ public interface UserDAO {
 
     ArrayList<PostPreview> getAllPosts (int maxPosts);
 
-    ArrayList<PostPreview> getFollowingPosts (int maxPosts, HashSet<String> following);
+    ArrayList<PostPreview> getPeoplePosts(int maxPosts, HashSet<String> following);
 
     ArrayList<PostPreview> getSelectPosts (int maxPosts, HashSet<Integer> postIDs);
 

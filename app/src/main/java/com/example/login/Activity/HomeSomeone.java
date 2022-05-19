@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.example.login.DataContainer.Gender;
 import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.Someone;
+import com.example.login.Database.HelperMethods;
 import com.example.login.Database.UserDAO;
 import com.example.login.Database.UserDAOImpl;
 import com.example.login.R;
@@ -68,7 +69,16 @@ public class HomeSomeone extends AppCompatActivity {
         // Set page information according to this person's data
         setTitle(name + "'s Home");
         username.setText(name);
-        signature.setText(s.getSignature());
+
+        // Censor signature
+        Me me = Me.getInstance();
+        String sig = s.getSignature();
+        if (me.getPrivacySettings().get(5))
+            sig = (HelperMethods.getCensored(sig));
+        signature.setText(sig);
+
+
+
 
         backgroundImage = s.getBackground();
         if (backgroundImage != null)
@@ -148,7 +158,6 @@ public class HomeSomeone extends AppCompatActivity {
 
         nav = findViewById(R.id.someone_home_bottom_nav);
         nav.setOnItemSelectedListener(item -> {
-            Me me = Me.getInstance();
             Someone someone = db.getSomeoneData(name);
             switch (item.getItemId()) {
                 case R.id.nav_message:

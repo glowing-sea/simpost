@@ -12,8 +12,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.UserAdmin;
 import com.example.login.DataContainer.UserPreview;
+import com.example.login.Database.HelperMethods;
 import com.example.login.R;
 
 import java.util.ArrayList;
@@ -23,14 +25,12 @@ public class HomeUserListAdapter extends RecyclerView.Adapter<HomeUserListAdapte
     private Context context;
     Activity activity;
     private ArrayList<UserPreview> usersPreview;
-    private ArrayList<UserAdmin> usersAdmin;
 
 
-    HomeUserListAdapter(Activity activity, Context context, ArrayList<UserPreview> usersPreview, ArrayList<UserAdmin> usersAdmin){
+    HomeUserListAdapter(Activity activity, Context context, ArrayList<UserPreview> usersPreview){
         this.activity = activity;
         this.context = context;
         this.usersPreview = usersPreview;
-        this.usersAdmin = usersAdmin;
     }
 
 
@@ -47,21 +47,18 @@ public class HomeUserListAdapter extends RecyclerView.Adapter<HomeUserListAdapte
 
         String extra = null;
 
-        if (usersAdmin == null) {
-            UserPreview userPreview = usersPreview.get(position);
-            holder.username.setText(userPreview.getUsername());
-            holder.something.setText(userPreview.getSignature());
-            holder.somethingText.setText(context.getText(R.string.signature));
-            extra = userPreview.getUsername();
-        }
-        if (usersPreview == null) {
-            UserAdmin userAdmin = usersAdmin.get(position);
-            holder.username.setText(userAdmin.getUsername());
-            holder.something.setText(userAdmin.getPassword());
-            holder.somethingText.setText(context.getText(R.string.password));
-            extra = userAdmin.getUsername();
-        }
+        UserPreview userPreview = usersPreview.get(position);
 
+        Me me = Me.getInstance();
+
+        String sig = userPreview.getSignature();
+        if (me.getPrivacySettings().get(5))
+            sig = (HelperMethods.getCensored(sig));
+
+        holder.username.setText(userPreview.getUsername());
+        holder.something.setText(sig);
+        holder.somethingText.setText(context.getText(R.string.signature));
+        extra = userPreview.getUsername();
 
         String finalExtra = extra;
         holder.adminUserRow.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +73,7 @@ public class HomeUserListAdapter extends RecyclerView.Adapter<HomeUserListAdapte
 
     @Override
     public int getItemCount() {
-        return usersAdmin == null ? usersPreview.size() : usersAdmin.size();
+        return usersPreview.size();
     }
 
     public class UserViewHolder extends RecyclerView.ViewHolder{

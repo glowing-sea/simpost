@@ -37,6 +37,7 @@ public class PostDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_view);
+        setTitle("Detail");
 
         // Set up Sounds
         soundPool = new SoundPool.Builder().setMaxStreams(1).build();

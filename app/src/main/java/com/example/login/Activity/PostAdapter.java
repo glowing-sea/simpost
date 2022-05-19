@@ -8,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.login.DataContainer.Me;
 import com.example.login.DataContainer.PostPreview;
+import com.example.login.Database.HelperMethods;
 import com.example.login.R;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -40,11 +42,18 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         PostPreview current = dataset.get(position);
 
         String title = current.title;
+        String content = current.content;
+
+        Me me = Me.getInstance();
+        if (me.getPrivacySettings().get(5)){
+            title = (HelperMethods.getCensored(title));
+            content = (HelperMethods.getCensored(content)); }
+
+
         if (title.length() > 15) {
             title = title.substring(0, 12);
             title = title + "...";
         }
-        String content = current.content;
         if (content.length() > 43) {
             content = content.substring(0, 40);
             content = content + "...";

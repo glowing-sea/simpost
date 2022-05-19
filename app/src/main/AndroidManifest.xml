@@ -106,10 +106,7 @@
             android:name=".Activity.Home"
             android:exported="false" />
         <activity
-            android:name=".Activity.PostRecent"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.PostFollowing"
+            android:name=".Activity.Post"
             android:exported="false" />
         <activity
             android:name=".Activity.SearchResultPage"
@@ -132,7 +129,7 @@
             android:name=".Activity.PostCreate"
             android:exported="false"
             android:label="Create Your Post"
-            android:parentActivityName=".Activity.PostRecent" />
+            android:parentActivityName=".Activity.Post" />
         <activity
             android:name=".Activity.GeneralLogin"
             android:exported="true">

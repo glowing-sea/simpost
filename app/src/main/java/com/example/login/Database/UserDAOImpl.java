@@ -136,6 +136,16 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         db.close();
     }
 
+
+    public void deleteSomeonePosts(String someone){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "DELETE FROM post WHERE creator = ?;";
+        String[] replace = {someone};
+        db.execSQL(query, replace);
+        db.close();
+    }
+
+
     // Delete all posts
     public void truncatePosts (){
         // Get database
@@ -243,7 +253,7 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
      * Be careful when use it as the database may contain many posts.
      * @return all posts in the database or null if there is not post in the database
      */
-    public ArrayList<PostPreview> getFollowingPosts (int maxPosts, HashSet<String> following){
+    public ArrayList<PostPreview> getPeoplePosts(int maxPosts, HashSet<String> following){
         StringBuilder followingString = new StringBuilder();
         for (String name : following)
             followingString.append("'").append(name).append("'").append(",");
@@ -270,7 +280,6 @@ public class UserDAOImpl extends SQLiteOpenHelper implements UserDAO{
         db.close();
         return allPosts;
     }
-
 
 
     /**

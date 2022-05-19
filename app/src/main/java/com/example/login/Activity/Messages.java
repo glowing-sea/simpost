@@ -29,7 +29,7 @@ public class Messages extends AppCompatActivity {
     UserDAO db;
     HashSet<String> contacts;
     MessageAdapter messageAdapter;
-    FloatingActionButton addNewMessageButton;
+    FloatingActionButton addNewMessageButton, deleteAllMessages;
     Me me = Me.getInstance();
 
     @Override
@@ -66,6 +66,7 @@ public class Messages extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.message_list);
         addNewMessageButton = findViewById(R.id.addNewMessageButton);
+        deleteAllMessages = findViewById(R.id.delete_all_message);
 
         db = new UserDAOImpl(getApplicationContext());
         ArrayList<Message> messages = db.getMessages(me.username);
@@ -101,6 +102,34 @@ public class Messages extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        deleteAllMessages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Messages.this);
+                alertDialog.setMessage("Are you sure to delete all messages?");
+                alertDialog.setCancelable(true);
+                alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+//                    Intent intent = new Intent(getApplicationContext(), GeneralDeleting.class);
+//                    intent.putExtra("DELETE", "AllMessages");
+//                    overridePendingTransition(0, 0);
+//                    startActivity(intent);
+//                    finish();
+                        Me m = Me.getInstance();
+                        m.setMessages(new ArrayList<>());
+                        recreate();
+                    }
+                });
+                alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                    }
+                });
+                alertDialog.create().show();
+            }
+        });
     }
 
     @Override
@@ -111,38 +140,6 @@ public class Messages extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.message_manu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.delete_all_messages){
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setMessage("Are you sure to delete all messages?");
-            alertDialog.setCancelable(true);
-            alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(getApplicationContext(), GeneralDeleting.class);
-                    intent.putExtra("DELETE", "AllMessages");
-                    overridePendingTransition(0, 0);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-            alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                }
-            });
-            alertDialog.create().show();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     //old
     /*void databaseToUsersArrays(){

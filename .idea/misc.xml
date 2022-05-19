@@ -89,6 +89,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main_page.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_messages.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_messages_chat.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_my_dbopen_helper.xml" value="0.4601851851851852" />
         <entry key="app/src/main/res/layout/activity_other_home.xml" value="0.5177083333333333" />
@@ -107,7 +108,6 @@
         <entry key="app/src/main/res/layout/activity_search_users2.xml" value="0.5177083333333333" />
         <entry key="app/src/main/res/layout/activity_setting_page.xml" value="0.34010416666666665" />
         <entry key="app/src/main/res/layout/activity_signup_page.xml" value="0.5177083333333333" />
-        <entry key="app/src/main/res/layout/activity_sound_meter_page.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_subscriptions_page.xml" value="0.2947916666666667" />
         <entry key="app/src/main/res/layout/activity_timeline_post.xml" value="0.3302083333333333" />
         <entry key="app/src/main/res/layout/activity_view_post.xml" value="0.5177083333333333" />

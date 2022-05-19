@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
-import android.content.Intent;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -21,10 +20,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -65,7 +61,7 @@ public class PostDAOTest {
         following.add("Test2");
         following.add("Test3");
 
-        int actual = db.getFollowingPosts(Integer.MAX_VALUE, following).size();
+        int actual = db.getPeoplePosts(Integer.MAX_VALUE, following).size();
         assertEquals(3, actual);
 
         db.deletePost(100001);
@@ -85,7 +81,7 @@ public class PostDAOTest {
         postIDs.add(100001);
         postIDs.add(100002);
         postIDs.add(100003);
-        
+
         int actual = db.getSelectPosts(Integer.MAX_VALUE, postIDs).size();
         assertEquals(3, actual);
 
