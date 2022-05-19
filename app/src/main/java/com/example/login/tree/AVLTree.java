@@ -1,5 +1,13 @@
 package com.example.login.tree;
 
+import android.content.Context;
+
+import com.example.login.FileIO.FileRW;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.File;
+
 /**
  * Welcome! Make sure to check out 'readme.md' for a rundown of requirements/description of this implementation
  * that may differ from normal implementations. Before starting, it may also be worth checking out Tree.java
@@ -38,6 +46,19 @@ public class AVLTree extends BinarySearchTree {
 
     public AVLTree(Integer value,String userName,String password, Tree leftNode, Tree rightNode) {
         super(value, userName,password,leftNode, rightNode);
+    }
+
+    private String toJson(){
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(AVLTree.class, new AVLTreeAdapter());
+        Gson tson = builder.create();
+
+        return tson.toJson(this);
+    }
+
+    public void save(Context context){
+        FileRW fileRW = new FileRW(context);
+        fileRW.savingString("tree","AVLTree.json",this.toJson());
     }
 
     /**
