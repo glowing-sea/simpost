@@ -33,7 +33,7 @@ The following is a report template to help your team successfully provide all th
 | [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic, make ppt] |
 | [u7241110] | [Dai Boyu] |                     [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Design databse, encoding of persistent data, functions connecting the frontend, some frontend features] |
-| [u7323177] | [Zhengling Zhang] |                                                           [Creating Messages,initially creating ] |
+| [u7323177] | [Zhengling Zhang] |                                                    [Creating Messages,initially creating database] |
 
 ## Summary of Individual Contributions
 
@@ -58,9 +58,6 @@ u7227871, Haoting Chen, I contribute 29% of the code.
 * E.MessageChatAdapter.class
 
 
-*Here is an example:*
-
-*UID1, Name1, I contribute % of the code. Here are my contributions:*
 
 *U7253519, Jack Fan, I contribute % of the code. Here are my contributions:*
 * A.PostView, I created most of the layout for this page and set the corresponding functions.
@@ -926,8 +923,11 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
 
 *Here is an example:*
 
-- *[Team Meeting 1](MeetingTemplate.md)*
-- ...
+- *[Team Meeting 1](Checkpoint W7/Meeting1.md)*
+- *[Team Meeting 2](Checkpoint W10/Meeting Minutes - Week 9.md)*
+- *[Team Meeting 3](Meeting/Meeting3.md)*
+- *[Team Meeting 4](Meeting/Meeting4.md)*
+
 
 *Either write your meeting minutes here or link to documents that contain them. There must be at least 4 team meetings. Note that you must commit your minute meetings shortly after your meeting has taken place (e.g., within 24h), otherwise your meeting minute will not be accepted.*
 
