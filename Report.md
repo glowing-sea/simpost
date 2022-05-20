@@ -86,19 +86,13 @@ would be able to see that post in their app and be able to make a response.
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 <hr>
+## Application UML
 
-<div title="Application UML">
-    <h1>Application UML</h1>
-    <img src="images/ClassDiagramExample.png">
-    <p>
-        //TODO:
-        Content or explaination of the diagram
-    </p>
-</div>
-
+![ClassDiagramExample](images/ClassDiagramExample.png)
+*[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 <hr>
+## Application Design and Decisions
 
-<h1>Application Design and Decisions</h1>
 *Please give clear and concise descriptions for each subsections of this part. It would be better to list all the concrete items for each subsection and give no more than `5` concise, crucial reasons of your design. Here is an example for the subsection `Data Structures`:*
 
 *I used the following data structures in my project:*
@@ -208,6 +202,14 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Activity_login.png" width="300">
    <img src="ReportImages/diagram_login_and_singup_logic.png" width="300">
    </div>
+    <h3>User Home Page</h3>
+   <p>
+   After the user login, he/she can choose to visit their home profile page by clicking the "Home" button. In this page, he/she can choose to edit his profile, change his privacy settings, add images as background or avatar, send messages to others, or checkout users he`s following/fans/blacklist. 
+   </p>
+   <div class="half" style="text-align: center;">
+   <img src="ReportImages/screenShot_Activity_login.png" width="300">
+   <img src="ReportImages/diagram_login_and_singup_logic.png" width="300">
+   </div>
  
 <br>
 
@@ -218,6 +220,15 @@ which is significantly faster than ordinary sqlite matching
 
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
 
+##Activities and functions
+**user login and registering**
+As the application is first open the appliction owuld directly show a login and registering page. Where user login<br>
+![img.png](ReportImages/screenShot_Activity_login.png)
+<br>
+For security and efficiency the activity would not directly
+interact with the database file. As the user click the buttons 
+the infromation(input username password) would be pass to 
+2 other class. These class would do the operation and raturn the result
 <br>
 
 <br>
@@ -264,18 +275,15 @@ users to choose if they want to censor offensive words in privacy settings, sinc
 such language while others could be offended. For each of these settings, we used a switch as the on/off button, since
 each of these functions are either turned on or off.
 <br>
+ ![img.png](ReportImages/privacySetting.png)
 
-
-<h1>Following add pages</h1>
-<h3>RecentPost</h3>
-<h3>View Post(commenting)</h3>
-<h3>Home</h3>
-<h3>Home-Message</h3>
-<h3>Home -home privacy</h3>
-<h3>home -black list</h3>
-<h3>home -setting</h3>
-![img.png](ReportImages/privacySetting.png)
-
+**Statistic about the user**
+<br>
+In this project enable the user to view statistic about the user's himself this include many different aspects
+this includes proprttion of view with like. the gender distribution of the viewer
+![img.png](ReportImages/screenShot_Statistic1.png)
+![img.png](ReportImages/screenShot_Statistic.png)
+<br>
 </div>
 <hr>
 
