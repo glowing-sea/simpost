@@ -114,10 +114,38 @@ would be able to see that post in their app and be able to make a response.
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 <hr>
-## Application UML
+<h1>Project Sturcture </h1>
+<img src="ReportImages/packageDiagram/overView.jpg">
+<p>
+    As the project include a large number of classes, making a complete  UML diagram is hard. Thus, all the java calss are
+    classified in to different packets
+</p>
+<h3>Database</h3>
+<p>
+The java class in this package is responsible for processing operations
+related to database. It creates tables , obtain infromation.
+</p>
+<h3>Tree</h3>
+<p>
+This package is the data structure of the tree. However, it is still not very stable.
+It alson provides a method of serialising tree to JSON and deserialising it
+</p>
+<h3>DataContainer</h3>
+<p>
+This package contain java files that defines containers of data. Eg.Post would contain the content
+and title of the post. These class are used to pass information with the application
+</p>
+<h3>Activity</h3>
+<p>
+This package are java classes of android activity. It process the user input, use objects and method form other to obtain
+information for the user and visualise them.
+</p>
+<h3>ParserAndTokenizer</h3>
+<p>
+Tokenizer is used in searching, it would break the user input into tokens. So that search cound be done
+according to different user input
+</p>
 
-![ClassDiagramExample](images/ClassDiagramExample.png)
-*[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 <hr>
 ## Application Design and Decisions
 
