@@ -324,6 +324,8 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Statistic1.png" width="200" >
    <img src="ReportImages/screenShot_Statistic.png" width="200">
 </div>
+     <img src="Henry/history1.png" width = "200">
+     <img src="Henry/history2.png" width = "200">
 
 **Message**
 <br>
@@ -918,8 +920,8 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    types of profiles: public and private). (easy)
    Code:  java/com.example.login/Activity/HomePrivacy
      <img src="ReportImages/privacy.png" width = "200">
-     <img src="Henry/history1.png" width = "200">
-     <img src="Henry/history2.png" width = "200">
+     <img src="Henry/home1.png" width = "200">
+     <img src="Henry/home2.png" width = "200">
    
 3. Provide users with the ability to ‘block’ things. Things (e.g., events, users, messages
        containing abusive language, etc) shall not be visible to the user who blocked that
