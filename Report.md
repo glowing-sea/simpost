@@ -30,7 +30,7 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name |                                                                                                     Role |
 | :--- | :----: |---------------------------------------------------------------------------------------------------------:|
-| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic] |
+| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic, make ppt] |
 | [u7241110] | [Dai Boyu] |                     [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Design databse, encoding of persistent data, functions connecting the frontend, some frontend features] |
 | [u7323177] | [Zhengling Zhang] |                                                           [Creating Messages,initially creating ] |
@@ -285,7 +285,6 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Statistic.png" width="200">
 </div>
 
-<h1>ZZLPart</h1>
 **Message**
 <br>
 In the implementation of information exchange between users, we designed a button in the homepage called "Message" through which we can go to the message page. 
@@ -297,8 +296,6 @@ With the recycle view, the user can roll the page to any message he or she wants
 ![img.png](ReportImages/messageStructure.png)<br>
 ![img.png](ReportImages/messageScreen.png)<br>
 
-
-<h1>Jack Part</h1>
 
 <hr>
 <div title="Privacy Setting" style="text-align: center;">
