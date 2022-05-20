@@ -264,8 +264,10 @@ such language while others could be offended. For each of these settings, we use
 each of these functions are either turned on or off.
 <br>
  ![img.png](ReportImages/privacySetting.png)
-
+</div>
 <h1>ZZLPart</h1>
+
+
 <h1>Jack Part</h1>
 
 <hr>
@@ -327,9 +329,9 @@ simple data sturcture
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(AVLTree.class, new AVLTreeAdapter());
         Gson tson = builder.create();
-         
         tson.fromJson()
 ```
+
 Gson object build using this way is ablt to decode Json serialised tree. However,it is still unstable
 it is ablt to conver some tree in testing but not able to convert some other tree
 <br>
