@@ -325,7 +325,6 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Statistic.png" width="200">
 </div>
 
-<h1>ZZLPart</h1>
 **Message**
 <br>
 In the implementation of information exchange between users, we designed a button in the homepage called "Message" through which we can go to the message page. 
@@ -338,7 +337,6 @@ With the recycle view, the user can roll the page to any message he or she wants
 ![img.png](ReportImages/messageScreen.png)<br>
 
 
-<h1>Jack Part</h1>
 
 <hr>
 <div title="Privacy Setting" style="text-align: center;">
@@ -947,7 +945,7 @@ them. (medium)
 *Here is an example:*
 
 - *[Team Meeting 1](Checkpoint W7/Meeting1.md)*
-- *[Team Meeting 2](Checkpoint W10/Meeting Minutes - Week 9.md)*
+- *[Team Meeting 2](Checkpoint W10/Meeting%20Minutes%20-%20Week%209)*
 - *[Team Meeting 3](Meeting/Meeting3.md)*
 - *[Team Meeting 4](Meeting/Meeting4.md)*
 
