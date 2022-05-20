@@ -945,7 +945,7 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
 them. (medium)
    Code: java/com.example.login/Activity/GeneralLogin
    <img src="Henry/blockUser.jpg" width = "200">
-   <img src="Henry/blackList.jpg" width = "200">
+   <img src="Henry/blackList.png" width = "200">
 
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
 
