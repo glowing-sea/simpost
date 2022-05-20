@@ -150,43 +150,45 @@ Reason: In this section of the app, we want to store the information of each use
 to access a particular part of the database that we provide them, yet hide deeper information. The DAO design pattern is the
 best tool for this, since it allows us to give users the access to some information, while keeping the rest hidden.
 
-**Grammar(s)**
 
+
+
+<hr>
+<div>
+<img src="ReportImages/screenShot_SearchPage.png" width = "200" align="right">
+<h3>Grammar(s)</h3>
+<p>
 <br> *Production Rules* <br>
 Word ::= [terminal] + Word<br>
 Word ::= {terminal} + word<br>
 Word ::= termianl(a english word)
 <br>
 The grammer is mainly used to enablt user to search for different posts 
+</p>
 
-**Tokenizer and Parsers**
-<div>
-<img src="ReportImages/screenShot_SearchPage.png" width = "200" align="right">
+<h3>Tokenizer and Parsers</h3>
 <p>*In our app, we mainly used parser and tokenizer in our search function. This is implemented because we think that it would
 help our users better constraint the content that they want to search for, and they would be able to find what they want more
 easily. For example, when the search key word is added with "[]", then the search would be constrained to only search for
 posts that are published by these users, and when the key word is constrained in "{}", the search would only be directed towards
 posts with the key word in its title.</p>
+
+
 <p>
 Code: java/com.example.login/parserAndTokenizer <br>
 java/com.example.login/Activity/SearchPage <br>
-
 To improve the efficiency of the search we used the fts(4) extension in the assignment
 which is significantly faster than ordinary sqlite matching
 </p>
-<hr>
 </div>
-
-<br>
-
-
-<h1>Surpise Item</h1>
-****
-
-*[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
+<hr>
+<div>
+   <h1>Surpise Item</h1>
+   *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
+</div>
 <hr>
 <h2>Activities and functions</h2>
-<div style="text-align: center;">
+<div title="User Login and signup" style="text-align: center;">
    <h3>user login and registering</h3>
    <p>
    As the application is first open the appliction owuld directly show a login and registering page. Where user login<br>
@@ -207,7 +209,7 @@ the infromation(input username password) would be pass to
 <br>
 </div>
 <hr>
-<div style="text-align: center;">
+<div title="Adniistrator functions" style="text-align: center;">
    <h3>Administor</h3>
    <p>
       As some may notice that there is another button at the login page ( a wrench).
@@ -221,7 +223,7 @@ the infromation(input username password) would be pass to
 <br>
 </div>
 <hr>
-<div style="text-align: center;">
+<div title="Personal statistics" style="text-align: center;">
    <h3>Statistic about the user</h3>
    <p>
       In this project enable the user to view statistic about the user's himself this include many different aspects
