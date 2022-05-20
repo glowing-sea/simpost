@@ -207,8 +207,7 @@ which is significantly faster than ordinary sqlite matching
    After the user login, he/she can choose to visit their home profile page by clicking the "Home" button. In this page, he/she can choose to edit his profile, change his privacy settings, add images as background or avatar, send messages to others, or checkout users he`s following/fans/blacklist. 
    </p>
    <div class="half" style="text-align: center;">
-   <img src="ReportImages/screenShot_Activity_login.png" width="300">
-   <img src="ReportImages/diagram_login_and_singup_logic.png" width="300">
+   <img src=
    </div>
  
 <br>
