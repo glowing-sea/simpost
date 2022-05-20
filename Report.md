@@ -280,9 +280,14 @@ With the recycle view, the user can roll the page to any message he or she wants
 <div title = "black listing">
     <h3>Black Listing</h3>
     <div>
-        <img src="ReportImages/blackListing/">
-        <img src="ReportImages/messageScreen">
+        <img src="ReportImages/blackListing/screenShot1.png" width="150">
+        <img src="ReportImages/blackListing/screenShot2.png" width="150">
+        <img src="ReportImages/blackListing/screenShot3.png" width="150">
     </div>
+    <p>
+        As show in the figure above inside the setting page blacklist the user could manage the current user that is blocked
+        the balck list would stop the message form the user in the black list
+    </p>
 </div>
 
 
