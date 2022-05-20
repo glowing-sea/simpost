@@ -28,14 +28,28 @@ The following is a report template to help your team successfully provide all th
 <hr>
 ## Team Members and Roles
 
-| UID | Name | Role |
-| :--- | :----: | ---: |
-| [u7253519] | [Jack Fan] | [] |
-| [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
-| [u7227871] | [Haoting Chen] | [Implementing database] |
-| [u7323177] | [Zhengling Zhang] | [Creating Messages] |
+| UID | Name |                                                                                                                        Role |
+| :--- | :----: |----------------------------------------------------------------------------------------------------------------------------:|
+| [u7253519] | [Jack Fan] |                                                                                              [Create posts and veiws posts] |
+| [u7241110] | [Dai Boyu] |                                        [Implementing search function with parser and tokenizer, implementing tree and Json] |
+| [u7227871] | [Haoting Chen] | [Design database, encoding of persistent data, functions connecting the frontend, some frontend features such as home page] |
+| [u7323177] | [Zhengling Zhang] |                                                                                                         [Creating Messages] |
 
 ## Summary of Individual Contributions
+
+u7227871, Haoting Chen, I contribute 30% of the code.<br>
+Feature I implemented:<br>
+* App database 80%
+* Bottom Navigator Menu 100%
+* Private homepage 80%
+* Public homepage 100%
+* Posts browsing page 20%
+* Posts viewing page 10%
+* Posts creating page 20%
+* Setting page 50%
+* 
+
+
 
 *[Summarise the contributions made by each member to the project, e.g. code implementation, code design, UI design, report writing, etc.]*
 
