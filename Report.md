@@ -33,7 +33,7 @@ The following is a report template to help your team successfully provide all th
 | [u7253519] | [Jack Fan] | [Designing layout and button, text logic] |
 | [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Implementing database] |
-| [u7323177] | [Zhengling Zhang] | [Creating Messages] |
+| [u7323177] | [Zhengling Zhang] | [Creating Messages, initially creating database] |
 
 ## Summary of Individual Contributions
 
@@ -47,6 +47,13 @@ The following is a report template to help your team successfully provide all th
 * A.class
 * B.class: function1(), function2(), ...
 * ....
+
+*u7323177,Zhilin Zhang,I contribute 26.6% of the code.Here are my contributions:*
+* A.Messages.class
+* B.MessagesAddPage.class
+* C.MessageAdapter.class
+* D.MessageChat.class
+* E.MessageChatAdapter.class
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
 
