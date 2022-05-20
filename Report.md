@@ -256,8 +256,8 @@ presented in the same way, therefore a recycler was better.
       this includes proprttion of view with like. the gender distribution of the viewer
    </p>
    <img src="ReportImages/screenShot_Statistic1.png" width="200" >
-      <br>
    <img src="ReportImages/screenShot_Statistic.png" width="200">
+<br>
 Many users might have information that they don`t want others to see. Therefore, we also implemented a set of privacy
 settings for users. Users can choose to hide their age, gender, location, following users, and followers, since for
 many users, these might be considered as private information that they do not want others to see. Also, we allow
