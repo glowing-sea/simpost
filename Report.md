@@ -256,6 +256,24 @@ this could be accessed at the search page
 <br>
 ![img.png](ReportImages/screenShot_Game.png)<br>
 
+**Recycle view**
+<br>
+When designing the Messages and AdminUser class, recycleview is used. 
+We created a MessagesAdapter class which extends RecyclerView.Adapter. 
+And we designed the layout of the adapter. 
+In this way, we are able to show pieces of messages including the sender, time, and content.
+<br>
+![img.png](ReportImages/messageScreen.png)<br>
+
+**Database**
+<br>
+In app, sqlite is chosen to be the database. 
+Two tables, one for users and one for posts, are created. 
+In database, we realise the input of text and image. 
+Also, we defined some datacontainers and helping methods to help access to database.
+<br>
+![img.png](ReportImages/databaseScreen.png)<br>
+![img.png](ReportImages/dataContainerScreen.png)<br>
 
 ## Summary of Known Errors and Bugs
 
