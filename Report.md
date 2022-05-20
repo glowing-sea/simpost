@@ -52,10 +52,14 @@ u7227871, Haoting Chen, I contribute 30% of the code.
 
 *Here is an example:*
 
-*UID1, Name1, I contribute 30% of the code. Here are my contributions:*
-* A.class
-* B.class: function1(), function2(), ...
-* ....
+*UID1, Name1, I contribute % of the code. Here are my contributions:*
+
+*U7253519, Jack Fan, I contribute % of the code. Here are my contributions:*
+* A.PostView, I created most of the layout for this page and set the corresponding functions.
+* B.PostCreate, I created the layout for this page and the corresponding logic
+* C.HomeUserList/HomeUserListAdapter, I created the first version of this page
+* D.Responsible for ppt and portion of report.
+...........
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
 
@@ -76,6 +80,7 @@ u7227871, Haoting Chen, I contribute 30% of the code.
 * Write comments for every functions
 
 *[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
+When we encounter conflicts, we would try to solve by discussing online. If we can`t resolve the problem immediately, then we would try to have in person meetings and discuss and write code together so we can make sure that we are working in the same direction. 
 <hr>
 ## Application Description
 
@@ -85,7 +90,7 @@ In our app, we try to build an app that allows users to post and share informati
 
 **Application Use Cases and or Examples**
 
-We expect our app to be used for communication and sharing information as well as messaging, when users want to ask a question, share their thoughts on something or simply post something interesting that they see.
+We expect our app to be used for communication and sharing information, when users want to ask a question, share their thoughts on something or simply post something interesting that they see.
 For example, if one of our users wants to ask a question about a comp lab, then he/she can post that question on our app. Then, other users
 would be able to see that post in their app and be able to make a response.
 
