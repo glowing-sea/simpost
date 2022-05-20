@@ -797,12 +797,12 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    Code: java/com.example.login/Activity/Home, line 89 - 94, 205 - 257
    java/com.example.login/Activity/PostCreate, line 81 - 121
    java/com.example.login/Activity/PostView, line 61 - 72
-   ![img.png](ReportImages/profileImage_image.png)
+     <img src="ReportImages/profileImage.png" width = "200">
    
 2. *Feature 2: . Use GPS information (see the demo presented by our tutors. For example, your app
    may use the latitude/longitude to show some information relevant to your app). (easy)
    Code:  java/com.example.login/Activity/HomeSettingLocation
-   ![img.png](ReportImages/locationimg.png)
+     <img src="ReportImages/locationimg.png" width = "200">
    
 
 3. *Feature 3: Report viewer. Provide users with the ability to see a report of interactions with your app
@@ -810,13 +810,13 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    (medium)*
    Code: java/com.example.login/Activity/ReportPage
    java/com.example.login/Activity/Home, line 183 - 190
-   ![img.png](ReportImages/report_image.png)
+     <img src="ReportImages/report_image.png" width = "200">
 
 *User Interactivity*
 1. *Feature 1: The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
    post/message/event) [stored in-memory]. (easy)
    Code: java/com.example.login/Activity/PostView, line 73 - 82, 105 - 133
-   ![img.png](ReportImages/like_image.png)
+  <img src="ReportImages/like_image.png" width = "200">
    
 2. *Feature 2: The ability to ‘follow’ users, events, movements, hashtags, topics. There must be a
    section specifically dedicated to 'things' followed. [stored in-memory] (medium)*
@@ -824,7 +824,7 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    java/com.example.login/Activity/HomeUserList
    java/com.example.login/Activity/HomeUserListAdapter
    <img src="ReportImages/follow.png" width = "200">
-   <img src="ReportImages/home_follow" width = "200">
+   <img src="ReportImages/home_follow.png" width = "200">
 
 *Privacy*
 1. Users may send requests which are then accepted or denied by another user or
@@ -833,14 +833,14 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
 2. A user can only see a profile/event that is Public (consider that there are at least two
    types of profiles: public and private). (easy)
    Code:  java/com.example.login/Activity/HomePrivacy
-     <img src="ReportImages/privacy" width = "200">
+     <img src="ReportImages/privacy.png" width = "200">
    
 3. Provide users with the ability to ‘block’ things. Things (e.g., events, users, messages
        containing abusive language, etc) shall not be visible to the user who blocked that
        activity. (medium)
    Code: java/com.example.login/Activity/HomePrivacy, line 82 - 87
    java/com.example.login/Database/HelperMethods, line 167 - 177
-   <img src="ReportImages/privacy" width = "200">
+   <img src="ReportImages/privacy.png" width = "200">
    
 *Peer to Peer Messaging*
 1. Provide users with the ability to message each other or an institution directly (e.g., a
