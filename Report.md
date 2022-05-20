@@ -65,7 +65,7 @@ The following is a report template to help your team successfully provide all th
 ## Application Description
 
 In our app, we try to build an app that allows users to post and share information. As an analogy, it should be similar to Reddit. Users can post about any topic that they want,
-,and other users would be able to view the post and make response. 
+,and other users would be able to view the post and make response.
 
 
 **Application Use Cases and or Examples**
@@ -105,28 +105,34 @@ would be able to see that post in their app and be able to make a response.
 
    * *Reasons:*
 
-     * *It is easy to edit and make changes since Hashset implements the add, delete and contains method, and is not constrained by size.
+      * *It is easy to edit and make changes since Hashset implements the add, delete and contains method, and is not constrained by size.
 
-     * *Each of these lists, we want to achieve it so that there`s no repeat, and Hashset can check that function for us.
+      * *Each of these lists, we want to achieve it so that there`s no repeat, and Hashset can check that function for us.
 
 2. *<ArrayList>*
    * *Objective: It is used for storing comments in each post
-   * *Locations: line 40 in java/com.example.login/DataContainer/Post 
+   * *Locations: line 40 in java/com.example.login/DataContainer/Post
       * *Reasons:*
 
       * *It is easy to edit and make changes with the add method of arraylist
 
       * *Unlike Hashset, Arraylist allows existence of multiple elements, so it`s better for storing comments.
-   
+
 3. *AVL Tree*
+   * Objective:using tree to store the login information of the user to speed up the login.
+      * *Reasons:*
+      * searching is faster in side a tree compare to arraylists
 
 
 **Design Patterns**
 
-*[SingleTon]
-Location: DataContainer/Me, this whole class was implemented with the singleton design pattern.
-Reason: For our app, the "Me" class is used to store the current user who`s logged in. Since there can only be on user logging in 
-in one app, we use the singleton design pattern so that everytime an instance of Me is accessed from within the app, it is 
+*[SingleTon] <br>
+Location: DataContainer/Me.java
+<br>
+<br>
+this whole class was implemented with the singleton design pattern.
+Reason: For our app, the "Me" class is used to store the current user who`s logged in. Since there can only be on user logging in
+in one app, we use the singleton design pattern so that everytime an instance of Me is accessed from within the app, it is
 guaranteed to give us the only current user. And only when there is a login, a new instance of Me would be created and the old
 one is being replaced.
 
@@ -138,36 +144,54 @@ page, and allow us to identify when the user is logged in or not.
 
 *[DAO]
 Location: Database/UserDAO, Database/UserDAOImpl
+<br>
+<br>
 Reason: In this section of the app, we want to store the information of each user and each post in our database, and allow users
 to access a particular part of the database that we provide them, yet hide deeper information. The DAO design pattern is the
 best tool for this, since it allows us to give users the access to some information, while keeping the rest hidden.
+
 **Grammar(s)**
 
 <br> *Production Rules* <br>
-\<Non-Terminal> ::= \<some output>
+Word ::= [terminal] + Word<br>
+Word ::= {terminal} + word<br>
+Word ::= termianl(a english word)
 <br>
-\<Non-Terminal> ::= \<some output>
-
-*[How do you design the grammar? What are the advantages of your designs?]*
-
-*If there are several grammars, list them all under this section and what they relate to.*
+The grammer is mainly used to enablt user to search for different posts 
 
 **Tokenizer and Parsers**
 
-*In our app, we mainly used parser and tokenizer in our search function. This is implemented because we think that it would 
+*In our app, we mainly used parser and tokenizer in our search function. This is implemented because we think that it would
 help our users better constraint the content that they want to search for, and they would be able to find what they want more
-easily. For example, when the search key word is added with "[]", then the search would be constrained to only search for 
+easily. For example, when the search key word is added with "[]", then the search would be constrained to only search for
 posts that are published by these users, and when the key word is constrained in "{}", the search would only be directed towards
 posts with the key word in its title.
-![img.png](ReportImages/searchImage.png)
-Code: java/com.example.login/parserAndTokenizer
-java/com.example.login/Activity/SearchPage, line 53 - 67
+![img.png](ReportImages/searchImage.png)<br><br>
+Code: java/com.example.login/parserAndTokenizer <br>
+java/com.example.login/Activity/SearchPage <br>
+
 **Surpise Item**
 
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
 
 **Other**
-
+<br>
+**AVLTreeAdater**
+<br>
+Code: app/src/main/java/com/example/login/tree/AVLTreeAdapter.java <br>
+<br>
+this class is built as an extension to Gson (). While we are trying to serialist tree to JSON files it
+is found that Gson is able to convert tree to Gson file but not ablt to convert it back as the tree is not a
+simple data sturcture
+```raw
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(AVLTree.class, new AVLTreeAdapter());
+        Gson tson = builder.create();
+        
+        tson.fromJson()
+```
+Gson object build using this way is ablt to decode Json serialised tree. However,it is still unstable
+it is ablt to conver some tree in testing but not able to convert some other tree
 *[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
 
 ## Summary of Known Errors and Bugs
