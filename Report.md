@@ -31,9 +31,9 @@ The following is a report template to help your team successfully provide all th
 | UID | Name | Role |
 | :--- | :----: | ---: |
 | [u7253519] | [Jack Fan] | [] |
-| [u7241110] | [Dai Boyu] | [] |
-| [u7227871] | [Haoting Chen] | [] |
-| [u7323177] | [Zhengling Zhang] | [] |
+| [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
+| [u7227871] | [Haoting Chen] | [Implementing database] |
+| [u7323177] | [Zhengling Zhang] | [Creating Messages] |
 
 ## Summary of Individual Contributions
 
@@ -190,8 +190,26 @@ the infromation(input username password) would be pass to
 
 ![img.png](ReportImages/diagram_login_and_singup_logic.png)
 
+**Scroll View and Recycler View**
 <br>
+In this project, we used scroll view to implement the layout for viewing and creating post. And for showing 
+search results and showing following lists and post lists, we used recycler view. This is because when viewing
+or creating details of a post, the content could be very long and scroll view would be better to fit the content.
+And for showing posts and users, even though the content is also long, however each individual post or user would be
+presented in the same way, therefore a recycler was better.
+<br>
+![img.png](ReportImages/scrollview.png)
 
+**Privacy Setting for user**
+<br>
+Many users might have information that they don`t want others to see. Therefore, we also implemented a set of privacy
+settings for users. Users can choose to hide their age, gender, location, following users, and followers, since for
+many users, these might be considered as private information that they do not want others to see. Also, we allow
+users to choose if they want to censor offensive words in privacy settings, since some users could be ok with seeing
+such language while others could be offended. For each of these settings, we used a switch as the on/off button, since
+each of these functions are either turned on or off.
+<br>
+![img.png](ReportImages/privacySetting.png)
 
 **Statistic about the user**
 <br>
@@ -237,9 +255,6 @@ Using this function a interactive game is implemnted with search page that enabl
 this could be accessed at the search page
 <br>
 ![img.png](ReportImages/screenShot_Game.png)<br>
-
-
-
 
 
 ## Summary of Known Errors and Bugs
