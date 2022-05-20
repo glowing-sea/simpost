@@ -28,28 +28,14 @@ The following is a report template to help your team successfully provide all th
 <hr>
 ## Team Members and Roles
 
-| UID | Name |                                                                                                                        Role |
-| :--- | :----: |----------------------------------------------------------------------------------------------------------------------------:|
-| [u7253519] | [Jack Fan] |                                                                                              [Create posts and veiws posts] |
-| [u7241110] | [Dai Boyu] |                                        [Implementing search function with parser and tokenizer, implementing tree and Json] |
-| [u7227871] | [Haoting Chen] | [Design database, encoding of persistent data, functions connecting the frontend, some frontend features such as home page] |
-| [u7323177] | [Zhengling Zhang] |                                                                                                         [Creating Messages] |
+| UID | Name | Role |
+| :--- | :----: | ---: |
+| [u7253519] | [Jack Fan] | [Designing layout and button, text logic] |
+| [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
+| [u7227871] | [Haoting Chen] | [Implementing database] |
+| [u7323177] | [Zhengling Zhang] | [Creating Messages] |
 
 ## Summary of Individual Contributions
-
-u7227871, Haoting Chen, I contribute 30% of the code.<br>
-Feature I implemented:<br>
-* App database 80%
-* Bottom Navigator Menu 100%
-* Private homepage 80%
-* Public homepage 100%
-* Posts browsing page 20%
-* Posts viewing page 10%
-* Posts creating page 20%
-* Setting page 50%
-* 
-
-
 
 *[Summarise the contributions made by each member to the project, e.g. code implementation, code design, UI design, report writing, etc.]*
 
@@ -225,16 +211,12 @@ which is significantly faster than ordinary sqlite matching
    </div>
  
 <br>
-
-
 **Surpise Item**
 
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
-
-
-
 <br>
 </div>
+
 <hr>
 <div title="Adniistrator functions" style="text-align: center;">
    <h3>Administor</h3>
@@ -247,16 +229,6 @@ which is significantly faster than ordinary sqlite matching
       <img src="ReportImages/screenShot_AdminUsers.png" width="200" >
       <img src="ReportImages/screenShot_AdminPosts.png" width="200">
    </div>
-In this project, we used scroll view to implement the layout for viewing and creating post. And for showing 
-search results and showing following lists and post lists, we used recycler view. This is because when viewing
-or creating details of a post, the content could be very long and scroll view would be better to fit the content.
-And for showing posts and users, even though the content is also long, however each individual post or user would be
-presented in the same way, therefore a recycler was better.
-<br>
-![img.png](ReportImages/scrollview.png)
-
-**Privacy Setting for user**
-<br>
 </div>
 
 
@@ -269,24 +241,26 @@ presented in the same way, therefore a recycler was better.
    </p>
    <img src="ReportImages/screenShot_Statistic1.png" width="200" >
    <img src="ReportImages/screenShot_Statistic.png" width="200">
-<br>
-Many users might have information that they don`t want others to see. Therefore, we also implemented a set of privacy
-settings for users. Users can choose to hide their age, gender, location, following users, and followers, since for
-many users, these might be considered as private information that they do not want others to see. Also, we allow
-users to choose if they want to censor offensive words in privacy settings, since some users could be ok with seeing
-such language while others could be offended. For each of these settings, we used a switch as the on/off button, since
-each of these functions are either turned on or off.
-<br>
- ![img.png](ReportImages/privacySetting.png)
 </div>
+
 <h1>ZZLPart</h1>
+**Message**
+<br>
+In the implementation of information exchange between users, we designed a button in the homepage called "Message" through which we can go to the message page. 
+In the message page, we enabled users to chat with each other in a mailbox. 
+Every user can send a message to another user with two text input, user sent to and message content. (CALL THEM A AND B)
+With the "Send" button clicked, A and B will be encoded to Message type and then stored into the database.
+When a user visit message page, the database will check every message related to the current user and show the information on a recycle view, sorted by time.
+With the recycle view, the user can roll the page to any message he or she wants to check. And click it into the MessageChat page to view the detail.<br>
+![img.png](ReportImages/messageStructure.png)<br>
+![img.png](ReportImages/messageScreen.png)<br>
 
 
 <h1>Jack Part</h1>
 
 <hr>
 <div title="Privacy Setting" style="text-align: center;">
-   <h3>Statistic about the user</h3>
+   <h3>Privacy Settings</h3>
    <p>
       Many users might have private information that they don`t want others to see, therefore, we also allow users to set their privacy settings in the HomePrivacy Page. Users can choose to set their age, gender, location, follower, following lists to be hidden, and each of these buttons were implemented with a switch, since there are on and off states. Other than that, we also allow users to choose whether they want offensive words to be censored, since some users might be ok with these, while others might considered these very offensive. 
    </p>
@@ -302,7 +276,7 @@ each of these functions are either turned on or off.
       After users login, this is the first page that they would see. In here, users will see all the recent published posts by default, but they can also choose to see posts from users they follow, posts from their view history, or posts they publish themselves.
    </p>
    <div class="half" style="text-align: center;">
-      <img src="ReportImages/postsPage.png" width="200">
+      <img src="ReportImages/postsPage.jpg" width="200">
    </div>
 </div>
 
@@ -314,7 +288,7 @@ each of these functions are either turned on or off.
       When the users sees a post they`re interested in from posts page or from searching, he/she can click on the post preivew and jump to the PostView Page. In here, users can see details of a post, including title, content, publish time, and images. Users may also choose to like the post with the button under the post, and if they want to view past comments or make one, they can do so by using the "comments" button.
    </p>
    <div class="half" style="text-align: center;">
-      <img src="ReportImages/viewPost.png" width="200">
+      <img src="ReportImages/viewPost.jpg" width="200">
    </div>
 </div>
 
@@ -325,7 +299,7 @@ each of these functions are either turned on or off.
      In the posts page, user may also choose to publish their own post by clicking the bottom right button. When creating, users can add title, content, images and tag to the post. We only allow a maximum of 3 images, since it is easier to store in databse this way and we don`t want each post to be too filled with images. The tag function makes it easier for us to sort the posts, and also allow users to identify posts they would be interested in.
    </p>
    <div class="half" style="text-align: center;">
-      <img src="ReportImages/createPost.png" width="200">
+      <img src="ReportImages/createPost.jpg" width="200">
    </div>
 </div>
 
@@ -823,12 +797,12 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    Code: java/com.example.login/Activity/Home, line 89 - 94, 205 - 257
    java/com.example.login/Activity/PostCreate, line 81 - 121
    java/com.example.login/Activity/PostView, line 61 - 72
-   ![img.png](ReportImages/profileImage_image.png)
+     <img src="ReportImages/profileImage_image.png" width = "200">
    
 2. *Feature 2: . Use GPS information (see the demo presented by our tutors. For example, your app
    may use the latitude/longitude to show some information relevant to your app). (easy)
    Code:  java/com.example.login/Activity/HomeSettingLocation
-   ![img.png](ReportImages/locationimg.png)
+     <img src="ReportImages/locationimg.png" width = "200">
    
 
 3. *Feature 3: Report viewer. Provide users with the ability to see a report of interactions with your app
@@ -836,21 +810,21 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    (medium)*
    Code: java/com.example.login/Activity/ReportPage
    java/com.example.login/Activity/Home, line 183 - 190
-   ![img.png](ReportImages/report_image.png)
+     <img src="ReportImages/report_image.png" width = "200">
 
 *User Interactivity*
 1. *Feature 1: The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
    post/message/event) [stored in-memory]. (easy)
    Code: java/com.example.login/Activity/PostView, line 73 - 82, 105 - 133
-   ![img.png](ReportImages/like_image.png)
+  <img src="ReportImages/like_image.png" width = "200">
    
 2. *Feature 2: The ability to ‘follow’ users, events, movements, hashtags, topics. There must be a
    section specifically dedicated to 'things' followed. [stored in-memory] (medium)*
    Code: java/com.example.login/Activity/HomeSome, line 113 - 139
    java/com.example.login/Activity/HomeUserList
    java/com.example.login/Activity/HomeUserListAdapter
-   ![img.png](ReportImages/follow.png)
-   ![img.png](ReportImages/home_follow.png)
+   <img src="ReportImages/follow.png" width = "200">
+   <img src="ReportImages/home_follow.png" width = "200">
 
 *Privacy*
 1. Users may send requests which are then accepted or denied by another user or
@@ -859,14 +833,14 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
 2. A user can only see a profile/event that is Public (consider that there are at least two
    types of profiles: public and private). (easy)
    Code:  java/com.example.login/Activity/HomePrivacy
-   ![img.png](ReportImages/privacy.png)
+     <img src="ReportImages/privacy.png" width = "200">
    
 3. Provide users with the ability to ‘block’ things. Things (e.g., events, users, messages
        containing abusive language, etc) shall not be visible to the user who blocked that
        activity. (medium)
    Code: java/com.example.login/Activity/HomePrivacy, line 82 - 87
    java/com.example.login/Database/HelperMethods, line 167 - 177
-   ![img.png](ReportImages/privacy.png)
+   <img src="ReportImages/privacy.png" width = "200">
    
 *Peer to Peer Messaging*
 1. Provide users with the ability to message each other or an institution directly (e.g., a
@@ -876,8 +850,8 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    java/com.example.login/Activity/MessagesAddPage
    java/com.example.login/Activity/MessagesChat
    java/com.example.login/Activity/MessagesChatAdapter
-   ![img.png](ReportImages/message1.png)
-   ![img.png](ReportImages/message2.png)
+   <img src="ReportImages/message1.png" width = "200">
+   <img src="ReportImages/message2.png" width = "200">
 
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
 
