@@ -449,11 +449,14 @@ Also, we defined some datacontainers and helping methods to help access to datab
 1. *Bug 1:*
 
 - *After using the databases for a long time, the databases needs to be deleted and recreated to let the app function normally.
-1. *Bug 2:*
+2. *Bug 2:*
 
 - *When choosing image for a post, if one image is selected and you choose to replace it but doesn`t choose anything, the app would report an error.
 
+3. *Bug 3:*(HomeSome.class line 121)
 
+- *If a user set their location as hidden when someone visits their home page, the app crash. The reason for this bug is that if the person hide their location. The location string the app got is null. The app tries to set null to a TestView. Therefore crashes. This bug occurs when merging. There is a version in which the function can check if the location string of the user is null. If so, it will set the location TextView as "Invisible". However, due to the careless review of code when merging. The newer version did not successfully replace the old version.
+![img.png](Henry/error1.png)<br>
 
 *List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
 
