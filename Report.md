@@ -57,13 +57,18 @@ u7227871, Haoting Chen, I contribute 29% of the code.
 * D.MessageChat.class
 * E.MessageChatAdapter.class
 
-
-
 *U7253519, Jack Fan, I contribute 26.6% of the code. Here are my contributions:*
 * A.PostView, I created most of the layout for this page and set the corresponding functions.
 * B.PostCreate, I created the layout for this page and the corresponding logic
 * C.HomeUserList/HomeUserListAdapter, I created the first version of this page
 * D.Responsible for ppt and portion of report.
+
+*U7241110, Boyu Dai, I contributed 25.25% of the project
+*A.Tree data structure(serilaisation and deserialisaition)
+*B.FileIO (storage of the JSON)
+*C.Parser and Tokenizer
+*D.logic of searching post, finding related post
+
 ...........
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
