@@ -21,9 +21,13 @@ code:
     url: https://github.com/PhilJay/MPAndroidChart
     licence: http://www.apache.org/licenses/LICENSE-2.0
 
-    - comment: interface for trees empty tree etc.
-      url: https://gitlab.cecs.anu.edu.au/u1064702/comp2100-6442-2022.s1
-      licence: unknown
+  - comment: Gson for serilisation
+    url: https://github.com/google/gson.git
+    licence: Apache License 2.0
+
+  - comment: interface for trees empty tree etc.
+    url: https://gitlab.cecs.anu.edu.au/u1064702/comp2100-6442-2022.s1
+    licence: unknown
 
 
 # add as many "url+licence+comment" entries as necessary
@@ -37,7 +41,7 @@ assets:
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
-  - name:Boyu Dai
+  - name: Boyu Dai
     uid: u7241110
   - name:
     uid:
