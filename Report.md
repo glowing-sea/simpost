@@ -202,13 +202,8 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Activity_login.png" width="300">
    <img src="ReportImages/diagram_login_and_singup_logic.png" width="300">
    </div>
-    <h3>User Home Page</h3>
-   <p>
-   After the user login, he/she can choose to visit their home profile page by clicking the "Home" button. In this page, he/she can choose to edit his profile, change his privacy settings, add images as background or avatar, send messages to others, or checkout users he`s following/fans/blacklist. 
-   </p>
-   <div class="half" style="text-align: center;">
-   <img src=
-   </div>
+
+</div>
  
 <br>
 
@@ -220,7 +215,7 @@ which is significantly faster than ordinary sqlite matching
 
 
 <br>
-</div>
+
 <hr>
 <div title="Adniistrator functions" style="text-align: center;">
    <h3>Administor</h3>
@@ -255,6 +250,7 @@ presented in the same way, therefore a recycler was better.
    </p>
    <img src="ReportImages/screenShot_Statistic1.png" width="200" >
    <img src="ReportImages/screenShot_Statistic.png" width="200">
+</div>
 <br>
 Many users might have information that they don`t want others to see. Therefore, we also implemented a set of privacy
 settings for users. Users can choose to hide their age, gender, location, following users, and followers, since for
@@ -268,6 +264,17 @@ each of these functions are either turned on or off.
 <h1>ZZLPart</h1>
 <h1>Jack Part</h1>
 <h1>Daniel Part</h1>
+<div title = "black listing">
+    <h3>Black Listing</h3>
+    <div>
+        <img src="ReportImages/blackListing/">
+        <img src="ReportImages">
+        <img src="ReportImages">
+    </div>
+</div>
+
+
+
 **Other**
 <br>
 **AVLTreeAdater**
