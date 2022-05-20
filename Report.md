@@ -202,8 +202,13 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Activity_login.png" width="300">
    <img src="ReportImages/diagram_login_and_singup_logic.png" width="300">
    </div>
-
-</div>
+    <h3>User Home Page</h3>
+   <p>
+   After the user login, he/she can choose to visit their home profile page by clicking the "Home" button. In this page, he/she can choose to edit his profile, change his privacy settings, add images as background or avatar, send messages to others, or checkout users he`s following/fans/blacklist. 
+   </p>
+   <div class="half" style="text-align: center;">
+   <img src="ReportImages/homeimage.png" width="200" >
+   </div>
  
 <br>
 
@@ -215,7 +220,7 @@ which is significantly faster than ordinary sqlite matching
 
 
 <br>
-
+</div>
 <hr>
 <div title="Adniistrator functions" style="text-align: center;">
    <h3>Administor</h3>
@@ -250,7 +255,6 @@ presented in the same way, therefore a recycler was better.
    </p>
    <img src="ReportImages/screenShot_Statistic1.png" width="200" >
    <img src="ReportImages/screenShot_Statistic.png" width="200">
-</div>
 <br>
 Many users might have information that they don`t want others to see. Therefore, we also implemented a set of privacy
 settings for users. Users can choose to hide their age, gender, location, following users, and followers, since for
@@ -262,48 +266,54 @@ each of these functions are either turned on or off.
  ![img.png](ReportImages/privacySetting.png)
 
 <h1>ZZLPart</h1>
-**Message**
-<br>
-In the implementation of information exchange between users, we designed a button in the homepage called "Message" through which we can go to the message page. 
-In the message page, we enabled users to chat with each other in a mailbox. 
-Every user can send a message to another user with two text input, user sent to and message content. (CALL THEM A AND B)
-With the "Send" button clicked, A and B will be encoded to Message type and then stored into the database.
-When a user visit message page, the database will check every message related to the current user and show the information on a recycle view, sorted by time.
-With the recycle view, the user can roll the page to any message he or she wants to check. And click it into the MessageChat page to view the detail.<br>
-![img.png](ReportImages/messageStructure.png)<br>
-![img.png](ReportImages/messageScreen.png)<br>
-        
-
 <h1>Jack Part</h1>
-<h1>Daniel Part</h1>
-<div title = "black listing">
-    <h3>Black Listing</h3>
-    <div>
-        <img src="ReportImages/blackListing/screenShot1.png" width="150">
-        <img src="ReportImages/blackListing/screenShot2.png" width="150">
-        <img src="ReportImages/blackListing/screenShot3.png" width="150">
-    </div>
-    <p>
-        As show in the figure above inside the setting page blacklist the user could manage the current user that is blocked
-        the balck list would stop the message form the user in the black list
-    </p>
-</div>
-
-<div title = "Settings">
-    <h3>Other settings</h3>
-    <div>
-        <img src="ReportImages/homeSetting/screenShot1.png" width="150">
-        <img src="ReportImages/homeSetting/screenShot2.png" width="150">
-    </div>
-    <p>
-        By scroll down and clicking the gear with text "setting" the user could go to the page where he coud
-        do some custumisation of his account. Here the user could set information like age and egnder for the app
-        to use. The user could also use gps location to fill in his location automaticall
-    </p>
-</div>
-
 
 <hr>
+<div title="Privacy Setting" style="text-align: center;">
+   <h3>Statistic about the user</h3>
+   <p>
+      Many users might have private information that they don`t want others to see, therefore, we also allow users to set their privacy settings in the HomePrivacy Page. Users can choose to set their age, gender, location, follower, following lists to be hidden, and each of these buttons were implemented with a switch, since there are on and off states. Other than that, we also allow users to choose whether they want offensive words to be censored, since some users might be ok with these, while others might considered these very offensive. 
+   </p>
+   <div class="half" style="text-align: center;">
+      <img src="ReportImages/privacySetting.png" width="200">
+   </div>
+</div>
+
+<hr>
+<div title="PostsPage" style="text-align: center;">
+   <h3>Main page viewing all posts</h3>
+   <p>
+      After users login, this is the first page that they would see. In here, users will see all the recent published posts by default, but they can also choose to see posts from users they follow, posts from their view history, or posts they publish themselves.
+   </p>
+   <div class="half" style="text-align: center;">
+      <img src="ReportImages/postsPage.png" width="200">
+   </div>
+</div>
+
+<hr>
+<div title="PostView" style="text-align: center;">
+
+   <h3>Page for viewing a particular post</h3>
+   <p>
+      When the users sees a post they`re interested in from posts page or from searching, he/she can click on the post preivew and jump to the PostView Page. In here, users can see details of a post, including title, content, publish time, and images. Users may also choose to like the post with the button under the post, and if they want to view past comments or make one, they can do so by using the "comments" button.
+   </p>
+   <div class="half" style="text-align: center;">
+      <img src="ReportImages/viewPost.png" width="200">
+   </div>
+</div>
+
+<hr>
+<div title="CreatePost" style="text-align: center;">
+   <h3>Page for creating a post</h3>
+   <p>
+     In the posts page, user may also choose to publish their own post by clicking the bottom right button. When creating, users can add title, content, images and tag to the post. We only allow a maximum of 3 images, since it is easier to store in databse this way and we don`t want each post to be too filled with images. The tag function makes it easier for us to sort the posts, and also allow users to identify posts they would be interested in.
+   </p>
+   <div class="half" style="text-align: center;">
+      <img src="ReportImages/createPost.png" width="200">
+   </div>
+</div>
+
+<h1>Daniel Part</h1>
 **Other**
 <br>
 **AVLTreeAdater**
