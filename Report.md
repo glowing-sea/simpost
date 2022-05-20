@@ -245,6 +245,8 @@ presented in the same way, therefore a recycler was better.
 **Privacy Setting for user**
 <br>
 </div>
+
+
 <hr>
 <div title="Personal statistics" style="text-align: center;">
    <h3>Statistic about the user</h3>
