@@ -43,9 +43,9 @@ The following is a report template to help your team successfully provide all th
 
 *Here is an example:*
 
-*UID1, Name1, I contribute 30% of the code. Here are my contributions:*
+*UID1, Name1, I contribute % of the code. Here are my contributions:*
 
-*U7253519, Jack Fan, I contribute 30% of the code. Here are my contributions:*
+*U7253519, Jack Fan, I contribute % of the code. Here are my contributions:*
 * A.PostView, I created most of the layout for this page and set the corresponding functions.
 * B.PostCreate, I created the layout for this page and the corresponding logic
 * C.HomeUserList/HomeUserListAdapter, I created the first version of this page
