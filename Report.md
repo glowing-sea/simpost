@@ -385,7 +385,7 @@ With the recycle view, the user can roll the page to any message he or she wants
    </div>
 </div>
 
-<h1>Daniel Part</h1>
+
 **Other**
 <br>
 **AVLTreeAdater**
