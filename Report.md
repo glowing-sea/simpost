@@ -28,18 +28,27 @@ The following is a report template to help your team successfully provide all th
 <hr>
 ## Team Members and Roles
 
-| UID | Name | Role |
-| :--- | :----: | ---: |
-| [u7253519] | [Jack Fan] | [Designing layout and button, text logic] |
-| [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
-| [u7227871] | [Haoting Chen] | [Implementing database] |
-| [u7323177] | [Zhengling Zhang] | [Creating Messages] |
+| UID | Name |                                                                                                     Role |
+| :--- | :----: |---------------------------------------------------------------------------------------------------------:|
+| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic] |
+| [u7241110] | [Dai Boyu] |                     [Implementing search function with parser and tokenizer, implementing tree and Json] |
+| [u7227871] | [Haoting Chen] | [Design databse, encoding of persistent data, functions connecting the frontend, some frontend features] |
+| [u7323177] | [Zhengling Zhang] |                                                                                      [Creating Messages] |
 
 ## Summary of Individual Contributions
 
 *[Summarise the contributions made by each member to the project, e.g. code implementation, code design, UI design, report writing, etc.]*
 
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
+
+u7227871, Haoting Chen, I contribute 30% of the code.
+* Design of database 80%, such as the `database` package
+* Bottom navigator manu 100%
+* Private home page 80% such as `HomeSoneone.class`
+* Public home page 100% such as  `Home.class`
+* Post browsing page 20% such as  `Post.class`
+* Post viewing page 10% such as  `PostView.class`
+* Post creating page 10% such as  `PostCreate.class`
 
 *Here is an example:*
 
@@ -60,6 +69,12 @@ The following is a report template to help your team successfully provide all th
 <hr>
 ## Conflict Resolution Protocol
 
+* Never push code that is partially working
+* Always pull before writing
+* Carefully review code before merging
+* Use CamelCase to name
+* Write comments for every functions
+
 *[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
 <hr>
 ## Application Description
@@ -70,7 +85,7 @@ In our app, we try to build an app that allows users to post and share informati
 
 **Application Use Cases and or Examples**
 
-We expect our app to be used for communication and sharing information, when users want to ask a question, share their thoughts on something or simply post something interesting that they see.
+We expect our app to be used for communication and sharing information as well as messaging, when users want to ask a question, share their thoughts on something or simply post something interesting that they see.
 For example, if one of our users wants to ask a question about a comp lab, then he/she can post that question on our app. Then, other users
 would be able to see that post in their app and be able to make a response.
 
