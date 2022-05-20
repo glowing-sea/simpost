@@ -177,6 +177,30 @@ which is significantly faster than ordinary sqlite matching
 
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
 
+##Activities and functions
+**user login and registering**
+As the application is first open the appliction owuld directly show a login and registering page. Where user login<br>
+![img.png](ReportImages/screenShot_Activity_login.png)
+<br>
+For security and efficiency the activity would not directly
+interact with the database file. As the user click the buttons 
+the infromation(input username password) would be pass to 
+2 other class. These class would do the operation and raturn the result
+<br>
+
+![img.png](ReportImages/diagram_login_and_singup_logic.png)
+
+<br>
+
+
+**Statistic about the user**
+<br>
+In this project enable the user to view statistic about the user's himself this include many different aspects
+this includes proprttion of view with like. the gender distribution of the viewer
+![img.png](ReportImages/screenShot_Statistic1.png)
+![img.png](ReportImages/screenShot_Statistic.png)
+<br>
+
 **Other**
 <br>
 **AVLTreeAdater**
@@ -215,13 +239,7 @@ this could be accessed at the search page
 ![img.png](ReportImages/screenShot_Game.png)<br>
 
 
-**Statistic about the user**
-<br>
-In this project enable the user to view statistic about the user's himself this include many different aspects
-this includes proprttion of view with like. the gender distribution of the viewer
-![img.png](ReportImages/screenShot_Statistic1.png)
-![img.png](ReportImages/screenShot_Statistic.png)
-<br>
+
 
 
 ## Summary of Known Errors and Bugs

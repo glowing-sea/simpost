@@ -29,7 +29,7 @@ public class PostRWTest {
         FileRW fileRW = new FileRW(appContext);
         String postString = testPost.toJson();
         String fileName = "test.json";
-        fileRW.savingString("post",fileName,postString);
+        fileRW.savingString(fileName,postString);
         String readed = "";
         try{
             readed = fileRW.readJSON("test.json");
