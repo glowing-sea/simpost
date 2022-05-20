@@ -797,7 +797,7 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    Code: java/com.example.login/Activity/Home, line 89 - 94, 205 - 257
    java/com.example.login/Activity/PostCreate, line 81 - 121
    java/com.example.login/Activity/PostView, line 61 - 72
-     <img src="ReportImages/profileImage.png" width = "200">
+     <img src="ReportImages/profileImage_image.png" width = "200">
    
 2. *Feature 2: . Use GPS information (see the demo presented by our tutors. For example, your app
    may use the latitude/longitude to show some information relevant to your app). (easy)
