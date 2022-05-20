@@ -192,7 +192,16 @@ simple data sturcture
 ```
 Gson object build using this way is ablt to decode Json serialised tree. However,it is still unstable
 it is ablt to conver some tree in testing but not able to convert some other tree
-*[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
+<br>
+
+**FileRW**
+<br>
+Code:app/src/main/java/com/example/login/FileIO
+<br>
+This is a helper class that provide fuctions for saving string as a json file under
+the application's private space and loading JSON file as a string
+![img.png](ReportImages/UML_FileRW.png)<br>
+<br>
 
 ## Summary of Known Errors and Bugs
 
