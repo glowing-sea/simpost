@@ -266,7 +266,7 @@ which is significantly faster than ordinary sqlite matching
       After users login, this is the first page that they would see. In here, users will see all the recent published posts by default, but they can also choose to see posts from users they follow, posts from their view history, or posts they publish themselves.
    </p>
    <div class="half" style="text-align: center;">
-      <img src="ReportImages/postsPage.png" width="200">
+      <img src="ReportImages/postsPage.jpg" width="200">
    </div>
 </div>
 
@@ -278,7 +278,7 @@ which is significantly faster than ordinary sqlite matching
       When the users sees a post they`re interested in from posts page or from searching, he/she can click on the post preivew and jump to the PostView Page. In here, users can see details of a post, including title, content, publish time, and images. Users may also choose to like the post with the button under the post, and if they want to view past comments or make one, they can do so by using the "comments" button.
    </p>
    <div class="half" style="text-align: center;">
-      <img src="ReportImages/viewPost.png" width="200">
+      <img src="ReportImages/viewPost.jpg" width="200">
    </div>
 </div>
 
@@ -289,7 +289,7 @@ which is significantly faster than ordinary sqlite matching
      In the posts page, user may also choose to publish their own post by clicking the bottom right button. When creating, users can add title, content, images and tag to the post. We only allow a maximum of 3 images, since it is easier to store in databse this way and we don`t want each post to be too filled with images. The tag function makes it easier for us to sort the posts, and also allow users to identify posts they would be interested in.
    </p>
    <div class="half" style="text-align: center;">
-      <img src="ReportImages/createPost.png" width="200">
+      <img src="ReportImages/createPost.jpg" width="200">
    </div>
 </div>
 
@@ -813,8 +813,8 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    Code: java/com.example.login/Activity/HomeSome, line 113 - 139
    java/com.example.login/Activity/HomeUserList
    java/com.example.login/Activity/HomeUserListAdapter
-   ![img.png](ReportImages/follow.png)
-   ![img.png](ReportImages/home_follow.png)
+   <img src="ReportImages/follow.png" width = "200">
+   <img src="ReportImages/home_follow" width = "200">
 
 *Privacy*
 1. Users may send requests which are then accepted or denied by another user or
@@ -823,14 +823,14 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
 2. A user can only see a profile/event that is Public (consider that there are at least two
    types of profiles: public and private). (easy)
    Code:  java/com.example.login/Activity/HomePrivacy
-   ![img.png](ReportImages/privacy.png)
+     <img src="ReportImages/privacy" width = "200">
    
 3. Provide users with the ability to ‘block’ things. Things (e.g., events, users, messages
        containing abusive language, etc) shall not be visible to the user who blocked that
        activity. (medium)
    Code: java/com.example.login/Activity/HomePrivacy, line 82 - 87
    java/com.example.login/Database/HelperMethods, line 167 - 177
-   ![img.png](ReportImages/privacy.png)
+   <img src="ReportImages/privacy" width = "200">
    
 *Peer to Peer Messaging*
 1. Provide users with the ability to message each other or an institution directly (e.g., a
@@ -840,8 +840,8 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    java/com.example.login/Activity/MessagesAddPage
    java/com.example.login/Activity/MessagesChat
    java/com.example.login/Activity/MessagesChatAdapter
-   ![img.png](ReportImages/message1.png)
-   ![img.png](ReportImages/message2.png)
+   <img src="ReportImages/message1.png" width = "200">
+   <img src="ReportImages/message2.png" width = "200">
 
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
 
