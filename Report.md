@@ -179,7 +179,7 @@ posts with the key word in its title.</p>
 
 <p>
 posts with the key word in its title.<br>
-![img.png](ReportImages/screenShot_SearchPage.png)<br><br>
+<br><br>
 Code: java/com.example.login/parserAndTokenizer <br>
 java/com.example.login/Activity/SearchPage <br>
 To improve the efficiency of the search we used the fts(4) extension in the assignment
