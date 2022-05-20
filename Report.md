@@ -932,7 +932,7 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
    java/com.example.login/Activity/MessagesAddPage
    java/com.example.login/Activity/MessagesChat
    java/com.example.login/Activity/MessagesChatAdapter
-   <img src="ReportImages/message1.png" width = "200">
+   <img src="ReportImages/messageScreen.png" width = "200">
    <img src="ReportImages/message2.png" width = "200">
 
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
