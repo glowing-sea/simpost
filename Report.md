@@ -371,6 +371,7 @@ With the recycle view, the user can roll the page to any message he or she wants
    </p>
    <div class="half" style="text-align: center;">
       <img src="ReportImages/viewPost.jpg" width="200">
+      <img src="Henry/view.png" width="200">
    </div>
 </div>
 
