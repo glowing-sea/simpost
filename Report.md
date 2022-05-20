@@ -188,7 +188,7 @@ which is significantly faster than ordinary sqlite matching
 </div>
 <hr>
 <div>
-   <h1>Surpise Item</h1>
+   <h1>Suprise Item</h1>
    *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
 </div>
 <hr>
@@ -213,23 +213,12 @@ which is significantly faster than ordinary sqlite matching
  
 <br>
 
-To improve the efficiency of the search we used the fts(4) extension in the assignment 
-which is significantly faster than ordinary sqlite matching 
 
 **Surpise Item**
 
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
 
-##Activities and functions
-**user login and registering**
-As the application is first open the appliction owuld directly show a login and registering page. Where user login<br>
-![img.png](ReportImages/screenShot_Activity_login.png)
-<br>
-For security and efficiency the activity would not directly
-interact with the database file. As the user click the buttons 
-the infromation(input username password) would be pass to 
-2 other class. These class would do the operation and raturn the result
-<br>
+
 
 <br>
 </div>
@@ -277,16 +266,9 @@ each of these functions are either turned on or off.
 <br>
  ![img.png](ReportImages/privacySetting.png)
 
-**Statistic about the user**
-<br>
-In this project enable the user to view statistic about the user's himself this include many different aspects
-this includes proprttion of view with like. the gender distribution of the viewer
-![img.png](ReportImages/screenShot_Statistic1.png)
-![img.png](ReportImages/screenShot_Statistic.png)
-<br>
-</div>
-<hr>
-
+<h1>ZZLPart</h1>
+<h1>Jack Part</h1>
+<h1>Daniel Part</h1>
 **Other**
 <br>
 **AVLTreeAdater**
