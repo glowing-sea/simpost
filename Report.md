@@ -31,10 +31,10 @@ The following is a report template to help your team successfully provide all th
 | UID | Name | Role |
 | :--- | :----: | ---: |
 | [u7253519] | [Jack Fan] | [] |
-| [u7241110] | [Dai Boyu] | [] |
-| [u7227871] | [Haoting Chen] | [] |
-| [u7323177] | [Zhengling Zhang] | [] |
-<hr>
+| [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
+| [u7227871] | [Haoting Chen] | [Implementing database] |
+| [u7323177] | [Zhengling Zhang] | [Creating Messages] |
+
 ## Summary of Individual Contributions
 
 *[Summarise the contributions made by each member to the project, e.g. code implementation, code design, UI design, report writing, etc.]*
@@ -168,6 +168,9 @@ The grammer is mainly used to enablt user to search for different posts
 
 <h3>Tokenizer and Parsers</h3>
 <p>*In our app, we mainly used parser and tokenizer in our search function. This is implemented because we think that it would
+**Tokenizer and Parsers**
+
+*In our app, we mainly used parser and tokenizer in our search function. This is implemented because we think that it would
 help our users better constraint the content that they want to search for, and they would be able to find what they want more
 easily. For example, when the search key word is added with "[]", then the search would be constrained to only search for
 posts that are published by these users, and when the key word is constrained in "{}", the search would only be directed towards
@@ -175,6 +178,8 @@ posts with the key word in its title.</p>
 
 
 <p>
+posts with the key word in its title.<br>
+![img.png](ReportImages/screenShot_SearchPage.png)<br><br>
 Code: java/com.example.login/parserAndTokenizer <br>
 java/com.example.login/Activity/SearchPage <br>
 To improve the efficiency of the search we used the fts(4) extension in the assignment
@@ -199,6 +204,18 @@ which is significantly faster than ordinary sqlite matching
    </div>
  
 <br>
+
+To improve the efficiency of the search we used the fts(4) extension in the assignment 
+which is significantly faster than ordinary sqlite matching 
+
+**Surpise Item**
+
+*[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
+
+##Activities and functions
+**user login and registering**
+As the application is first open the appliction owuld directly show a login and registering page. Where user login<br>
+![img.png](ReportImages/screenShot_Activity_login.png)
 <br>
 For security and efficiency the activity would not directly
 interact with the database file. As the user click the buttons 
@@ -220,6 +237,15 @@ the infromation(input username password) would be pass to
       <img src="ReportImages/screenShot_AdminUsers.png" width="200" >
       <img src="ReportImages/screenShot_AdminPosts.png" width="200">
    </div>
+In this project, we used scroll view to implement the layout for viewing and creating post. And for showing 
+search results and showing following lists and post lists, we used recycler view. This is because when viewing
+or creating details of a post, the content could be very long and scroll view would be better to fit the content.
+And for showing posts and users, even though the content is also long, however each individual post or user would be
+presented in the same way, therefore a recycler was better.
+<br>
+![img.png](ReportImages/scrollview.png)
+
+**Privacy Setting for user**
 <br>
 </div>
 <hr>
@@ -232,6 +258,21 @@ the infromation(input username password) would be pass to
    <img src="ReportImages/screenShot_Statistic1.png" width="200" >
       <br>
    <img src="ReportImages/screenShot_Statistic.png" width="200">
+Many users might have information that they don`t want others to see. Therefore, we also implemented a set of privacy
+settings for users. Users can choose to hide their age, gender, location, following users, and followers, since for
+many users, these might be considered as private information that they do not want others to see. Also, we allow
+users to choose if they want to censor offensive words in privacy settings, since some users could be ok with seeing
+such language while others could be offended. For each of these settings, we used a switch as the on/off button, since
+each of these functions are either turned on or off.
+<br>
+![img.png](ReportImages/privacySetting.png)
+
+**Statistic about the user**
+<br>
+In this project enable the user to view statistic about the user's himself this include many different aspects
+this includes proprttion of view with like. the gender distribution of the viewer
+![img.png](ReportImages/screenShot_Statistic1.png)
+![img.png](ReportImages/screenShot_Statistic.png)
 <br>
 </div>
 <hr>
@@ -273,9 +314,24 @@ this could be accessed at the search page
 <br>
 ![img.png](ReportImages/screenShot_Game.png)<br>
 
+**Recycle view**
+<br>
+When designing the Messages and AdminUser class, recycleview is used. 
+We created a MessagesAdapter class which extends RecyclerView.Adapter. 
+And we designed the layout of the adapter. 
+In this way, we are able to show pieces of messages including the sender, time, and content.
+<br>
+![img.png](ReportImages/messageScreen.png)<br>
 
-
-
+**Database**
+<br>
+In app, sqlite is chosen to be the database. 
+Two tables, one for users and one for posts, are created. 
+In database, we realise the input of text and image. 
+Also, we defined some datacontainers and helping methods to help access to database.
+<br>
+![img.png](ReportImages/databaseScreen.png)<br>
+![img.png](ReportImages/dataContainerScreen.png)<br>
 
 ## Summary of Known Errors and Bugs
 
