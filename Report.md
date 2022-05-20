@@ -211,16 +211,12 @@ which is significantly faster than ordinary sqlite matching
    </div>
  
 <br>
-
-
 **Surpise Item**
 
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
-
-
-
 <br>
 </div>
+
 <hr>
 <div title="Adniistrator functions" style="text-align: center;">
    <h3>Administor</h3>
@@ -233,16 +229,6 @@ which is significantly faster than ordinary sqlite matching
       <img src="ReportImages/screenShot_AdminUsers.png" width="200" >
       <img src="ReportImages/screenShot_AdminPosts.png" width="200">
    </div>
-In this project, we used scroll view to implement the layout for viewing and creating post. And for showing 
-search results and showing following lists and post lists, we used recycler view. This is because when viewing
-or creating details of a post, the content could be very long and scroll view would be better to fit the content.
-And for showing posts and users, even though the content is also long, however each individual post or user would be
-presented in the same way, therefore a recycler was better.
-<br>
-![img.png](ReportImages/scrollview.png)
-
-**Privacy Setting for user**
-<br>
 </div>
 
 
@@ -256,6 +242,7 @@ presented in the same way, therefore a recycler was better.
    <img src="ReportImages/screenShot_Statistic1.png" width="200" >
    <img src="ReportImages/screenShot_Statistic.png" width="200">
 </div>
+
 <h1>ZZLPart</h1>
 
 
@@ -263,7 +250,7 @@ presented in the same way, therefore a recycler was better.
 
 <hr>
 <div title="Privacy Setting" style="text-align: center;">
-   <h3>Statistic about the user</h3>
+   <h3>Privacy Settings</h3>
    <p>
       Many users might have private information that they don`t want others to see, therefore, we also allow users to set their privacy settings in the HomePrivacy Page. Users can choose to set their age, gender, location, follower, following lists to be hidden, and each of these buttons were implemented with a switch, since there are on and off states. Other than that, we also allow users to choose whether they want offensive words to be censored, since some users might be ok with these, while others might considered these very offensive. 
    </p>
