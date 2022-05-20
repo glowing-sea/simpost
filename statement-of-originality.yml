@@ -33,10 +33,19 @@ code:
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external assets)
 assets:
-  # NOTE: "Bliss" is just here as an example, you should remove it
-  - comment: "_Bliss_ by Charles O'Rear"
-    url: https://en.wikipedia.org/wiki/Bliss_(image)
-    licence: fair use
+
+  - comment: "Default user homepage background"
+    url: https://pixabay.com/illustrations/earth-space-sunlight-sun-rays-1756274/(image)
+    licence: https://pixabay.com/service/license/
+
+  - comment: "Default user homepage avatar"
+    url: https://pixabay.com/vectors/blank-profile-picture-mystery-man-973460/(image)
+    licence: https://pixabay.com/service/license/
+
+  - comment: "Login page image"
+    url: https://pixabay.com/photos/joysticks-playstation-game-console-6603119/(image)
+    licence: https://pixabay.com/service/license/
+
 
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
