@@ -919,7 +919,7 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
 2. A user can only see a profile/event that is Public (consider that there are at least two
    types of profiles: public and private). (easy)
    Code:  java/com.example.login/Activity/HomePrivacy
-     <img src="ReportImages/privacy.png" width = "200">
+     <img src="Henry/setting.png" width = "200">
      <img src="Henry/home1.png" width = "200">
      <img src="Henry/home2.png" width = "200">
    
