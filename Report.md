@@ -32,7 +32,7 @@ The following is a report template to help your team successfully provide all th
 | :--- | :----: | ---: |
 | [u7253519] | [Jack Fan] | [Designing layout and onclick logic, create ppt] |
 | [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
-| [u7227871] | [Haoting Chen] | [Implementing database and main proposer for the app] |
+| [u7227871] | [Haoting Chen] | [Implementing database and main designer for the app] |
 | [u7323177] | [Zhengling Zhang] | [Creating Messages] |
 
 ## Summary of Individual Contributions
