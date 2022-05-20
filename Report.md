@@ -30,7 +30,7 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name |                                                                                                     Role |
 | :--- | :----: |---------------------------------------------------------------------------------------------------------:|
-| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic] |
+| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic, make ppt] |
 | [u7241110] | [Dai Boyu] |                     [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Design databse, encoding of persistent data, functions connecting the frontend, some frontend features] |
 | [u7323177] | [Zhengling Zhang] |                                                           [Creating Messages,initially creating ] |
