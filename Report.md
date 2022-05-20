@@ -30,7 +30,7 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [u7253519] | [Jack Fan] | [] |
+| [u7253519] | [Jack Fan] | [Designing layout and button, text logic] |
 | [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Implementing database] |
 | [u7323177] | [Zhengling Zhang] | [Creating Messages] |
@@ -255,15 +255,6 @@ presented in the same way, therefore a recycler was better.
    </p>
    <img src="ReportImages/screenShot_Statistic1.png" width="200" >
    <img src="ReportImages/screenShot_Statistic.png" width="200">
-<br>
-Many users might have information that they don`t want others to see. Therefore, we also implemented a set of privacy
-settings for users. Users can choose to hide their age, gender, location, following users, and followers, since for
-many users, these might be considered as private information that they do not want others to see. Also, we allow
-users to choose if they want to censor offensive words in privacy settings, since some users could be ok with seeing
-such language while others could be offended. For each of these settings, we used a switch as the on/off button, since
-each of these functions are either turned on or off.
-<br>
- ![img.png](ReportImages/privacySetting.png)
 </div>
 <h1>ZZLPart</h1>
 
