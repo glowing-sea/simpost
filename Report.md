@@ -30,7 +30,7 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name |                                                                                                     Role |
 | :--- | :----: |---------------------------------------------------------------------------------------------------------:|
-| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic] |
+| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic, make ppt] |
 | [u7241110] | [Dai Boyu] |                     [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Design databse, encoding of persistent data, functions connecting the frontend, some frontend features] |
 | [u7323177] | [Zhengling Zhang] |                                                           [Creating Messages,initially creating ] |
@@ -41,7 +41,7 @@ The following is a report template to help your team successfully provide all th
 
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
-u7227871, Haoting Chen, I contribute 30% of the code.
+u7227871, Haoting Chen, I contribute 29% of the code.
 * Design of database 80%, such as the `database` package
 * Bottom navigator manu 100%
 * Private home page 80% such as `HomeSoneone.class`
@@ -92,25 +92,39 @@ When we encounter conflicts, we would try to solve by discussing online. If we c
 <hr>
 ## Application Description
 
-In our app, we try to build an app that allows users to post and share information. As an analogy, it should be similar to Reddit. Users can post about any topic that they want,
-,and other users would be able to view the post and make response.
+In our app, we try to build an app that allows users to post and share information as well as messaging. As an analogy, it should be similar to Reddit. Users can post about any topic that they want,
+and other users would be able to view the post and make response. User can customise their homepage including avatar and background. They are also a lot of privacy settings such as blocking a user or choose what homepage information is public.
 
 
 **Application Use Cases and or Examples**
 
-We expect our app to be used for communication and sharing information, when users want to ask a question, share their thoughts on something or simply post something interesting that they see.
-For example, if one of our users wants to ask a question about a comp lab, then he/she can post that question on our app. Then, other users
+We expect our app to be used for communication and sharing information for user 
+who love games and anime in the University. This app may be used in the "ANU Anime and Gaming Society". 
+When a user makes a post, they can select a tag so that readers can choose the types of posts they like.
+All of these tag names are chosen from the hobbies of people who like anime and games.
+User can also make a post with a Study tag to share and discuss with others about their university study.
+
+For example, if one of our users wants to ask a question about a comp lab, then 
+he/she can post that question on our app. Then, other users
 would be able to see that post in their app and be able to make a response.
 
 *Targets Users: Students*
 
-* Students can use this app to post interesting experiences they have at scholl
-* Students can use this app to share problems they have regarding courses
+* Share their leaning experience and Recommend others to learn
+* Interesting moment in the university
+* Ask questions regarding courses
 
 *Target Users: Gamers*
 
-* *Users can use this app to post questions that they encounter in a game*
+* Interesting moment in a game
+* Ask how to clear battle in a game
+* Provide a game review
 
+*Target Users: Anime lovers*
+
+* Share their favourite anime
+* Share their anime cosplay pictures
+* Share jokes
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 <hr>
@@ -299,7 +313,6 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Statistic.png" width="200">
 </div>
 
-<h1>ZZLPart</h1>
 **Message**
 <br>
 In the implementation of information exchange between users, we designed a button in the homepage called "Message" through which we can go to the message page. 
@@ -311,8 +324,6 @@ With the recycle view, the user can roll the page to any message he or she wants
 ![img.png](ReportImages/messageStructure.png)<br>
 ![img.png](ReportImages/messageScreen.png)<br>
 
-
-<h1>Jack Part</h1>
 
 <hr>
 <div title="Privacy Setting" style="text-align: center;">
