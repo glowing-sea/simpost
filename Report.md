@@ -289,8 +289,21 @@ With the recycle view, the user can roll the page to any message he or she wants
     </p>
 </div>
 
+<div title = "Settings">
+    <h3>Other settings</h3>
+    <div>
+        <img src="ReportImages/homeSetting/screenShot1.png" width="150">
+        <img src="ReportImages/homeSetting/screenShot2.png" width="150">
+    </div>
+    <p>
+        By scroll down and clicking the gear with text "setting" the user could go to the page where he coud
+        do some custumisation of his account. Here the user could set information like age and egnder for the app
+        to use. The user could also use gps location to fill in his location automaticall
+    </p>
+</div>
 
 
+<hr>
 **Other**
 <br>
 **AVLTreeAdater**
