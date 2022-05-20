@@ -267,10 +267,21 @@ each of these functions are either turned on or off.
 <div title = "black listing">
     <h3>Black Listing</h3>
     <div>
-        <img src="ReportImages/blackListing/">
-        <img src="ReportImages">
-        <img src="ReportImages">
+        <img src="ReportImages/blackListing/screenshot1.png" width="150">
+        <img src="ReportImages/blackListing/screenShot2.png" width="150">
+        <img src="ReportImages/blackListing/screenShot3.png" width="150">
     </div>
+    <p>
+        As shown in the figure abot the user could list otehr user in to their black list. Through adding an other user
+        . This wouldb block any message form users in the black list
+    </p>
+</div>
+
+<div title="setting">
+    <h3> home setting</h3>
+    <p>
+    hi
+    </p>
 </div>
 
 
