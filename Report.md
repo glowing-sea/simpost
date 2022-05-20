@@ -12,7 +12,7 @@ The following is a report template to help your team successfully provide all th
 *We give instructions enclosed in square brackets [...] and examples for each sections to demonstrate what are expected for your project report.*
 
 *Please remove the instructions or examples in `italic` in your final report.*
-
+<hr>
 ## Table of Contents
 
 1. [Team Members and Roles](#team-members-and-roles)
@@ -25,7 +25,7 @@ The following is a report template to help your team successfully provide all th
 8. [Testing Summary](#testing-summary)
 9. [Implemented Features](#implemented-features)
 10. [Team Meetings](#team-meetings)
-
+<hr>
 ## Team Members and Roles
 
 | UID | Name | Role |
@@ -34,7 +34,7 @@ The following is a report template to help your team successfully provide all th
 | [u7241110] | [Dai Boyu] | [] |
 | [u7227871] | [Haoting Chen] | [] |
 | [u7323177] | [Zhengling Zhang] | [] |
-
+<hr>
 ## Summary of Individual Contributions
 
 *[Summarise the contributions made by each member to the project, e.g. code implementation, code design, UI design, report writing, etc.]*
@@ -57,11 +57,11 @@ The following is a report template to help your team successfully provide all th
 *[Slide preparation. Were you responsible for the slides?]*
 
 *[Miscellaneous contributions. You are welcome to provide anything that you consider as a contribution to the project or team.]*
-
+<hr>
 ## Conflict Resolution Protocol
 
 *[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
-
+<hr>
 ## Application Description
 
 In our app, we try to build an app that allows users to post and share information. As an analogy, it should be similar to Reddit. Users can post about any topic that they want,
@@ -85,12 +85,12 @@ would be able to see that post in their app and be able to make a response.
 
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
-
+<hr>
 ## Application UML
 
 ![ClassDiagramExample](images/ClassDiagramExample.png)
 *[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
-
+<hr>
 ## Application Design and Decisions
 
 *Please give clear and concise descriptions for each subsections of this part. It would be better to list all the concrete items for each subsection and give no more than `5` concise, crucial reasons of your design. Here is an example for the subsection `Data Structures`:*
@@ -123,7 +123,7 @@ would be able to see that post in their app and be able to make a response.
       * *Reasons:*
       * searching is faster in side a tree compare to arraylists
 
-
+<hr>
 **Design Patterns**
 
 *[SingleTon] <br>
@@ -160,27 +160,43 @@ Word ::= termianl(a english word)
 The grammer is mainly used to enablt user to search for different posts 
 
 **Tokenizer and Parsers**
-
-*In our app, we mainly used parser and tokenizer in our search function. This is implemented because we think that it would
+<div>
+<img src="ReportImages/screenShot_SearchPage.png" width = "200" align="right">
+<p>*In our app, we mainly used parser and tokenizer in our search function. This is implemented because we think that it would
 help our users better constraint the content that they want to search for, and they would be able to find what they want more
 easily. For example, when the search key word is added with "[]", then the search would be constrained to only search for
 posts that are published by these users, and when the key word is constrained in "{}", the search would only be directed towards
-posts with the key word in its title.<br>
-![img.png](ReportImages/screenShot_SearchPage.png)<br><br>
+posts with the key word in its title.</p>
+<p>
 Code: java/com.example.login/parserAndTokenizer <br>
 java/com.example.login/Activity/SearchPage <br>
 
-To improve the efficiency of the search we used the fts(4) extension in the assignment 
-which is significantly faster than ordinary sqlite matching 
+To improve the efficiency of the search we used the fts(4) extension in the assignment
+which is significantly faster than ordinary sqlite matching
+</p>
+<hr>
+</div>
 
-**Surpise Item**
+<br>
+
+
+<h1>Surpise Item</h1>
+****
 
 *[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
+<hr>
+<h2>Activities and functions</h2>
+<div style="text-align: center;">
+   <h3>user login and registering</h3>
+   <p>
+   As the application is first open the appliction owuld directly show a login and registering page. Where user login<br>
+   </p>
+   <div class="half" style="text-align: center;">
+   <img src="ReportImages/screenShot_Activity_login.png" width="300">
+   <img src="ReportImages/diagram_login_and_singup_logic.png" width="300">
+   </div>
 
-##Activities and functions
-**user login and registering**
-As the application is first open the appliction owuld directly show a login and registering page. Where user login<br>
-![img.png](ReportImages/screenShot_Activity_login.png)
+<br>
 <br>
 For security and efficiency the activity would not directly
 interact with the database file. As the user click the buttons 
@@ -188,18 +204,35 @@ the infromation(input username password) would be pass to
 2 other class. These class would do the operation and raturn the result
 <br>
 
-![img.png](ReportImages/diagram_login_and_singup_logic.png)
-
 <br>
-
-
-**Statistic about the user**
+</div>
+<hr>
+<div style="text-align: center;">
+   <h3>Administor</h3>
+   <p>
+      As some may notice that there is another button at the login page ( a wrench).
+      This would lead to the page where possible administrator managing the content of the application
+   </p>
+   <br>
+   <div class="half" style="text-align: center;">
+      <img src="ReportImages/screenShot_AdminUsers.png" width="200" >
+      <img src="ReportImages/screenShot_AdminPosts.png" width="200">
+   </div>
 <br>
-In this project enable the user to view statistic about the user's himself this include many different aspects
-this includes proprttion of view with like. the gender distribution of the viewer
-![img.png](ReportImages/screenShot_Statistic1.png)
-![img.png](ReportImages/screenShot_Statistic.png)
+</div>
+<hr>
+<div style="text-align: center;">
+   <h3>Statistic about the user</h3>
+   <p>
+      In this project enable the user to view statistic about the user's himself this include many different aspects
+      this includes proprttion of view with like. the gender distribution of the viewer
+   </p>
+   <img src="ReportImages/screenShot_Statistic1.png" width="200" >
+      <br>
+   <img src="ReportImages/screenShot_Statistic.png" width="200">
 <br>
+</div>
+<hr>
 
 **Other**
 <br>
