@@ -269,10 +269,9 @@ In the message page, we enabled users to chat with each other in a mailbox.
 Every user can send a message to another user with two text input, user sent to and message content. (CALL THEM A AND B)
 With the "Send" button clicked, A and B will be encoded to Message type and then stored into the database.
 When a user visit message page, the database will check every message related to the current user and show the information on a recycle view, sorted by time.
-With the recycle view, the user can roll the page to any message he or she wants to check. And click it into the MessageChat page to view the detail.
-![img.png](ReportImages/messageSturcture.png)<br>
+With the recycle view, the user can roll the page to any message he or she wants to check. And click it into the MessageChat page to view the detail.<br>
+![img.png](ReportImages/messageStructure.png)<br>
 ![img.png](ReportImages/messageScreen.png)<br>
-<br>
         
 
 <h1>Jack Part</h1>
