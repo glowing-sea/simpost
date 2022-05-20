@@ -49,6 +49,8 @@ The following is a report template to help your team successfully provide all th
 * A.PostView, I created most of the layout for this page and set the corresponding functions.
 * B.PostCreate, I created the layout for this page and the corresponding logic
 * C.HomeUserList/HomeUserListAdapter, I created the first version of this page
+* D.Responsible for ppt and portion of report.
+
 ...........
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
