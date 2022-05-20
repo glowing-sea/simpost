@@ -33,7 +33,7 @@ The following is a report template to help your team successfully provide all th
 | [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic] |
 | [u7241110] | [Dai Boyu] |                     [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Design databse, encoding of persistent data, functions connecting the frontend, some frontend features] |
-| [u7323177] | [Zhengling Zhang] |                                                           [Creating Messages,initially creating ] |
+| [u7323177] | [Zhengling Zhang] |                                                    [Creating Messages,initially creating database] |
 
 ## Summary of Individual Contributions
 
@@ -57,16 +57,18 @@ u7227871, Haoting Chen, I contribute 29% of the code.
 * D.MessageChat.class
 * E.MessageChatAdapter.class
 
-
-*Here is an example:*
-
-*UID1, Name1, I contribute % of the code. Here are my contributions:*
-
-*U7253519, Jack Fan, I contribute % of the code. Here are my contributions:*
+*U7253519, Jack Fan, I contribute 26.6% of the code. Here are my contributions:*
 * A.PostView, I created most of the layout for this page and set the corresponding functions.
 * B.PostCreate, I created the layout for this page and the corresponding logic
 * C.HomeUserList/HomeUserListAdapter, I created the first version of this page
 * D.Responsible for ppt and portion of report.
+
+*U7241110, Boyu Dai, I contributed 25.25% of the project
+*A.Tree data structure(serilaisation and deserialisaition)
+*B.FileIO (storage of the JSON)
+*C.Parser and Tokenizer
+*D.logic of searching post, finding related post
+
 ...........
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
@@ -128,10 +130,38 @@ would be able to see that post in their app and be able to make a response.
 
 *List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
 <hr>
-## Application UML
+<h1>Project Sturcture </h1>
+<img src="ReportImages/packageDiagram/overView.jpg">
+<p>
+    As the project include a large number of classes, making a complete  UML diagram is hard. Thus, all the java calss are
+    classified in to different packets
+</p>
+<h3>Database</h3>
+<p>
+The java class in this package is responsible for processing operations
+related to database. It creates tables , obtain infromation.
+</p>
+<h3>Tree</h3>
+<p>
+This package is the data structure of the tree. However, it is still not very stable.
+It alson provides a method of serialising tree to JSON and deserialising it
+</p>
+<h3>DataContainer</h3>
+<p>
+This package contain java files that defines containers of data. Eg.Post would contain the content
+and title of the post. These class are used to pass information with the application
+</p>
+<h3>Activity</h3>
+<p>
+This package are java classes of android activity. It process the user input, use objects and method form other to obtain
+information for the user and visualise them.
+</p>
+<h3>ParserAndTokenizer</h3>
+<p>
+Tokenizer is used in searching, it would break the user input into tokens. So that search cound be done
+according to different user input
+</p>
 
-![ClassDiagramExample](images/ClassDiagramExample.png)
-*[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
 <hr>
 ## Application Design and Decisions
 
@@ -911,8 +941,11 @@ java/com.example.login/Database/UserDAOImpl, line 518 - 576
 
 *Here is an example:*
 
-- *[Team Meeting 1](MeetingTemplate.md)*
-- ...
+- *[Team Meeting 1](Checkpoint W7/Meeting1.md)*
+- *[Team Meeting 2](Checkpoint W10/Meeting Minutes - Week 9.md)*
+- *[Team Meeting 3](Meeting/Meeting3.md)*
+- *[Team Meeting 4](Meeting/Meeting4.md)*
+
 
 *Either write your meeting minutes here or link to documents that contain them. There must be at least 4 team meetings. Note that you must commit your minute meetings shortly after your meeting has taken place (e.g., within 24h), otherwise your meeting minute will not be accepted.*
 
