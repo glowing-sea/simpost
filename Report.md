@@ -165,10 +165,13 @@ The grammer is mainly used to enablt user to search for different posts
 help our users better constraint the content that they want to search for, and they would be able to find what they want more
 easily. For example, when the search key word is added with "[]", then the search would be constrained to only search for
 posts that are published by these users, and when the key word is constrained in "{}", the search would only be directed towards
-posts with the key word in its title.
-![img.png](ReportImages/searchImage.png)<br><br>
+posts with the key word in its title.<br>
+![img.png](ReportImages/screenShot_SearchPage.png)<br><br>
 Code: java/com.example.login/parserAndTokenizer <br>
 java/com.example.login/Activity/SearchPage <br>
+
+To improve the efficiency of the search we used the fts(4) extension in the assignment 
+which is significantly faster than ordinary sqlite matching 
 
 **Surpise Item**
 
@@ -202,6 +205,24 @@ This is a helper class that provide fuctions for saving string as a json file un
 the application's private space and loading JSON file as a string
 ![img.png](ReportImages/UML_FileRW.png)<br>
 <br>
+
+**Playing Sound in android**
+<br>
+As it might be notice that this appliction plays sound as user press certain button.
+Using this function a interactive game is implemnted with search page that enable user to paly
+this could be accessed at the search page
+<br>
+![img.png](ReportImages/screenShot_Game.png)<br>
+
+
+**Statistic about the user**
+<br>
+In this project enable the user to view statistic about the user's himself this include many different aspects
+this includes proprttion of view with like. the gender distribution of the viewer
+![img.png](ReportImages/screenShot_Statistic1.png)
+![img.png](ReportImages/screenShot_Statistic.png)
+<br>
+
 
 ## Summary of Known Errors and Bugs
 
