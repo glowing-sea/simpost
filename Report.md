@@ -197,7 +197,7 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Activity_login.png" width="300">
    <img src="ReportImages/diagram_login_and_singup_logic.png" width="300">
    </div>
-
+ 
 <br>
 <br>
 For security and efficiency the activity would not directly
