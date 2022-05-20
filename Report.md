@@ -30,7 +30,7 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name |                                                                                                     Role |
 | :--- | :----: |---------------------------------------------------------------------------------------------------------:|
-| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic, make ppt] |
+| [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic] |
 | [u7241110] | [Dai Boyu] |                     [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Design databse, encoding of persistent data, functions connecting the frontend, some frontend features] |
 | [u7323177] | [Zhengling Zhang] |                                                           [Creating Messages,initially creating ] |
@@ -149,7 +149,7 @@ would be able to see that post in their app and be able to make a response.
 
       * *It is easy to edit and make changes since Hashset implements the add, delete and contains method, and is not constrained by size.
 
-      * *Each of these lists, we want to achieve it so that there`s no repeat, and Hashset can check that function for us.
+      * *User cannot subscribe, block a person twice. We want to achieve it so that there`s no repeat, and Hashset can check that function for us.
 
 2. *<ArrayList>*
    * *Objective: It is used for storing comments in each post
@@ -158,7 +158,7 @@ would be able to see that post in their app and be able to make a response.
 
       * *It is easy to edit and make changes with the add method of arraylist
 
-      * *Unlike Hashset, Arraylist allows existence of multiple elements, so it`s better for storing comments.
+      * *Unlike Hashset, Arraylist allows existence of multiple elements. For example, there may be two comments with the same content.
 
 3. *AVL Tree*
    * Objective:using tree to store the login information of the user to speed up the login.
@@ -172,8 +172,10 @@ would be able to see that post in their app and be able to make a response.
 Location: DataContainer/Me.java
 <br>
 <br>
-this whole class was implemented with the singleton design pattern.
-Reason: For our app, the "Me" class is used to store the current user who`s logged in. Since there can only be on user logging in
+The SingleTon class `Me` are used as a global variable which keep the same information no matter what activity a user in.
+It is used throughout the project. When log in, a current user information retrieved from the database is stored temporary in Me. 
+When log out, the information in me is destroyed. <br><br>
+For our app, the "Me" class is used to store the current user who`s logged in. Since there can only be on user logging in
 in one app, we use the singleton design pattern so that everytime an instance of Me is accessed from within the app, it is
 guaranteed to give us the only current user. And only when there is a login, a new instance of Me would be created and the old
 one is being replaced.
@@ -188,7 +190,15 @@ page, and allow us to identify when the user is logged in or not.
 Location: Database/UserDAO, Database/UserDAOImpl
 <br>
 <br>
-Reason: In this section of the app, we want to store the information of each user and each post in our database, and allow users
+In our group, we have 2 people make the frontend and 2 for backend. With this design pattern, the people who making the front
+end can directly use the function in DAO interface and do not need to worry about how data in store in detail. For example,
+The frontend people can use easily `addPost`, `getPost` whenever they need. Even through the `addPost` is still developing,
+the frontend people can clearly know in advanced what function they can use to retrieve and store data into the database,
+In this way, both frontend and backend people can work concurrently. <br><br>
+In addition, if our database is changed in the future, e.g. from SQLite to MySQL, we only need to make a new DAO class that implementing our DAO interface,
+The frontend people can still use all the function in the DAO interface when making their activities. <br><br>
+
+Also, as we want to store the information of each user and each post in our database, and allow users
 to access a particular part of the database that we provide them, yet hide deeper information. The DAO design pattern is the
 best tool for this, since it allows us to give users the access to some information, while keeping the rest hidden.
 
@@ -285,6 +295,7 @@ which is significantly faster than ordinary sqlite matching
    <img src="ReportImages/screenShot_Statistic.png" width="200">
 </div>
 
+<h1>ZZLPart</h1>
 **Message**
 <br>
 In the implementation of information exchange between users, we designed a button in the homepage called "Message" through which we can go to the message page. 
@@ -296,6 +307,8 @@ With the recycle view, the user can roll the page to any message he or she wants
 ![img.png](ReportImages/messageStructure.png)<br>
 ![img.png](ReportImages/messageScreen.png)<br>
 
+
+<h1>Jack Part</h1>
 
 <hr>
 <div title="Privacy Setting" style="text-align: center;">
