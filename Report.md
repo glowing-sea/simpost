@@ -455,6 +455,7 @@ Also, we defined some datacontainers and helping methods to help access to datab
 
 3. *Bug 3:*(HomeSome.class line 121)
 
+- *The bug can be easily solved by changing s.getLocation() in line 121 to "invisible"
 - *If a user set their location as hidden when someone visits their home page, the app crash. The reason for this bug is that if the person hide their location. The location string the app got is null. The app tries to set null to a TestView. Therefore crashes. This bug occurs when merging. There is a version in which the function can check if the location string of the user is null. If so, it will set the location TextView as "Invisible". However, due to the careless review of code when merging. The newer version did not successfully replace the old version.
 ![img.png](Henry/error1.png)<br>
 
