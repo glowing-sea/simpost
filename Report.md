@@ -282,7 +282,7 @@ simple data sturcture
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(AVLTree.class, new AVLTreeAdapter());
         Gson tson = builder.create();
-        
+         
         tson.fromJson()
 ```
 Gson object build using this way is ablt to decode Json serialised tree. However,it is still unstable
