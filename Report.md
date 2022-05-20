@@ -30,10 +30,10 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [u7253519] | [Jack Fan] | [Designing layout and button, text logic] |
+| [u7253519] | [Jack Fan] | [Designing layout and onclick logic, create ppt] |
 | [u7241110] | [Dai Boyu] | [Implementing search function with parser and tokenizer, implementing tree and Json] |
-| [u7227871] | [Haoting Chen] | [Implementing database] |
-| [u7323177] | [Zhengling Zhang] | [Creating Messages, initially creating database] |
+| [u7227871] | [Haoting Chen] | [Implementing database and main proposer for the app] |
+| [u7323177] | [Zhengling Zhang] | [Creating Messages] |
 
 ## Summary of Individual Contributions
 
@@ -44,16 +44,12 @@ The following is a report template to help your team successfully provide all th
 *Here is an example:*
 
 *UID1, Name1, I contribute 30% of the code. Here are my contributions:*
-* A.class
-* B.class: function1(), function2(), ...
-* ....
 
-*u7323177,Zhilin Zhang,I contribute 26.6% of the code.Here are my contributions:*
-* A.Messages.class
-* B.MessagesAddPage.class
-* C.MessageAdapter.class
-* D.MessageChat.class
-* E.MessageChatAdapter.class
+*U7253519, Jack Fan, I contribute 30% of the code. Here are my contributions:*
+* A.PostView, I created most of the layout for this page and set the corresponding functions.
+* B.PostCreate, I created the layout for this page and the corresponding logic
+* C.HomeUserList/HomeUserListAdapter, I created the first version of this page
+...........
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
 
@@ -66,8 +62,7 @@ The following is a report template to help your team successfully provide all th
 *[Miscellaneous contributions. You are welcome to provide anything that you consider as a contribution to the project or team.]*
 <hr>
 ## Conflict Resolution Protocol
-
-*[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
+When we encounter conflicts, we would try to solve by discussing online. If we can`t resolve the problem immediately, then we would try to have in person meetings and discuss and write code together so we can make sure that we are working in the same direction. 
 <hr>
 ## Application Description
 
