@@ -33,7 +33,7 @@ The following is a report template to help your team successfully provide all th
 | [u7253519] | [Jack Fan] |                                                                [Designing layout and button, text logic] |
 | [u7241110] | [Dai Boyu] |                     [Implementing search function with parser and tokenizer, implementing tree and Json] |
 | [u7227871] | [Haoting Chen] | [Design databse, encoding of persistent data, functions connecting the frontend, some frontend features] |
-| [u7323177] | [Zhengling Zhang] |                                                                                      [Creating Messages] |
+| [u7323177] | [Zhengling Zhang] |                                                           [Creating Messages,initially creating ] |
 
 ## Summary of Individual Contributions
 
@@ -49,6 +49,14 @@ u7227871, Haoting Chen, I contribute 30% of the code.
 * Post browsing page 20% such as  `Post.class`
 * Post viewing page 10% such as  `PostView.class`
 * Post creating page 10% such as  `PostCreate.class`
+
+*u7323177,Zhilin Zhang,I contribute 26.6% of the code.Here are my contributions:*
+* A.Messages.class
+* B.MessagesAddPage.class
+* C.MessageAdapter.class
+* D.MessageChat.class
+* E.MessageChatAdapter.class
+
 
 *Here is an example:*
 
